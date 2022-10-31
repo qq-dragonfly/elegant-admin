@@ -1,0 +1,239 @@
+#app {
+  height: 100%;
+}
+
+.elegant-admin-home {
+  position: absolute;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  user-select: none;
+  color: #736477;
+  background-color: #f6f8f9;
+}
+
+/**  loading  **/
+.loadEffect {
+  position: relative;
+  width: 200px;
+  height: 50px;
+  display: flex;
+}
+
+.eat {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  left: 0;
+  color: #536dfe;
+  animation: eat-animate 2.4s ease-in-out infinite;
+}
+
+@keyframes eat-animate {
+  100% {
+    left: 150px;
+  }
+}
+
+.eat::before {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 25px;
+  top: 0;
+  border-radius: 50px 50px 0 0;
+  background: currentcolor;
+  transform: rotate(-30deg);
+  animation: eat-top 2.4s ease-in-out infinite;
+}
+
+@keyframes eat-top {
+  20% {
+    transform: rotate(-30deg);
+  }
+
+  35% {
+    transform: rotate(0deg);
+  }
+
+  45% {
+    transform: rotate(-30deg);
+  }
+
+  60% {
+    transform: rotate(0deg);
+  }
+
+  70% {
+    transform: rotate(-30deg);
+  }
+
+  85% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.eat::after {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 25px;
+  bottom: 0;
+  border-radius: 0 0 50px 50px;
+  background: currentcolor;
+  transform: rotate(30deg);
+  animation: eat-bottom 2.4s ease-in-out infinite;
+}
+
+@keyframes eat-bottom {
+  20% {
+    transform: rotate(30deg);
+  }
+
+  35% {
+    transform: rotate(0deg);
+  }
+
+  45% {
+    transform: rotate(30deg);
+  }
+
+  60% {
+    transform: rotate(0deg);
+  }
+
+  70% {
+    transform: rotate(30deg);
+  }
+
+  85% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.load {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  margin: 10px;
+  color: #8698fe;
+  border-radius: 50%;
+  background: currentcolor;
+}
+
+.load:nth-child(2) {
+  animation: load1 2.4s linear infinite;
+  transform: scale(1);
+}
+
+@keyframes load1 {
+  35% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(0);
+  }
+}
+
+.load:nth-child(3) {
+  animation: load2 2.4s linear infinite;
+  transform: scale(1);
+}
+
+@keyframes load2 {
+  30% {
+    transform: scale(1);
+  }
+
+  58% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(0);
+  }
+}
+
+.load:nth-child(4) {
+  animation: load3 2.4s linear infinite;
+  transform: scale(1);
+}
+
+@keyframes load3 {
+  60% {
+    transform: scale(1);
+  }
+
+  80% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(0);
+  }
+}
+
+#browser-upgrade {
+  position: absolute;
+  z-index: 10001;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: none;
+  user-select: none;
+  color: #736477;
+  background-color: snow;
+}
+
+#browser-upgrade .title {
+  margin: 40px 0;
+  text-align: center;
+  font-size: 24px;
+}
+
+#browser-upgrade .browsers {
+  text-align: center;
+}
+
+#browser-upgrade .browsers .browser {
+  display: inline-block;
+  margin: 0 20px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#browser-upgrade .browsers .browser .browser-icon {
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  border: none;
+}
+
+#browser-upgrade .browsers .browser .browser-name {
+  text-align: center;
+  margin-top: 10px;
+  padding-bottom: 2px;
+  color: #736477;
+  border-bottom: 1px solid transparent;
+}
+
+#browser-upgrade .browsers .browser:hover .browser-name {
+  border-bottom: 1px solid #736477;
+}
