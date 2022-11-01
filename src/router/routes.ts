@@ -8,6 +8,7 @@ import MockExample from './modules/mock_example'
 import JsxExample from './modules/jsx_example'
 import ExternalLinkExample from './modules/external_link_example'
 import EcologyExample from './modules/ecology_example'
+import Directive from './modules/directive'
 
 import SystemSetting from './modules/system_setting'
 import type { Route } from '@/global'
@@ -131,6 +132,7 @@ const asyncRoutes: Route.recordMainRaw[] = [
       BreadcrumbExample,
       KeepAliveExample,
       ComponentExtendExample,
+      Directive,
       PermissionExample,
       MockExample,
       JsxExample,

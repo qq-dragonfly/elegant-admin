@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@antfu/eslint-config': ^0.27.0
+  '@element-plus/icons-vue': ^2.0.10
   '@iconify-json/ep': ^1.1.8
   '@iconify/vue': ^4.0.0
   '@tinymce/tinymce-vue': ^5.0.0
@@ -32,6 +33,7 @@ specifiers:
   pinia: ^2.0.23
   plop: ^3.1.1
   postcss-html: ^1.5.0
+  print-js: ^1.6.0
   qs: ^6.11.0
   sass: ^1.55.0
   stylelint: ^14.13.0
@@ -60,6 +62,7 @@ specifiers:
   vue-tsc: ^1.0.3
 
 dependencies:
+  '@element-plus/icons-vue': 2.0.10_vue@3.2.40
   '@tinymce/tinymce-vue': 5.0.0_vue@3.2.40
   '@vueuse/core': 9.3.0_vue@3.2.40
   '@vueuse/integrations': 9.3.0_utnibork7z3tfwsuiw7p2cwkdm
@@ -74,6 +77,7 @@ dependencies:
   path-browserify: 1.0.1
   path-to-regexp: 6.2.1
   pinia: 2.0.23_bfjwoga25wxjazzogo7o372nwq
+  print-js: 1.6.0
   qs: 6.11.0
   tinymce: 6.2.0
   vue: 3.2.40
@@ -581,8 +585,8 @@ packages:
     engines: {node: '>=10'}
     dev: false
 
-  /@element-plus/icons-vue/2.0.9_vue@3.2.40:
-    resolution: {integrity: sha512-okdrwiVeKBmW41Hkl0eMrXDjzJwhQMuKiBOu17rOszqM+LS/yBYpNQNV5Jvoh06Wc+89fMmb/uhzf8NZuDuUaQ==}
+  /@element-plus/icons-vue/2.0.10_vue@3.2.40:
+    resolution: {integrity: sha512-ygEZ1mwPjcPo/OulhzLE7mtDrQBWI8vZzEWSNB2W/RNCRjoQGwbaK4N8lV4rid7Ts4qvySU3njMN7YCiSlSaTQ==}
     peerDependencies:
       vue: ^3.2.0
     dependencies:
@@ -2491,7 +2495,7 @@ packages:
       vue: ^3.2.0
     dependencies:
       '@ctrl/tinycolor': 3.4.1
-      '@element-plus/icons-vue': 2.0.9_vue@3.2.40
+      '@element-plus/icons-vue': 2.0.10_vue@3.2.40
       '@floating-ui/dom': 1.0.1
       '@popperjs/core': /@sxzz/popperjs-es/2.11.7
       '@types/lodash': 4.14.184
@@ -5883,6 +5887,10 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
     dev: true
+
+  /print-js/1.6.0:
+    resolution: {integrity: sha512-BfnOIzSKbqGRtO4o0rnj/K3681BSd2QUrsIZy/+WdCIugjIswjmx3lDEZpXB2ruGf9d4b3YNINri81+J0FsBWg==}
+    dev: false
 
   /process-nextick-args/1.0.7:
     resolution: {integrity: sha512-yN0WQmuCX63LP/TMvAg31nvT6m4vDqJEiiv2CAZqWOGNWutc9DfDk1NPYYmKUFmaVM2UwDowH4u5AHWYP/jxKw==}

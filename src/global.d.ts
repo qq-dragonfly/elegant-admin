@@ -15,6 +15,13 @@ declare namespace Settings {
      */
     colorScheme?: '' | 'light' | 'dark'
     /**
+     * 主题颜色
+     * @默认值 `''` 跟随系统
+     * @可选值 `'light'` 明亮模式
+     * @可选值 `'dark'` 暗黑模式
+     */
+    themeColor?: string
+    /**
      * Element Plus 组件默认尺寸
      * @默认值 `'default'` 默认
      * @可选值 `'large'` 大号

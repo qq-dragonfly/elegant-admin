@@ -11,6 +11,7 @@ const globalSettingsDefault: RecursiveRequired<Settings.all> = {
     enableProgress: true,
     enableDynamicTitle: false,
     routeBaseOn: 'frontend',
+    themeColor: '#009688',
   },
   dashboard: {
     enable: true,
@@ -22,7 +23,7 @@ const globalSettingsDefault: RecursiveRequired<Settings.all> = {
   menu: {
     baseOn: 'frontend',
     menuMode: 'head',
-    switchMainMenuAndPageJump: false,
+    switchMainMenuAndPageJump: true,
     subMenuUniqueOpened: true,
     subMenuCollapse: false,
     enableSubMenuCollapseButton: false,
