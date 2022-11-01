@@ -1,38 +1,36 @@
 const useKeepAliveStore = defineStore(
-  // 唯一ID
-  'keepAlive',
-  {
-    state: () => ({
-      list: [] as string[],
-    }),
-    actions: {
-      add(name: string | string[]) {
-        if (typeof name === 'string') {
-          !this.list.includes(name) && this.list.push(name)
-        }
-        else {
-          name.forEach((v) => {
-            v && !this.list.includes(v) && this.list.push(v)
-          })
-        }
-      },
-      remove(name: string | string[]) {
-        if (typeof name === 'string') {
-          this.list = this.list.filter((v) => {
-            return v !== name
-          })
-        }
-        else {
-          this.list = this.list.filter((v) => {
-            return !name.includes(v)
-          })
-        }
-      },
-      clean() {
-        this.list = []
-      },
-    },
-  },
-)
+	// 唯一ID
+	'keepAlive',
+	{
+		state: () => ({
+			list: [] as string[]
+		}),
+		actions: {
+			add(name: string | string[]) {
+				if (typeof name === 'string') {
+					!this.list.includes(name) && this.list.push(name);
+				} else {
+					name.forEach(v => {
+						v && !this.list.includes(v) && this.list.push(v);
+					});
+				}
+			},
+			remove(name: string | string[]) {
+				if (typeof name === 'string') {
+					this.list = this.list.filter(v => {
+						return v !== name;
+					});
+				} else {
+					this.list = this.list.filter(v => {
+						return !name.includes(v);
+					});
+				}
+			},
+			clean() {
+				this.list = [];
+			}
+		}
+	}
+);
 
-export default useKeepAliveStore
+export default useKeepAliveStore;

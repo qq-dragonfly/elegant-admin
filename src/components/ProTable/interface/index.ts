@@ -8,21 +8,21 @@ export interface EnumProps {
 }
 
 export type SearchType =
-	| "text"
-	| "select"
-	| "multipleSelect"
-	| "treeSelect"
-	| "multipleTreeSelect"
-	| "date"
-	| "daterange"
-	| "timerange"
-	| "datetimerange";
+	| 'text'
+	| 'select'
+	| 'multipleSelect'
+	| 'treeSelect'
+	| 'multipleTreeSelect'
+	| 'date'
+	| 'daterange'
+	| 'timerange'
+	| 'datetimerange';
 
-export type TypeProp = "index" | "selection" | "expand";
+export type TypeProp = 'index' | 'selection' | 'expand';
 
-export type FixedProp = "left" | "right";
+export type FixedProp = 'left' | 'right';
 
-export type AlignProp = "left" | "center" | "right";
+export type AlignProp = 'left' | 'center' | 'right';
 
 export interface ColumnProps {
 	type: TypeProp; // index | selection | expand（特殊类型）

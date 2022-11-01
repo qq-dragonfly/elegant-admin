@@ -1,13 +1,13 @@
-import router from '@/router'
+import router from '@/router';
 
 export default function useMainPage() {
-  function reload() {
-    router.push({
-      name: 'reload',
-    })
-  }
+	function reload() {
+		router.push({
+			name: 'reload'
+		});
+	}
 
-  return {
-    reload,
-  }
+	return {
+		reload
+	};
 }

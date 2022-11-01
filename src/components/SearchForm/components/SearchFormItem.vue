@@ -1,6 +1,6 @@
 <template>
 	<!-- 文本框 -->
-	<template v-if="item.searchType == undefined || item.searchType == 'text'">
+	<template v-if="item.searchType === undefined || item.searchType === 'text'">
 		<el-input
 			v-model="searchParam[item.prop!]"
 			v-bind="item.searchProps"
@@ -9,11 +9,11 @@
 		></el-input>
 	</template>
 	<!-- 下拉选择框 -->
-	<template v-if="item.searchType == 'select' || item.searchType == 'multipleSelect'">
+	<template v-if="item.searchType === 'select' || item.searchType === 'multipleSelect'">
 		<el-select
 			v-model="searchParam[item.prop!]"
 			v-bind="item.searchProps"
-			:multiple="item.searchType == 'multipleSelect'"
+			:multiple="item.searchType === 'multipleSelect'"
 			placeholder="请选择"
 			:clearable="clearable(item)"
 		>
@@ -27,16 +27,16 @@
 		</el-select>
 	</template>
 	<!-- 下拉树形选择框 -->
-	<template v-if="item.searchType == 'treeSelect' || item.searchType == 'multipleTreeSelect'">
+	<template v-if="item.searchType === 'treeSelect' || item.searchType === 'multipleTreeSelect'">
 		<el-tree-select
 			v-model="searchParam[item.prop!]"
 			v-bind="item.searchProps"
-			:multiple="item.searchType == 'multipleTreeSelect'"
+			:multiple="item.searchType === 'multipleTreeSelect'"
 			:data="item.enum"
 		/>
 	</template>
 	<!-- 日期选择 -->
-	<template v-if="item.searchType == 'date'">
+	<template v-if="item.searchType === 'date'">
 		<el-date-picker
 			v-model="searchParam[item.prop!]"
 			v-bind="item.searchProps"
@@ -47,7 +47,7 @@
 		/>
 	</template>
 	<!-- 时间范围选择 -->
-	<template v-if="item.searchType == 'timerange'">
+	<template v-if="item.searchType === 'timerange'">
 		<el-time-picker
 			v-model="searchParam[item.prop!]"
 			v-bind="item.searchProps"
@@ -60,7 +60,7 @@
 		/>
 	</template>
 	<!-- 日期范围选择 -->
-	<template v-if="item.searchType == 'daterange'">
+	<template v-if="item.searchType === 'daterange'">
 		<el-date-picker
 			v-model="searchParam[item.prop!]"
 			v-bind="item.searchProps"
@@ -73,7 +73,7 @@
 		/>
 	</template>
 	<!-- 日期时间范围选择 -->
-	<template v-if="item.searchType == 'datetimerange'">
+	<template v-if="item.searchType === 'datetimerange'">
 		<el-date-picker
 			v-model="searchParam[item.prop!]"
 			v-bind="item.searchProps"
@@ -88,7 +88,7 @@
 </template>
 
 <script setup lang="ts" name="searchFormItem">
-import { ColumnProps } from "@/components/ProTable/interface";
+import { ColumnProps } from '@/components/ProTable/interface';
 
 interface SearchFormItem {
 	item: Partial<ColumnProps>; // 具体每一个搜索项的配置
@@ -97,7 +97,7 @@ interface SearchFormItem {
 
 // 是否有清除按钮 (当搜索项有默认值时，清除按钮不显示)
 const clearable = (item: Partial<ColumnProps>) => {
-	return item.searchInitParam == null || item.searchInitParam == undefined;
+	return item.searchInitParam === null || item.searchInitParam === undefined;
 };
 
 defineProps<SearchFormItem>();

@@ -1,18 +1,18 @@
-import path from 'path-browserify'
-import { isArray } from 'lodash-es'
+import path from 'path-browserify';
+import { isArray } from 'lodash-es';
 
 export function isExternalLink(path: string) {
-  return /^(https?:|mailto:|tel:)/.test(path)
+	return /^(https?:|mailto:|tel:)/.test(path);
 }
 
 export function resolveRoutePath(basePath: string, routePath: string) {
-  if (isExternalLink(routePath)) {
-    return routePath
-  }
-  if (isExternalLink(basePath)) {
-    return basePath
-  }
-  return basePath ? path.resolve(basePath, routePath) : routePath
+	if (isExternalLink(routePath)) {
+		return routePath;
+	}
+	if (isExternalLink(basePath)) {
+		return basePath;
+	}
+	return basePath ? path.resolve(basePath, routePath) : routePath;
 }
 /**
  * @description 处理无数据情况
@@ -20,9 +20,11 @@ export function resolveRoutePath(basePath: string, routePath: string) {
  * @return string
  * */
 export function formatValue(callValue: any) {
-  // 如果当前值为数组,使用 / 拼接（根据需求自定义）
-  if (isArray(callValue)) { return callValue.length ? callValue.join(' / ') : '--' }
-  return callValue ?? '--'
+	// 如果当前值为数组,使用 / 拼接（根据需求自定义）
+	if (isArray(callValue)) {
+		return callValue.length ? callValue.join(' / ') : '--';
+	}
+	return callValue ?? '--';
 }
 
 /**
@@ -34,10 +36,14 @@ export function formatValue(callValue: any) {
  * @return string
  * */
 export function filterEnum(callValue: any, enumData: any, searchProps?: { [key: string]: any }, type?: string): string {
-  const value = searchProps?.value ?? 'value'
-  const label = searchProps?.label ?? 'label'
-  let filterData: any = {}
-  if (Array.isArray(enumData)) { filterData = enumData.find((item: any) => item[value] === callValue) }
-  if (type === 'tag') { return filterData?.tagType ? filterData.tagType : '' }
-  return filterData ? filterData[label] : '--'
+	const value = searchProps?.value ?? 'value';
+	const label = searchProps?.label ?? 'label';
+	let filterData: any = {};
+	if (Array.isArray(enumData)) {
+		filterData = enumData.find((item: any) => item[value] === callValue);
+	}
+	if (type === 'tag') {
+		return filterData?.tagType ? filterData.tagType : '';
+	}
+	return filterData ? filterData[label] : '--';
 }

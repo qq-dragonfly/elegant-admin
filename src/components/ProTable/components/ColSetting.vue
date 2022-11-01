@@ -1,7 +1,7 @@
 <template>
 	<!-- 列设置 -->
 	<el-drawer title="列设置" v-model="drawerVisible" size="400px">
-		<div class="table">
+		<div>
 			<el-table :data="colSetting" :border="true">
 				<!-- <el-table-column prop="name" align="center" label="排序">
 					<el-tag style="cursor: move">
@@ -14,8 +14,7 @@
 				</el-table-column>
 				<template #empty>
 					<div class="table-empty">
-						<img src="@/assets/images/notData.png" alt="notData" />
-						<div>暂无数据</div>
+						<el-empty description="暂无数据" />
 					</div>
 				</template>
 			</el-table>
@@ -24,8 +23,8 @@
 </template>
 
 <script setup lang="ts" name="colSetting">
-import { ref } from "vue";
-import { ColumnProps } from "@/components/ProTable/interface";
+import { ref } from 'vue';
+import { ColumnProps } from '@/components/ProTable/interface';
 
 defineProps<{ colSetting: Partial<ColumnProps>[]; tableRef: any }>();
 

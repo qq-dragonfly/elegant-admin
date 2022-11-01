@@ -4,29 +4,27 @@ enabled: false
 </route>
 
 <script setup lang="ts" name="copyDirect">
-const data = ref<string>('我是被复制的内容 🍒 🍉 🍊')
+const data = ref<string>('我是被复制的内容 🍒 🍉 🍊');
 </script>
 
 <template>
-  <page-main>
-    <div class="card content-box">
-      <span class="text">复制指令 🍇🍇🍇🍓🍓🍓</span>
-      <div class="box-content">
-        <el-input v-model="data" placeholder="请输入内容" style="width: 500px">
-          <template #append>
-            <el-button v-copy="data">
-              复制
-            </el-button>
-          </template>
-        </el-input>
-      </div>
-    </div>
-  </page-main>
+	<page-main>
+		<div class="card content-box">
+			<span class="text">复制指令 🍇🍇🍇🍓🍓🍓</span>
+			<div class="box-content">
+				<el-input v-model="data" placeholder="请输入内容" style="width: 500px">
+					<template #append>
+						<el-button v-copy="data"> 复制 </el-button>
+					</template>
+				</el-input>
+			</div>
+		</div>
+	</page-main>
 </template>
 
 <style scoped lang="scss">
 .content-box {
-  position: relative;
-  height: 500px;
+	position: relative;
+	height: 500px;
 }
 </style>
