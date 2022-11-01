@@ -125,7 +125,7 @@ function onScroll(e: Event) {
 </script>
 
 <style lang="scss" scoped>
-[data-mode="mobile"] {
+[data-mode='mobile'] {
 	.sidebar-container {
 		transform: translateX(calc((var(--g-main-sidebar-width) + var(--g-sub-sidebar-width)) * -1));
 		&.show {
@@ -135,7 +135,7 @@ function onScroll(e: Event) {
 	.main-container {
 		margin-left: 0 !important;
 	}
-	&[data-menu-mode="single"] {
+	&[data-menu-mode='single'] {
 		.sidebar-container {
 			transform: translateX(calc(var(--g-sub-sidebar-width) * -1));
 			&.show {
