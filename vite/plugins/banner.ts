@@ -1,9 +1,9 @@
-import banner from 'vite-plugin-banner'
+import banner from 'vite-plugin-banner';
 
 export default function createBanner() {
-  return banner(`
+	return banner(`
 /**
  * 由 elegant-admin
  */
-  `)
+  `);
 }

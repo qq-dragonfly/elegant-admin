@@ -1,16 +1,15 @@
+<template>
+	<div>
+		<slot v-if="check()" />
+		<slot v-else name="no-auth" />
+	</div>
+</template>
 <script lang="ts" setup name="Auth">
 const props = defineProps<{
-  value: string | string[]
-}>()
+	value: string | string[];
+}>();
 
 function check() {
-  return useAuth().auth(props.value)
+	return useAuth().auth(props.value);
 }
 </script>
-
-<template>
-  <div>
-    <slot v-if="check()" />
-    <slot v-else name="no-auth" />
-  </div>
-</template>

@@ -3,13 +3,13 @@ name: reload
 </route>
 
 <script lang="ts" setup>
-const router = useRouter()
+const router = useRouter();
 
 onMounted(() => {
-  router.go(-1)
-})
+	router.go(-1);
+});
 </script>
 
 <template>
-  <div />
+	<div />
 </template>

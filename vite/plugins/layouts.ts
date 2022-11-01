@@ -1,7 +1,7 @@
-import Layouts from 'vite-plugin-vue-layouts'
+import Layouts from 'vite-plugin-vue-layouts';
 
 export default function createLayouts() {
-  return Layouts({
-    defaultLayout: 'index',
-  })
+	return Layouts({
+		defaultLayout: 'index'
+	});
 }
