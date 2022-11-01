@@ -1,5 +1,5 @@
-@use "./themes.scss";
-@use "./element-plus/index.scss";
+@use './themes.scss';
+@use './element-plus/index.scss';
 
 // 全局变量
 :root {
@@ -44,7 +44,7 @@ body {
 body {
 	box-sizing: border-box;
 	margin: 0;
-	font-family: Lato, "PingFang SC", "Microsoft YaHei", sans-serif;
+	font-family: Lato, 'PingFang SC', 'Microsoft YaHei', sans-serif;
 	-webkit-tap-highlight-color: transparent;
 	&.hidden_body {
 		overflow: hidden;
@@ -81,7 +81,7 @@ body {
 	transform: translateX(-50%) translateX(calc(var(--g-main-sidebar-actual-width) / 2))
 		translateX(calc(var(--g-sub-sidebar-actual-width) / 2));
 }
-[data-mode="mobile"] {
+[data-mode='mobile'] {
 	[data-fixed-calc-width] {
 		width: 100% !important;
 		transform: translateX(-50%) !important;

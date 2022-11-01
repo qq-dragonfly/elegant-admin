@@ -382,7 +382,7 @@ function handleCopy() {
 			position: absolute;
 			width: 100%;
 			height: 100%;
-			content: "";
+			content: '';
 			background-color: var(--g-sub-sidebar-menu-active-bg);
 			opacity: 0.2;
 		}
@@ -392,7 +392,7 @@ function handleCopy() {
 				bottom: 5px;
 				left: 5px;
 				width: 10px;
-				content: "";
+				content: '';
 				background-color: var(--g-sub-sidebar-menu-active-bg);
 			}
 			&::after {
@@ -400,7 +400,7 @@ function handleCopy() {
 				bottom: 5px;
 				left: 20px;
 				width: 15px;
-				content: "";
+				content: '';
 				background-color: var(--g-sub-sidebar-menu-active-bg);
 				opacity: 0.5;
 			}
@@ -418,7 +418,7 @@ function handleCopy() {
 				right: 5px;
 				left: 5px;
 				height: 10px;
-				content: "";
+				content: '';
 				background-color: var(--g-sub-sidebar-menu-active-bg);
 			}
 			&::after {
@@ -426,7 +426,7 @@ function handleCopy() {
 				bottom: 5px;
 				left: 5px;
 				width: 15px;
-				content: "";
+				content: '';
 				background-color: var(--g-sub-sidebar-menu-active-bg);
 				opacity: 0.5;
 			}
@@ -445,7 +445,7 @@ function handleCopy() {
 				bottom: 5px;
 				left: 5px;
 				width: 15px;
-				content: "";
+				content: '';
 				background-color: var(--g-sub-sidebar-menu-active-bg);
 				opacity: 0.5;
 			}
