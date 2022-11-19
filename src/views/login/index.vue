@@ -252,7 +252,9 @@ layout: false
 	</div>
 </template>
 <script lang="ts" setup name="Login">
+import { getTimeState } from '@/utils';
 import type { ElForm, FormRules } from 'element-plus';
+import { ElNotification } from 'element-plus';
 import useUserStore from '@/store/modules/user';
 import { ref } from 'vue';
 import LoginBg from './components/LoginBg/index.vue';
@@ -275,8 +277,8 @@ type FormInstance = InstanceType<typeof ElForm>;
 const loginFormRef = ref<FormInstance>();
 const loginPasswordRef = ref<HTMLElement>();
 const loginForm = ref({
-	username: localStorage.login_username || '',
-	password: '',
+	username: localStorage.login_username || 'admin',
+	password: '123456',
 	remember: !!localStorage.login_username
 });
 const loginRules = ref<FormRules>({
@@ -310,13 +312,19 @@ function handleLogin() {
 				userStore
 					.login(loginForm.value)
 					.then(() => {
-						loading.value = false;
 						if (loginForm.value.remember) {
 							localStorage.setItem('login_username', loginForm.value.username);
 						} else {
 							localStorage.removeItem('login_username');
 						}
+						loading.value = false;
 						router.push(redirect.value);
+						ElNotification({
+							title: getTimeState(),
+							message: `欢迎登录 ${title}`,
+							type: 'success',
+							duration: 3000
+						});
 					})
 					.catch(() => {
 						loading.value = false;
@@ -383,7 +391,7 @@ const registerRules = ref<FormRules>({
 
 function handleRegister() {
 	ElMessage({
-		message: '注册模块仅提供界面演示，无实际功能，需开发者自行扩展',
+		message: '注册模块仅提供界面，无实际功能',
 		type: 'warning'
 	});
 	registerFormRef.value &&
@@ -434,7 +442,7 @@ const resetRules = ref<FormRules>({
 
 function handleReset() {
 	ElMessage({
-		message: '重置密码模块仅提供界面演示，无实际功能，需开发者自行扩展',
+		message: '重置密码模块仅提供界面，无实际功能',
 		type: 'warning'
 	});
 	resetFormRef.value &&

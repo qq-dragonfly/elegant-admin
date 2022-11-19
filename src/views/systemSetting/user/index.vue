@@ -4,8 +4,8 @@ enabled: false
 </route>
 
 <template>
-	<!--	<page-main> 用户管理 </page-main>-->
 	<div class="table-box">
+		<!--	<page-main> 用户管理 </page-main>-->
 		<ProTable ref="proTable" :columns="columns" :requestApi="getUserList" :initParam="initParam" :dataCallback="dataCallback">
 			<!-- 表格 header 按钮 -->
 			<template #tableHeader="scope">
@@ -44,7 +44,7 @@ enabled: false
 	</div>
 </template>
 
-<script setup lang="tsx" name="useComponent">
+<script setup lang="tsx" name="systemSettingUser">
 import { ref, reactive } from 'vue';
 import { ElMessage } from 'element-plus';
 import { User } from '@/api/interface';
@@ -56,16 +56,16 @@ import ImportExcel from '@/components/ImportExcel/index.vue';
 // import UserDrawer from '@/views/proTable/components/UserDrawer.vue';
 import { CirclePlus, Delete, EditPen, Download, Upload, View, Refresh } from '@element-plus/icons-vue';
 import {
-	getUserList,
-	deleteUser,
-	editUser,
-	addUser,
-	changeUserStatus,
-	resetUserPassWord,
-	exportUserInfo,
-	BatchAddUser,
-	getUserStatus,
-	getUserGender
+	getUserList
+	// deleteUser,
+	// editUser,
+	// addUser,
+	// changeUserStatus,
+	// resetUserPassWord,
+	// exportUserInfo,
+	// BatchAddUser,
+	// getUserStatus,
+	// getUserGender
 } from '@/api/modules/user';
 
 // 获取 ProTable 元素，调用其获取刷新数据方法（还能获取到当前查询参数，方便导出携带参数）
@@ -105,7 +105,7 @@ const columns: Partial<ColumnProps>[] = [
 	{ type: 'selection', width: 80, fixed: 'left' },
 	{ type: 'index', label: '#', width: 80 },
 	{ type: 'expand', label: 'Expand', width: 100 },
-	{ prop: 'userName', label: '用户姓名', width: 130, search: true, renderHeader },
+	{ prop: 'userName', label: '用户姓名', width: 130, search: true },
 	// 😄 enum 可以直接是数组对象，也可以是请求方法(proTable 内部会执行获取 enum 的这个方法)，下面用户状态也同理
 	// 😄 enum 为请求方法时，后台返回的数组对象 key 值不是 label 和 value 的情况，可以在 searchProps 中指定 label 和 value 的 key 值
 	{
@@ -115,7 +115,7 @@ const columns: Partial<ColumnProps>[] = [
 		sortable: true,
 		search: true,
 		searchType: 'select',
-		enum: getUserGender,
+		// enum: getUserGender,
 		searchProps: { label: 'genderLabel', value: 'genderValue' }
 	},
 	{ prop: 'dept', label: '身份证号', search: true },
@@ -127,7 +127,7 @@ const columns: Partial<ColumnProps>[] = [
 		sortable: true,
 		search: true,
 		searchType: 'select',
-		enum: getUserStatus,
+		// enum: getUserStatus,
 		searchProps: { label: 'userLabel', value: 'userStatus' }
 	},
 	{

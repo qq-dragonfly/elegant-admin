@@ -58,11 +58,11 @@ if ((navigator.language || navigator.browserLanguage).toLowerCase() === 'zh-cn')
   if(!!window.ActiveXObject || "ActiveXObject" in window) {
     document.getElementById('browser-upgrade').style.display = 'block'
   } else {
-    const Loading = document.querySelector('.loadEffect');
+    const Loading = document.querySelector('.loading-box');
     Loading.classList.add('animate')
     Loading.addEventListener('animationend', function() {
       setTimeout(function() {
-        // Loading.classList.remove('animate')
+        Loading.classList.remove('animate')
       }, 600)
       setTimeout(function() {
         Loading.classList.add('animate')
