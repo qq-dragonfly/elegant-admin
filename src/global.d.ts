@@ -273,3 +273,17 @@ declare namespace Menu {
 		children: recordRaw[];
 	}
 }
+/** 多页签Tab的路由 */
+interface GlobalTabRoute extends Pick<import('vue-router').RouteLocationNormalizedLoaded, 'name' | 'fullPath' | 'meta'> {
+	/** 滚动的位置 */
+	scrollPosition: {
+		left: number;
+		top: number;
+	};
+}
+/** vue 的defineExpose导出的类型 */
+declare namespace Expose {
+	interface BetterScroll {
+		instance: import('@better-scroll/core').BScrollInstance;
+	}
+}

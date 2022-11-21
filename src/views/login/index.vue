@@ -253,6 +253,7 @@ layout: false
 </template>
 <script lang="ts" setup name="Login">
 import { getTimeState } from '@/utils';
+import { setLocal, getLocal, removeLocal } from '@/utils/storage';
 import type { ElForm, FormRules } from 'element-plus';
 import { ElNotification } from 'element-plus';
 import useUserStore from '@/store/modules/user';
@@ -276,10 +277,10 @@ const redirect = ref(route.query.redirect?.toString() ?? '/');
 type FormInstance = InstanceType<typeof ElForm>;
 const loginFormRef = ref<FormInstance>();
 const loginPasswordRef = ref<HTMLElement>();
-const loginForm = ref({
-	username: localStorage.login_username || 'admin',
+const loginForm = reactive({
+	username: (getLocal('login_username') as string) || 'admin',
 	password: '123456',
-	remember: !!localStorage.login_username
+	remember: !!getLocal('login_username')
 });
 const loginRules = ref<FormRules>({
 	username: [
@@ -310,14 +311,13 @@ function handleLogin() {
 			if (valid) {
 				loading.value = true;
 				userStore
-					.login(loginForm.value)
+					.login(loginForm)
 					.then(() => {
-						if (loginForm.value.remember) {
-							localStorage.setItem('login_username', loginForm.value.username);
+						if (loginForm.remember) {
+							setLocal('login_username', loginForm.username);
 						} else {
-							localStorage.removeItem('login_username');
+							removeLocal('login_username');
 						}
-						loading.value = false;
 						router.push(redirect.value);
 						ElNotification({
 							title: getTimeState(),
@@ -325,6 +325,7 @@ function handleLogin() {
 							type: 'success',
 							duration: 3000
 						});
+						loading.value = false;
 					})
 					.catch(() => {
 						loading.value = false;
@@ -406,7 +407,7 @@ function handleRegister() {
 const resetFormRef = ref<FormInstance>();
 const resetNewPasswordRef = ref<HTMLElement>();
 const resetForm = ref({
-	username: localStorage.login_username || '',
+	username: getLocal('login_username') || '',
 	captcha: '',
 	newPassword: ''
 });
@@ -464,18 +465,17 @@ const bgThemeColor = computed(() => settingStore.app.themeColor);
 </script>
 
 <style lang="scss" scoped>
-[data-mode='mobile'] {
+[data-mode="mobile"] {
 	#login-box {
 		position: relative;
-		width: 100%;
-		height: 100%;
 		top: 100px;
 		left: inherit;
-		transform: translateX(0) translateY(0);
 		flex-direction: column;
 		justify-content: start;
+		width: 100%;
+		height: 100%;
 		border-radius: 0;
-
+		transform: translateX(0) translateY(0);
 		.login-form {
 			width: 100%;
 			min-height: auto;
@@ -483,11 +483,9 @@ const bgThemeColor = computed(() => settingStore.app.themeColor);
 		}
 	}
 }
-
-:deep(input[type='password']::-ms-reveal) {
+:deep(input[type="password"]::-ms-reveal) {
 	display: none;
 }
-
 .bg-banner {
 	position: fixed;
 	z-index: 0;
@@ -495,73 +493,61 @@ const bgThemeColor = computed(() => settingStore.app.themeColor);
 	height: 100%;
 	background-color: var(--el-color-primary-light-8);
 }
-
 #login-box {
-	display: flex;
-	justify-content: space-between;
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-	border-radius: 10px;
+	display: flex;
+	justify-content: space-between;
 	overflow: hidden;
-
+	border-radius: 10px;
+	transform: translateX(-50%) translateY(-50%);
 	.login-form {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		min-height: 500px;
 		width: 500px;
+		min-height: 500px;
 		padding: 50px;
 		overflow: hidden;
-
 		.title-container {
 			position: relative;
 			margin-bottom: 30px;
-
 			.title {
 				font-size: 1.3em;
-				color: var(--el-text-color-primary);
 				font-weight: bold;
+				color: var(--el-text-color-primary);
 			}
 		}
 	}
-
 	.el-form-item {
 		margin-bottom: 24px;
-
 		:deep(.el-input) {
+			width: 100%;
 			height: 48px;
 			line-height: inherit;
-			width: 100%;
-
 			input {
 				height: 48px;
 			}
-
 			.el-input__prefix,
 			.el-input__suffix {
 				display: flex;
 				align-items: center;
 			}
-
 			.el-input__prefix {
 				left: 10px;
 			}
-
 			.el-input__suffix {
 				right: 10px;
 			}
 		}
 	}
-
 	.flex-bar {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		margin-bottom: 20px;
 	}
-
 	.sub-link {
 		display: flex;
 		align-items: center;
@@ -569,7 +555,6 @@ const bgThemeColor = computed(() => settingStore.app.themeColor);
 		margin-top: 20px;
 		font-size: 14px;
 		color: var(--el-text-color-secondary);
-
 		.text {
 			margin-right: 10px;
 		}
@@ -578,7 +563,6 @@ const bgThemeColor = computed(() => settingStore.app.themeColor);
 .login-box {
 	background-color: var(--el-bg-color);
 }
-
 .copyright {
 	position: absolute;
 	bottom: 30px;
