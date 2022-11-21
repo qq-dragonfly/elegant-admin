@@ -52,7 +52,8 @@ export default ({ mode, command }) => {
 				'element-plus/es/components/message/style/css',
 				'element-plus/es/components/notification/style/css',
 				'element-plus/es/components/message-box/style/css',
-				'element-plus/es/components/loading/style/css'
+				'element-plus/es/components/loading/style/css',
+				'@better-scroll/core'
 			]
 		},
 		plugins: createVitePlugins(env, command === 'build'),

@@ -1,5 +1,6 @@
 import useRouteStore from './route';
 import useMenuStore from './menu';
+import { setLocal, getLocal, removeLocal } from '@/utils/storage';
 import api from '@/api';
 
 const useUserStore = defineStore(
@@ -7,20 +8,20 @@ const useUserStore = defineStore(
 	'user',
 	{
 		state: () => ({
-			username: localStorage.username || '',
-			token: localStorage.token || '',
-			failure_time: localStorage.failure_time || '',
+			username: getLocal('username') || '',
+			token: getLocal('token') || '',
+			failure_time: getLocal('failure_time') || '',
 			permissions: [] as string[]
 		}),
 		getters: {
 			isLogin: state => {
-				let retn = false;
+				let flag = false;
 				if (state.token) {
 					if (new Date().getTime() < parseInt(state.failure_time) * 1000) {
-						retn = true;
+						flag = true;
 					}
 				}
-				return retn;
+				return flag;
 			}
 		},
 		actions: {
@@ -33,9 +34,10 @@ const useUserStore = defineStore(
 					api
 						.post('/api/token', data)
 						.then((res: any) => {
-							localStorage.setItem('username', res.data.userInfo.userName);
-							localStorage.setItem('token', res.data.token);
-							localStorage.setItem('failure_time', res.data.userInfo.time);
+							setLocal('username', res.data.userInfo.userName);
+							setLocal('token', res.data.userInfo.token);
+							setLocal('failure_time', res.data.userInfo.failure_time);
+
 							this.username = res.data.userInfo.userName;
 							this.token = res.data.token;
 							this.failure_time = res.data.userInfo.time;
@@ -50,9 +52,9 @@ const useUserStore = defineStore(
 				return new Promise<void>(resolve => {
 					const routeStore = useRouteStore();
 					const menuStore = useMenuStore();
-					localStorage.removeItem('username');
-					localStorage.removeItem('token');
-					localStorage.removeItem('failure_time');
+					removeLocal('username');
+					removeLocal('token');
+					removeLocal('failure_time');
 					this.username = '';
 					this.token = '';
 					this.failure_time = '';
