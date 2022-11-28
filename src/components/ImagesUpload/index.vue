@@ -77,6 +77,7 @@
 </template>
 <script lang="ts" setup name="ImagesUpload">
 import type { UploadProps } from 'element-plus';
+import { ElMessage } from 'element-plus';
 
 const props = defineProps({
 	action: {
@@ -197,113 +198,95 @@ const onSuccess: UploadProps['onSuccess'] = res => {
 .upload-container {
 	line-height: initial;
 }
-
 .el-image {
 	display: block;
 }
-
 .images {
 	position: relative;
 	display: inline-block;
 	margin-right: 10px;
+	overflow: hidden;
 	border: 1px dashed var(--el-border-color);
 	border-radius: 6px;
-	overflow: hidden;
-
 	.mask {
-		opacity: 0;
 		position: absolute;
 		top: 0;
 		width: 100%;
 		height: 100%;
 		background-color: var(--el-overlay-color-lighter);
+		opacity: 0;
 		transition: opacity 0.3s;
-
 		.actions {
-			width: 100px;
-			height: 100px;
 			display: flex;
 			flex-wrap: wrap;
 			align-items: center;
 			justify-content: center;
+			width: 100px;
+			height: 100px;
 
 			@include position-center(xy);
-
 			span {
 				width: 50%;
+				color: var(--el-color-white);
 				text-align: center;
 				cursor: pointer;
-				color: var(--el-color-white);
 				transition: color 0.1s, transform 0.1s;
-
 				&.disabled {
 					color: var(--el-text-color-disabled);
 					cursor: not-allowed;
 				}
-
 				&:hover:not(.disabled) {
 					transform: scale(1.5);
 				}
-
 				.el-icon {
 					font-size: 24px;
 				}
 			}
 		}
 	}
-
 	&:hover .mask {
 		opacity: 1;
 	}
 }
-
 .images-upload {
 	display: inline-block;
 	vertical-align: top;
 }
-
 :deep(.el-upload) {
 	.el-upload-dragger {
 		display: inline-block;
 		padding: 0;
-
 		&.is-dragover {
 			border-width: 1px;
 		}
-
 		.image-slot {
 			display: flex;
-			justify-content: center;
 			align-items: center;
+			justify-content: center;
 			width: 100%;
 			height: 100%;
 			color: var(--el-text-color-placeholder);
 			background-color: transparent;
-
 			i {
 				font-size: 30px;
 			}
 		}
-
 		.progress {
 			position: absolute;
 			top: 0;
-
 			&::after {
-				content: '';
 				position: absolute;
+				top: 0;
+				left: 0;
 				width: 100%;
 				height: 100%;
-				left: 0;
-				top: 0;
+				content: "";
 				background-color: var(--el-overlay-color-lighter);
 			}
-
 			.el-progress {
 				z-index: 1;
 
 				@include position-center(xy);
-
 				.el-progress__text {
 					color: var(--el-text-color-placeholder);
 				}

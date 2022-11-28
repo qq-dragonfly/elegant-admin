@@ -23,6 +23,7 @@
 						"
 						:scroll-top="scrollTop"
 					/>
+					<GlobalTabBar v-if="settingsStore.tab.visible" />
 					<div class="main">
 						<router-view v-slot="{ Component, route }">
 							<transition name="main" mode="out-in" :appear="true">
@@ -50,6 +51,7 @@ import GlobalTopBar from './components/GlobalTopBar/index.vue';
 import GlobalSearch from './components/GlobalSearch/index.vue';
 import GlobalAppSetting from './components/GlobalAppSetting/index.vue';
 import GlobalBuyIt from './components/GlobalBuyIt/index.vue';
+import GlobalTabBar from './components/GlobalTabBar/index.vue';
 import useSettingsStore from '@/store/modules/settings';
 import useKeepAliveStore from '@/store/modules/keepAlive';
 import useMenuStore from '@/store/modules/menu';
@@ -123,7 +125,7 @@ function onScroll(e: Event) {
 </script>
 
 <style lang="scss" scoped>
-[data-mode='mobile'] {
+[data-mode="mobile"] {
 	.sidebar-container {
 		transform: translateX(calc((var(--g-main-sidebar-width) + var(--g-sub-sidebar-width)) * -1));
 		&.show {
@@ -133,7 +135,7 @@ function onScroll(e: Event) {
 	.main-container {
 		margin-left: 0 !important;
 	}
-	&[data-menu-mode='single'] {
+	&[data-menu-mode="single"] {
 		.sidebar-container {
 			transform: translateX(calc(var(--g-sub-sidebar-width) * -1));
 			&.show {

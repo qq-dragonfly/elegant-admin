@@ -33,7 +33,7 @@
 					<img src="../../../assets/images/avatar.gif" alt="" />
 				</div>
 				<div class="user-name">
-					{{ userStore.account }}
+					{{ userStore.username }}
 				</div>
 				<el-icon>
 					<svg-icon name="ep:caret-bottom" />
@@ -92,19 +92,16 @@ function userCommand(command: 'dashboard' | 'setting' | 'logout') {
 	align-items: center;
 	padding: 0 20px;
 	white-space: nowrap;
-
 	.buttons {
 		margin-right: 20px;
-
 		.item {
 			display: inline-flex;
 			align-items: center;
 			justify-content: center;
-			height: 24px;
 			width: 34px;
-			cursor: pointer;
+			height: 24px;
 			vertical-align: middle;
-
+			cursor: pointer;
 			.el-icon {
 				color: var(--el-text-color-primary);
 				transition: var(--el-transition-color);
@@ -112,27 +109,23 @@ function userCommand(command: 'dashboard' | 'setting' | 'logout') {
 		}
 	}
 }
-
 :deep(.user-container) {
 	cursor: pointer;
-
 	.user-wrapper {
 		display: flex;
 		align-items: center;
-
 		.user-avatar {
 			display: flex;
 			width: 30px;
 			height: 30px;
-			border-radius: 6px;
-			overflow: hidden;
 			margin-right: 5px;
+			overflow: hidden;
+			border-radius: 6px;
 			img {
 				width: 100%;
 				height: 100%;
 			}
 		}
-
 		.user-name {
 			font-size: 13px;
 		}

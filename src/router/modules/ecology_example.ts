@@ -16,7 +16,7 @@ const routes: Route.recordRaw[] = [
 				name: 'videosComingSoon',
 				component: () => import('@/views/videos_example/coming.soon.vue'),
 				meta: {
-					title: '视频教程1111',
+					title: '视频教程',
 					sidebar: false,
 					breadcrumb: false
 				}

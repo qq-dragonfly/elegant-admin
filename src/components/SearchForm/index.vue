@@ -1,5 +1,5 @@
 <template>
-	<div class="card table-search m-2 mb-0" v-if="columns.length">
+	<div class="card table-search mb-1" v-if="columns.length">
 		<div class="flex justify-between items-center pb-4">
 			<div class="flex items-center">
 				<el-icon><Search /></el-icon>

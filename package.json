@@ -42,11 +42,14 @@
 		"print-js": "^1.6.0",
 		"tinymce": "^6.2.0",
 		"vue": "^3.2.40",
-		"vue-router": "^4.1.5"
-	},
+		"vue-router": "^4.1.5",
+    "css-render": "0.15.10",
+    "ua-parser-js": "^1.0.2"
+  },
 	"devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.22.0",
     "@typescript-eslint/parser": "^5.22.0",
+    "@types/ua-parser-js": "^0.7.36",
 		"@iconify-json/ep": "^1.1.8",
 		"@iconify/vue": "^4.0.0",
 		"@types/nprogress": "^0.2.0",

@@ -7,17 +7,18 @@
 
 ## 简介
 
-[Elegant Admin](https://github.com/honghuangdc/soybean-admin) 是一个基于 Vue3、Vite3、TypeScript、elementPlus、Pinia
-的清新优雅的中后台模版，它使用了最新的前端技术栈，内置丰富的主题配置，开箱即用的中后台前端解决方案，也可用于学习参考。
+[Elegant Admin](https://github.com/zhangyao1990/elegant-admin) 是一个基于 Vue3、Vite3、TypeScript、elementPlus、Pinia
+的清新优雅的中后台模版，它使用了最新的前端技术栈，内置多个主题配置，开箱即用的中后台前端解决方案，也可用于学习参考。
 
 ## 特性
 
 - **最新技术栈**：使用 Vue3/Vite3 等前端前沿技术开发, 使用高效率的 npm 包管理器 pnpm
 - **TypeScript**：应用程序级 JavaScript 的语言
-- **主题**：丰富可配置的主题、暗黑模式，基于原子 css 框架
+- **主题**：丰富可配置的主题、暗黑模式，基于原子 css tailwindcss 框架
 - **代码规范**：丰富的规范插件及极高的代码规范
-- **权限路由**：简易的路由配置、基于 mock 的动态路由能快速实现后端动态路由
-- **请求函数**：基于 axios 的完善的请求函数封装，提供 Promise 和 hooks 两种请求函数，加入请求结果数据转换的适配器
+- **权限路由**：简易的路由配置、可使用前端路由、文件路由和后端动态路由
+- **请求函数**：基于 axios 的完善的请求函数封装
+- **表格封装**：基于elementPlus 封装的表格组件、表格查询组件
 
 ## 预览
 
@@ -63,7 +64,12 @@ pnpm run dev
 - 打包
 
 ```bash
-pnpm build
+#测试环境
+pnpm build:test
+#预发环境
+pnpm build:sit
+#正式环境
+pnpm build:pro
 ```
 
 

@@ -29,6 +29,7 @@
       "node"
     ]
   },
+  "exclude": ["dist", "node_modules"],
   "include": [
     "src/**/*.ts",
     "src/**/*.d.ts",

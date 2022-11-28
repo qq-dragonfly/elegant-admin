@@ -2,48 +2,6 @@
 meta:
   enabled: false
 </route>
-
-<script lang="ts" setup>
-import useSettingsStore from '@/store/modules/settings';
-import useUserStore from '@/store/modules/user';
-
-const { auth, authAll } = useAuth();
-const settingsStore = useSettingsStore();
-const userStore = useUserStore();
-
-function accountChange(val: any) {
-	ElLoading.service({
-		lock: true,
-		text: '帐号切换中',
-		background: 'rgba(0, 0, 0, 0.7)'
-	});
-	userStore
-		.login({
-			username: val,
-			password: ''
-		})
-		.then(() => {
-			setTimeout(() => {
-				location.reload();
-			}, 1000);
-		});
-}
-function permissionCheck(permissions: string | string[]) {
-	if (auth(permissions)) {
-		ElMessage.success('校验通过');
-	} else {
-		ElMessage.error('校验不通过');
-	}
-}
-function permissionCheck2(permissions: string[]) {
-	if (authAll(permissions)) {
-		ElMessage.success('校验通过');
-	} else {
-		ElMessage.error('校验不通过');
-	}
-}
-</script>
-
 <template>
 	<div>
 		<page-header title="权限验证" />
@@ -114,3 +72,43 @@ function permissionCheck2(permissions: string[]) {
 		</page-main>
 	</div>
 </template>
+<script lang="ts" setup>
+import useSettingsStore from '@/store/modules/settings';
+import useUserStore from '@/store/modules/user';
+import { ElLoading, ElMessage } from 'element-plus';
+const { auth, authAll } = useAuth();
+const settingsStore = useSettingsStore();
+const userStore = useUserStore();
+
+function accountChange(val: any) {
+	ElLoading.service({
+		lock: true,
+		text: '帐号切换中',
+		background: 'rgba(0, 0, 0, 0.7)'
+	});
+	userStore
+		.login({
+			username: val,
+			password: ''
+		})
+		.then(() => {
+			setTimeout(() => {
+				location.reload();
+			}, 1000);
+		});
+}
+function permissionCheck(permissions: string | string[]) {
+	if (auth(permissions)) {
+		ElMessage.success('校验通过');
+	} else {
+		ElMessage.error('校验不通过');
+	}
+}
+function permissionCheck2(permissions: string[]) {
+	if (authAll(permissions)) {
+		ElMessage.success('校验通过');
+	} else {
+		ElMessage.error('校验不通过');
+	}
+}
+</script>

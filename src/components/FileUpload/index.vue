@@ -33,6 +33,7 @@
 </template>
 <script lang="ts" setup name="FileUpload">
 import type { UploadProps } from 'element-plus';
+import { ElMessage } from 'element-plus';
 
 const props = defineProps({
 	action: {
@@ -101,15 +102,12 @@ const onSuccess: UploadProps['onSuccess'] = (res, file, fileList) => {
 <style lang="scss" scoped>
 :deep(.el-upload.is-drag) {
 	display: inline-block;
-
 	.el-upload-dragger {
 		padding: 0;
 	}
-
 	&.is-dragover {
 		border-width: 1px;
 	}
-
 	.slot {
 		width: 300px;
 		padding: 40px 0;

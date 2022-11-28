@@ -35,9 +35,8 @@ const useUserStore = defineStore(
 						.post('/api/token', data)
 						.then((res: any) => {
 							setLocal('username', res.data.userInfo.userName);
-							setLocal('token', res.data.userInfo.token);
-							setLocal('failure_time', res.data.userInfo.failure_time);
-
+							setLocal('token', res.data.token);
+							setLocal('failure_time', res.data.userInfo.time);
 							this.username = res.data.userInfo.userName;
 							this.token = res.data.token;
 							this.failure_time = res.data.userInfo.time;

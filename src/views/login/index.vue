@@ -255,7 +255,7 @@ layout: false
 import { getTimeState } from '@/utils';
 import { setLocal, getLocal, removeLocal } from '@/utils/storage';
 import type { ElForm, FormRules } from 'element-plus';
-import { ElNotification } from 'element-plus';
+import { ElNotification, ElMessage } from 'element-plus';
 import useUserStore from '@/store/modules/user';
 import { ref } from 'vue';
 import LoginBg from './components/LoginBg/index.vue';

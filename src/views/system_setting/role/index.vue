@@ -4,7 +4,9 @@ enabled: false
 </route>
 
 <template>
-	<page-main> 角色管理 </page-main>
+	<div class="table-box">
+		<page-main>角色管理</page-main>
+	</div>
 </template>
 <script setup lang="ts" name="systemSettingRole">
 // 角色管理

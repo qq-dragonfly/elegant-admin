@@ -10,7 +10,7 @@
 		:search-param="searchParam"
 		:columns="searchColumns"
 	/>
-	<div class="card m-2">
+	<div class="card">
 		<!-- 表格头部 操作按钮 -->
 		<div class="table-header">
 			<div class="header-button-lf">

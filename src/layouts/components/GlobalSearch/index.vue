@@ -312,140 +312,121 @@ function pageJump(url: string) {
 <style lang="scss" scoped>
 #search {
 	position: fixed;
-	z-index: 2000;
 	top: 0;
 	left: 0;
+	z-index: 2000;
 	width: 100%;
 	height: 100%;
+	visibility: hidden;
 	background-color: var(--el-overlay-color-lighter);
-	backdrop-filter: blur(5px);
+	opacity: 0;
 	transition: all 0.2s;
 	transform: translateZ(0);
-	opacity: 0;
-	visibility: hidden;
-
+	backdrop-filter: blur(5px);
 	&.searching {
-		opacity: 1;
 		visibility: visible;
-
+		opacity: 1;
 		.container {
-			transform: initial;
-			filter: initial;
 			background-color: #ffffff;
+			filter: initial;
+			transform: initial;
 		}
 	}
-
 	.container {
 		display: flex;
 		flex-direction: column;
 		max-width: 800px;
 		height: 80%;
 		margin: 40px auto;
+		filter: blur(10px);
 		border-radius: 10px;
 		transition: all 0.2s;
 		transform: scale(1.1);
-		filter: blur(10px);
-
 		.search-box {
 			margin: 20px 20px 10px;
-
 			:deep(.el-input__inner) {
 				height: 52px;
 				line-height: 52px;
 			}
-
 			:deep(.el-input__icon) {
-				height: 100%;
 				display: flex;
 				align-items: center;
 				justify-content: center;
+				height: 100%;
 			}
-
 			.tips {
 				display: flex;
 				align-items: center;
 				justify-content: space-evenly;
 				margin-top: 20px;
 				margin-bottom: 20px;
-				line-height: 24px;
 				font-size: 14px;
-				color: #333;
-
+				line-height: 24px;
+				color: #333333;
 				span {
-					margin: 0 5px;
 					padding: 3px 8px 5px;
-					border-radius: 5px;
+					margin: 0 5px;
 					font-size: 12px;
 					font-weight: bold;
 					color: var(--el-text-color-primary);
 					background-color: var(--el-fill-color);
-					box-shadow: inset 0 -2px #cdcde6, inset 0 0 1px 1px #fff, 0 1px 2px 1px rgb(30 35 90 / 40%);
+					border-radius: 5px;
+					box-shadow: inset 0 -2px #cdcde6, inset 0 0 1px 1px #ffffff, 0 1px 2px 1px rgb(30 35 90 / 40%);
 				}
 			}
 		}
-
 		.result {
 			position: relative;
-			margin: 0 20px;
 			max-height: calc(100% - 175px);
-			border-radius: 5px;
+			margin: 0 20px;
 			overflow: auto;
 			background-color: var(--el-bg-color);
+			border-radius: 5px;
 			box-shadow: 0 0 0 1px var(--el-border-color-darker);
-
 			&.mobile {
 				max-height: calc(100% - 200px);
 			}
-
 			.item {
 				display: flex;
 				align-items: center;
 				text-decoration: none;
 				cursor: pointer;
 				transition: all 0.3s;
-
 				&.actived {
 					background-color: var(--el-bg-color-page);
-
 					.icon {
 						color: var(--el-color-primary);
 						transform: scale(1.2);
 					}
-
 					.info {
 						border-left-color: var(--el-border-color);
-
 						.title {
 							color: var(--el-color-primary);
 						}
-
 						.breadcrumb,
 						.path {
 							color: var(--el-color-primary);
 						}
 					}
 				}
-
 				.icon {
 					flex: 0 0 66px;
-					text-align: center;
-					color: var(--el-color-info);
 					font-size: 20px;
+					color: var(--el-color-info);
+					text-align: center;
 					transition: all 0.3s;
 				}
-
 				.info {
-					flex: 1;
-					height: 70px;
 					display: flex;
+					flex: 1;
 					flex-direction: column;
 					justify-content: space-around;
-					border-left: 1px solid var(--el-border-color-lighter);
+					height: 70px;
 					padding: 5px 10px 7px;
+					border-left: 1px solid var(--el-border-color-lighter);
 					transition: all 0.3s;
 
 					@include text-overflow(1, true);
-
 					.title {
 						font-size: 18px;
 						font-weight: bold;
@@ -453,7 +434,6 @@ function pageJump(url: string) {
 
 						@include text-overflow(1, true);
 					}
-
 					.breadcrumb,
 					.path {
 						font-size: 12px;
@@ -462,11 +442,13 @@ function pageJump(url: string) {
 
 						@include text-overflow(1, true);
 					}
-
 					.breadcrumb {
+						display: flex;
+						align-items: center;
 						span {
+							display: flex;
+							align-items: center;
 							margin-right: 5px;
-
 							&:last-child i {
 								display: none;
 							}

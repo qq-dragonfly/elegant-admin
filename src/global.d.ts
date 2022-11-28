@@ -1,6 +1,10 @@
 import type { StyleValue } from 'vue';
 import type { RouteRecordRaw, RouteMeta, NavigationGuard } from 'vue-router';
-
+/** 枚举的key类型 */
+declare namespace EnumType {
+	/** 多页签风格 */
+	type ThemeTabMode = keyof typeof import('@/enums/common').EnumThemeTabMode;
+}
 type RecursiveRequired<T> = {
 	[P in keyof T]-?: RecursiveRequired<T[P]>;
 };
@@ -56,7 +60,6 @@ declare namespace Settings {
 		 */
 		routeBaseOn?: 'frontend' | 'backend' | 'filesystem';
 	}
-
 	interface dashboard {
 		/**
 		 * 是否开启控制台页面
@@ -76,6 +79,25 @@ declare namespace Settings {
 		 * @默认值 `false`
 		 */
 		enableMobileAdaptation?: boolean;
+	}
+	/** 多页签样式 */
+	interface tab {
+		/** 多页签可见 */
+		visible: boolean;
+		/** 多页签高度 */
+		height: number;
+		/** 多页签风格 */
+		mode: EnumType.ThemeTabMode;
+		/** 多页签风格列表 */
+		modeList: themeTabModeList[];
+		/** 开启多页签缓存 */
+		isCache: boolean;
+	}
+
+	/** 多页签风格列表 */
+	interface themeTabModeList {
+		value: EnumType.ThemeTabMode;
+		label: import('@/enums/common').EnumThemeTabMode;
 	}
 
 	interface menu {
@@ -196,6 +218,8 @@ declare namespace Settings {
 		dashboard?: dashboard;
 		/** 布局设置 */
 		layout?: layout;
+		/** 多页签样式设置 */
+		tab?: tab;
 		/** 导航栏设置 */
 		menu?: menu;
 		/** 顶栏设置 */
@@ -281,6 +305,7 @@ interface GlobalTabRoute extends Pick<import('vue-router').RouteLocationNormaliz
 		top: number;
 	};
 }
+
 /** vue 的defineExpose导出的类型 */
 declare namespace Expose {
 	interface BetterScroll {

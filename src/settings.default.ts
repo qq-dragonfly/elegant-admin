@@ -1,7 +1,7 @@
 // 该文件为系统默认配置，请勿修改！！！
 
 import type { RecursiveRequired, Settings } from './global';
-
+import { EnumThemeTabMode } from '@/enums/common';
 const globalSettingsDefault: RecursiveRequired<Settings.all> = {
 	app: {
 		colorScheme: 'light',
@@ -19,6 +19,16 @@ const globalSettingsDefault: RecursiveRequired<Settings.all> = {
 	},
 	layout: {
 		enableMobileAdaptation: false
+	},
+	tab: {
+		visible: true,
+		height: 44,
+		mode: 'chrome',
+		modeList: [
+			{ value: 'chrome', label: EnumThemeTabMode.chrome },
+			{ value: 'button', label: EnumThemeTabMode.button }
+		],
+		isCache: true
 	},
 	menu: {
 		baseOn: 'frontend',

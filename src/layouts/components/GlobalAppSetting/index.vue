@@ -139,6 +139,21 @@
 				<div class="label">是否启用</div>
 				<el-switch v-model="settings.breadcrumb.enable" />
 			</div>
+			<el-divider v-if="settingsStore.mode === 'pc'">多页签</el-divider>
+			<div v-if="settingsStore.mode === 'pc'" class="setting-item">
+				<div class="label">是否启用</div>
+				<el-switch v-model="settings.tab.visible" />
+			</div>
+			<div v-if="settingsStore.mode === 'pc'" class="setting-item">
+				<div class="label">多页签是否缓存</div>
+				<el-switch v-model="settings.tab.isCache" />
+			</div>
+			<div v-if="settingsStore.mode === 'pc'" class="setting-item">
+				<div class="label">多页签风格</div>
+				<el-select v-model="settings.tab.mode" class="w-1/2" placeholder="请选择">
+					<el-option v-for="item in settings.tab.modeList" :key="item.value" :label="item.label" :value="item.value" />
+				</el-select>
+			</div>
 			<el-divider>导航搜索</el-divider>
 			<div class="setting-item">
 				<div class="label">
@@ -241,6 +256,7 @@
 <script lang="ts" setup name="AppSetting">
 import { useClipboard } from '@vueuse/core';
 import eventBus from '@/utils/eventBus';
+import { ElMessage } from 'element-plus';
 import useSettingsStore from '@/store/modules/settings';
 import useMenuStore from '@/store/modules/menu';
 import globalSettingsDefault from '@/settings.default';
@@ -288,25 +304,21 @@ function handleCopy() {
 </script>
 <style lang="scss" scoped>
 :deep(.el-drawer__header) {
-	margin-bottom: initial;
 	padding-bottom: 20px;
+	margin-bottom: initial;
 	border-bottom: 1px solid var(--el-border-color);
 }
-
 :deep(.el-drawer__footer) {
 	padding: 20px;
 	border-top: 1px solid var(--el-border-color);
 	transition: var(--el-transition-border);
-
 	.el-button {
 		width: 100%;
 	}
 }
-
 :deep(.el-divider) {
 	margin: 36px 0 24px;
 }
-
 .color-scheme {
 	display: flex;
 	align-items: center;
@@ -314,188 +326,162 @@ function handleCopy() {
 	padding-bottom: 10px;
 
 	$width: 50px;
-
 	.switch {
 		width: $width;
 		height: 30px;
-		border-radius: 15px;
 		cursor: pointer;
 		background-color: var(--el-fill-color-darker);
+		border-radius: 15px;
 		transition: background-color 0.3s;
-
 		&.dark {
 			.icon {
 				margin-left: calc($width - 24px - 3px);
 			}
 		}
-
 		.icon {
-			margin: 3px;
 			padding: 5px;
+			margin: 3px;
 			font-size: 24px;
-			border-radius: 50%;
 			background-color: var(--el-fill-color-lighter);
+			border-radius: 50%;
 			transition: margin-left 0.3s, background-color 0.3s;
 		}
 	}
 }
-
 .menu-mode {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: center;
 	padding-bottom: 10px;
-
 	.mode {
 		position: relative;
 		width: 80px;
 		height: 55px;
 		margin: 10px;
-		border-radius: 5px;
 		overflow: hidden;
 		cursor: pointer;
 		background-color: var(--g-app-bg);
+		border-radius: 5px;
 		box-shadow: 0 0 5px 1px var(--el-border-color-lighter);
 		transition: 0.2s;
-
 		&:hover {
 			box-shadow: 0 0 5px 1px var(--el-border-color-darker);
 		}
-
 		&.active {
 			box-shadow: 0 0 0 2px var(--el-color-primary);
 		}
-
 		&::before,
 		&::after,
 		.mode-container {
-			pointer-events: none;
 			position: absolute;
+			pointer-events: none;
 			border-radius: 3px;
 		}
-
 		.mode-container::before {
-			content: '';
 			position: absolute;
 			width: 100%;
 			height: 100%;
+			content: "";
 			background-color: var(--g-sub-sidebar-menu-active-bg);
 			opacity: 0.2;
 		}
-
 		&-side {
 			&::before {
-				content: '';
 				top: 5px;
-				left: 5px;
 				bottom: 5px;
+				left: 5px;
 				width: 10px;
+				content: "";
 				background-color: var(--g-sub-sidebar-menu-active-bg);
 			}
-
 			&::after {
-				content: '';
 				top: 5px;
-				left: 20px;
 				bottom: 5px;
+				left: 20px;
 				width: 15px;
+				content: "";
 				background-color: var(--g-sub-sidebar-menu-active-bg);
 				opacity: 0.5;
 			}
-
 			.mode-container {
 				top: 5px;
-				left: 40px;
 				right: 5px;
 				bottom: 5px;
+				left: 40px;
 				border: 1px dashed var(--g-sub-sidebar-menu-active-bg);
 			}
 		}
-
 		&-head {
 			&::before {
-				content: '';
 				top: 5px;
-				left: 5px;
 				right: 5px;
+				left: 5px;
 				height: 10px;
+				content: "";
 				background-color: var(--g-sub-sidebar-menu-active-bg);
 			}
-
 			&::after {
-				content: '';
 				top: 20px;
-				left: 5px;
 				bottom: 5px;
+				left: 5px;
 				width: 15px;
+				content: "";
 				background-color: var(--g-sub-sidebar-menu-active-bg);
 				opacity: 0.5;
 			}
-
 			.mode-container {
 				top: 20px;
-				left: 25px;
 				right: 5px;
 				bottom: 5px;
+				left: 25px;
 				border: 1px dashed var(--g-sub-sidebar-menu-active-bg);
 			}
 		}
-
 		&-single {
 			&::before {
-				content: '';
 				position: absolute;
 				top: 5px;
-				left: 5px;
 				bottom: 5px;
+				left: 5px;
 				width: 15px;
+				content: "";
 				background-color: var(--g-sub-sidebar-menu-active-bg);
 				opacity: 0.5;
 			}
-
 			.mode-container {
 				top: 5px;
-				left: 25px;
 				right: 5px;
 				bottom: 5px;
+				left: 25px;
 				border: 1px dashed var(--g-sub-sidebar-menu-active-bg);
 			}
 		}
-
 		i {
 			position: absolute;
 			right: 10px;
 			bottom: 10px;
 			display: none;
 		}
-
 		&.active i {
 			display: block;
 			color: var(--el-color-primary);
 		}
 	}
 }
-
 .setting-item {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	margin: 5px 0;
 	padding: 5px 10px;
+	margin: 5px 0;
 	border-radius: 5px;
 	transition: all 0.3s;
-
-	&:hover {
-		background: var(--el-fill-color);
-	}
-
 	.label {
-		font-size: 14px;
-		color: var(--el-text-color-regular);
 		display: flex;
 		align-items: center;
-
+		font-size: 14px;
+		color: var(--el-text-color-regular);
 		i {
 			margin-left: 4px;
 			font-size: 17px;
@@ -503,11 +489,9 @@ function handleCopy() {
 			cursor: help;
 		}
 	}
-
 	.el-switch {
 		height: auto;
 	}
-
 	.el-input {
 		width: 150px;
 	}

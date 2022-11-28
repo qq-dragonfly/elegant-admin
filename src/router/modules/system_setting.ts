@@ -15,7 +15,7 @@ const routes: Route.recordRaw = {
 		{
 			path: 'user',
 			name: 'systemSettingUser',
-			component: () => import('@/views/systemSetting/user/index.vue'),
+			component: () => import('@/views/system_setting/user/index.vue'),
 			meta: {
 				title: '用户管理'
 			}
@@ -23,7 +23,7 @@ const routes: Route.recordRaw = {
 		{
 			path: 'role',
 			name: 'systemSettingRole',
-			component: () => import('@/views/systemSetting/role/index.vue'),
+			component: () => import('@/views/system_setting/role/index.vue'),
 			meta: {
 				title: '角色管理'
 			}
@@ -31,7 +31,7 @@ const routes: Route.recordRaw = {
 		{
 			path: 'menu',
 			name: 'systemSettingMenu',
-			component: () => import('@/views/systemSetting/menu/index.vue'),
+			component: () => import('@/views/system_setting/menu/index.vue'),
 			meta: {
 				title: '菜单管理'
 			}
@@ -39,7 +39,7 @@ const routes: Route.recordRaw = {
 		{
 			path: 'resource',
 			name: 'systemSettingResource',
-			component: () => import('@/views/systemSetting/resource/index.vue'),
+			component: () => import('@/views/system_setting/resource/index.vue'),
 			meta: {
 				title: '资源管理'
 			}
