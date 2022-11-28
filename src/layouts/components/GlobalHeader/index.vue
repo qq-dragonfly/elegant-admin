@@ -17,6 +17,7 @@
 										<svg-icon v-if="item.meta.icon" :name="item.meta.icon" />
 									</el-icon>
 									<span v-if="item.meta.title">{{ item.meta.title }}</span>
+									<span class="item-theme mt-1"></span>
 								</div>
 							</div>
 						</template>
@@ -50,29 +51,27 @@ function handlerMouserScroll(event: WheelEvent) {
 <style lang="scss" scoped>
 header {
 	position: fixed;
-	z-index: 1000;
 	top: 0;
-	left: 0;
 	right: 0;
+	left: 0;
+	z-index: 1000;
 	display: flex;
 	align-items: center;
-	padding: 0 20px;
 	height: var(--g-header-height);
+	padding: 0 20px;
 	color: var(--g-header-color);
 	background-color: var(--g-header-bg);
 	transition: background-color 0.3s, var(--el-transition-color);
-
 	.header-container {
-		width: var(--g-header-width);
-		height: 100%;
-		margin: 0 auto;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-
+		width: var(--g-header-width);
+		height: 100%;
+		margin: 0 auto;
 		.main {
-			flex: 1;
 			display: flex;
+			flex: 1;
 			flex-wrap: wrap;
 			align-items: center;
 			height: 100%;
@@ -84,36 +83,32 @@ header {
 			width: 100%;
 		}
 	}
-
 	:deep(.title) {
 		position: relative;
 		width: inherit;
 		height: inherit;
 		padding: inherit;
 		background-color: inherit;
-
 		.logo {
 			width: 45px;
 			height: 45px;
 			border-radius: 5px;
 		}
-
 		span {
 			font-size: 24px;
-			letter-spacing: 1px;
 			color: var(--g-header-color);
+			letter-spacing: 1px;
 		}
 	}
-
 	.nav {
-		flex: 1;
 		display: flex;
+		flex: 1;
 		width: 0;
 		height: 100%;
-		margin: 0 30px;
 		padding: 0 20px;
+		margin: 0 30px;
 		overflow-x: auto;
-		mask-image: linear-gradient(to right, transparent, #000 20px, #000 calc(100% - 20px), transparent);
+		mask-image: linear-gradient(to right, transparent, #000000 20px, #000000 calc(100% - 20px), transparent);
 
 		// firefox隐藏滚动条
 		scrollbar-width: none;
@@ -122,59 +117,67 @@ header {
 		&::-webkit-scrollbar {
 			display: none;
 		}
-
 		.item-container {
 			position: relative;
 			display: flex;
+			align-items: center;
 			width: initial;
-
 			.item {
 				display: flex;
+				flex-direction: column;
 				align-items: center;
 				justify-content: center;
-				flex-direction: column;
+				width: 75px;
+				height: 65px;
 				padding: 0 5px;
-				width: 80px;
-				height: 100%;
-				cursor: pointer;
+				margin-right: 4px;
+				font-size: 13px;
 				color: var(--g-header-menu-color);
+				cursor: pointer;
 				background-color: var(--g-header-bg);
+				border-radius: 8px;
 				transition: background-color 0.3s, var(--el-transition-color);
-				font-size: 14px;
 				&:hover {
 					color: var(--g-header-menu-hover-color);
 					background-color: var(--g-header-menu-hover-bg);
 				}
-
 				.el-icon {
-					font-size: 20px;
+					margin-bottom: 4px;
+					font-size: 18px;
 					vertical-align: middle;
-					margin-bottom: 5px;
 				}
-
 				span {
 					text-align: center;
-					vertical-align: middle;
 					word-break: break-all;
+					vertical-align: middle;
 
 					@include text-overflow(1, false);
 				}
 			}
-
+			.item-theme {
+				width: 10px;
+				height: 10px;
+				background-color: transparent;
+				border: 1px solid transparent;
+				border-radius: 50%;
+			}
 			&.active .item {
 				color: var(--g-header-menu-active-color);
 				background-color: var(--g-header-menu-active-bg);
+				.item-theme {
+					width: 10px;
+					height: 10px;
+					border: 1px solid #ffffff;
+					border-radius: 50%;
+				}
 			}
 		}
 	}
-
 	:deep(.tools) {
 		padding: 0;
-
 		.buttons .item .el-icon {
 			color: var(--g-header-color);
 		}
-
 		.user-container {
 			font-size: 16px;
 			color: var(--g-header-color);
@@ -187,7 +190,6 @@ header {
 .header-leave-active {
 	transition: transform 0.3s;
 }
-
 .header-enter-from,
 .header-leave-to {
 	transform: translateY(calc(var(--g-header-height) * -1));

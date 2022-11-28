@@ -117,6 +117,7 @@ router.beforeEach(async (to, from, next) => {
 router.afterEach((to, from) => {
 	const settingsStore = useSettingsStore();
 	const keepAliveStore = useKeepAliveStore();
+
 	settingsStore.app.enableProgress && (isLoading.value = false);
 	// 设置页面 title
 	to.meta.title && settingsStore.setTitle(typeof to.meta.title === 'function' ? to.meta.title() : to.meta.title);

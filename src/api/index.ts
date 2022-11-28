@@ -21,7 +21,7 @@ const axiosCanceler = new AxiosCanceler();
 
 const config = {
 	// 默认地址请求地址，可在 .env 开头文件中修改
-	baseURL: import.meta.env.VITE_API_URL as string,
+	baseURL: import.meta.env.VITE_APP_API_BASEURL as string,
 	// 设置超时时间（10s）
 	timeout: ResultEnum.TIMEOUT as number,
 	// 跨域时候允许携带凭证
@@ -65,7 +65,7 @@ class RequestHttp {
 				// * 在请求结束后，移除本次请求，并关闭请求 loading
 				axiosCanceler.removePending(config);
 				tryHideFullScreenLoading();
-				// * 登陆失效（code == 599）
+				// * 登陆失效（code == 401）
 				if (data.code == ResultEnum.OVERDUE) {
 					ElMessage.error(data.msg);
 					userStore.setToken('');

@@ -40,6 +40,7 @@ const routes: Route.recordRaw = {
 			children: [
 				{
 					path: '',
+					name: 'breadcrumbExampleList2Index',
 					component: () => import('@/views/breadcrumb_example/list2.vue'),
 					meta: {
 						title: '列表2（层级模式）',

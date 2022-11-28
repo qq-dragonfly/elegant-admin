@@ -21,6 +21,7 @@ export function getLocal<T>(key: string) {
 		try {
 			storageData = decrypto(json);
 		} catch {
+			console.log('解析失败');
 			// 防止解析失败
 		}
 		if (storageData) {

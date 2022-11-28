@@ -7,6 +7,7 @@ cache: personal-edit.password
 
 <script lang="ts" setup name="PersonalSetting">
 import type { UploadProps } from 'element-plus';
+import { ElMessage } from 'element-plus';
 
 const router = useRouter();
 
@@ -118,34 +119,28 @@ const editPassword = () => {
 			border-right: 2px solid var(--el-color-primary);
 			transition: transform 0.3s, background-color 0.3s, var(--el-transition-border);
 		}
-
 		.el-tabs__item {
-			text-align: left;
 			padding-right: 100px;
+			text-align: left;
 		}
 	}
-
 	.el-tab-pane {
 		padding: 0 20px 0 30px;
 	}
 }
-
 h2 {
 	margin: 0;
 	margin-bottom: 30px;
 	font-weight: normal;
 }
-
 .basic {
 	:deep(.headimg-upload) {
 		text-align: center;
-
 		.el-upload-dragger {
 			border-radius: 50%;
 		}
 	}
 }
-
 .security {
 	.setting-list {
 		.item {
@@ -155,21 +150,18 @@ h2 {
 			padding: 10px 0;
 			border-bottom: 1px solid var(--el-border-color-lighter);
 			transition: var(--el-transition-border);
-
 			.content {
 				.title {
 					margin-bottom: 5px;
 					color: var(--el-text-color-primary);
 					transition: var(--el-transition-color);
 				}
-
 				.desc {
 					font-size: 14px;
 					color: var(--el-text-color-secondary);
 					transition: var(--el-transition-color);
 				}
 			}
-
 			&:last-child {
 				border-bottom: 0;
 			}

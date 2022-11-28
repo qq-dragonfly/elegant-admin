@@ -1,5 +1,5 @@
-@use './themes.scss';
-@use './element-plus/index.scss';
+@use "./themes.scss";
+@use "./element-plus/index.scss";
 
 // 全局变量
 :root {
@@ -7,7 +7,7 @@
 	--g-header-width: 100%;
 
 	// 头部高度
-	--g-header-height: 60px;
+	--g-header-height: 75px;
 
 	// 侧边栏宽度
 	--g-main-sidebar-width: 70px;
@@ -44,7 +44,7 @@ body {
 body {
 	box-sizing: border-box;
 	margin: 0;
-	font-family: Lato, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+	font-family: Lato, "PingFang SC", "Microsoft YaHei", sans-serif;
 	-webkit-tap-highlight-color: transparent;
 	&.hidden_body {
 		overflow: hidden;
@@ -81,7 +81,7 @@ body {
 	transform: translateX(-50%) translateX(calc(var(--g-main-sidebar-actual-width) / 2))
 		translateX(calc(var(--g-sub-sidebar-actual-width) / 2));
 }
-[data-mode='mobile'] {
+[data-mode="mobile"] {
 	[data-fixed-calc-width] {
 		width: 100% !important;
 		transform: translateX(-50%) !important;
@@ -179,6 +179,7 @@ textarea {
 	flex: 1;
 	flex-direction: column;
 	height: 100%;
+  margin: 8px;
 
 	// table-search 表格搜索样式
 	.table-search {
@@ -311,11 +312,6 @@ textarea {
 	// drawer footer 样式
 	.el-drawer__footer {
 		border-top: 1px solid var(--el-border-color-lighter);
-	}
-
-	// drawer select 样式
-	.el-select {
-		width: 100%;
 	}
 
 	// drawer-form 中两列 form-item

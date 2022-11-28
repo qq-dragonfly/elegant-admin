@@ -5,7 +5,6 @@ enabled: false
 
 <template>
 	<div class="table-box">
-		<!--	<page-main> 用户管理 </page-main>-->
 		<ProTable ref="proTable" :columns="columns" :requestApi="getUserList" :initParam="initParam" :dataCallback="dataCallback">
 			<!-- 表格 header 按钮 -->
 			<template #tableHeader="scope">
@@ -56,16 +55,16 @@ import ImportExcel from '@/components/ImportExcel/index.vue';
 // import UserDrawer from '@/views/proTable/components/UserDrawer.vue';
 import { CirclePlus, Delete, EditPen, Download, Upload, View, Refresh } from '@element-plus/icons-vue';
 import {
-	getUserList
-	// deleteUser,
-	// editUser,
-	// addUser,
-	// changeUserStatus,
-	// resetUserPassWord,
-	// exportUserInfo,
-	// BatchAddUser,
-	// getUserStatus,
-	// getUserGender
+	getUserList,
+	deleteUser,
+	editUser,
+	addUser,
+	changeUserStatus,
+	resetUserPassWord,
+	exportUserInfo,
+	BatchAddUser,
+	getUserStatus,
+	getUserGender
 } from '@/api/modules/user';
 
 // 获取 ProTable 元素，调用其获取刷新数据方法（还能获取到当前查询参数，方便导出携带参数）

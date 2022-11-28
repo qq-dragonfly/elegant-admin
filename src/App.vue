@@ -13,6 +13,7 @@
 import zhCn from 'element-plus/es/locale/lang/zh-cn';
 import hotkeys from 'hotkeys-js';
 import eventBus from './utils/eventBus';
+import { useGlobalEvents } from '@/hooks/useEvent';
 import useSettingsStore from '@/store/modules/settings';
 // import useMenuStore from '@/store/modules/menu';
 
@@ -97,7 +98,6 @@ watch(
 		immediate: true
 	}
 );
-
 onMounted(() => {
 	settingsStore.setMode(document.documentElement.clientWidth);
 	window.onresize = () => {
@@ -107,4 +107,5 @@ onMounted(() => {
 		eventBus.emit('global-system-info-toggle');
 	});
 });
+useGlobalEvents();
 </script>

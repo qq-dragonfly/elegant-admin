@@ -6,7 +6,7 @@ import http from '@/api';
 /********** 用户管理模块 ***********/
 // * 获取用户列表
 export const getUserList = (params: User.ReqGetUserParams) => {
-	return http.get<ResPage<User.ResUserList>>(PORT1 + `/api/system/user/list`, params);
+	return http.post<ResPage<User.ResUserList>>(PORT1 + `/api/system/user/list`, params);
 };
 
 // * 新增用户
