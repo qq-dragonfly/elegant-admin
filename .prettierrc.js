@@ -10,7 +10,7 @@ module.exports = {
 	// 结尾不用分号(true有，false没有)
 	semi: true,
 	// 使用单引号(true单引号，false双引号)
-	singleQuote: true,
+  singleQuote: true,
 	// 更改引用对象属性的时间 可选值"<as-needed|consistent|preserve>"
 	quoteProps: "as-needed",
 	// 在对象，数组括号与文字之间加空格 "{ foo: bar }"

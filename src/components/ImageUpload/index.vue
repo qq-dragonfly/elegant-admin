@@ -239,7 +239,7 @@ const onSuccess: UploadProps['onSuccess'] = res => {
 				left: 0;
 				width: 100%;
 				height: 100%;
-				content: "";
+				content: '';
 				background-color: var(--el-overlay-color-lighter);
 			}
 			.el-progress {

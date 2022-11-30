@@ -465,7 +465,7 @@ const bgThemeColor = computed(() => settingStore.app.themeColor);
 </script>
 
 <style lang="scss" scoped>
-[data-mode="mobile"] {
+[data-mode='mobile'] {
 	#login-box {
 		position: relative;
 		top: 100px;
@@ -483,7 +483,7 @@ const bgThemeColor = computed(() => settingStore.app.themeColor);
 		}
 	}
 }
-:deep(input[type="password"]::-ms-reveal) {
+:deep(input[type='password']::-ms-reveal) {
 	display: none;
 }
 .bg-banner {
