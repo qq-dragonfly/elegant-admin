@@ -8,7 +8,7 @@ const startLoading = () => {
 		fullscreen: true,
 		lock: true,
 		text: '数据加载中，请稍候...',
-		background: 'rgba(0, 0, 0, 0.7)'
+		background: 'rgba(0, 0, 0, 0.5)'
 	});
 };
 const endLoading = () => {

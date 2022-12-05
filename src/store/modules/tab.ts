@@ -29,7 +29,8 @@ export const useTabStore = defineStore('tab-store', {
 			name: 'dashboard',
 			fullPath: '/dashboard',
 			meta: {
-				title: useSettingsStore().dashboard.title
+				title: useSettingsStore().dashboard.title,
+				icon: 'ele_home'
 			},
 			scrollPosition: {
 				left: 0,

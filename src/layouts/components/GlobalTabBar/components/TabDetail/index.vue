@@ -1,6 +1,6 @@
 <template>
 	<div class="relative h-full overflow-hidden">
-		<div ref="bsWrapper" class="overflow-hidden flex-1 h-full">
+		<div ref="bsWrapper" class="flex-1 h-full">
 			<better-scroll ref="bsScroll" :options="{ scrollX: true, scrollY: false, click: false, preventDefault: false }">
 				<div ref="tabRef" class="h-full" :class="[isChromeMode ? 'flex items-end' : 'flex items-center']">
 					<component
@@ -16,7 +16,12 @@
 						@close="tab.removeTab(item.fullPath)"
 						@contextmenu.prevent="handleContextMenu($event, item.fullPath)"
 					>
-						{{ item.meta.title }}
+						<el-icon>
+							<svg-icon v-if="item.meta.icon" :name="item.meta.icon" />
+						</el-icon>
+						<span class="ml-1">
+							{{ item.meta.title }}
+						</span>
 					</component>
 				</div>
 			</better-scroll>
@@ -45,6 +50,7 @@ const canClick = Boolean(deviceInfo.device.type);
 
 const settingsStore = useSettingsStore();
 const tab = useTabStore();
+console.log('tab', tab);
 
 const isChromeMode = computed(() => settingsStore.tab.mode === 'chrome');
 const activeComponent = computed(() => (isChromeMode.value ? ChromeTab : ButtonTab));

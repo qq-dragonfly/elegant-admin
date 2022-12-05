@@ -17,25 +17,21 @@ footer {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin: 40px 0 20px;
-	color: var(--el-text-color-secondary);
+	margin: 32px 0 20px;
 	font-size: 14px;
-
+	color: var(--el-text-color-secondary);
 	span,
 	a {
 		padding: 0 5px;
 	}
-
 	a {
-		text-decoration: none;
 		color: var(--el-text-color-secondary);
+		text-decoration: none;
 		transition: var(--el-transition-color);
-
 		&:hover {
 			color: var(--el-text-color-primary);
 		}
 	}
-
 	.icon {
 		padding: 0;
 		font-size: 18px;

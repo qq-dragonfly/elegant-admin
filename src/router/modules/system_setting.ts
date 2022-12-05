@@ -17,7 +17,8 @@ const routes: Route.recordRaw = {
 			name: 'systemSettingUser',
 			component: () => import('@/views/system_setting/user/index.vue'),
 			meta: {
-				title: '用户管理'
+				title: '用户管理',
+				icon: 'sidebar-mock'
 			}
 		},
 		{
@@ -25,7 +26,8 @@ const routes: Route.recordRaw = {
 			name: 'systemSettingRole',
 			component: () => import('@/views/system_setting/role/index.vue'),
 			meta: {
-				title: '角色管理'
+				title: '角色管理',
+				icon: 'system-setting'
 			}
 		},
 		{
@@ -33,7 +35,8 @@ const routes: Route.recordRaw = {
 			name: 'systemSettingMenu',
 			component: () => import('@/views/system_setting/menu/index.vue'),
 			meta: {
-				title: '菜单管理'
+				title: '菜单管理',
+				icon: 'system-setting'
 			}
 		},
 		{
@@ -41,7 +44,8 @@ const routes: Route.recordRaw = {
 			name: 'systemSettingResource',
 			component: () => import('@/views/system_setting/resource/index.vue'),
 			meta: {
-				title: '资源管理'
+				title: '资源管理',
+				icon: 'system-setting'
 			}
 		}
 	]

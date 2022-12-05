@@ -39,7 +39,6 @@
 	</div>
 </template>
 <script lang="ts" setup name="SidebarItem">
-// import GlobalSidebarItem from './index.vue'
 import { isExternalLink, resolveRoutePath } from '@/utils';
 import type { Menu } from '@/global';
 
@@ -76,41 +75,35 @@ const hasChildren = computed(() => {
 
 	@include text-overflow;
 }
-
 :deep(.el-menu-item),
 :deep(.el-sub-menu__title) {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
-
 :deep(.el-sub-menu),
 :deep(.el-menu-item) {
 	.title-icon {
 		width: 20px;
 		font-size: 20px;
+		color: unset;
 		vertical-align: -0.25em;
 		transition: transform 0.3s;
-		color: unset;
 	}
-
 	.title-icon + .title {
 		margin-left: 10px;
 	}
 }
-
 a {
-	cursor: pointer;
 	color: inherit;
 	text-decoration: none;
+	cursor: pointer;
 }
-
 .el-sub-menu__title {
 	> .badge {
 		&-dot {
 			right: 40px;
 		}
-
 		&-text {
 			right: 40px;
 		}
@@ -122,8 +115,8 @@ a {
 .el-menu--inline {
 	.el-menu-item,
 	.el-sub-menu > .el-sub-menu__title {
+		margin: 5px 10px 0;
 		color: var(--g-sub-sidebar-menu-color);
-		margin: 5px 10px 0 10px;
 		border-radius: 7px;
 		&:hover {
 			color: var(--g-sub-sidebar-menu-hover-color) !important;
@@ -131,28 +124,24 @@ a {
 		}
 	}
 }
-
 .el-menu-item,
 .el-sub-menu__title {
+	margin: 5px 10px 0;
 	color: var(--g-sub-sidebar-menu-color) !important;
 	background: transparent !important;
-	margin: 5px 10px 0 10px;
 	border-radius: 7px;
-
 	&:hover {
 		color: var(--g-sub-sidebar-menu-hover-color) !important;
 		background-color: var(--g-sub-sidebar-menu-hover-bg) !important;
 	}
 }
-
 .el-menu-item.is-active,
 .el-menu--collapse .el-sub-menu.is-active > .el-sub-menu__title,
 .el-sub-menu .el-menu--inline .el-menu-item.is-active {
+	margin: 5px 10px 0;
 	color: var(--g-sub-sidebar-menu-active-color) !important;
 	background-color: var(--g-sub-sidebar-menu-active-bg) !important;
-	margin: 5px 10px 0 10px;
 	border-radius: 7px;
-
 	.icon,
 	.el-sub-menu__icon-arrow {
 		color: unset;

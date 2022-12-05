@@ -84,8 +84,6 @@ declare namespace Settings {
 	interface tab {
 		/** 多页签可见 */
 		visible: boolean;
-		/** 多页签高度 */
-		height: number;
 		/** 多页签风格 */
 		mode: EnumType.ThemeTabMode;
 		/** 多页签风格列表 */

@@ -3,7 +3,7 @@
 		<template #error>
 			<div class="image-slot">
 				<el-icon>
-					<svg-icon name="image-load-fail" />
+					<svg-icon name="ele_image_load_fail" />
 				</el-icon>
 			</div>
 		</template>
@@ -36,28 +36,25 @@ const realHeight = computed(() => {
 
 <style lang="scss" scoped>
 .el-image {
-	border-radius: 5px;
 	background-color: var(--el-fill-color);
+	border-radius: 5px;
 	box-shadow: var(--el-box-shadow-light);
 	transition: background-color 0.3s, var(--el-transition-box-shadow);
-
 	:deep(.el-image__inner) {
-		transition: all 0.3s;
 		cursor: pointer;
-
+		transition: all 0.3s;
 		&:hover {
 			transform: scale(1.2);
 		}
 	}
-
 	:deep(.image-slot) {
 		display: flex;
-		justify-content: center;
 		align-items: center;
+		justify-content: center;
 		width: 100%;
 		height: 100%;
-		color: #909399;
 		font-size: 30px;
+		color: #909399;
 	}
 }
 </style>

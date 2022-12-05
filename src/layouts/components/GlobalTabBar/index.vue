@@ -1,9 +1,5 @@
 <template>
-	<dark-mode-container
-		style="margin-top: 44px"
-		class="global-tab flex items-center w-full pl-4 h-full"
-		:style="{ height: settingsStore.tab.height + 'px' }"
-	>
+	<dark-mode-container class="global-tab flex items-center w-full pl-4 pr-4 h-full">
 		<tab-detail />
 	</dark-mode-container>
 </template>
@@ -38,6 +34,6 @@ init();
 
 <style scoped>
 .global-tab {
-	box-shadow: 0 1px 2px rgb(0 21 41 / 8%);
+	height: var(--g-tabbar-height);
 }
 </style>

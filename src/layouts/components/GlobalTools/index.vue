@@ -8,7 +8,7 @@
 			</span>
 			<span v-if="settingsStore.mode === 'pc' && settingsStore.toolbar.enableFullscreen" class="item" @click="toggle">
 				<el-icon>
-					<svg-icon :name="isFullscreen ? 'fullscreen-exit' : 'fullscreen'" />
+					<svg-icon :name="isFullscreen ? 'ele_fullscreen_exit' : 'ele_fullscreen'" />
 				</el-icon>
 			</span>
 			<span v-if="settingsStore.toolbar.enablePageReload" class="item" @click="mainPage.reload()">

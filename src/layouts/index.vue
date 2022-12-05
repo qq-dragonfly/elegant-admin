@@ -23,8 +23,7 @@
 						"
 						:scroll-top="scrollTop"
 					/>
-					<GlobalTabBar v-if="settingsStore.tab.visible" />
-					<div class="main">
+					<div class="main" :class="{ 'main-mg': settingsStore.tab.visible }">
 						<router-view v-slot="{ Component, route }">
 							<transition name="main" mode="out-in" :appear="true">
 								<keep-alive :include="keepAliveStore.list">
@@ -51,7 +50,6 @@ import GlobalTopBar from './components/GlobalTopBar/index.vue';
 import GlobalSearch from './components/GlobalSearch/index.vue';
 import GlobalAppSetting from './components/GlobalAppSetting/index.vue';
 import GlobalBuyIt from './components/GlobalBuyIt/index.vue';
-import GlobalTabBar from './components/GlobalTabBar/index.vue';
 import useSettingsStore from '@/store/modules/settings';
 import useKeepAliveStore from '@/store/modules/keepAlive';
 import useMenuStore from '@/store/modules/menu';
@@ -197,7 +195,7 @@ function onScroll(e: Event) {
 		margin-left: calc(var(--g-main-sidebar-actual-width) + var(--g-sub-sidebar-actual-width));
 		background-color: var(--g-main-bg);
 		transition: margin-left 0.3s, background-color 0.3s;
-		.topbar-container {
+		.top-bar-container {
 			top: 0;
 			z-index: 998;
 		}
@@ -208,8 +206,11 @@ function onScroll(e: Event) {
 			overflow: hidden;
 			transition: 0.3s;
 		}
-		.topbar-container + .main {
+		.top-bar-container + .main {
 			margin: var(--g-topbar-height) 0 0;
+		}
+		.top-bar-container + .main-mg {
+			margin: calc(var(--g-topbar-height) + var(--g-tabbar-height)) 0 0;
 		}
 	}
 }
@@ -225,7 +226,7 @@ header:not(.header-leave-active) + .wrapper {
 		}
 	}
 	.main-container {
-		.topbar-container {
+		.top-bar-container {
 			top: var(--g-header-height);
 			:deep(.tools) {
 				display: none;

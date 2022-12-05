@@ -33,33 +33,28 @@ defineProps({
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	margin-bottom: 20px;
 	padding: 16px 20px;
+	margin-bottom: 8px;
 	background-color: var(--g-app-bg);
 	transition: background-color 0.3s;
-
 	.main {
 		flex: 1;
 		margin-right: 20px;
-
 		.title {
 			font-size: 22px;
 			color: var(--el-text-color-primary);
 			transition: var(--el-transition-color);
 		}
-
 		.content {
 			margin-top: 10px;
 			font-size: 14px;
 			color: var(--el-text-color-secondary);
 			transition: var(--el-transition-color);
-
 			&:empty {
 				display: none;
 			}
 		}
 	}
-
 	.sub {
 		flex: none;
 	}

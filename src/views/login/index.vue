@@ -19,7 +19,7 @@ layout: false
 				autocomplete="on"
 			>
 				<div class="title-container flex items-center justify-start">
-					<div class="w-12 rounded-md overflow-hidden flex mr-5">
+					<div class="w-14 h-14 rounded-md overflow-hidden flex mr-5">
 						<img src="../../assets/images/logo.png" alt="" />
 					</div>
 					<h3 class="title">欢迎来到 {{ title }} ! 👋🏻</h3>

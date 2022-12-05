@@ -22,8 +22,7 @@ const globalSettingsDefault: RecursiveRequired<Settings.all> = {
 	},
 	tab: {
 		visible: true,
-		height: 44,
-		mode: 'chrome',
+		mode: 'button',
 		modeList: [
 			{ value: 'chrome', label: EnumThemeTabMode.chrome },
 			{ value: 'button', label: EnumThemeTabMode.button }

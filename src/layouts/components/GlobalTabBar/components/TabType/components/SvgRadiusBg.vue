@@ -59,7 +59,11 @@ const fill = computed(() => {
 		color = props.hoverBgColor[index];
 	}
 	if (props.isActive) {
-		color = getLightColor(props.primaryColor, 0.8) as any;
+		if (props.darkMode) {
+			color = props.primaryColor;
+		} else {
+			color = getLightColor(props.primaryColor, 0.8) as any;
+		}
 	}
 	return color;
 });

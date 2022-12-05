@@ -15,11 +15,18 @@
 				:hover-bg-color="hoverBgColor"
 			/>
 		</div>
-		<span class="admin-tab__chrome-tab__slot" :style="{ color: isActive ? primaryColor : '' }">
+		<span
+			class="admin-tab__chrome-tab__slot flex items-center"
+			:style="{ color: isActive && !darkMode ? primaryColor : isActive && darkMode ? '#ffffff' : '' }"
+		>
 			<slot></slot>
 		</span>
 		<div v-if="closable" class="admin-tab__chrome-tab__icon">
-			<icon-close :is-active="isActive" :active-color="primaryColor" @click="handleClose" />
+			<icon-close
+				:is-active="isActive"
+				:active-color="isActive && !darkMode ? primaryColor : isActive && darkMode ? '#ffffff' : ''"
+				@click="handleClose"
+			/>
 		</div>
 		<div
 			class="admin-tab__chrome-tab__divider"
@@ -35,6 +42,7 @@
 import { CssRender } from 'css-render';
 import { IconClose, SvgRadiusBg } from './components';
 import { useBoolean } from '@/hooks/useBoolean';
+
 /** 填充颜色： [默认颜色, 暗黑主题颜色] */
 type FillColor = [string, string];
 
@@ -53,7 +61,7 @@ interface Props {
 	hoverBgColor?: FillColor;
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
 	darkMode: false,
 	isActive: false,
 	primaryColor: '#1890ff',
@@ -83,7 +91,9 @@ const style = c(
 		position: 'relative',
 		display: 'inline-flex',
 		alignItems: 'center',
+		justifyContent: 'center',
 		height: '34px',
+		minWidth: '150px',
 		paddingLeft: '24px',
 		paddingRight: '24px',
 		marginRight: '-18px',
@@ -117,7 +127,7 @@ const style = c(
 			'&__divider',
 			{
 				position: 'absolute',
-				right: '7.5px',
+				right: '7px',
 				zIndex: 2,
 				width: '1px',
 				height: '16px',

@@ -10,12 +10,12 @@
 					<div class="tip">
 						<span>
 							<el-icon>
-								<svg-icon name="search-up" />
+								<svg-icon name="ele_search_up" />
 							</el-icon>
 						</span>
 						<span>
 							<el-icon>
-								<svg-icon name="search-down" />
+								<svg-icon name="ele_search_down" />
 							</el-icon>
 						</span>
 						切换搜索结果
@@ -23,7 +23,7 @@
 					<div class="tip">
 						<span>
 							<el-icon>
-								<svg-icon name="search-enter" />
+								<svg-icon name="ele_search_enter" />
 							</el-icon>
 						</span>
 						访问页面

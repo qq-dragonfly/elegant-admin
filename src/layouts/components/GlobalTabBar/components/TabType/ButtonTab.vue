@@ -1,16 +1,23 @@
 <template>
 	<div
 		class="admin-tab__button-tab"
-		:class="{ 'admin-tab__button-tab--unclosable': !closable }"
+		:class="{ 'admin-tab__button-tab--closable': !closable }"
 		:style="buttonStyle"
 		@mouseenter="setTrue"
 		@mouseleave="setFalse"
 	>
-		<span class="admin-tab__button-tab__preffix">
+		<span
+			class="admin-tab__button-tab__prefix flex items-center"
+			:style="{ color: isActive && !darkMode ? primaryColor : isActive && darkMode ? '#ffffff' : '' }"
+		>
 			<slot></slot>
 		</span>
 		<div v-if="closable" class="admin-tab__button-tab__icon">
-			<icon-close :is-active="isIconActive" :active-color="primaryColor" @click="handleClose" />
+			<icon-close
+				:is-active="isIconActive"
+				:active-color="isActive && !darkMode ? primaryColor : isActive && darkMode ? '#ffffff' : ''"
+				@click="handleClose"
+			/>
 		</div>
 	</div>
 </template>
@@ -92,8 +99,8 @@ const style = c(
 		cursor: 'pointer'
 	},
 	[
-		c('&--unclosable', { paddingRight: '14px !important' }),
-		c('&__preffix', {
+		c('&--closable', { paddingRight: '14px !important' }),
+		c('&__prefix', {
 			fontSize: '14px',
 			whiteSpace: 'nowrap'
 		}),
