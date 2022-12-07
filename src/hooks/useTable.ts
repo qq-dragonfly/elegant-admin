@@ -1,5 +1,5 @@
-import { computed, onMounted, reactive, toRefs } from 'vue';
-import type { Table } from './interface';
+import { Table } from './interface';
+import { reactive, computed, onMounted, toRefs } from 'vue';
 
 /**
  * @description table 页面操作方法封装
@@ -11,7 +11,7 @@ import type { Table } from './interface';
 export const useTable = (
 	api: (params: any) => Promise<any>,
 	initParam: object = {},
-	isPageable = true,
+	isPageable: boolean = true,
 	dataCallBack?: (data: any) => any
 ) => {
 	const state = reactive<Table.TableStateProps>({
@@ -33,10 +33,6 @@ export const useTable = (
 		// 总参数(包含分页和查询参数)
 		totalParam: {}
 	});
-	// 初始化的时候需要做的事情就是 设置表单查询默认值 && 获取表格数据(reset函数的作用刚好是这两个功能)
-	onMounted(() => {
-		handleRefresh();
-	});
 
 	/**
 	 * @description 分页查询参数(只包括分页和表格字段排序,其他排序方式可自行配置)
@@ -52,20 +48,29 @@ export const useTable = (
 			console.log('我是分页更新之后的值', newVal);
 		}
 	});
+
+	// 初始化的时候需要做的事情就是 设置表单查询默认值 && 获取表格数据(reset函数的作用刚好是这两个功能)
+	onMounted(() => {
+		handleReset();
+	});
+
 	/**
 	 * @description 获取表格数据
 	 * @return void
 	 * */
 	const getTableList = async () => {
-		// 先把初始化参数和分页参数放到总参数里面
-		Object.assign(state.totalParam, initParam, isPageable ? pageParam.value : {});
-		let { data } = await api(state.totalParam);
-		dataCallBack && (data = dataCallBack(data));
-		state.tableData = isPageable ? data.records : data;
-		console.log('state.tableData', data);
-		// 解构后台返回的分页数据 (如果有分页更新分页信息)
-		const { pageNum, pageSize, total } = data;
-		isPageable && updatePageable({ pageNum, pageSize, total });
+		try {
+			// 先把初始化参数和分页参数放到总参数里面
+			Object.assign(state.totalParam, initParam, isPageable ? pageParam.value : {});
+			let { data } = await api(state.totalParam);
+			dataCallBack && (data = dataCallBack(data));
+			state.tableData = isPageable ? data.datalist : data;
+			// 解构后台返回的分页数据 (如果有分页更新分页信息)
+			const { pageNum, pageSize, total } = data;
+			isPageable && updatePageable({ pageNum, pageSize, total });
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	/**
@@ -75,9 +80,9 @@ export const useTable = (
 	const updatedTotalParam = () => {
 		state.totalParam = {};
 		// 处理查询参数，可以给查询参数加自定义前缀操作
-		const nowSearchParam: { [key: string]: any } = {};
+		let nowSearchParam: { [key: string]: any } = {};
 		// 防止手动清空输入框携带参数（这里可以自定义查询参数前缀）
-		for (const key in state.searchParam) {
+		for (let key in state.searchParam) {
 			// * 某些情况下参数为 false/0 也应该携带参数
 			if (state.searchParam[key] || state.searchParam[key] === false || state.searchParam[key] === 0) {
 				nowSearchParam[key] = state.searchParam[key];
@@ -109,7 +114,7 @@ export const useTable = (
 	 * @description 表格数据重置
 	 * @return void
 	 * */
-	const handleRefresh = () => {
+	const handleReset = () => {
 		state.pageable.pageNum = 1;
 		state.searchParam = {};
 		// 重置搜索表单的时，如果有默认搜索参数，则重置默认的搜索参数
@@ -145,7 +150,7 @@ export const useTable = (
 		...toRefs(state),
 		getTableList,
 		handleSearch,
-		handleRefresh,
+		handleReset,
 		handleSizeChange,
 		handleCurrentChange
 	};

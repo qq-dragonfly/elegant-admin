@@ -16,6 +16,8 @@ declare module '@vue/runtime-core' {
     Editor: typeof import('./components/Editor/index.vue')['default']
     FileUpload: typeof import('./components/FileUpload/index.vue')['default']
     FixedActionBar: typeof import('./components/FixedActionBar/index.vue')['default']
+    Grid: typeof import('./components/Grid/index.vue')['default']
+    GridItem: typeof import('./components/Grid/components/GridItem.vue')['default']
     ImagePreview: typeof import('./components/ImagePreview/index.vue')['default']
     ImagesUpload: typeof import('./components/ImagesUpload/index.vue')['default']
     ImageUpload: typeof import('./components/ImageUpload/index.vue')['default']
@@ -31,6 +33,7 @@ declare module '@vue/runtime-core' {
     SearchFormItem: typeof import('./components/SearchForm/components/SearchFormItem.vue')['default']
     SvgIcon: typeof import('./components/SvgIcon/index.vue')['default']
     SystemInfo: typeof import('./components/SystemInfo/index.vue')['default']
+    TableColumn: typeof import('./components/ProTable/components/TableColumn.vue')['default']
     Trend: typeof import('./components/Trend/index.vue')['default']
   }
 }

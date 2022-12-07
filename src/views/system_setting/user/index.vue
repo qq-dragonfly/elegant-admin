@@ -2,16 +2,23 @@
 meta:
 enabled: false
 </route>
-
 <template>
 	<div class="table-box">
-		<ProTable ref="proTable" :columns="columns" :requestApi="getUserList" :initParam="initParam" :dataCallback="dataCallback">
+		<ProTable
+			ref="proTable"
+			title="用户列表"
+			:columns="columns"
+			:requestApi="getTableList"
+			:initParam="initParam"
+			:dataCallback="dataCallback"
+		>
 			<!-- 表格 header 按钮 -->
 			<template #tableHeader="scope">
 				<el-button type="primary" :icon="CirclePlus" @click="openDrawer('新增')">新增用户</el-button>
 				<el-button type="primary" :icon="Upload" plain @click="batchAdd">批量添加用户</el-button>
 				<el-button type="primary" :icon="Download" plain @click="downloadFile">导出用户数据</el-button>
-				<el-button type="danger" :icon="Delete" plain :disabled="!scope.isSelected" @click="batchDelete(scope.selectedListIds)">
+				<el-button type="primary" plain @click="toDetail">To 子集详情页面</el-button>
+				<el-button type="danger" :icon="Delete" plain @click="batchDelete(scope.selectedListIds)" :disabled="!scope.isSelected">
 					批量删除用户
 				</el-button>
 			</template>
@@ -19,16 +26,17 @@ enabled: false
 			<template #expand="scope">
 				{{ scope.row }}
 			</template>
-			<!-- 用户状态 slot -->
-			<template #status="scope">
-				<!-- 如果插槽的值为 el-switch，第一次加载会默认触发 switch 的 @change 方法，所以使用 click 方法（暂时只能这样解决） -->
-				<el-switch
-					:model-value="scope.row.status"
-					:active-text="scope.row.status === 1 ? '启用' : '禁用'"
-					:active-value="1"
-					:inactive-value="0"
-					@click="changeStatus(scope.row)"
-				/>
+			<!-- usernameHeader -->
+			<template #usernameHeader="scope">
+				<el-button type="primary" @click="ElMessage.success('我是通过作用域插槽渲染的表头')">
+					{{ scope.row.label }}
+				</el-button>
+			</template>
+			<!-- createTime -->
+			<template #createTime="scope">
+				<el-button type="primary" link @click="ElMessage.success('我是通过作用域插槽渲染的内容')">
+					{{ scope.row.createTime }}
+				</el-button>
 			</template>
 			<!-- 表格操作 -->
 			<template #operation="scope">
@@ -43,9 +51,10 @@ enabled: false
 	</div>
 </template>
 
-<script setup lang="tsx" name="systemSettingUser">
+<script setup lang="tsx" name="useProTable">
 import { ref, reactive } from 'vue';
 import { ElMessage } from 'element-plus';
+import { useRouter } from 'vue-router';
 import { User } from '@/api/interface';
 import { ColumnProps } from '@/components/ProTable/interface';
 import { useHandleData } from '@/hooks/useHandleData';
@@ -67,6 +76,13 @@ import {
 	getUserGender
 } from '@/api/modules/user';
 
+const router = useRouter();
+
+// 跳转详情页
+const toDetail = () => {
+	router.push(`/proTable/useProTable/detail/${Math.random()}?params=detail-page`);
+};
+
 // 获取 ProTable 元素，调用其获取刷新数据方法（还能获取到当前查询参数，方便导出携带参数）
 const proTable = ref();
 
@@ -78,70 +94,100 @@ const initParam = reactive({
 // dataCallback 是对于返回的表格数据做处理，如果你后台返回的数据不是 datalist && total && pageNum && pageSize 这些字段，那么你可以在这里进行处理成这些字段
 const dataCallback = (data: any) => {
 	return {
-		records: data.records,
+		datalist: data.records,
 		total: data.total,
 		pageNum: data.pageNum,
 		pageSize: data.pageSize
 	};
 };
 
-// 自定义渲染头部(使用tsx语法)
-const renderHeader = (scope: any) => {
+// 如果你想在请求之前对当前请求参数做一些操作，可以自定义如下函数：params 为当前所有的请求参数（包括分页），最后返回请求列表接口
+// 默认不做操作就直接在 ProTable 组件上绑定	:requestApi="getUserList"
+const getTableList = (params: any) => {
+	let newParams = { ...params };
+	newParams.username && (newParams.username = 'custom-' + newParams.username);
+	return getUserList(newParams);
+};
+
+// 自定义渲染表头（使用tsx语法）
+const headerRender = (row: ColumnProps) => {
 	return (
 		<el-button
 			type='primary'
 			onClick={() => {
-				ElMessage.success('我是自定义表头');
+				ElMessage.success('我是通过 tsx 语法渲染的表头');
 			}}
 		>
-			{scope.row.label}
+			{row.label}
 		</el-button>
 	);
 };
 
 // 表格配置项
-const columns: Partial<ColumnProps>[] = [
-	{ type: 'selection', width: 80, fixed: 'left' },
+const columns: ColumnProps[] = [
+	{ type: 'selection', fixed: 'left', width: 80 },
 	{ type: 'index', label: '#', width: 80 },
 	{ type: 'expand', label: 'Expand', width: 100 },
-	{ prop: 'userName', label: '用户姓名', width: 130, search: true },
-	// 😄 enum 可以直接是数组对象，也可以是请求方法(proTable 内部会执行获取 enum 的这个方法)，下面用户状态也同理
-	// 😄 enum 为请求方法时，后台返回的数组对象 key 值不是 label 和 value 的情况，可以在 searchProps 中指定 label 和 value 的 key 值
+	{
+		prop: 'username',
+		label: '用户姓名',
+		search: { el: 'input' },
+		render: scope => {
+			return (
+				<el-button type='primary' link onClick={() => ElMessage.success('我是通过 tsx 语法渲染的内容')}>
+					{scope.row.username}
+				</el-button>
+			);
+		}
+	},
 	{
 		prop: 'gender',
 		label: '性别',
-		width: 120,
-		sortable: true,
-		search: true,
-		searchType: 'select',
-		// enum: getUserGender,
-		searchProps: { label: 'genderLabel', value: 'genderValue' }
+		enum: getUserGender,
+		search: { el: 'select' },
+		fieldNames: { label: 'genderLabel', value: 'genderValue' }
 	},
-	{ prop: 'dept', label: '身份证号', search: true },
-	{ prop: 'mail', label: '邮箱', search: true },
-	{ prop: 'address', label: '居住地址', search: true },
+	// 多级 prop
+	{ prop: 'user.detail.age', label: '年龄', search: { el: 'input' } },
+	{ prop: 'idCard', label: '身份证号', search: { el: 'input' } },
+	{ prop: 'email', label: '邮箱' },
+	{ prop: 'address', label: '居住地址' },
 	{
 		prop: 'status',
 		label: '用户状态',
-		sortable: true,
-		search: true,
-		searchType: 'select',
-		// enum: getUserStatus,
-		searchProps: { label: 'userLabel', value: 'userStatus' }
+		enum: getUserStatus,
+		fieldNames: { label: 'userLabel', value: 'userStatus' },
+		search: {
+			el: 'tree-select',
+			props: { props: { label: 'userLabel' }, nodeKey: 'userStatus' }
+		},
+		render: (scope: { row: User.ResUserList }) => {
+			return (
+				<>
+					<el-switch
+						model-value={scope.row.status}
+						active-text={scope.row.status ? '启用' : '禁用'}
+						active-value={1}
+						inactive-value={0}
+						onClick={() => changeStatus(scope.row)}
+					/>
+				</>
+			);
+		}
 	},
 	{
 		prop: 'createTime',
 		label: '创建时间',
+		headerRender,
 		width: 200,
-		sortable: true,
-		search: true,
-		searchType: 'datetimerange',
-		searchProps: {
-			disabledDate: (time: Date) => time.getTime() < Date.now() - 8.64e7
-		},
-		searchInitParam: ['2022-09-30 00:00:00', '2022-09-20 23:59:59']
+		search: {
+			el: 'date-picker',
+			span: 2,
+			props: { type: 'datetimerange' },
+			defaultValue: ['2022-11-12 11:35:00', '2022-12-12 11:35:00']
+		}
 	},
-	{ prop: 'operation', label: '操作', width: 330, fixed: 'right', renderHeader }
+	{ prop: 'operation', label: '操作', fixed: 'right', width: 330 }
 ];
 
 // 删除用户信息
@@ -188,12 +234,12 @@ const batchAdd = () => {
 
 // 打开 drawer(新增、查看、编辑)
 const drawerRef = ref();
-const openDrawer = (title: string, rowData: Partial<User.ResUserList> = { avatar: '' }) => {
+const openDrawer = (title: string, rowData: Partial<User.ResUserList> = {}) => {
 	let params = {
 		title,
 		rowData: { ...rowData },
 		isView: title === '查看',
-		apiUrl: title === '新增' ? addUser : title === '编辑' ? editUser : '',
+		api: title === '新增' ? addUser : title === '编辑' ? editUser : '',
 		getTableList: proTable.value.getTableList
 	};
 	drawerRef.value.acceptParams(params);

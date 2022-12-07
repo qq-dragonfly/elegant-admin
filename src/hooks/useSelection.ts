@@ -1,11 +1,10 @@
-import { computed, ref } from 'vue';
+import { ref, computed } from 'vue';
 
 /**
  * @description 表格多选数据操作
  * @param {String} selectId 当表格可以多选时，所指定的 id
  * */
-
-export const useSelection = (selectId = 'id') => {
+export const useSelection = (selectId: string = 'id') => {
 	// 是否选中数据
 	const isSelected = ref<boolean>(false);
 	// 选中的数据列表
@@ -13,7 +12,7 @@ export const useSelection = (selectId = 'id') => {
 
 	// 当前选中的所有ids(数组)，可根据项目自行配置id字段
 	const selectedListIds = computed((): string[] => {
-		const ids: string[] = [];
+		let ids: string[] = [];
 		selectedList.value.forEach(item => {
 			ids.push(item[selectId]);
 		});

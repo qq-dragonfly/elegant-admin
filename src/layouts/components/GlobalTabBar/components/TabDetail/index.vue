@@ -1,7 +1,7 @@
 <template>
 	<div class="relative h-full overflow-hidden">
 		<div ref="bsWrapper" class="flex-1 h-full">
-			<better-scroll ref="bsScroll" :options="{ scrollX: true, scrollY: false, click: false, preventDefault: false }">
+			<better-scroll ref="bsScroll" :options="{ scrollX: true, scrollY: false, click: canClick, preventDefault: false }">
 				<div ref="tabRef" class="h-full" :class="[isChromeMode ? 'flex items-end' : 'flex items-center']">
 					<component
 						:is="activeComponent"
@@ -50,8 +50,6 @@ const canClick = Boolean(deviceInfo.device.type);
 
 const settingsStore = useSettingsStore();
 const tab = useTabStore();
-console.log('tab', tab);
-
 const isChromeMode = computed(() => settingsStore.tab.mode === 'chrome');
 const activeComponent = computed(() => (isChromeMode.value ? ChromeTab : ButtonTab));
 // 获取当前激活的tab的clientX

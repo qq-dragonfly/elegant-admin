@@ -1,16 +1,14 @@
 <template>
 	<!-- 列设置 -->
-	<el-drawer title="列设置" v-model="drawerVisible" size="400px">
-		<div>
-			<el-table :data="colSetting" :border="true">
-				<!-- <el-table-column prop="name" align="center" label="排序">
-					<el-tag style="cursor: move">
-						<el-icon style="cursor: move"><DCaret /></el-icon>
-					</el-tag>
-				</el-table-column> -->
+	<el-drawer title="列设置" v-model="drawerVisible" size="500px">
+		<div class="table" ref="colTableRef">
+			<el-table :data="colSetting" :border="true" row-key="prop" default-expand-all :tree-props="{ children: '_children' }">
 				<el-table-column prop="label" align="center" label="列名" />
-				<el-table-column prop="name" align="center" label="显示" v-slot="scope">
+				<el-table-column prop="isShow" align="center" label="显示" v-slot="scope">
 					<el-switch v-model="scope.row.isShow"></el-switch>
+				</el-table-column>
+				<el-table-column prop="sortable" align="center" label="排序" v-slot="scope">
+					<el-switch v-model="scope.row.sortable"></el-switch>
 				</el-table-column>
 				<template #empty>
 					<div class="table-empty">
@@ -26,7 +24,7 @@
 import { ref } from 'vue';
 import { ColumnProps } from '@/components/ProTable/interface';
 
-defineProps<{ colSetting: Partial<ColumnProps>[]; tableRef: any }>();
+defineProps<{ colSetting: ColumnProps[] }>();
 
 const drawerVisible = ref<boolean>(false);
 // 打开列设置
@@ -38,3 +36,9 @@ defineExpose({
 	openColSetting
 });
 </script>
+
+<style scoped lang="scss">
+.cursor-move {
+	cursor: move;
+}
+</style>
