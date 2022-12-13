@@ -4,7 +4,7 @@ const copyright_common_style = 'font-size: 14px; margin-bottom: 2px; padding: 6p
 const copyright_main_style = `${copyright_common_style} background: #707070;`;
 const copyright_sub_style = `${copyright_common_style} background: #707070;`;
 
-export default function createHtml(env, isBuild) {
+export default function createHtml(env: any, isBuild: any) {
 	const { VITE_APP_TITLE, VITE_APP_DEBUG_TOOL, VITE_APP_MODE } = env;
 	let copyrightScript = `
 <script>

@@ -36,7 +36,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
 import { useDownload } from '@/hooks/useDownload';
 import { Download } from '@element-plus/icons-vue';
 import { ElNotification } from 'element-plus';

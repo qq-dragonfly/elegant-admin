@@ -47,6 +47,7 @@ body {
 body {
 	box-sizing: border-box;
 	margin: 0;
+  overflow: hidden;
 	font-family: Lato, 'PingFang SC', 'Microsoft YaHei', sans-serif;
 	-webkit-tap-highlight-color: transparent;
 	&.hidden_body {

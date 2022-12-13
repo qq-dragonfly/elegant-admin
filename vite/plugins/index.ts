@@ -14,7 +14,7 @@ import createCompression from './compression';
 import createBanner from './banner';
 import pluginEslint from './pluginEslint';
 
-export default function createVitePlugins(viteEnv, isBuild = false) {
+export default function createVitePlugins(viteEnv: any, isBuild = false) {
 	const vitePlugins: (PluginOption | PluginOption[])[] = [
 		vue({
 			reactivityTransform: true

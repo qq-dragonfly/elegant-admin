@@ -217,7 +217,8 @@ const changeStatus = async (row: User.ResUserList) => {
 
 // 导出用户列表
 const downloadFile = async () => {
-	useDownload(exportUserInfo, '用户列表', proTable.value.searchParam);
+	console.log('proTable.value.searchParam', proTable.value.searchParam);
+	await useDownload(exportUserInfo, '用户列表', proTable.value.searchParam);
 };
 
 // 批量添加用户

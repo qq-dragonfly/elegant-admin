@@ -21,5 +21,10 @@
 		"types": ["vite/client", "element-plus/global", "vite-plugin-pages/client", "vite-plugin-vue-layouts/client", "node"] // 加载的声明文件包
 	},
 	"exclude": ["dist", "node_modules"], // 排除src目录下的lib文件夹下的文件不会编译
-	"include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "package.json", "vite.config.ts", "vite/**/*.ts"] //指定编译需要编译的文件或目录。
+	"include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "package.json", "vite.config.ts", "vite/**/*.ts"], //指定编译需要编译的文件或目录。
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
 }

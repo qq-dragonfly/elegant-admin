@@ -30,7 +30,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 98px 98px 20px;
+  padding: 0 98px 20px;
 }
 .loading-box .loading-text {
   font-size: 14px;

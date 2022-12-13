@@ -6,10 +6,11 @@ import pkg from './package.json';
 import createVitePlugins from './vite/plugins';
 
 // https://vitejs.dev/config/
-export default ({ mode, command }) => {
+// 开发环境command值为serve，生产环境为build
+export default ({ mode = 'development', command = 'serve' }) => {
 	const env = loadEnv(mode, process.cwd());
 	// 全局 scss 资源
-	const scssResources = [];
+	const scssResources: Array<any> = [];
 	fs.readdirSync('src/assets/styles/resources').forEach(dirname => {
 		if (fs.statSync(`src/assets/styles/resources/${dirname}`).isFile()) {
 			scssResources.push(`@use "src/assets/styles/resources/${dirname}" as *;`);

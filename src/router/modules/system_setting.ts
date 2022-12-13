@@ -1,5 +1,4 @@
 import type { Route } from '@/global';
-
 const Layout = () => import('@/layouts/index.vue');
 
 const routes: Route.recordRaw = {
