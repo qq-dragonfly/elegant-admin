@@ -6,29 +6,29 @@
 	"author": "zhangyao <97972619@qq.com>",
 	"scripts": {
 		"dev": "vite",
-    "build:test": "vue-tsc --noEmit && vite build --mode tests",
-    "build:sit": "vue-tsc --noEmit && vite build --mode sit",
-    "build:pro": "vue-tsc --noEmit && vite build --mode production",
+		"build:test": "vue-tsc --noEmit && vite build --mode tests",
+		"build:sit": "vue-tsc --noEmit && vite build --mode sit",
+		"build:pro": "vue-tsc --noEmit && vite build --mode production",
 		"serve:test": "http-server ./dist-tests -o",
 		"svgo": "svgo -f src/assets/icons",
 		"new": "plop",
 		"lint:eslint": "eslint src/**/*.{ts,tsx,vue} --fix",
 		"lint:prettier": "prettier --write --loglevel warn \"src/**/*.{js,ts,json,tsx,css,less,scss,vue,html,md}\"",
 		"lint:stylelint": "stylelint src/**/*.{css,scss,vue} --fix",
-    "lint:lint-staged": "lint-staged",
+		"lint:lint-staged": "lint-staged",
 		"prepare": "husky install",
 		"postinstall": "esno scripts/prepare.js",
 		"preinstall": "npx only-allow pnpm",
-    "commit": "git pull && git add -A && git-cz && git push"
+		"commit": "git pull && git add -A && git-cz && git push"
 	},
 	"dependencies": {
 		"@tinymce/tinymce-vue": "^5.0.0",
 		"@vueuse/core": "^9.3.0",
-    "@better-scroll/core": "^2.4.2",
+		"@better-scroll/core": "^2.4.2",
 		"@vueuse/integrations": "^9.3.0",
 		"axios": "^0.27.2",
 		"dayjs": "^1.11.5",
-    "crypto-js": "^4.1.1",
+		"crypto-js": "^4.1.1",
 		"@element-plus/icons-vue": "^2.0.10",
 		"element-plus": "^2.2.17",
 		"hotkeys-js": "^3.10.0",
@@ -43,34 +43,34 @@
 		"tinymce": "^6.2.0",
 		"vue": "^3.2.40",
 		"vue-router": "^4.1.5",
-    "css-render": "0.15.10",
-    "ua-parser-js": "^1.0.2"
-  },
+		"css-render": "0.15.10",
+		"ua-parser-js": "^1.0.2"
+	},
 	"devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.22.0",
-    "@typescript-eslint/parser": "^5.22.0",
-    "@types/ua-parser-js": "^0.7.36",
+		"@typescript-eslint/eslint-plugin": "^5.22.0",
+		"@typescript-eslint/parser": "^5.22.0",
+		"@types/ua-parser-js": "^0.7.36",
 		"@iconify-json/ep": "^1.1.8",
 		"@iconify/vue": "^4.0.0",
 		"@types/nprogress": "^0.2.0",
 		"@types/path-browserify": "^1.0.0",
 		"@types/qs": "^6.9.7",
-    "@types/node": "^18.7.18",
-    "@types/crypto-js": "^4.1.1",
+		"@types/node": "^18.7.18",
+		"@types/crypto-js": "^4.1.1",
 		"@vitejs/plugin-vue": "^3.1.2",
 		"@vitejs/plugin-vue-jsx": "^2.0.1",
-    "@commitlint/cli": "^17.1.2",
-    "@commitlint/config-conventional": "^17.1.0",
-    "commitizen": "^4.2.4",
-    "commitlint-config-cz": "^0.13.2",
-    "tailwindcss": "^3.2.3",
+		"@commitlint/cli": "^17.1.2",
+		"@commitlint/config-conventional": "^17.1.0",
+		"commitizen": "^4.2.4",
+		"commitlint-config-cz": "^0.13.2",
+		"tailwindcss": "^3.2.3",
 		"autoprefixer": "^10.4.12",
-    "cz-conventional-changelog": "^3.3.0",
-    "cz-customizable": "^7.0.0",
+		"cz-conventional-changelog": "^3.3.0",
+		"cz-customizable": "^7.0.0",
 		"eslint": "^8.25.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-vue": "^8.7.1",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-prettier": "^4.0.0",
+		"eslint-plugin-vue": "^8.7.1",
 		"prettier": "^2.6.2",
 		"esno": "^0.16.3",
 		"fs-extra": "^10.1.0",
@@ -100,22 +100,27 @@
 		"vite-plugin-pages": "^0.26.0",
 		"vite-plugin-restart": "^0.2.0",
 		"vite-plugin-spritesmith": "^0.1.1",
-    "vite-plugin-eslint": "^1.6.0",
+		"vite-plugin-eslint": "^1.6.0",
 		"vite-plugin-svg-icons": "^2.0.1",
 		"vite-plugin-vue-layouts": "^0.7.0",
 		"vite-plugin-vue-setup-extend": "^0.4.0",
 		"vue-tsc": "^1.0.3"
 	},
-  "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "rollup"
-      ]
-    }
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-customizable"
-    }
-  }
+	"pnpm": {
+		"peerDependencyRules": {
+			"ignoreMissing": [
+				"rollup"
+			]
+		}
+	},
+	"config": {
+		"commitizen": {
+			"path": "node_modules/cz-customizable"
+		}
+	},
+	"husky": {
+		"hooks": {
+			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+		}
+	}
 }

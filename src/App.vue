@@ -16,7 +16,7 @@ import eventBus from './utils/eventBus';
 import { useGlobalEvents } from '@/hooks/useEvent';
 import useSettingsStore from '@/store/modules/settings';
 // import useMenuStore from '@/store/modules/menu';
-
+// 测试提交
 const settingsStore = useSettingsStore();
 
 const buttonConfig = ref({
