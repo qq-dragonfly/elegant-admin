@@ -20,14 +20,14 @@ export default ({ mode = 'development', command = 'serve' }) => {
 		base: './',
 		// 开发服务器选项 https://cn.vitejs.dev/config/#server-options
 		server: {
-			open: true,
 			port: 9000,
+			host: '0.0.0.0',
 			proxy: {
-				'/api': {
+				'/nethos/': {
 					// target: "https://www.fastmock.site/mock/f81e8333c1a9276214bcdbc170d9e0a0", // fastmock
-					target: env.VITE_APP_API_BASEURL,
+					target: 'https://t-zbzk.zjwlyy.cn/nethos',
 					changeOrigin: true,
-					rewrite: path => path.replace(/^\/api/, '')
+					rewrite: path => path.replace(/^\/nethos/, '')
 				}
 			}
 		},

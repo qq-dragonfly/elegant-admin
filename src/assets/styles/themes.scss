@@ -80,6 +80,10 @@
 	/* ----- 进度条 ----- */
 	--g-nprogress-color: var(--el-color-primary);
 
+	/* --------表格表头--------- */
+	--g-table-header-bj-color: var(--el-bg-color);
+	--g-table-header-text-color: var(--el-text-color-primary);
+
 	/* ----- 暗黑模式 ----- */
 	&.dark {
 		--g-box-shadow-color: rgb(0 0 0 / 72%);
@@ -162,5 +166,9 @@
 
 		/* ----- 进度条 ----- */
 		--g-nprogress-color: var(--el-color-primary);
+
+		/* --------表格表头--------- */
+		--g-table-header-bj-color: var(--el-bg-color);
+		--g-table-header-text-color: #ffffff;
 	}
 }

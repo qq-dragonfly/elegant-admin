@@ -7,9 +7,9 @@ layout: false
 <template>
 	<div>
 		<div class="bg-banner">
-			<login-bg :theme-color="bgThemeColor" v-if="settingStore.mode === 'pc'" />
+			<login-bg :theme-color="bgThemeColor" v-if="settingsStore.mode === 'pc'" />
 		</div>
-		<div id="login-box" :class="{ shadow: settingStore.mode === 'pc', 'login-box': settingStore.mode === 'pc' }">
+		<div id="login-box" :class="{ shadow: settingsStore.mode === 'pc', 'login-box': settingsStore.mode === 'pc' }">
 			<el-form
 				v-show="formType === 'login'"
 				ref="loginFormRef"
@@ -22,19 +22,11 @@ layout: false
 					<div class="w-14 h-14 rounded-md overflow-hidden flex mr-5">
 						<img src="../../assets/images/logo.png" alt="" />
 					</div>
-					<h3 class="title">欢迎来到 {{ title }} ! 👋🏻</h3>
+					<h3 class="title">欢迎来到 {{ title }} !</h3>
 				</div>
 				<div>
 					<el-form-item prop="username">
-						<el-input
-							class="rounded-full overflow-hidden"
-							ref="name"
-							v-model="loginForm.username"
-							placeholder="用户名"
-							text
-							tabindex="1"
-							autocomplete="on"
-						>
+						<el-input ref="name" v-model="loginForm.username" placeholder="用户名" text clearable tabindex="1" autocomplete="on">
 							<template #prefix>
 								<el-icon>
 									<svg-icon name="ep:user" />
@@ -50,6 +42,7 @@ layout: false
 							placeholder="密码"
 							tabindex="2"
 							autocomplete="on"
+							clearable
 							@keyup.enter="handleLogin"
 						>
 							<template #prefix>
@@ -59,8 +52,29 @@ layout: false
 							</template>
 							<template #suffix>
 								<el-icon>
-									<svg-icon :name="passwordType === 'password' ? 'eye' : 'eye-open'" @click="showPassword(loginPasswordRef)" />
+									<svg-icon :name="passwordType === 'password' ? 'ep:hide' : 'ep:view'" @click="showPassword(loginPasswordRef)" />
 								</el-icon>
+							</template>
+						</el-input>
+					</el-form-item>
+					<el-form-item prop="verifyCode">
+						<el-input
+							ref="loginPasswordRef"
+							v-model="loginForm.verifyCode"
+							text
+							placeholder="请输入验证码"
+							tabindex="2"
+							autocomplete="on"
+							clearable
+							@keyup.enter="handleLogin"
+						>
+							<template #prefix>
+								<el-icon>
+									<svg-icon name="ep:lock" />
+								</el-icon>
+							</template>
+							<template #append>
+								<img v-if="captchaImg" :src="captchaImg" class="w-full h-12 verify-code-img" @click="getImageCaptcha" alt="" />
 							</template>
 						</el-input>
 					</el-form-item>
@@ -97,7 +111,7 @@ layout: false
 				</div>
 				<div>
 					<el-form-item prop="username">
-						<el-input ref="name" v-model="registerForm.username" placeholder="用户名" tabindex="1" autocomplete="on">
+						<el-input ref="name" clearable v-model="registerForm.username" placeholder="用户名" tabindex="1" autocomplete="on">
 							<template #prefix>
 								<el-icon>
 									<svg-icon name="ep:user" />
@@ -106,7 +120,7 @@ layout: false
 						</el-input>
 					</el-form-item>
 					<el-form-item prop="captcha" class="relative">
-						<el-input ref="captcha" v-model="registerForm.captcha" placeholder="验证码" tabindex="2" autocomplete="on">
+						<el-input ref="captcha" clearable v-model="registerForm.captcha" placeholder="验证码" tabindex="2" autocomplete="on">
 							<template #prefix>
 								<el-icon>
 									<svg-icon name="ep:key" />
@@ -124,6 +138,7 @@ layout: false
 					<el-form-item prop="password">
 						<el-input
 							ref="registerPasswordRef"
+							clearable
 							v-model="registerForm.password"
 							:type="passwordType"
 							placeholder="密码"
@@ -147,6 +162,7 @@ layout: false
 					</el-form-item>
 					<el-form-item prop="checkPassword">
 						<el-input
+							clearable
 							ref="registerCheckPasswordRef"
 							v-model="registerForm.checkPassword"
 							:type="passwordType"
@@ -191,7 +207,7 @@ layout: false
 				</div>
 				<div>
 					<el-form-item prop="username">
-						<el-input ref="name" v-model="resetForm.username" placeholder="用户名" tabindex="1" autocomplete="on">
+						<el-input ref="name" clearable v-model="resetForm.username" placeholder="用户名" tabindex="1" autocomplete="on">
 							<template #prefix>
 								<el-icon>
 									<svg-icon name="ep:user" />
@@ -200,7 +216,7 @@ layout: false
 						</el-input>
 					</el-form-item>
 					<el-form-item prop="captcha" class="relative">
-						<el-input ref="captcha" v-model="resetForm.captcha" placeholder="验证码" tabindex="2" autocomplete="on">
+						<el-input ref="captcha" clearable v-model="resetForm.captcha" placeholder="验证码" tabindex="2" autocomplete="on">
 							<template #prefix>
 								<el-icon>
 									<svg-icon name="ep:key" />
@@ -222,6 +238,7 @@ layout: false
 							:type="passwordType"
 							placeholder="新密码"
 							tabindex="3"
+							clearable
 							autocomplete="on"
 						>
 							<template #prefix>
@@ -252,8 +269,11 @@ layout: false
 	</div>
 </template>
 <script lang="ts" setup name="Login">
-import { getTimeState } from '@/utils';
+import { getImageCaptchaApi } from '@/api/modules/login';
+import { getTimeState, randomString } from '@/utils';
 import { setLocal, getLocal, removeLocal } from '@/utils/storage';
+import { AesEncrypt, AesDecrypt } from '@/utils/crypto';
+import { setSession } from '@/utils/storage';
 import type { ElForm, FormRules } from 'element-plus';
 import { ElNotification, ElMessage } from 'element-plus';
 import useUserStore from '@/store/modules/user';
@@ -262,7 +282,7 @@ import LoginBg from './components/LoginBg/index.vue';
 import useSettingsStore from '@/store/modules/settings';
 const route = useRoute();
 const router = useRouter();
-const settingStore = useSettingsStore();
+const settingsStore = useSettingsStore();
 const userStore = useUserStore();
 const title = import.meta.env.VITE_APP_TITLE;
 
@@ -271,7 +291,6 @@ const formType = ref('login');
 const loading = ref(false);
 const passwordType = ref<string>('password');
 const redirect = ref(route.query.redirect?.toString() ?? '/');
-
 // 登录
 // 定义 formRef（校验规则）
 type FormInstance = InstanceType<typeof ElForm>;
@@ -279,8 +298,10 @@ const loginFormRef = ref<FormInstance>();
 const loginPasswordRef = ref<HTMLElement>();
 const loginForm = reactive({
 	username: (getLocal('login_username') as string) || 'admin',
-	password: '123456',
-	remember: !!getLocal('login_username')
+	password: '203899',
+	remember: !!getLocal('login_username'),
+	verifyCode: '',
+	captchaId: ''
 });
 const loginRules = ref<FormRules>({
 	username: [
@@ -302,29 +323,60 @@ const loginRules = ref<FormRules>({
 			trigger: 'blur',
 			message: '密码长度为6到18位'
 		}
-	]
+	],
+	verifyCode: [{ required: true, message: '请输入图形验证码', trigger: 'blur' }]
 });
-
+onMounted(() => {
+	getImageCaptcha();
+});
+//获取图形验证码
+const captchaImg = ref('');
+function getImageCaptcha() {
+	loginForm.captchaId = randomString(64);
+	let para = {
+		id: loginForm.captchaId
+	};
+	getImageCaptchaApi(para).then((res: any) => {
+		captchaImg.value = window.URL.createObjectURL(res);
+	});
+}
 function handleLogin() {
 	loginFormRef.value &&
 		loginFormRef.value.validate(valid => {
 			if (valid) {
 				loading.value = true;
+				let randomNumber = randomString(16);
+				let password = AesEncrypt(loginForm.password, randomNumber);
+				// console.log('加密后----->', password)
+				setSession('psKey', randomNumber);
+				// proxy.$TOOL.session.set('psKey', randomNumber);
+				// let aesDecryptVal = await AesDecrypt(password, randomNumber)
+				// console.log('aesDecryptVal', aesDecryptVal)
+
+				let para = {
+					username: loginForm.username,
+					password: password,
+					captcha: loginForm.verifyCode,
+					id: loginForm.captchaId
+				};
 				userStore
-					.login(loginForm)
-					.then(() => {
-						if (loginForm.remember) {
-							setLocal('login_username', loginForm.username);
-						} else {
-							removeLocal('login_username');
+					.login(para)
+					.then(async (res: any) => {
+						if (res.code === 200) {
+							await userStore.getUserInfo();
+							if (loginForm.remember) {
+								setLocal('login_username', loginForm.username);
+							} else {
+								removeLocal('login_username');
+							}
+							await router.push(redirect.value);
+							ElNotification({
+								title: getTimeState(),
+								message: `欢迎登录 ${title}`,
+								type: 'success',
+								duration: 3000
+							});
 						}
-						router.push(redirect.value);
-						ElNotification({
-							title: getTimeState(),
-							message: `欢迎登录 ${title}`,
-							type: 'success',
-							duration: 3000
-						});
 						loading.value = false;
 					})
 					.catch(() => {
@@ -461,7 +513,7 @@ function showPassword(passwordEl: HTMLElement | undefined) {
 	});
 }
 
-const bgThemeColor = computed(() => settingStore.app.themeColor);
+const bgThemeColor = computed(() => settingsStore.app.themeColor);
 </script>
 
 <style lang="scss" scoped>
@@ -480,6 +532,10 @@ const bgThemeColor = computed(() => settingStore.app.themeColor);
 			width: 100%;
 			min-height: auto;
 			padding: 30px;
+			:deep(.el-input-group__append) {
+				width: 130px;
+				padding: 0;
+			}
 		}
 	}
 }
@@ -510,6 +566,10 @@ const bgThemeColor = computed(() => settingStore.app.themeColor);
 		min-height: 500px;
 		padding: 50px;
 		overflow: hidden;
+		:deep(.el-input-group__append) {
+			width: 130px;
+			padding: 0;
+		}
 		.title-container {
 			position: relative;
 			margin-bottom: 30px;

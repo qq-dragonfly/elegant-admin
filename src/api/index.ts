@@ -1,3 +1,4 @@
+import { getSession } from '@/utils/storage';
 import axios, { AxiosInstance, AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { showFullScreenLoading, tryHideFullScreenLoading } from '@/api/config/serviceLoading';
 import { AxiosCanceler } from './helper/axiosCancel';
@@ -16,16 +17,16 @@ const toLogin = () => {
 		}
 	});
 };
-
+const TOKEN_NAME = 'x-token';
 const axiosCanceler = new AxiosCanceler();
 
 const config = {
 	// 默认地址请求地址，可在 .env 开头文件中修改
 	baseURL: import.meta.env.VITE_APP_API_BASEURL as string,
 	// 设置超时时间（10s）
-	timeout: ResultEnum.TIMEOUT as number,
+	timeout: ResultEnum.TIMEOUT as number
 	// 跨域时候允许携带凭证
-	withCredentials: true
+	// withCredentials: true
 };
 
 class RequestHttp {
@@ -40,14 +41,23 @@ class RequestHttp {
 		 * token校验(JWT) : 接受服务器返回的token,存储到vuex/pinia/本地储存当中
 		 */
 		this.service.interceptors.request.use(
-			(config: AxiosRequestConfig) => {
+			(config: any) => {
 				const userStore = useUserStore();
 				// * 将当前请求添加到 pending 中
 				axiosCanceler.addPending(config);
 				// * 如果当前请求不需要显示 loading,在 api 服务中通过指定的第三个参数: { headers: { noLoading: true } }来控制不显示loading，参见loginApi
 				config.headers!.noLoading || showFullScreenLoading();
 				const token: string = userStore.token;
-				return { ...config, headers: { ...config.headers, 'x-access-token': token } };
+				const passwordKey: any = getSession('psKey');
+				if (config.headers) {
+					if (token) {
+						config.headers[TOKEN_NAME] = token;
+					}
+					if (passwordKey) {
+						config.headers['passwordKey'] = passwordKey;
+					}
+				}
+				return { ...config };
 			},
 			(error: AxiosError) => {
 				return Promise.reject(error);
@@ -68,7 +78,7 @@ class RequestHttp {
 				// * 登陆失效（code == 401）
 				if (data.code == ResultEnum.OVERDUE) {
 					ElMessage.error(data.msg);
-					userStore.setToken('');
+					userStore.logout();
 					toLogin();
 					return Promise.reject(data);
 				}

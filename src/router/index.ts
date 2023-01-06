@@ -26,6 +26,7 @@ router.beforeEach(async (to, from, next) => {
 	const routeStore = useRouteStore();
 	settingsStore.app.enableProgress && (isLoading.value = true);
 	// 是否已登录
+	console.log('userStore.isLogin', userStore.isLogin);
 	if (userStore.isLogin) {
 		// 是否已根据权限动态生成并挂载路由
 		if (routeStore.isGenerate) {

@@ -47,7 +47,7 @@ body {
 body {
 	box-sizing: border-box;
 	margin: 0;
-  overflow: hidden;
+	overflow: hidden;
 	font-family: Lato, 'PingFang SC', 'Microsoft YaHei', sans-serif;
 	-webkit-tap-highlight-color: transparent;
 	&.hidden_body {
@@ -242,8 +242,8 @@ textarea {
 			height: 45px;
 			font-size: 15px;
 			font-weight: bold;
-			color: #252525;
-			background: #fafafa;
+			color: var(--g-table-header-text-color);
+			background: var(--g-table-header-bj-color);
 		}
 		.el-table__row {
 			height: 45px;
@@ -340,11 +340,6 @@ textarea {
 		.el-dialog__title {
 			font-size: 17px;
 		}
-	}
-}
-#login-box {
-	.el-input__wrapper {
-		border-radius: 99px;
 	}
 }
 
