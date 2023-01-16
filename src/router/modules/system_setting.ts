@@ -1,4 +1,4 @@
-import type { Route } from '@/global';
+import type { Route } from '@/types/global';
 const Layout = () => import('@/layouts/index.vue');
 
 const routes: Route.recordRaw = {
@@ -8,7 +8,7 @@ const routes: Route.recordRaw = {
 	name: 'systemSetting',
 	meta: {
 		title: '系统设置',
-		icon: 'system-setting'
+		icon: 'ele_sidebar_setting'
 	},
 	children: [
 		{
@@ -16,8 +16,8 @@ const routes: Route.recordRaw = {
 			name: 'systemSettingUser',
 			component: () => import('@/views/system_setting/user/index.vue'),
 			meta: {
-				title: '用户管理',
-				icon: 'sidebar-mock'
+				title: '账号管理',
+				icon: 'ele_sidebar_sysuser'
 			}
 		},
 		{
@@ -26,7 +26,7 @@ const routes: Route.recordRaw = {
 			component: () => import('@/views/system_setting/role/index.vue'),
 			meta: {
 				title: '角色管理',
-				icon: 'system-setting'
+				icon: 'ele_sidebar_role'
 			}
 		},
 		{
@@ -35,7 +35,7 @@ const routes: Route.recordRaw = {
 			component: () => import('@/views/system_setting/menu/index.vue'),
 			meta: {
 				title: '菜单管理',
-				icon: 'system-setting'
+				icon: 'ele_sidebar_menu'
 			}
 		},
 		{
@@ -44,7 +44,7 @@ const routes: Route.recordRaw = {
 			component: () => import('@/views/system_setting/resource/index.vue'),
 			meta: {
 				title: '资源管理',
-				icon: 'system-setting'
+				icon: 'ele_sidebar_resource'
 			}
 		}
 	]

@@ -1,17 +1,30 @@
+import useUserStore from '@/store/modules/user';
 import { ElMessage } from 'element-plus';
+import router from '@/router';
 
+const toLogin = () => {
+	router.push({
+		path: '/login',
+		query: {
+			redirect: router.currentRoute.value.path !== '/login' ? router.currentRoute.value.fullPath : undefined
+		}
+	});
+};
 /**
  * @description: 校验网络请求状态码
  * @param {Number} status
  * @return void
  */
 export const checkStatus = (status: number): void => {
+	const userStore = useUserStore();
 	switch (status) {
 		case 400:
 			ElMessage.error('请求失败！请您稍后重试');
 			break;
 		case 401:
 			ElMessage.error('登录失效！请您重新登录');
+			userStore.logout();
+			toLogin();
 			break;
 		case 403:
 			ElMessage.error('当前账号无权限访问！');

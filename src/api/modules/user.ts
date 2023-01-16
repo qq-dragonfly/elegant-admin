@@ -1,17 +1,18 @@
-import { ResPage, User } from '@/api/interface';
+import { ResPage } from '@/api/interface';
+import { User } from '@/api/interface/sys_user';
 import { PORT1 } from '@/api/config/servicePort';
 
 import http from '@/api';
 
 /********** 用户管理模块 ***********/
 // * 获取用户列表
-export const getUserList = (params: User.ReqGetUserParams) => {
-	return http.post<ResPage<User.ResUserList>>(PORT1 + `/api/system/user/list`, params);
+export const getSysUserListApi = (params: User.ReqGetUserParams) => {
+	return http.post<ResPage<User.ResUserList>>(PORT1 + `/sysUser/page`, params);
 };
 
 // * 新增用户
-export const addUser = (params: { id: string }) => {
-	return http.post(PORT1 + `/user/add`, params);
+export const addUser = (params: any) => {
+	return http.post(PORT1 + `/sysUser`, params);
 };
 
 // * 批量添加用户
@@ -20,38 +21,26 @@ export const BatchAddUser = (params: FormData) => {
 };
 
 // * 编辑用户
-export const editUser = (params: { id: string }) => {
-	return http.post(PORT1 + `/user/edit`, params);
+export const editUser = (params: any) => {
+	return http.put(PORT1 + `/sysUser`, params);
 };
-
+// * 用户详情
+export const getSysUserDetailApi = (params: any) => {
+	return http.get(PORT1 + `/sysUser/detail/${params.id}`, params);
+};
 // * 删除用户
-export const deleteUser = (params: { id: string[] }) => {
-	return http.post(PORT1 + `/user/delete`, params);
-};
-
-// * 切换用户状态
-export const changeUserStatus = (params: { id: string; status: number }) => {
-	return http.post(PORT1 + `/user/change`, params);
+export const delSysUserApi = (params: { ids: string[] }) => {
+	return http.delete(PORT1 + `/sysUser/remove`, params);
 };
 
 // * 重置用户密码
-export const resetUserPassWord = (params: { id: string }) => {
-	return http.post(PORT1 + `/user/rest_password`, params);
+export const resetUserPassWordApi = (params: { id: string }) => {
+	return http.put(PORT1 + `/sysUser/resetPwd/${params.id}`);
 };
 
 // * 导出用户数据
-export const exportUserInfo = (params: User.ReqGetUserParams) => {
+export const exportUserInfoApi = (params: User.ReqGetUserParams) => {
 	return http.post<BlobPart>(PORT1 + `/user/export`, params, { responseType: 'blob' });
-};
-
-// * 获取用户状态
-export const getUserStatus = () => {
-	return http.get<User.ResStatus>(PORT1 + `/user/status`);
-};
-
-// * 获取用户性别字典
-export const getUserGender = () => {
-	return http.get<User.ResGender>(PORT1 + `/user/gender`);
 };
 
 // * 获取用户部门列表

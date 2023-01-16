@@ -332,13 +332,20 @@ textarea {
 }
 
 // * el-dialog 样式
-.el-dialog {
-	.el-dialog__header {
-		padding: 15px 20px;
-		margin: 0;
-		border-bottom: 1px solid var(--el-border-color-lighter);
-		.el-dialog__title {
-			font-size: 17px;
+.pro-dialog {
+	.el-dialog {
+		overflow: hidden;
+		border-radius: 8px;
+		.el-dialog__header {
+			padding: 15px 20px;
+			margin: 0;
+			background-image: linear-gradient(135deg, var(--el-color-primary-light-1) 10%, var(--el-color-primary-light-5)) !important;
+			border-bottom: 1px solid var(--el-border-color-lighter);
+			.el-dialog__title {
+				font-size: 17px;
+				font-weight: bold;
+				color: #ffffff;
+			}
 		}
 	}
 }

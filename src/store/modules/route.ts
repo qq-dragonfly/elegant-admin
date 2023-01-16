@@ -169,7 +169,6 @@ const useRouteStore = defineStore(
 					// 如果权限功能开启，则需要对路由数据进行筛选过滤
 					if (settingsStore.app.enablePermission) {
 						const permissions = await userStore.getPermissions();
-						console.log('aaaa', permissions);
 						accessedRoutes = filterAsyncRoutes(asyncRoutes, permissions);
 					} else {
 						accessedRoutes = cloneDeep(asyncRoutes);

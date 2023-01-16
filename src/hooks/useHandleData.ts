@@ -22,16 +22,20 @@ export const useHandleData = <P = any, R = any>(
 			cancelButtonText: '取消',
 			type: confirmType,
 			draggable: true
-		}).then(async () => {
-			const res = await api(params);
-			if (!res) {
-				return reject(new Error('err'));
-			}
-			ElMessage({
-				type: 'success',
-				message: `${message}成功!`
+		})
+			.then(async () => {
+				const res = await api(params);
+				if (!res) {
+					return reject(new Error('err'));
+				}
+				ElMessage({
+					type: 'success',
+					message: `${message}成功!`
+				});
+				resolve(true);
+			})
+			.catch(err => {
+				console.log('err', err);
 			});
-			resolve(true);
-		});
 	});
 };
