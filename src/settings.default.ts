@@ -2,6 +2,7 @@
 
 import type { RecursiveRequired, Settings } from './global';
 import { EnumThemeTabMode } from '@/enums/common';
+
 const globalSettingsDefault: RecursiveRequired<Settings.all> = {
 	app: {
 		colorScheme: 'light',
@@ -10,7 +11,7 @@ const globalSettingsDefault: RecursiveRequired<Settings.all> = {
 		enablePermission: false,
 		enableProgress: true,
 		enableDynamicTitle: false,
-		routeBaseOn: 'frontend',
+		routeBaseOn: 'frontend', //'frontend'：前端 'backend' 后端 'filesystem' 文件系统
 		themeColor: '#007AFF'
 	},
 	dashboard: {
@@ -24,8 +25,14 @@ const globalSettingsDefault: RecursiveRequired<Settings.all> = {
 		visible: true,
 		mode: 'button',
 		modeList: [
-			{ value: 'chrome', label: EnumThemeTabMode.chrome },
-			{ value: 'button', label: EnumThemeTabMode.button }
+			{
+				value: 'chrome',
+				label: EnumThemeTabMode.chrome
+			},
+			{
+				value: 'button',
+				label: EnumThemeTabMode.button
+			}
 		],
 		isCache: true
 	},

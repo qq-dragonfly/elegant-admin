@@ -11,7 +11,7 @@ export const getSysUserListApi = (params: User.ReqGetUserParams) => {
 };
 
 // * 新增用户
-export const addUser = (params: any) => {
+export const addUserApi = (params: any) => {
 	return http.post(PORT1 + `/sysUser`, params);
 };
 
@@ -21,7 +21,7 @@ export const BatchAddUser = (params: FormData) => {
 };
 
 // * 编辑用户
-export const editUser = (params: any) => {
+export const editUserApi = (params: any) => {
 	return http.put(PORT1 + `/sysUser`, params);
 };
 // * 用户详情

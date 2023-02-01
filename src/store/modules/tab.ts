@@ -216,7 +216,7 @@ export const useTabStore = defineStore('tab-store', {
 			const tabs: GlobalTabRoute[] = settingStore.tab.isCache ? getTabRoutes() : [];
 
 			const hasHome = getIndexInTabRoutesByRouteName(tabs, this.homeTab.name as string) > -1;
-			if (!hasHome && this.homeTab.name !== 'root') {
+			if (!hasHome && this.homeTab.name !== 'dashboard') {
 				tabs.unshift(this.homeTab);
 			}
 

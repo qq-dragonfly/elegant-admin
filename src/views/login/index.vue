@@ -535,6 +535,7 @@ const bgThemeColor = computed(() => settingsStore.app.themeColor);
 			:deep(.el-input-group__append) {
 				width: 130px;
 				padding: 0;
+				cursor: pointer;
 			}
 		}
 	}
@@ -569,6 +570,7 @@ const bgThemeColor = computed(() => settingsStore.app.themeColor);
 		:deep(.el-input-group__append) {
 			width: 130px;
 			padding: 0;
+			cursor: pointer;
 		}
 		.title-container {
 			position: relative;

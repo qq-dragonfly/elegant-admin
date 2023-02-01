@@ -65,8 +65,8 @@ import publicDict from '@/views/system_setting/dict';
 import {
 	getSysUserListApi,
 	delSysUserApi,
-	editUser,
-	addUser,
+	editUserApi,
+	addUserApi,
 	exportUserInfoApi,
 	BatchAddUser,
 	resetUserPassWordApi
@@ -219,7 +219,7 @@ const openDialog = (type: string, rowData: Partial<User.ResUserList> = {}) => {
 		title: type,
 		rowData: { ...rowData },
 		isView: type === 'show',
-		api: type === 'add' ? addUser : type === 'edit' ? editUser : '',
+		api: type === 'add' ? addUserApi : type === 'edit' ? editUserApi : '',
 		getTableList: proTable.value.getTableList
 	};
 	detailDialogRef.value.acceptParams(params);
