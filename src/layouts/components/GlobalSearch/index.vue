@@ -91,7 +91,7 @@ import eventBus from '@/utils/eventBus';
 import useSettingsStore from '@/store/modules/settings';
 import useRouteStore from '@/store/modules/route';
 import useMenuStore from '@/store/modules/menu';
-import type { Menu, Route } from '@/global';
+import type { Menu, Route } from '#/global';
 
 const router = useRouter();
 
@@ -187,15 +187,9 @@ onMounted(() => {
 			isShow.value = false;
 		}
 	});
-	if (settingsStore.app.routeBaseOn !== 'filesystem') {
-		routeStore.routes.forEach(item => {
-			item.children && getSourceList(item.children);
-		});
-	} else {
-		menuStore.menus.forEach(item => {
-			getSourceListByMenus(item.children);
-		});
-	}
+	routeStore.routes.forEach(item => {
+		item.children && getSourceList(item.children);
+	});
 });
 
 function hasChildren(item: Route.recordRaw) {

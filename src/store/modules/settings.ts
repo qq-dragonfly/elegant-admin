@@ -1,4 +1,4 @@
-import type { RecursiveRequired, Settings } from '@/global';
+import type { RecursiveRequired, Settings } from '#/global';
 import settings from '@/settings';
 import settingsDefault from '@/settings.default';
 

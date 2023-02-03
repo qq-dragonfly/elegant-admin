@@ -1,8 +1,3 @@
-<route lang="yaml">
-meta:
-  enabled: false
-</route>
-
 <script lang="ts" setup name="KeepAliveExamplePage">
 import { onBeforeRouteLeave } from 'vue-router';
 import useKeepAliveStore from '@/store/modules/keepAlive';

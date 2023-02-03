@@ -1,8 +1,3 @@
-<route lang="yaml">
-meta:
-enabled: false
-</route>
-
 <template>
 	<div class="table-box">
 		<page-main> 资源管理 </page-main>

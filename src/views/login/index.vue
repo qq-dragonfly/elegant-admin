@@ -1,9 +1,3 @@
-<route lang="yaml">
-meta:
-title: 登录
-constant: true
-layout: false
-</route>
 <template>
 	<div>
 		<div class="bg-banner">

@@ -1,5 +1,3 @@
-import { setupLayouts } from 'virtual:generated-layouts';
-import generatedRoutes from 'virtual:generated-pages';
 import BreadcrumbExample from './modules/breadcrumb_example';
 import KeepAliveExample from './modules/keep_alive_example';
 import ComponentExtendExample from './modules/component_extend_example';
@@ -11,7 +9,7 @@ import EcologyExample from './modules/ecology_example';
 import Directive from './modules/directive';
 
 import SystemSetting from './modules/system_setting';
-import type { Route } from '@/global';
+import type { Route } from '#/global';
 import useSettingsStore from '@/store/modules/settings';
 
 // 固定路由（默认路由）
@@ -138,15 +136,4 @@ const asyncRoutes: Route.recordMainRaw[] = [
 		]
 	}
 ];
-
-const constantRoutesByFilesystem = generatedRoutes.filter(item => {
-	return item.meta?.enabled !== false && item.meta?.constant === true;
-});
-
-const asyncRoutesByFilesystem = setupLayouts(
-	generatedRoutes.filter(item => {
-		return item.meta?.enabled !== false && item.meta?.constant !== true && item.meta?.layout !== false;
-	})
-) as Route.recordRaw[];
-
-export { constantRoutes, systemRoutes, asyncRoutes, constantRoutesByFilesystem, asyncRoutesByFilesystem };
+export { constantRoutes, systemRoutes, asyncRoutes };

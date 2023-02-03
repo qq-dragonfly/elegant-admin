@@ -134,7 +134,6 @@ header {
 				font-size: 13px;
 				color: var(--g-header-menu-color);
 				cursor: pointer;
-				background-color: var(--g-header-bg);
 				border-radius: 8px;
 				transition: background-color 0.3s, var(--el-transition-color);
 				&:hover {

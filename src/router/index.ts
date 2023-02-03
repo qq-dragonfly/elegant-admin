@@ -2,8 +2,9 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 import type { RouteRecordRaw } from 'vue-router';
 import { useNProgress } from '@vueuse/integrations/useNProgress';
 import '@/assets/styles/nprogress.scss';
+import { scrollBehavior } from './helpers';
 // 路由相关数据
-import { asyncRoutes, asyncRoutesByFilesystem, constantRoutes, constantRoutesByFilesystem } from './routes';
+import { asyncRoutes, constantRoutes } from './routes';
 import pinia from '@/store';
 import useSettingsStore from '@/store/modules/settings';
 import useKeepAliveStore from '@/store/modules/keepAlive';
@@ -12,11 +13,13 @@ import useMenuStore from '@/store/modules/menu';
 import useRouteStore from '@/store/modules/route';
 
 const { isLoading } = useNProgress();
-
 const router = createRouter({
 	history: createWebHashHistory(),
 	routes:
-		useSettingsStore(pinia).app.routeBaseOn === 'filesystem' ? constantRoutesByFilesystem : (constantRoutes as RouteRecordRaw[])
+		useSettingsStore(pinia).app.routeBaseOn === 'frontend' || useSettingsStore(pinia).app.routeBaseOn === 'backend'
+			? (constantRoutes as RouteRecordRaw[])
+			: (constantRoutes as RouteRecordRaw[]),
+	scrollBehavior
 });
 
 router.beforeEach(async (to, from, next) => {
@@ -26,7 +29,7 @@ router.beforeEach(async (to, from, next) => {
 	const routeStore = useRouteStore();
 	settingsStore.app.enableProgress && (isLoading.value = true);
 	// 是否已登录
-	console.log('userStore.isLogin', userStore.isLogin);
+	// console.log('userStore.isLogin', userStore.isLogin);
 	if (userStore.isLogin) {
 		// 是否已根据权限动态生成并挂载路由
 		if (routeStore.isGenerate) {
@@ -70,17 +73,6 @@ router.beforeEach(async (to, from, next) => {
 				case 'backend':
 					await routeStore.generateRoutesAtBack();
 					break;
-				case 'filesystem':
-					await routeStore.generateRoutesAtFilesystem(asyncRoutesByFilesystem);
-					switch (settingsStore.menu.baseOn) {
-						case 'frontend':
-							await menuStore.generateMenusAtFront();
-							break;
-						case 'backend':
-							await menuStore.generateMenusAtBack();
-							break;
-					}
-					break;
 			}
 			const removeRoutes: Function[] = [];
 			routeStore.flatRoutes.forEach(route => {
@@ -88,11 +80,9 @@ router.beforeEach(async (to, from, next) => {
 					removeRoutes.push(router.addRoute(route as RouteRecordRaw));
 				}
 			});
-			if (settingsStore.app.routeBaseOn !== 'filesystem') {
-				routeStore.flatSystemRoutes.forEach(route => {
-					removeRoutes.push(router.addRoute(route as RouteRecordRaw));
-				});
-			}
+			routeStore.flatSystemRoutes.forEach(route => {
+				removeRoutes.push(router.addRoute(route as RouteRecordRaw));
+			});
 			// 记录路由数据，在登出时会使用到，不使用 router.removeRoute 是考虑配置的路由可能不一定有设置 name ，则通过调用 router.addRoute() 返回的回调进行删除
 			routeStore.setCurrentRemoveRoutes(removeRoutes);
 			next({

@@ -21,23 +21,22 @@
 				<el-form-item label="用户头像" prop="avatar">
 					<el-input></el-input>
 				</el-form-item>
-				<el-form-item class="col-span-2" label="用户头像" prop="avatar">
-					<el-input></el-input>
+				<el-form-item class="col-span-2" label="用户账号" prop="avatar">
+					<el-input v-model="drawerProps.rowData.name" placeholder="请输入用户账号" />
 				</el-form-item>
-				<el-form-item label="用户头像" prop="role">
+				<el-form-item label="用户角色" prop="role">
 					<pro-table-select
-						v-if="drawerProps.rowData.role"
 						v-model="drawerProps.rowData.role"
 						:disabled="drawerProps.isView"
 						:params="params"
 						:request-api="getSysRoleList"
 						:table-width="700"
-						multiple
 						clearable
+						multiple
 						collapse-tags
 						collapse-tags-tooltip
 						:propsObj="propsObj"
-						@change="handleChangeVal"
+						@change-emit="handleChangeVal"
 					>
 						<template #header="{ form, submit }">
 							<el-form :inline="true" :model="form">
@@ -110,10 +109,11 @@ const acceptParams = (params: dialogProps): void => {
 		add: '新增',
 		edit: '编辑'
 	};
-	drawerProps.value = params;
+	drawerProps.value = JSON.parse(JSON.stringify(params));
 	drawerProps.value.title = titleObj[params.title];
 	drawerVisible.value = true;
-	if (params.title !== 'add') {
+	console.log('para', params.title);
+	if (params.rowData.id) {
 		getSysUserDetail(params);
 	}
 };
@@ -149,8 +149,7 @@ const handleSubmit = () => {
 };
 //值变化
 function handleChangeVal(val: any) {
-	ElMessage('change事件，返回详情查看控制台');
-	console.log(val);
+	console.log('返回选中数据', val);
 }
 defineExpose({
 	acceptParams

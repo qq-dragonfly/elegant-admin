@@ -1,5 +1,4 @@
-import type { StyleValue } from 'vue';
-import type { RouteRecordRaw, RouteMeta, NavigationGuard } from 'vue-router';
+import type { RouteRecordRaw, RouteMeta } from 'vue-router';
 /** 枚举的key类型 */
 declare namespace EnumType {
 	/** 多页签风格 */
@@ -56,7 +55,6 @@ declare namespace Settings {
 		 * 路由数据来源
 		 * @默认值 `'frontend'` 前端
 		 * @可选值 `'backend'` 后端
-		 * @可选值 `'filesystem'` 文件系统
 		 */
 		routeBaseOn?: 'frontend' | 'backend' | 'filesystem';
 	}

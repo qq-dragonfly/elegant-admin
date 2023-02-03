@@ -1,8 +1,3 @@
-<route lang="yaml">
-meta:
-enabled: false
-</route>
-
 <script lang="ts" setup name="ComponentExampleEditor">
 const content = ref('<h1>Elegant-admin</h1>');
 </script>
@@ -25,10 +20,9 @@ const content = ref('<h1>Elegant-admin</h1>');
 <style lang="scss" scoped>
 .preview {
 	margin-top: 10px;
-
 	&::before {
-		content: '预览：';
 		display: block;
+		content: '预览：';
 	}
 }
 </style>

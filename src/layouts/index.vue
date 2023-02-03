@@ -42,7 +42,6 @@
 	</div>
 </template>
 <script lang="ts" setup name="Layout">
-// import * as events from 'events';
 import GlobalHeader from './components/GlobalHeader/index.vue';
 import GlobalMainSidebar from './components/GlobalMainSidebar/index.vue';
 import GlobalSubSidebar from './components/GlobalSubSidebar/index.vue';
@@ -82,32 +81,6 @@ watch(
 		}
 	}
 );
-onMounted(() => {
-	onScrollBar();
-});
-
-function onScrollBar() {
-	// 滚动条自动隐藏
-	let t1 = 0;
-	let t2 = 0;
-	let timer: any = null; // 定时器
-
-	document.styleSheets[0].insertRule('*::-webkit-scrollbar-thumb {display:none}', 0);
-	// scroll监听
-	document.onscroll = function () {
-		clearTimeout(timer);
-		timer = setTimeout(isScrollEnd, 1000);
-		t1 = document.documentElement.scrollTop || document.body.scrollTop;
-		document.styleSheets[0].insertRule('*::-webkit-scrollbar-thumb {display:block}', 0);
-	};
-
-	function isScrollEnd() {
-		t2 = document.documentElement.scrollTop || document.body.scrollTop;
-		if (t2 === t1) {
-			document.styleSheets[0].insertRule('*::-webkit-scrollbar-thumb {display:none}', 0);
-		}
-	}
-}
 
 const scrollTop = ref<number>(0);
 onMounted(() => {
@@ -144,7 +117,12 @@ function onScroll(e: Event) {
 }
 .layout {
 	height: 100%;
+	overflow: -moz-scrollbars-none;
 	overflow-y: auto;
+	-ms-overflow-style: none;
+}
+.layout::-webkit-scrollbar {
+	width: 0 !important;
 }
 #app-main {
 	width: 100%;

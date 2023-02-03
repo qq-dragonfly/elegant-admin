@@ -1,8 +1,3 @@
-<route lang="yaml">
-meta:
-enabled: false
-</route>
-
 <script setup lang="ts" name="copyDirect">
 const data = ref<string>('我是被复制的内容 🍒 🍉 🍊');
 </script>

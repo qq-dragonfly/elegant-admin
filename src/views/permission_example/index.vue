@@ -1,7 +1,3 @@
-<route lang="yaml">
-meta:
-  enabled: false
-</route>
 <template>
 	<div>
 		<page-header title="权限验证" />

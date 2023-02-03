@@ -1,9 +1,3 @@
-<route lang="yaml">
-name: personalEditPassword
-meta:
-title: 修改密码
-</route>
-
 <script lang="ts" setup name="PersonalEditPassword">
 import type { FormInstance, FormRules } from 'element-plus';
 import { ElMessage } from 'element-plus';

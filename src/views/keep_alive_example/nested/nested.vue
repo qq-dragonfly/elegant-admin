@@ -1,8 +1,3 @@
-<route lang="yaml">
-meta:
-  enabled: false
-</route>
-
 <script lang="ts" setup name="TabExampleNested1">
 import useKeepAliveStore from '@/store/modules/keepAlive';
 const keepAliveStore = useKeepAliveStore();

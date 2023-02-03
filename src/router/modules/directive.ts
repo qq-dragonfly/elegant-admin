@@ -1,4 +1,4 @@
-import type { Route } from '@/global';
+import type { Route } from '#/global';
 
 const Layout = () => import('@/layouts/index.vue');
 

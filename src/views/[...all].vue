@@ -1,11 +1,3 @@
-<route lang="yaml">
-name: notFound
-meta:
-  title: 找不到页面
-  constant: true
-  layout: false
-</route>
-
 <script lang="ts" setup>
 import { onBeforeRouteLeave } from 'vue-router';
 const router = useRouter();

@@ -60,7 +60,8 @@ export default ({ mode = 'development', command = 'serve' }) => {
 		plugins: createVitePlugins(env, command === 'build'),
 		resolve: {
 			alias: {
-				'@': path.resolve(__dirname, 'src')
+				'@': path.resolve(__dirname, 'src'),
+				'#': path.resolve(__dirname, 'src/types')
 			}
 		},
 		css: {

@@ -1,13 +1,10 @@
-<route lang="yaml">
-meta:
-enabled: false
-</route>
 <template>
-	<div class="table-box px-2">
+	<div class="table-box">
 		<ProTable
 			ref="proTable"
 			title="用户列表"
 			:columns="columns"
+			:toolButtonPrint="true"
 			:requestApi="getTableList"
 			:initParam="initParam"
 			:dataCallback="dataCallback"
@@ -98,7 +95,7 @@ const getTableList = (params: any) => {
 		newParams.endTime = newParams.timeArr[1];
 		delete newParams.timeArr;
 	}
-	console.log('newParams', newParams);
+	// console.log('newParams', newParams);
 	return getSysUserListApi(newParams);
 };
 

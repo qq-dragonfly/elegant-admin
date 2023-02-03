@@ -1,4 +1,4 @@
-import type { Route } from '@/types/global';
+import type { Route } from '#/global';
 const Layout = () => import('@/layouts/index.vue');
 
 const routes: Route.recordRaw = {
@@ -17,7 +17,8 @@ const routes: Route.recordRaw = {
 			component: () => import('@/views/system_setting/user/index.vue'),
 			meta: {
 				title: '账号管理',
-				icon: 'ele_sidebar_sysuser'
+				icon: 'ele_sidebar_sysuser',
+				cache: true
 			}
 		},
 		{

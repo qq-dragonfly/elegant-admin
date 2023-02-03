@@ -1,8 +1,3 @@
-<route lang="yaml">
-meta:
-enabled: false
-</route>
-
 <script setup lang="ts" name="watermarkDirect"></script>
 
 <template>

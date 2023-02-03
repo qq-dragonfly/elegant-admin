@@ -1,8 +1,3 @@
-<route lang="yaml">
-meta:
-  enabled: false
-</route>
-
 <script lang="ts" setup name="ComponentExampleSvg">
 const flip = ref<'horizontal' | 'vertical' | 'both' | ''>('');
 const rotate = ref(0);

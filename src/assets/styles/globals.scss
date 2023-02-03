@@ -359,3 +359,8 @@ textarea {
 .el-message:not(:last-child) {
 	visibility: hidden;
 }
+
+/* el-popper设置最大宽度 */
+.el-popper {
+	max-width: 600px;
+}

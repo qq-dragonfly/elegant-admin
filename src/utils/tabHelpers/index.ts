@@ -1,7 +1,7 @@
 import type { RouteLocationNormalizedLoaded, RouteRecordNormalized } from 'vue-router';
 import { EnumStorageKey } from '@/enums/common';
 import { getLocal, setLocal } from '@/utils/storage';
-import type { GlobalTabRoute } from '@/global';
+import type { GlobalTabRoute } from '#/global';
 /**
  * 根据vue路由获取tab路由
  * @param route

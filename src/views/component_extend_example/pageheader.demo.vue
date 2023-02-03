@@ -1,8 +1,3 @@
-<route lang="yaml">
-meta:
-  enabled: false
-</route>
-
 <template>
 	<div>
 		<page-header title="页头" content="PageHeader" />

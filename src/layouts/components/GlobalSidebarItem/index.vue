@@ -40,7 +40,7 @@
 </template>
 <script lang="ts" setup name="SidebarItem">
 import { isExternalLink, resolveRoutePath } from '@/utils';
-import type { Menu } from '@/global';
+import type { Menu } from '#/global';
 
 const props = defineProps({
 	item: {

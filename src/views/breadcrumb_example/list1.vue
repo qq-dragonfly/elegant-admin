@@ -1,8 +1,3 @@
-<route lang="yaml">
-meta:
-  enabled: false
-</route>
-
 <template>
 	<page-main>
 		<router-link :to="{ name: 'breadcrumbExampleDetail1' }">

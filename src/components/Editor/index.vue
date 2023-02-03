@@ -91,6 +91,9 @@ const defaultSetting = ref({
 				}
 			};
 		}
+	},
+	video_template_callback: (data: any) => {
+		return `<video width="100%" height="auto" controls="controls" src=${data.source} />`;
 	}
 });
 

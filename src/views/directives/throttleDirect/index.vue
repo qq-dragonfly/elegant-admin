@@ -1,8 +1,3 @@
-<route lang="yaml">
-meta:
-enabled: false
-</route>
-
 <script setup lang="ts" name="throttleDirect">
 import { ElMessage } from 'element-plus';
 const throttleClick = () => {

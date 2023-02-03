@@ -1,4 +1,4 @@
-import type { Route } from '@/global';
+import type { Route } from '#/global';
 
 const Layout = () => import('@/layouts/index.vue');
 
@@ -9,7 +9,7 @@ const routes: Route.recordRaw = {
 	name: 'breadcrumbExample',
 	meta: {
 		title: '面包屑导航',
-		icon: 'sidebar-breadcrumb'
+		icon: 'ele_sidebar_breadcrumb'
 	},
 	children: [
 		{

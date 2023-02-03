@@ -19,9 +19,7 @@
 						<svg-icon name="toolbar-collapse" />
 					</el-icon>
 				</div>
-				<el-breadcrumb
-					v-if="settingsStore.breadcrumb.enable && settingsStore.mode === 'pc' && settingsStore.app.routeBaseOn !== 'filesystem'"
-				>
+				<el-breadcrumb v-if="settingsStore.breadcrumb.enable && settingsStore.mode === 'pc'">
 					<transition-group name="breadcrumb">
 						<el-breadcrumb-item
 							v-for="(item, index) in breadcrumbList"

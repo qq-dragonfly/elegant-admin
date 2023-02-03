@@ -20,9 +20,10 @@
 			</div>
 			<div class="header-button-ri" v-if="toolButton">
 				<el-button :icon="Refresh" circle @click="getTableList"> </el-button>
-				<el-button :icon="Printer" circle v-if="columns.length" @click="handlePrint"> </el-button>
-				<el-button :icon="Operation" circle v-if="columns.length" @click="openColSetting"> </el-button>
-				<el-button :icon="Search" circle v-if="searchColumns.length" @click="isShowSearch = !isShowSearch"> </el-button>
+				<el-button :icon="Printer" circle v-if="columns.length && toolButtonPrint" @click="handlePrint"> </el-button>
+				<el-button :icon="Operation" circle v-if="columns.length && toolButtonSetting" @click="openColSetting"> </el-button>
+				<el-button :icon="Search" circle v-if="searchColumns.length && toolButtonSearch" @click="isShowSearch = !isShowSearch">
+				</el-button>
 			</div>
 		</div>
 		<!-- 表格主体 -->
@@ -42,7 +43,7 @@
 					v-bind="item"
 					:align="item.align ?? 'center'"
 					:reserve-selection="item.type == 'selection'"
-					v-if="item.type == 'selection' || item.type == 'index'"
+					v-if="(item.type == 'selection' || item.type == 'index') && item.isShow"
 				>
 				</el-table-column>
 				<!-- expand 支持 tsx 语法 && 作用域插槽 (tsx > slot) -->
@@ -105,6 +106,9 @@ interface ProTableProps extends Partial<Omit<TableProps<any>, 'data'>> {
 	initParam?: any; // 初始化请求参数 ==> 非必传（默认为{}）
 	border?: boolean; // 是否带有纵向边框 ==> 非必传（默认为true）
 	toolButton?: boolean; // 是否显示表格功能按钮 ==> 非必传（默认为true）
+	toolButtonPrint?: boolean; // 是否显示表格功能按钮打印 ==> 非必传（默认为false）
+	toolButtonSetting?: boolean; // 是否显示表格功能按钮设置 ==> 非必传（默认为true）
+	toolButtonSearch?: boolean; // 是否显示表格功能按钮查询 ==> 非必传（默认为true）
 	selectId?: string; // 当表格数据多选时，所指定的 id ==> 非必传（默认为 id）
 	searchCol?: number | Record<BreakPoint, number>; // 表格搜索项 每列占比配置 ==> 非必传 { xs: 1, sm: 2, md: 2, lg: 3, xl: 4 }
 }
@@ -116,6 +120,9 @@ const props = withDefaults(defineProps<ProTableProps>(), {
 	initParam: {},
 	border: true,
 	toolButton: true,
+	toolButtonPrint: false,
+	toolButtonSearch: true,
+	toolButtonSetting: true,
 	selectId: 'id',
 	searchCol: () => ({ xs: 1, sm: 2, md: 2, lg: 3, xl: 4 })
 });

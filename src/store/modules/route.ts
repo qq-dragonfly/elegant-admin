@@ -4,7 +4,7 @@ import useUserStore from './user';
 import api from '@/api';
 import { resolveRoutePath } from '@/utils';
 import { systemRoutes } from '@/router/routes';
-import type { Route } from '@/global';
+import type { Route } from '#/global';
 
 function hasPermission(permissions: string[], route: Route.recordMainRaw | Route.recordRaw) {
 	let isAuth = false;
@@ -83,15 +83,16 @@ function flatAsyncRoutesRecursive(
 		if (route.children) {
 			const childrenBaseUrl = resolveRoutePath(baseUrl, route.path);
 			const tmpBreadcrumb = cloneDeep(breadcrumb);
-			if (route.meta.breadcrumb !== false) {
-				tmpBreadcrumb.push({
-					path: childrenBaseUrl,
-					title: route.meta.title,
-					hide: !route.meta.breadcrumb && route.meta.breadcrumb === false
-				});
-			}
+			tmpBreadcrumb.push({
+				path: childrenBaseUrl,
+				title: route.meta?.title,
+				hide: !route.meta?.breadcrumb && route.meta?.breadcrumb === false
+			});
 			const tmpRoute = cloneDeep(route);
 			tmpRoute.path = childrenBaseUrl;
+			if (!tmpRoute.meta) {
+				tmpRoute.meta = { title: '' };
+			}
 			tmpRoute.meta.breadcrumbNeste = tmpBreadcrumb;
 			delete tmpRoute.children;
 			res.push(tmpRoute);
@@ -115,9 +116,12 @@ function flatAsyncRoutesRecursive(
 			const tmpBreadcrumb = cloneDeep(breadcrumb);
 			tmpBreadcrumb.push({
 				path: tmpRoute.path,
-				title: tmpRoute.meta.title,
-				hide: !tmpRoute.meta.breadcrumb && tmpRoute.meta.breadcrumb === false
+				title: tmpRoute.meta?.title,
+				hide: !tmpRoute.meta?.breadcrumb && tmpRoute.meta?.breadcrumb === false
 			});
+			if (!tmpRoute.meta) {
+				tmpRoute.meta = { title: '' };
+			}
 			tmpRoute.meta.breadcrumbNeste = tmpBreadcrumb;
 			res.push(tmpRoute);
 		}
@@ -132,23 +136,17 @@ const useRouteStore = defineStore(
 		state: () => ({
 			isGenerate: false,
 			routes: [] as Route.recordMainRaw[],
-			fileSystemRoutes: [] as Route.recordRaw[],
 			currentRemoveRoutes: [] as Function[]
 		}),
 		getters: {
 			// 扁平化路由（将三级及以上路由数据拍平成二级）
 			flatRoutes: state => {
-				const settingsStore = useSettingsStore();
 				const routes: Route.recordRaw[] = [];
 				if (state.routes) {
-					if (settingsStore.app.routeBaseOn !== 'filesystem') {
-						state.routes.forEach(item => {
-							routes.push(...cloneDeep(item.children));
-						});
-						routes.forEach(item => flatAsyncRoutes(item));
-					} else {
-						routes.push(...cloneDeep(state.fileSystemRoutes));
-					}
+					state.routes.forEach(item => {
+						routes.push(...cloneDeep(item.children));
+					});
+					routes.forEach(item => flatAsyncRoutes(item));
 				}
 				return routes;
 			},
@@ -203,26 +201,6 @@ const useRouteStore = defineStore(
 							this.routes = accessedRoutes.filter(item => item.children.length !== 0);
 							resolve();
 						});
-				});
-			},
-			// 根据权限动态生成路由（文件系统生成）
-			generateRoutesAtFilesystem(asyncRoutes: Route.recordRaw[]) {
-				// eslint-disable-next-line no-async-promise-executor
-				return new Promise<void>(async resolve => {
-					const settingsStore = useSettingsStore();
-					const userStore = useUserStore();
-					let accessedRoutes;
-					// 如果权限功能开启，则需要对路由数据进行筛选过滤
-					if (settingsStore.app.enablePermission) {
-						const permissions = await userStore.getPermissions();
-						accessedRoutes = filterAsyncRoutes(asyncRoutes, permissions);
-					} else {
-						accessedRoutes = cloneDeep(asyncRoutes);
-					}
-					// 设置 routes 数据
-					this.isGenerate = true;
-					this.fileSystemRoutes = accessedRoutes.filter(item => item.children?.length !== 0);
-					resolve();
 				});
 			},
 			// 记录 accessRoutes 路由，用于登出时删除路由

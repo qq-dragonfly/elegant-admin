@@ -55,7 +55,7 @@
 					<el-pagination
 						small
 						background
-						layout="prev, pager, next"
+						layout="prev, pager, next, total"
 						:total="state.total"
 						:page-size="state.pageSize"
 						v-model:currentPage="state.currentPage"
@@ -257,6 +257,7 @@ function handleSelectAll(rows: any) {
 function handleTableClick(row: any) {
 	if (props.multiple) {
 		//处理多选点击行
+		console.log('aaaaa', row);
 	} else {
 		state.defaultValue = row;
 		selectRef.value.blur();
@@ -297,12 +298,17 @@ const filterMethod = (keyword: any) => {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .ele-table-select__table {
 	padding: 12px;
 }
 .ele-table-select__page {
 	padding-top: 12px;
+	.el-pagination {
+		:deep(.el-pagination__total) {
+			margin-left: 10px;
+		}
+	}
 }
 .close-icon {
 	padding-top: 10px;

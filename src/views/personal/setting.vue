@@ -1,10 +1,3 @@
-<route lang="yaml">
-name: personalSetting
-meta:
-title: 个人设置
-cache: personal-edit.password
-</route>
-
 <script lang="ts" setup name="PersonalSetting">
 import type { UploadProps } from 'element-plus';
 import { ElMessage } from 'element-plus';

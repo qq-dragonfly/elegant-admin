@@ -2,7 +2,7 @@ import type { RouteLocationNormalizedLoaded, Router } from 'vue-router';
 import { defineStore } from 'pinia';
 import { useRouterPush } from '@/utils/composables/useRouter';
 import useSettingsStore from '@/store/modules/settings';
-import type { GlobalTabRoute } from '@/global';
+import type { GlobalTabRoute } from '#/global';
 import {
 	clearTabRoutes,
 	getIndexInTabRoutes,
@@ -216,7 +216,7 @@ export const useTabStore = defineStore('tab-store', {
 			const tabs: GlobalTabRoute[] = settingStore.tab.isCache ? getTabRoutes() : [];
 
 			const hasHome = getIndexInTabRoutesByRouteName(tabs, this.homeTab.name as string) > -1;
-			if (!hasHome && this.homeTab.name !== 'dashboard') {
+			if (!hasHome && this.homeTab.name !== 'root') {
 				tabs.unshift(this.homeTab);
 			}
 

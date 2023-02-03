@@ -39,7 +39,7 @@ import { ButtonTab, ChromeTab } from '../TabType';
 import useSettingsStore from '@/store/modules/settings';
 import { useTabStore } from '@/store/modules/tab';
 import { ContextMenu } from './components';
-import { Expose } from '@/global';
+import { Expose } from '#/global';
 
 const deviceInfo = useDeviceInfo();
 

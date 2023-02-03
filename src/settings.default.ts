@@ -1,6 +1,6 @@
 // 该文件为系统默认配置，请勿修改！！！
 
-import type { RecursiveRequired, Settings } from './global';
+import type { RecursiveRequired, Settings } from '#/global';
 import { EnumThemeTabMode } from '@/enums/common';
 
 const globalSettingsDefault: RecursiveRequired<Settings.all> = {

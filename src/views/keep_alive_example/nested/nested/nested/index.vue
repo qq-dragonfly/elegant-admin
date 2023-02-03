@@ -1,8 +1,3 @@
-<route lang="yaml">
-meta:
-  enabled: false
-</route>
-
 <script lang="ts" setup name="TabExampleNestedTest">
 const val = ref('');
 </script>
