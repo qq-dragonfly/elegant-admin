@@ -8,7 +8,8 @@ import ExternalLinkExample from './modules/external_link_example';
 import EcologyExample from './modules/ecology_example';
 import Directive from './modules/directive';
 
-import SystemSetting from './modules/system_setting';
+import SysSettingModule from './modules/sys_setting_module';
+import MissionsModule from './modules/missions_module';
 import type { Route } from '#/global';
 import useSettingsStore from '@/store/modules/settings';
 
@@ -116,7 +117,14 @@ const asyncRoutes: Route.recordMainRaw[] = [
 			title: '设置',
 			icon: 'sidebar-default'
 		},
-		children: [SystemSetting]
+		children: [SysSettingModule]
+	},
+	{
+		meta: {
+			title: '宣教',
+			icon: 'ele_sidebar_missions'
+		},
+		children: [MissionsModule]
 	},
 	{
 		meta: {

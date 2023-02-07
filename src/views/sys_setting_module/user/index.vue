@@ -47,7 +47,7 @@
 	</div>
 </template>
 
-<script setup lang="tsx" name="useProTable">
+<script setup lang="tsx" name="sysSettingUser">
 import { ElMessage } from 'element-plus';
 import { User } from '@/api/interface/sys_user';
 import { ColumnProps } from '@/components/ProTable/interface';
@@ -56,9 +56,8 @@ import { useDownload } from '@/hooks/useDownload';
 import ProTable from '@/components/ProTable/index.vue';
 import DetailDialog from './components/detailDialog.vue';
 import ImportExcel from '@/components/ImportExcel/index.vue';
-// import UserDrawer from '@/views/proTable/components/UserDrawer.vue';
 import { CirclePlus, Delete, EditPen, Download, Upload, View, Refresh } from '@element-plus/icons-vue';
-import publicDict from '@/views/system_setting/dict';
+import publicDict from '@/views/sys_setting_module/dict';
 import {
 	getSysUserListApi,
 	delSysUserApi,
@@ -68,7 +67,6 @@ import {
 	BatchAddUser,
 	resetUserPassWordApi
 } from '@/api/modules/user';
-
 const router = useRouter();
 
 // 获取 ProTable 元素，调用其获取刷新数据方法（还能获取到当前查询参数，方便导出携带参数）

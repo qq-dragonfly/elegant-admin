@@ -9,7 +9,7 @@ const routes: Route.recordRaw = {
 	name: 'componentExtendExample',
 	meta: {
 		title: '扩展组件',
-		icon: 'sidebar-component'
+		icon: 'ele_sidebar_component'
 	},
 	children: [
 		{

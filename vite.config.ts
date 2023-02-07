@@ -20,14 +20,18 @@ export default ({ mode = 'development', command = 'serve' }) => {
 		base: './',
 		// 开发服务器选项 https://cn.vitejs.dev/config/#server-options
 		server: {
-			port: 9000,
+			port: 3000,
 			host: '0.0.0.0',
 			proxy: {
-				'/nethos/': {
-					// target: "https://www.fastmock.site/mock/f81e8333c1a9276214bcdbc170d9e0a0", // fastmock
-					target: 'https://t-zbzk.zjwlyy.cn/nethos',
+				'/nethos': {
+					target: 'https://t-zbzk.zjwlyy.cn',
 					changeOrigin: true,
-					rewrite: path => path.replace(/^\/nethos/, '')
+					rewrite: path => path.replace(/^\/nethos/, 'nethos')
+				},
+				'/propaganda': {
+					target: 'https://propaganda-test.zjwlyy.cn',
+					changeOrigin: true,
+					rewrite: path => path.replace(/^\/propaganda/, 'propaganda')
 				}
 			}
 		},

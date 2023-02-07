@@ -1,4 +1,5 @@
 import type { RouteRecordRaw, RouteMeta } from 'vue-router';
+declare type Nullable<T> = T | null;
 /** 枚举的key类型 */
 declare namespace EnumType {
 	/** 多页签风格 */

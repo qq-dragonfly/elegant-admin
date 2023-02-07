@@ -29,7 +29,6 @@ router.beforeEach(async (to, from, next) => {
 	const routeStore = useRouteStore();
 	settingsStore.app.enableProgress && (isLoading.value = true);
 	// 是否已登录
-	// console.log('userStore.isLogin', userStore.isLogin);
 	if (userStore.isLogin) {
 		// 是否已根据权限动态生成并挂载路由
 		if (routeStore.isGenerate) {
@@ -108,7 +107,6 @@ router.beforeEach(async (to, from, next) => {
 router.afterEach((to, from) => {
 	const settingsStore = useSettingsStore();
 	const keepAliveStore = useKeepAliveStore();
-
 	settingsStore.app.enableProgress && (isLoading.value = false);
 	// 设置页面 title
 	to.meta.title && settingsStore.setTitle(typeof to.meta.title === 'function' ? to.meta.title() : to.meta.title);
@@ -124,6 +122,7 @@ router.afterEach((to, from) => {
 	// 判断离开页面是否开启缓存，如果开启，则根据缓存规则判断是否需要清空 keep-alive 全局状态里离开页面的 name 信息
 	if (from.meta.cache) {
 		const componentName = from.matched.at(-1)?.components?.default.name;
+		console.log('aaaaaa', keepAliveStore.list);
 		if (componentName) {
 			// 通过 meta.cache 判断针对哪些页面进行缓存
 			switch (typeof from.meta.cache) {
@@ -146,8 +145,6 @@ router.afterEach((to, from) => {
 			}
 		}
 	}
-	document.body.scrollTop = 0;
-	document.documentElement.scrollTop = 0;
 });
 
 export default router;

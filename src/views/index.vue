@@ -1,8 +1,10 @@
 <template>
 	<div>
 		<page-main title="" class="item-background rounded-md">
-			<div class="text-2xl font-bold h-14 pl-2 flex justify-start items-center">欢迎来到 {{ title }}</div>
-			<el-card shadow="hover" class="item-background">
+			<div class="text-2xl font-bold h-14 pl-2 flex justify-start items-center">
+				{{ state.getTimeStateText }} 欢迎来到 {{ title }}
+			</div>
+			<el-card shadow="hover" class="item-background border-0">
 				<div class="time">
 					<h2>{{ state.time }}</h2>
 					<p>{{ state.day }}</p>
@@ -13,10 +15,12 @@
 </template>
 <script lang="ts" setup>
 import dayjs from '@/utils/dayjs';
+import { getTimeState } from '@/utils';
 const state = reactive({
 	customizing: false,
 	time: '',
-	day: ''
+	day: '',
+	getTimeStateText: getTimeState()
 });
 const title = ref(import.meta.env.VITE_APP_TITLE);
 const emits = defineEmits(['on-mounted']);

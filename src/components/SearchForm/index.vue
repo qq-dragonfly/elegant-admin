@@ -8,7 +8,13 @@
 			<div class="search-operation">
 				<el-button type="primary" :icon="Search" @click="handleSearch">搜索</el-button>
 				<el-button :icon="Delete" @click="handleReset">重置</el-button>
-				<el-button v-if="showCollapse" type="primary" link class="search-isOpen" @click="collapsed = !collapsed">
+				<el-button
+					v-if="showCollapse && columns.length >= 3"
+					type="primary"
+					link
+					class="search-isOpen"
+					@click="collapsed = !collapsed"
+				>
 					{{ collapsed ? '展开' : '合并' }}
 					<el-icon class="el-icon--right">
 						<component :is="collapsed ? ArrowDown : ArrowUp"></component>
@@ -74,6 +80,7 @@ const breakPoint = computed<BreakPoint>(() => gridRef.value?.breakPoint);
 // 判断是否显示 展开/合并 按钮
 const showCollapse = computed(() => {
 	let show = false;
+	console.log('props.columns', props.columns);
 	props.columns.reduce((prev, current) => {
 		prev +=
 			(current.search![breakPoint.value]?.span ?? current.search?.span ?? 1) +

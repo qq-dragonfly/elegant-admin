@@ -87,7 +87,7 @@
 				>
 					登录
 				</el-button>
-				<div class="sub-link">
+				<div class="sub-link" v-if="false">
 					<span class="text">还没有帐号?</span>
 					<el-link type="primary" :underline="false" @click="formType = 'register'"> 创建新帐号</el-link>
 				</div>

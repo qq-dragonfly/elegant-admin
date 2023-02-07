@@ -1,4 +1,3 @@
-import { cloneDeep } from 'lodash-es';
 import useSettingsStore from './settings';
 import useRouteStore from './route';
 import type { Menu } from '#/global';
@@ -29,22 +28,6 @@ function getDeepestPath(menu: Menu.recordRaw, rootPath = '') {
 		}
 	}
 	return returnPath;
-}
-
-function hasPermission(permissions: string[], menu: Menu.recordMainRaw | Menu.recordRaw) {
-	let isAuth = false;
-	if (menu.meta && menu.meta.auth) {
-		isAuth = permissions.some(auth => {
-			return typeof menu.meta.auth === 'string'
-				? menu.meta.auth === auth
-				: typeof menu.meta.auth === 'object'
-				? menu.meta.auth.includes(auth)
-				: false;
-		});
-	} else {
-		isAuth = true;
-	}
-	return isAuth;
 }
 function getDefaultOpenedPaths(menus: Menu.recordRaw[], rootPath = '') {
 	const defaultOpenedPaths: string[] = [];

@@ -51,15 +51,6 @@ export namespace User {
 		userLabel: string;
 		userValue: number;
 	}
-	export interface ResGender {
-		genderLabel: string;
-		genderValue: number;
-	}
-	export interface ResDepartment {
-		id: string;
-		name: string;
-		children?: ResDepartment[];
-	}
 }
 
 // * 文件上传模块

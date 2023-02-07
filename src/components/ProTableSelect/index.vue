@@ -29,7 +29,7 @@
 					<svg-icon name="ep:close-bold" />
 				</el-icon>
 			</div>
-			<div class="ele-table-select__table" :style="{ width: tableWidth + 'px' }" v-loading="state.loading">
+			<div class="ele-table-select__table" :style="{ width: tableWidth + '' }" v-loading="state.loading">
 				<div class="sc-table-select__header">
 					<slot name="header" :form="state.formData" :submit="formSubmit"></slot>
 				</div>
@@ -40,6 +40,7 @@
 					border
 					:highlight-current-row="!multiple"
 					@row-click="handleTableClick"
+					@selection-change="handleSelectionChange"
 					@select="handleSelect"
 					@select-all="handleSelectAll"
 				>
@@ -84,7 +85,7 @@ interface PaginationProps {
 	collapseTags?: boolean;
 	collapseTagsTooltip?: boolean;
 	disabled?: boolean;
-	tableWidth: number;
+	tableWidth?: string;
 }
 
 // 接受父组件参数，配置默认值
@@ -101,7 +102,7 @@ const props = withDefaults(defineProps<PaginationProps>(), {
 	collapseTags: false,
 	collapseTagsTooltip: false,
 	disabled: false,
-	tableWidth: 400
+	tableWidth: '600px'
 });
 const state = reactive<any>({
 	loading: false,
@@ -211,7 +212,13 @@ const formSubmit = () => {
 	state.keyword = null;
 	getData();
 };
-
+//点击复选框触发，复选框样式的改变
+function handleSelectionChange(val: any) {
+	state.defaultValue = val;
+	autoCurrentLabel();
+	emits('update:modelValue', state.defaultValue);
+	emits('changeEmit', state.defaultValue);
+}
 //表格勾选事件
 function handleSelect(rows: any, row: any) {
 	const isSelect = rows.length && rows.indexOf(row) !== -1;
@@ -257,7 +264,7 @@ function handleSelectAll(rows: any) {
 function handleTableClick(row: any) {
 	if (props.multiple) {
 		//处理多选点击行
-		console.log('aaaaa', row);
+		tableRef.value.toggleRowSelection(row);
 	} else {
 		state.defaultValue = row;
 		selectRef.value.blur();

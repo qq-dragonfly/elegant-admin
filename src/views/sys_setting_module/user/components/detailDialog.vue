@@ -8,7 +8,7 @@
 			:model="drawerProps.rowData"
 			:hide-required-asterisk="drawerProps.isView"
 		>
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+			<div class="flex flex-wrap">
 				<el-form-item label="用户头像头像" prop="avatar">
 					<el-input></el-input>
 				</el-form-item>
@@ -30,7 +30,6 @@
 						:disabled="drawerProps.isView"
 						:params="params"
 						:request-api="getSysRoleList"
-						:table-width="700"
 						clearable
 						multiple
 						collapse-tags
@@ -67,7 +66,7 @@
 	</ProDialog>
 </template>
 
-<script setup lang="ts" name="UserDrawer">
+<script setup lang="ts" name="SysUserDialog">
 import { getSysUserDetailApi } from '@/api/modules/user';
 import { ref, reactive } from 'vue';
 import { ElMessage, FormInstance } from 'element-plus';

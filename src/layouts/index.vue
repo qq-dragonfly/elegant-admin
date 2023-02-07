@@ -26,11 +26,17 @@
 					<div class="main" :class="{ 'main-mg': settingsStore.tab.visible }">
 						<router-view v-slot="{ Component, route }">
 							<transition name="main" mode="out-in" :appear="true">
-								<keep-alive :include="keepAliveStore.list">
+								<keep-alive :include="keepAliveList">
 									<component :is="Component" :key="route.fullPath" />
 								</keep-alive>
 							</transition>
 						</router-view>
+						<!--						<router-view v-slot="{ Component }">-->
+						<!--							<keep-alive>-->
+						<!--								<component :is="Component" v-if="$route.meta.cache" :key="$route.fullPath" />-->
+						<!--							</keep-alive>-->
+						<!--							<component :is="Component" v-if="!$route.meta.cache" :key="$route.fullPath" />-->
+						<!--						</router-view>-->
 					</div>
 					<Copyright />
 				</div>
@@ -51,13 +57,14 @@ import GlobalAppSetting from './components/GlobalAppSetting/index.vue';
 import GlobalBuyIt from './components/GlobalBuyIt/index.vue';
 import useSettingsStore from '@/store/modules/settings';
 import useKeepAliveStore from '@/store/modules/keepAlive';
-import useMenuStore from '@/store/modules/menu';
 
 const routeInfo = useRoute();
 
 const settingsStore = useSettingsStore();
 const keepAliveStore = useKeepAliveStore();
-const menuStore = useMenuStore();
+const keepAliveList = computed(() => keepAliveStore.list);
+console.log('keepAliveList', keepAliveList);
+
 watch(
 	() => settingsStore.menu.subMenuCollapse,
 	val => {

@@ -3,6 +3,6 @@
 		<page-main> 菜单管理 </page-main>
 	</div>
 </template>
-<script setup lang="ts" name="systemSettingMenu">
+<script setup lang="ts" name="sysSettingMenu">
 // 角色管理
 </script>

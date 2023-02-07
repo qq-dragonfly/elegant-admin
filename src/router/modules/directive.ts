@@ -9,7 +9,7 @@ const routes: Route.recordRaw = {
 	name: 'directive',
 	meta: {
 		title: '自定义指令',
-		icon: 'system-setting'
+		icon: 'ele_sidebar_setting'
 	},
 	children: [
 		{

@@ -13,39 +13,39 @@ const routes: Route.recordRaw = {
 	children: [
 		{
 			path: 'user',
-			name: 'systemSettingUser',
-			component: () => import('@/views/system_setting/user/index.vue'),
+			name: 'sysSettingUser',
+			component: () => import('@/views/sys_setting_module/user/index.vue'),
 			meta: {
 				title: '账号管理',
-				icon: 'ele_sidebar_sysuser',
+				icon: 'ele_sidebar_sys_user',
 				cache: true
 			}
 		},
 		{
 			path: 'role',
-			name: 'systemSettingRole',
-			component: () => import('@/views/system_setting/role/index.vue'),
+			name: 'sysSettingRole',
+			component: () => import('@/views/sys_setting_module/role/index.vue'),
 			meta: {
 				title: '角色管理',
-				icon: 'ele_sidebar_role'
+				icon: 'ele_sidebar_sys_role'
 			}
 		},
 		{
 			path: 'menu',
-			name: 'systemSettingMenu',
-			component: () => import('@/views/system_setting/menu/index.vue'),
+			name: 'sysSettingMenu',
+			component: () => import('@/views/sys_setting_module/menu/index.vue'),
 			meta: {
 				title: '菜单管理',
-				icon: 'ele_sidebar_menu'
+				icon: 'ele_sidebar_sys_menu'
 			}
 		},
 		{
 			path: 'resource',
-			name: 'systemSettingResource',
-			component: () => import('@/views/system_setting/resource/index.vue'),
+			name: 'sysSettingResource',
+			component: () => import('@/views/sys_setting_module/resource/index.vue'),
 			meta: {
 				title: '资源管理',
-				icon: 'ele_sidebar_resource'
+				icon: 'ele_sidebar_sys_resource'
 			}
 		}
 	]

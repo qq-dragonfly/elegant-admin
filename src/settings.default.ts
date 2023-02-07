@@ -34,7 +34,7 @@ const globalSettingsDefault: RecursiveRequired<Settings.all> = {
 				label: EnumThemeTabMode.button
 			}
 		],
-		isCache: true
+		isCache: false
 	},
 	menu: {
 		baseOn: 'frontend',

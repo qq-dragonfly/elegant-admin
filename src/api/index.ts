@@ -1,4 +1,4 @@
-import { getSession } from '@/utils/storage';
+import { getSession, removeSession } from '@/utils/storage';
 import axios, { AxiosInstance, AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { showFullScreenLoading, tryHideFullScreenLoading } from '@/api/config/serviceLoading';
 import { AxiosCanceler } from './helper/axiosCancel';
@@ -22,7 +22,7 @@ const axiosCanceler = new AxiosCanceler();
 
 const config = {
 	// 默认地址请求地址，可在 .env 开头文件中修改
-	baseURL: import.meta.env.VITE_APP_API_BASEURL as string,
+	// baseURL: import.meta.env.VITE_APP_API_BASEURL as string,
 	// 设置超时时间（10s）
 	timeout: ResultEnum.TIMEOUT as number
 	// 跨域时候允许携带凭证
@@ -55,6 +55,7 @@ class RequestHttp {
 					}
 					if (passwordKey) {
 						config.headers['passwordKey'] = passwordKey;
+						removeSession('psKey');
 					}
 				}
 				return { ...config };

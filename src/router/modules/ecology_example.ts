@@ -13,7 +13,7 @@ const routes: Route.recordRaw[] = [
 		children: [
 			{
 				path: '',
-				name: 'videosComingSoon',
+				name: 'videosComingSoon1',
 				component: () => import('@/views/videos_example/coming.soon.vue'),
 				meta: {
 					title: '视频教程',
