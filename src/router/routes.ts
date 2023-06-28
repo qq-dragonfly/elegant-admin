@@ -1,27 +1,11 @@
-import BreadcrumbExample from './modules/breadcrumb_example';
-import KeepAliveExample from './modules/keep_alive_example';
-import ComponentExtendExample from './modules/component_extend_example';
-import PermissionExample from './modules/permission_example';
-import MockExample from './modules/mock_example';
-import JsxExample from './modules/jsx_example';
-import ExternalLinkExample from './modules/external_link_example';
-import EcologyExample from './modules/ecology_example';
-import Directive from './modules/directive';
-
-import SysSettingModule from './modules/sys_setting_module';
-import MissionsModule from './modules/missions_module';
+import type { RouteRecordRaw } from 'vue-router';
 import type { Route } from '#/global';
+import SysSettingModule from './modules/sys_setting_module';
+import OrgModule from './modules/org_module';
 import useSettingsStore from '@/store/modules/settings';
 
 // 固定路由（默认路由）
-const constantRoutes: Route.recordRaw[] = [
-	{
-		path: '/',
-		redirect: '/dashboard',
-		meta: {
-			title: ''
-		}
-	},
+const constantRoutes: RouteRecordRaw[] = [
 	{
 		path: '/login',
 		name: 'login',
@@ -41,35 +25,54 @@ const constantRoutes: Route.recordRaw[] = [
 ];
 
 // 系统路由
-const systemRoutes: Route.recordRaw[] = [
+const systemRoutes: RouteRecordRaw[] = [
 	{
-		path: '/dashboard',
-		component: () => import('@/layouts/index.vue'),
+		path: '/',
+		component: () => import('@/pages_layouts/index.vue'),
 		meta: {
-			title: () => useSettingsStore().dashboard.title,
+			title: '拓展路由',
 			breadcrumb: false
 		},
 		children: [
 			{
-				path: '',
-				name: 'dashboard',
-				component: () => import('@/views/index.vue'),
+				path: 'test_pages_layout',
+				name: 'TestPagesLayout',
+				component: () => import('@/views/test_pages_layout/index.vue'),
 				meta: {
-					title: () => useSettingsStore().dashboard.title,
+					title: '拓展路由',
+					icon: 'local-home',
 					breadcrumb: false
 				}
 			}
 		]
 	},
 	{
-		path: '/personal',
+		path: '/',
 		component: () => import('@/layouts/index.vue'),
-		redirect: '/personal/setting',
 		meta: {
-			title: '个人中心',
+			title: () => useSettingsStore().home.title,
 			breadcrumb: false
 		},
 		children: [
+			{
+				path: 'dashboard',
+				name: 'dashboard',
+				component: () => import('@/views/welcome/index.vue'),
+				meta: {
+					title: () => useSettingsStore().home.title,
+					icon: 'local-home',
+					breadcrumb: false
+				}
+			},
+			{
+				path: 'reload',
+				name: 'reload',
+				component: () => import('@/views/reload.vue'),
+				meta: {
+					title: '重新加载',
+					breadcrumb: false
+				}
+			},
 			{
 				path: 'setting',
 				name: 'personalSetting',
@@ -88,60 +91,26 @@ const systemRoutes: Route.recordRaw[] = [
 				}
 			}
 		]
-	},
-	{
-		path: '/reload',
-		component: () => import('@/layouts/index.vue'),
-		meta: {
-			title: '重新加载',
-			breadcrumb: false
-		},
-		children: [
-			{
-				path: '',
-				name: 'reload',
-				component: () => import('@/views/reload.vue'),
-				meta: {
-					title: '重新加载',
-					breadcrumb: false
-				}
-			}
-		]
 	}
 ];
-
 // 动态路由（异步路由、导航栏路由）
 const asyncRoutes: Route.recordMainRaw[] = [
 	{
+		name: 'Setting',
 		meta: {
 			title: '设置',
-			icon: 'sidebar-default'
+			icon: 'local-sidebar_setting'
 		},
 		children: [SysSettingModule]
 	},
 	{
+		name: 'Org',
 		meta: {
-			title: '宣教',
-			icon: 'ele_sidebar_missions'
+			title: '机构',
+			icon: 'local-sidebar_institutional'
 		},
-		children: [MissionsModule]
-	},
-	{
-		meta: {
-			title: '常用功能',
-			icon: 'sidebar-ecology'
-		},
-		children: [
-			...EcologyExample,
-			BreadcrumbExample,
-			KeepAliveExample,
-			ComponentExtendExample,
-			Directive,
-			PermissionExample,
-			MockExample,
-			JsxExample,
-			ExternalLinkExample
-		]
+		children: [OrgModule]
 	}
 ];
+
 export { constantRoutes, systemRoutes, asyncRoutes };

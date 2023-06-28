@@ -9,7 +9,7 @@
 				<el-button type="primary" :icon="Search" @click="handleSearch">搜索</el-button>
 				<el-button :icon="Delete" @click="handleReset">重置</el-button>
 				<el-button
-					v-if="showCollapse && columns.length >= 3"
+					v-if="showCollapse && columns.length > showCollapseNum"
 					type="primary"
 					link
 					class="search-isOpen"
@@ -25,8 +25,11 @@
 		<el-form ref="formRef" :model="searchParam" :inline="true" label-width="100px">
 			<Grid ref="gridRef" :collapsed="collapsed" :gap="[20, 0]" :cols="searchCol">
 				<GridItem v-for="(item, index) in columns" :key="item.prop" v-bind="getResponsive(item)" :index="index">
-					<el-form-item :label="`${item.label} :`">
+					<el-form-item v-if="!item.search?.searchSlotBool" :label="`${item.label} :`">
 						<SearchFormItem :column="item" :searchParam="searchParam" />
+					</el-form-item>
+					<el-form-item v-else :label="`${item.label} :`">
+						<slot :name="item.search?.key" />
 					</el-form-item>
 				</GridItem>
 			</Grid>
@@ -71,16 +74,16 @@ const getResponsive = (item: ColumnProps) => {
 };
 
 // 是否默认折叠搜索项
-const collapsed = ref(true);
+const collapsed = ref(false);
 
 // 获取响应式断点
 const gridRef = ref();
 const breakPoint = computed<BreakPoint>(() => gridRef.value?.breakPoint);
+const showCollapseNum = computed<number>(() => (gridRef.value?.breakPoint === 'xl' ? 4 : 3));
 
 // 判断是否显示 展开/合并 按钮
 const showCollapse = computed(() => {
 	let show = false;
-	console.log('props.columns', props.columns);
 	props.columns.reduce((prev, current) => {
 		prev +=
 			(current.search![breakPoint.value]?.span ?? current.search?.span ?? 1) +

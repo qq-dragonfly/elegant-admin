@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="inline mr-3">
 		<slot v-if="check()" />
 		<slot v-else name="no-auth" />
 	</div>

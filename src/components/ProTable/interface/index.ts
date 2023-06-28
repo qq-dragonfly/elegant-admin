@@ -1,4 +1,5 @@
 import { TableColumnCtx } from 'element-plus/es/components/table/src/table-column/defaults';
+import { VNode } from 'vue';
 export type BreakPoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export type Responsive = {
@@ -15,36 +16,63 @@ export interface EnumProps {
 	[key: string]: any;
 }
 
-export type TypeProp = 'index' | 'selection' | 'expand';
+export type TypeProps = 'index' | 'selection' | 'expand';
 
 export type SearchType =
 	| 'input'
+	| 'input-number'
 	| 'select'
+	| 'select-v2'
 	| 'tree-select'
 	| 'cascader'
 	| 'date-picker'
 	| 'time-picker'
 	| 'time-select'
-	| 'switch';
-
+	| 'switch'
+	| 'slot'
+	| 'slider';
+export type SearchRenderScope = {
+	searchParam: { [key: string]: any };
+	placeholder: string;
+	clearable: boolean;
+	options: EnumProps[];
+	data: EnumProps[];
+};
 export type SearchProps = {
-	el: SearchType; // 当前项搜索框的类型
+	el?: SearchType; // 当前项搜索框的类型
 	props?: any; // 搜索项参数，根据 element plus 官方文档来传递，该属性所有值会透传到组件
 	key?: string; // 当搜索项 key 不为 prop 属性时，可通过 key 指定
 	order?: number; // 搜索项排序（从大到小）
+	searchSlotBool?: boolean; // 是否显示插槽
 	span?: number; // 搜索项所占用的列数，默认为1列
 	offset?: number; // 搜索字段左侧偏移列数
 	defaultValue?: string | number | boolean | any[]; // 搜索项默认值
+	render?: (scope: SearchRenderScope) => VNode; // 自定义搜索内容渲染（tsx语法）
 } & Partial<Record<BreakPoint, Responsive>>;
-
+export type RenderScope<T> = {
+	row: T;
+	$index: number;
+	column: TableColumnCtx<T>;
+	[key: string]: any;
+};
+export type FieldNamesProps = {
+	label: string;
+	value: string;
+	children?: string;
+};
+export type HeaderRenderScope<T> = {
+	$index: number;
+	column: TableColumnCtx<T>;
+	[key: string]: any;
+};
 export interface ColumnProps<T = any> extends Partial<Omit<TableColumnCtx<T>, 'children' | 'renderHeader' | 'renderCell'>> {
 	tag?: boolean; // 是否是标签展示
 	isShow?: boolean; // 是否显示在表格当中
-	search?: SearchProps | undefined; // 搜索项配置
+	search?: SearchProps; // 搜索项配置
 	enum?: EnumProps[] | ((params?: any) => Promise<any>); // 枚举类型（渲染值的字典）
 	isFilterEnum?: boolean; // 当前单元格值是否根据 enum 格式化（示例：enum 只作为搜索项数据）
-	fieldNames?: { label: string; value: string }; // 指定 label && value 的 key 值
-	headerRender?: (row: ColumnProps) => any; // 自定义表头内容渲染（tsx语法）
+	fieldNames?: FieldNamesProps; // 指定 label && value && children 的 key 值
+	headerRender?: (row: HeaderRenderScope<any>) => any; // 自定义表头内容渲染（tsx语法）
 	render?: (scope: { row: T }) => any; // 自定义单元格内容渲染（tsx语法）
 	_children?: ColumnProps<T>[]; // 多级表头
 }

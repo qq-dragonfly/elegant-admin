@@ -1,6 +1,6 @@
 <template>
 	<div class="upload-container">
-		<div v-for="(item, index) in url" :key="index" class="images">
+		<div v-for="(item, index) in modelValue" :key="index" class="images">
 			<el-image v-if="index < max" :src="item" :style="`width:${width}px;height:${height}px;`" fit="cover" />
 			<div class="mask">
 				<div class="actions">
@@ -9,20 +9,20 @@
 							<svg-icon name="ep:zoom-in" />
 						</el-icon>
 					</span>
-					<span title="移除" @click="remove(index)">
+					<span title="移除" @click="remove(index)" v-if="!isRemove">
 						<el-icon>
 							<svg-icon name="ep:delete" />
 						</el-icon>
 					</span>
-					<span v-show="url.length > 1" title="左移" :class="{ disabled: index === 0 }" @click="move(index, 'left')">
+					<span v-show="modelValue.length > 1" title="左移" :class="{ disabled: index === 0 }" @click="move(index, 'left')">
 						<el-icon>
 							<svg-icon name="ep:back" />
 						</el-icon>
 					</span>
 					<span
-						v-show="url.length > 1"
+						v-show="modelValue.length > 1"
 						title="右移"
-						:class="{ disabled: index === url.length - 1 }"
+						:class="{ disabled: index === modelValue.length - 1 }"
 						@click="move(index, 'right')"
 					>
 						<el-icon>
@@ -33,7 +33,10 @@
 			</div>
 		</div>
 		<el-upload
-			v-show="url.length < max"
+			v-loading="loading"
+			element-loading-background="rgba(0, 0, 0, 0.5)"
+			element-loading-text="上传中..."
+			v-show="modelValue.length < max"
 			:show-file-list="false"
 			:headers="headers"
 			:action="action"
@@ -42,6 +45,7 @@
 			:before-upload="beforeUpload"
 			:on-progress="onProgress"
 			:on-success="onSuccess"
+			:http-request="imagesRequest"
 			drag
 			class="images-upload"
 		>
@@ -69,7 +73,7 @@
 		</div>
 		<el-image-viewer
 			v-if="uploadData.imageViewerVisible"
-			:url-list="url"
+			:url-list="modelValue"
 			:initial-index="uploadData.dialogImageIndex"
 			@close="previewClose"
 		/>
@@ -78,59 +82,35 @@
 <script lang="ts" setup name="ImagesUpload">
 import type { UploadProps } from 'element-plus';
 import { ElMessage } from 'element-plus';
+import { uploadApi } from '@/api/modules/upload';
+interface imagesUploadProps {
+	action?: string;
+	headers?: object;
+	data?: {};
+	name: string;
+	modelValue?: any;
+	max?: number;
+	size?: number;
+	width: number;
+	height: number;
+	placeholder?: string;
+	notip?: boolean;
+	ext?: string[];
+	isRemove?: boolean;
+}
 
-const props = defineProps({
-	action: {
-		type: String,
-		required: true
-	},
-	headers: {
-		type: Object,
-		default: () => {}
-	},
-	data: {
-		type: Object,
-		default: () => {}
-	},
-	name: {
-		type: String,
-		default: 'file'
-	},
-	url: {
-		type: Array,
-		default: () => []
-	},
-	max: {
-		type: Number,
-		default: 3
-	},
-	size: {
-		type: Number,
-		default: 2
-	},
-	width: {
-		type: Number,
-		default: 150
-	},
-	height: {
-		type: Number,
-		default: 150
-	},
-	placeholder: {
-		type: String,
-		default: ''
-	},
-	notip: {
-		type: Boolean,
-		default: false
-	},
-	ext: {
-		type: Array,
-		default: () => ['jpg', 'png', 'gif', 'bmp']
-	}
+// 接受父组件参数，配置默认值
+const props = withDefaults(defineProps<imagesUploadProps>(), {
+	name: 'file',
+	max: 3,
+	size: 10,
+	width: 150,
+	height: 150,
+	notip: false,
+	isRemove: false,
+	ext: () => ['jpg', 'jpeg', 'png', 'gif', 'bmp']
 });
-
-const emit = defineEmits(['update:url', 'onSuccess']);
+const emit = defineEmits(['update:modelValue', 'onSuccess']);
 
 const uploadData = ref({
 	dialogImageIndex: 0,
@@ -152,32 +132,34 @@ function previewClose() {
 }
 // 移除
 function remove(index: number) {
-	const url = props.url;
+	const url: any = props.modelValue;
 	url.splice(index, 1);
-	emit('update:url', url);
+	emit('update:modelValue', url);
 }
 // 移动
 function move(index: number, type: 'left' | 'right') {
-	const url = props.url;
+	const url: any = props.modelValue;
 	if (type === 'left' && index !== 0) {
 		url[index] = url.splice(index - 1, 1, url[index])[0];
 	}
 	if (type === 'right' && index !== url.length - 1) {
 		url[index] = url.splice(index + 1, 1, url[index])[0];
 	}
-	emit('update:url', url);
+	emit('update:modelValue', url);
 }
 
 const beforeUpload: UploadProps['beforeUpload'] = file => {
 	const fileName = file.name.split('.');
-	const fileExt = fileName.at(-1);
-	const isTypeOk = props.ext.includes(fileExt);
+	const fileExt = fileName[fileName.length - 1];
+	const isTypeOk = props.ext.includes(fileExt as string);
 	const isSizeOk = file.size / 1024 / 1024 < props.size;
 	if (!isTypeOk) {
 		ElMessage.error(`上传图片只支持 ${props.ext.join(' / ')} 格式！`);
+		return false;
 	}
 	if (!isSizeOk) {
 		ElMessage.error(`上传图片大小不能超过 ${props.size}MB！`);
+		return false;
 	}
 	if (isTypeOk && isSizeOk) {
 		uploadData.value.progress.preview = URL.createObjectURL(file);
@@ -187,10 +169,38 @@ const beforeUpload: UploadProps['beforeUpload'] = file => {
 const onProgress: UploadProps['onProgress'] = file => {
 	uploadData.value.progress.percent = ~~file.percent;
 };
-const onSuccess: UploadProps['onSuccess'] = res => {
+const onSuccess: UploadProps['onSuccess'] = (url: any) => {
 	uploadData.value.progress.preview = '';
 	uploadData.value.progress.percent = 0;
-	emit('onSuccess', res);
+	const urlList: any = props.modelValue;
+	if (url) {
+		urlList.push(url);
+		emit('update:modelValue', urlList);
+		emit('onSuccess', urlList);
+	}
+};
+const loading = ref(false);
+const imagesRequest = async (options: any) => {
+	try {
+		// 上传文件
+		loading.value = true;
+		let formData = new FormData();
+		formData.append('multipartFile', options.file);
+		formData.append('type', 'IMAGE');
+		loading.value = true;
+		await uploadApi(formData).then((res: any) => {
+			if (res.code === 200) {
+				ElMessage.success('图片上传成功！');
+				options.onSuccess(res.data);
+				loading.value = false;
+			} else {
+				options.onError('上传失败');
+				loading.value = false;
+			}
+		});
+	} catch (e) {
+		options.onError('上传失败', e);
+	}
 };
 </script>
 

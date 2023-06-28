@@ -7,14 +7,19 @@ import { reactive, computed, onMounted, toRefs } from 'vue';
  * @param {Object} initParam 获取数据初始化参数(非必传，默认为{})
  * @param {Boolean} isPageable 是否有分页(非必传，默认为true)
  * @param {Function} dataCallBack 对后台返回的数据进行处理的方法(非必传)
+ * @param {Function} SearchCallBack 对自定义查询处理(非必传)
+ * @param {Function} ResetCallBack 对自定义查询处理(非必传)
  * */
 export const useTable = (
 	api: (params: any) => Promise<any>,
 	initParam: object = {},
 	isPageable: boolean = true,
-	dataCallBack?: (data: any) => any
+	dataCallBack?: (data: any) => any,
+	searchCallBack?: (data: any) => any,
+	resetCallBack?: () => any,
+	requestError?: (error: any) => void
 ) => {
-	const state = reactive<Table.TableStateProps>({
+	const state = reactive<Table.StateProps>({
 		// 表格数据
 		tableData: [],
 		// 分页数据
@@ -50,8 +55,8 @@ export const useTable = (
 	});
 
 	// 初始化的时候需要做的事情就是 设置表单查询默认值 && 获取表格数据(reset函数的作用刚好是这两个功能)
-	onMounted(() => {
-		handleReset();
+	onMounted(async () => {
+		await handleReset();
 	});
 
 	/**
@@ -62,12 +67,14 @@ export const useTable = (
 		try {
 			// 先把初始化参数和分页参数放到总参数里面
 			Object.assign(state.totalParam, initParam, isPageable ? pageParam.value : {});
-			let { data } = await api(state.totalParam);
+			let { data } = await api({ ...state.searchInitParam, ...state.totalParam });
 			dataCallBack && (data = dataCallBack(data));
+
 			state.tableData = isPageable ? data.datalist : data;
 			isPageable && updatePageable({ pageNum: pageParam.value.pageNum, pageSize: pageParam.value.pageSize, total: data.total });
 		} catch (error) {
 			console.log(error);
+			requestError && requestError(error);
 		}
 	};
 
@@ -78,7 +85,7 @@ export const useTable = (
 	const updatedTotalParam = () => {
 		state.totalParam = {};
 		// 处理查询参数，可以给查询参数加自定义前缀操作
-		let nowSearchParam: { [key: string]: any } = {};
+		let nowSearchParam: Table.StateProps['searchParam'] = {};
 		// 防止手动清空输入框携带参数（这里可以自定义查询参数前缀）
 		for (let key in state.searchParam) {
 			// * 某些情况下参数为 false/0 也应该携带参数
@@ -105,9 +112,9 @@ export const useTable = (
 	const handleSearch = async () => {
 		state.pageable.pageNum = 1;
 		updatedTotalParam();
+		searchCallBack && searchCallBack({});
 		await getTableList();
 	};
-
 	/**
 	 * @description 表格数据重置
 	 * @return void
@@ -120,6 +127,7 @@ export const useTable = (
 			state.searchParam[key] = state.searchInitParam[key];
 		});
 		updatedTotalParam();
+		resetCallBack && resetCallBack();
 		await getTableList();
 	};
 
@@ -150,6 +158,7 @@ export const useTable = (
 		handleSearch,
 		handleReset,
 		handleSizeChange,
-		handleCurrentChange
+		handleCurrentChange,
+		updatedTotalParam
 	};
 };

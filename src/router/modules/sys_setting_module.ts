@@ -8,44 +8,44 @@ const routes: Route.recordRaw = {
 	name: 'systemSetting',
 	meta: {
 		title: '系统设置',
-		icon: 'ele_sidebar_setting'
+		icon: 'local-sidebar_setting'
 	},
 	children: [
 		{
 			path: 'user',
-			name: 'sysSettingUser',
+			name: 'SysSettingUser',
 			component: () => import('@/views/sys_setting_module/user/index.vue'),
 			meta: {
 				title: '账号管理',
-				icon: 'ele_sidebar_sys_user',
-				cache: true
+				icon: 'local-sidebar_sys_user',
+				cache: false
 			}
 		},
 		{
 			path: 'role',
-			name: 'sysSettingRole',
+			name: 'SysSettingRole',
 			component: () => import('@/views/sys_setting_module/role/index.vue'),
 			meta: {
 				title: '角色管理',
-				icon: 'ele_sidebar_sys_role'
+				icon: 'local-sidebar_sys_role'
 			}
 		},
 		{
 			path: 'menu',
-			name: 'sysSettingMenu',
+			name: 'SysSettingMenu',
 			component: () => import('@/views/sys_setting_module/menu/index.vue'),
 			meta: {
 				title: '菜单管理',
-				icon: 'ele_sidebar_sys_menu'
+				icon: 'local-sidebar_sys_menu'
 			}
 		},
 		{
 			path: 'resource',
-			name: 'sysSettingResource',
+			name: 'SysSettingResource',
 			component: () => import('@/views/sys_setting_module/resource/index.vue'),
 			meta: {
 				title: '资源管理',
-				icon: 'ele_sidebar_sys_resource'
+				icon: 'local-sidebar_sys_resource'
 			}
 		}
 	]

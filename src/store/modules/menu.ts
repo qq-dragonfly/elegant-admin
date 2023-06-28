@@ -3,36 +3,25 @@ import useRouteStore from './route';
 import type { Menu } from '#/global';
 
 import { resolveRoutePath } from '@/utils';
-import menu from '@/menu';
 
 function getDeepestPath(menu: Menu.recordRaw, rootPath = '') {
 	let returnPath = '';
-	if (menu.path !== undefined) {
-		if (menu.children) {
-			if (
-				menu.children.some(item => {
-					return item.meta.sidebar !== false;
-				})
-			) {
-				for (let i = 0; i < menu.children.length; i++) {
-					if (menu.children[i].meta.sidebar === undefined) {
-						returnPath = getDeepestPath(menu.children[i], resolveRoutePath(rootPath, menu.path));
-						break;
-					}
-				}
-			} else {
-				returnPath = getDeepestPath(menu.children[0], resolveRoutePath(rootPath, menu.path));
-			}
+	if (menu && menu.children?.length) {
+		const item = menu.children.find(item => item.meta?.sidebar !== false);
+		if (item) {
+			returnPath = getDeepestPath(item, resolveRoutePath(rootPath, menu.path));
 		} else {
-			returnPath = resolveRoutePath(rootPath, menu.path);
+			returnPath = getDeepestPath(menu.children[0], resolveRoutePath(rootPath, menu.path));
 		}
+	} else {
+		returnPath = resolveRoutePath(rootPath, menu.path);
 	}
 	return returnPath;
 }
 function getDefaultOpenedPaths(menus: Menu.recordRaw[], rootPath = '') {
 	const defaultOpenedPaths: string[] = [];
 	menus.forEach(item => {
-		if (item.path && item.meta.defaultOpened && item.children) {
+		if (item.path && item.meta.defaultOpened && item.children && item.children?.length) {
 			defaultOpenedPaths.push(resolveRoutePath(rootPath, item.path));
 			const childrenDefaultOpenedPaths = getDefaultOpenedPaths(item.children, resolveRoutePath(rootPath, item.path));
 			if (childrenDefaultOpenedPaths.length > 0) {
@@ -60,7 +49,7 @@ const useMenuStore = defineStore(
 			// 完整导航数据
 			allMenus() {
 				const settingsStore = useSettingsStore();
-				let menus: Menu.recordMainRaw[] = [
+				let returnMenus: Menu.recordMainRaw[] = [
 					{
 						meta: {},
 						children: []
@@ -68,14 +57,14 @@ const useMenuStore = defineStore(
 				];
 				const routeStore = useRouteStore();
 				if (settingsStore.menu.menuMode === 'single') {
-					menus[0].children = [];
+					returnMenus[0].children = [];
 					routeStore.routes.forEach(item => {
-						menus[0].children?.push(...(item.children as Menu.recordRaw[]));
+						returnMenus[0].children?.push(...(item.children as Menu.recordRaw[]));
 					});
 				} else {
-					menus = routeStore.routes as Menu.recordMainRaw[];
+					returnMenus = routeStore.routes as Menu.recordMainRaw[];
 				}
-				return menus;
+				return returnMenus;
 			},
 			// 次导航数据
 			sidebarMenus(): Menu.recordMainRaw['children'] {

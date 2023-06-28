@@ -8,7 +8,7 @@
 			</span>
 			<span v-if="settingsStore.mode === 'pc' && settingsStore.toolbar.enableFullscreen" class="item" @click="toggle">
 				<el-icon>
-					<svg-icon :name="isFullscreen ? 'ele_fullscreen_exit' : 'ele_fullscreen'" />
+					<svg-icon :name="isFullscreen ? 'local-fullscreen_exit' : 'local-fullscreen'" />
 				</el-icon>
 			</span>
 			<span v-if="settingsStore.toolbar.enablePageReload" class="item" @click="mainPage.reload()">
@@ -41,7 +41,7 @@
 			</div>
 			<template #dropdown>
 				<el-dropdown-menu class="user-dropdown">
-					<el-dropdown-item v-if="settingsStore.dashboard.enable" command="dashboard"> 控制台 </el-dropdown-item>
+					<el-dropdown-item v-if="settingsStore.home.enable" command="dashboard"> 控制台 </el-dropdown-item>
 					<el-dropdown-item command="setting"> 个人设置 </el-dropdown-item>
 					<el-dropdown-item divided command="logout"> 退出登录 </el-dropdown-item>
 				</el-dropdown-menu>

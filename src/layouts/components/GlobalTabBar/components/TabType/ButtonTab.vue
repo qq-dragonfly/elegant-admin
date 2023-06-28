@@ -27,7 +27,6 @@ import { getLightColor } from '@/utils/theme';
 import { computed } from 'vue';
 import { CssRender } from 'css-render';
 import { IconClose } from './components';
-import { useBoolean } from '@/hooks/useBoolean';
 
 interface Props {
 	/** 暗黑模式 */

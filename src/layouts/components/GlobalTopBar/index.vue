@@ -16,7 +16,7 @@
 					@click="settingsStore.toggleSidebarCollapse()"
 				>
 					<el-icon>
-						<svg-icon name="toolbar-collapse" />
+						<svg-icon name="local-toolbar_collapse" />
 					</el-icon>
 				</div>
 				<el-breadcrumb v-if="settingsStore.breadcrumb.enable && settingsStore.mode === 'pc'">
@@ -59,10 +59,10 @@ const enableSubMenuCollapseButton = computed(() => {
 
 const breadcrumbList = computed(() => {
 	const breadcrumbList = [];
-	if (settingsStore.dashboard.enable) {
+	if (settingsStore.home.enable) {
 		breadcrumbList.push({
 			path: '/dashboard',
-			title: settingsStore.dashboard.title
+			title: settingsStore.home.title
 		});
 	}
 	if (route.meta.breadcrumbNeste) {

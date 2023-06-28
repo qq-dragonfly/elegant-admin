@@ -31,7 +31,7 @@
  * @Author: 97972619@qq.com
  */
 export default {
-	pageSize: 20, //表格每一页条数
+	pageSize: 15, //表格每一页条数
 	parseData: function (res: any) {
 		return {
 			data: res.data,

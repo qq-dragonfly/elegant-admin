@@ -52,10 +52,3 @@ export namespace User {
 		userValue: number;
 	}
 }
-
-// * 文件上传模块
-export namespace Upload {
-	export interface ResFileUrl {
-		fileUrl: string;
-	}
-}

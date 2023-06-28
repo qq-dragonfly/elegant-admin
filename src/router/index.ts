@@ -2,7 +2,6 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 import type { RouteRecordRaw } from 'vue-router';
 import { useNProgress } from '@vueuse/integrations/useNProgress';
 import '@/assets/styles/nprogress.scss';
-import { scrollBehavior } from './helpers';
 // 路由相关数据
 import { asyncRoutes, constantRoutes } from './routes';
 import pinia from '@/store';
@@ -11,8 +10,10 @@ import useKeepAliveStore from '@/store/modules/keepAlive';
 import useUserStore from '@/store/modules/user';
 import useMenuStore from '@/store/modules/menu';
 import useRouteStore from '@/store/modules/route';
+import { scrollBehavior } from '@/router/helpers';
 
 const { isLoading } = useNProgress();
+
 const router = createRouter({
 	history: createWebHashHistory(),
 	routes:
@@ -30,41 +31,36 @@ router.beforeEach(async (to, from, next) => {
 	settingsStore.app.enableProgress && (isLoading.value = true);
 	// 是否已登录
 	if (userStore.isLogin) {
-		// 是否已根据权限动态生成并挂载路由
+		// 是否已根据权限动态生成并注册路由
 		if (routeStore.isGenerate) {
 			// 导航栏如果不是 single 模式，则需要根据 path 定位主导航的选中状态
 			settingsStore.menu.menuMode !== 'single' && menuStore.setActived(to.path);
-			if (to.name) {
-				if (to.matched.length !== 0) {
-					// 如果已登录状态下，进入登录页会强制跳转到控制台页面
-					if (to.name === 'login') {
-						next({
-							name: 'dashboard',
-							replace: true
-						});
-					} else if (!settingsStore.dashboard.enable && to.name === 'dashboard') {
-						// 如果未开启控制台页面，则默认进入侧边栏导航第一个模块
-						if (menuStore.sidebarMenus.length > 0) {
-							next({
-								path: menuStore.sidebarMenusFirstDeepestPath,
-								replace: true
-							});
-						} else {
-							next();
-						}
-					} else {
-						next();
-					}
-				} else {
-					// 如果是通过 name 跳转，并且 name 对应的路由没有权限时，需要做这步处理，手动指向到 404 页面
+			// 如果已登录状态下，进入登录页会强制跳转到主页
+			if (to.name === 'login' || to.path === '/') {
+				next({
+					name: 'dashboard',
+					replace: true
+				});
+			}
+			// 如果未开启主页，但进入的是主页，则会进入侧边栏导航第一个模块
+			else if (!settingsStore.home.enable && to.name === 'dashboard') {
+				if (menuStore.sidebarMenus.length > 0) {
 					next({
-						path: '/404'
+						path: menuStore.sidebarMenusFirstDeepestPath,
+						replace: true
 					});
 				}
-			} else {
+				// 如果侧边栏导航第一个模块无法命中，则还是进入主页
+				else {
+					next();
+				}
+			}
+			// 正常访问页面
+			else {
 				next();
 			}
 		} else {
+			// 生成动态路由
 			switch (settingsStore.app.routeBaseOn) {
 				case 'frontend':
 					await routeStore.generateRoutesAtFront(asyncRoutes);
@@ -73,6 +69,8 @@ router.beforeEach(async (to, from, next) => {
 					await routeStore.generateRoutesAtBack();
 					break;
 			}
+			// 注册并记录路由数据
+			// 记录的数据会在登出时会使用到，不使用 router.removeRoute 是考虑配置的路由可能不一定有设置 name ，则通过调用 router.addRoute() 返回的回调进行删除
 			const removeRoutes: Function[] = [];
 			routeStore.flatRoutes.forEach(route => {
 				if (!/^(https?:|mailto:|tel:)/.test(route.path)) {
@@ -82,8 +80,8 @@ router.beforeEach(async (to, from, next) => {
 			routeStore.flatSystemRoutes.forEach(route => {
 				removeRoutes.push(router.addRoute(route as RouteRecordRaw));
 			});
-			// 记录路由数据，在登出时会使用到，不使用 router.removeRoute 是考虑配置的路由可能不一定有设置 name ，则通过调用 router.addRoute() 返回的回调进行删除
 			routeStore.setCurrentRemoveRoutes(removeRoutes);
+			// 动态路由生成并注册后，重新进入当前路由
 			next({
 				path: to.path,
 				query: to.query,
@@ -95,7 +93,7 @@ router.beforeEach(async (to, from, next) => {
 			next({
 				name: 'login',
 				query: {
-					redirect: to.fullPath
+					redirect: to.fullPath !== '/' ? to.fullPath : undefined
 				}
 			});
 		} else {
@@ -109,7 +107,8 @@ router.afterEach((to, from) => {
 	const keepAliveStore = useKeepAliveStore();
 	settingsStore.app.enableProgress && (isLoading.value = false);
 	// 设置页面 title
-	to.meta.title && settingsStore.setTitle(typeof to.meta.title === 'function' ? to.meta.title() : to.meta.title);
+	settingsStore.setTitle(<string>to.meta.breadcrumbNeste?.at(-1)?.title);
+
 	// 判断当前页面是否开启缓存，如果开启，则将当前页面的 name 信息存入 keep-alive 全局状态
 	if (to.meta.cache) {
 		const componentName = to.matched.at(-1)?.components?.default.name;
@@ -122,7 +121,6 @@ router.afterEach((to, from) => {
 	// 判断离开页面是否开启缓存，如果开启，则根据缓存规则判断是否需要清空 keep-alive 全局状态里离开页面的 name 信息
 	if (from.meta.cache) {
 		const componentName = from.matched.at(-1)?.components?.default.name;
-		console.log('aaaaaa', keepAliveStore.list);
 		if (componentName) {
 			// 通过 meta.cache 判断针对哪些页面进行缓存
 			switch (typeof from.meta.cache) {
@@ -139,12 +137,11 @@ router.afterEach((to, from) => {
 			}
 			// 如果进入的是 reload 页面，则也将离开页面的缓存清空
 			if (to.name === 'reload') {
-				if (componentName) {
-					keepAliveStore.remove(componentName);
-				}
+				keepAliveStore.remove(componentName);
 			}
 		}
 	}
+	document.documentElement.scrollTop = 0;
 });
 
 export default router;

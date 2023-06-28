@@ -18,6 +18,7 @@ const errorHandler = (error: any) => {
 		URIError: 'URI错误'
 	};
 	const errorName = errorMap[error.name] || '未知错误';
+	console.warn(`[admin error]: ${error}`);
 	ElNotification({
 		title: errorName,
 		message: error,

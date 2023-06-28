@@ -90,12 +90,11 @@ header {
 		padding: inherit;
 		background-color: inherit;
 		.logo {
-			width: 45px;
-			height: 45px;
+			width: 35px;
+			height: 35px;
 			border-radius: 5px;
 		}
 		span {
-			font-size: 24px;
 			color: var(--g-header-color);
 			letter-spacing: 1px;
 		}

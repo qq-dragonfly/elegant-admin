@@ -1,0 +1,1994 @@
+{
+	"code": 200,
+	"message": "success",
+	"data": {
+		"menu": [
+			{
+				"id": "1g7b4mncg136e9r3iib2n83t5qs852u0",
+				"pid": "0",
+				"name": "home",
+				"weight": 1,
+				"path": "/home",
+				"redirect": "/dashboard",
+				"component": null,
+				"meta": {
+					"title": "首页",
+					"icon": "zy-home",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g8q06akkke8tg13nqq6om22gjqbibo9",
+				"pid": "1g7b5tc8u3j18p562kkfnqo148tm8f1h",
+				"name": "pharmacyStock",
+				"weight": 1,
+				"path": "/drug/operating/pharmacyStock",
+				"redirect": "",
+				"component": "drug/operating/pharmacyStock",
+				"meta": {
+					"title": "药品库存管理",
+					"icon": "zy-serv-pack",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g8q0lavn10b3i5p2fgb0v52nu3sgptj",
+				"pid": "1g7b5tc8u3j18p562kkfnqo148tm8f1h",
+				"name": "prescription",
+				"weight": 1,
+				"path": "/drug/operating/prescription",
+				"redirect": "",
+				"component": "drug/operating/prescription",
+				"meta": {
+					"title": "处方单查看",
+					"icon": "zy-edit",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g8q1ugaf92j2bqumik253gcrm4p2uot",
+				"pid": "1g8q1rao42cf6a7d42cfp21qh61rt1th",
+				"name": "billWater",
+				"weight": 1,
+				"path": "/drug/payCheck/billWater",
+				"redirect": "",
+				"component": "drug/payCheck/billWater",
+				"meta": {
+					"title": "账单流水查看",
+					"icon": "zy-water-subsidiary",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g8q1vos33bc1phb19dkj2414denp1qb",
+				"pid": "1g8q1rao42cf6a7d42cfp21qh61rt1th",
+				"name": "monthBill",
+				"weight": 1,
+				"path": "/drug/payCheck/monthBill",
+				"redirect": "",
+				"component": "drug/payCheck/monthBill",
+				"meta": {
+					"title": "月结算账单",
+					"icon": "zy-settlement-list",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1gf4telbv2vecf301nnssst17n0dar3e",
+				"pid": "1gf4su0pdijnvmq2i76np51ue6nbq3ls",
+				"name": "drugHospital",
+				"weight": 1,
+				"path": "/drug/hpPmInfo/drugHospital",
+				"redirect": "",
+				"component": "drug/hpPmInfo/drugHospital",
+				"meta": {
+					"title": "开方医院管理",
+					"icon": "",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1gf4tgggt1otmt9c29o0b1d50cjt51f1",
+				"pid": "1gf4su0pdijnvmq2i76np51ue6nbq3ls",
+				"name": "drugPharmacy",
+				"weight": 1,
+				"path": "/drug/hpPmInfo/drugPharmacy",
+				"redirect": "",
+				"component": "drug/hpPmInfo/drugPharmacy",
+				"meta": {
+					"title": "药店信息维护",
+					"icon": "",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1gf4tif42ojehmc1p129b428ip7q6ejb",
+				"pid": "1gf4su0pdijnvmq2i76np51ue6nbq3ls",
+				"name": "drugAuditor",
+				"weight": 1,
+				"path": "/drug/hpPmInfo/drugAuditor",
+				"redirect": "",
+				"component": "drug/hpPmInfo/drugAuditor",
+				"meta": {
+					"title": "审方药师管理",
+					"icon": "",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1gf4tjca03ktojkklengti29282901p7",
+				"pid": "1gf4su0pdijnvmq2i76np51ue6nbq3ls",
+				"name": "drugDoctor",
+				"weight": 1,
+				"path": "/drug/hpPmInfo/drugDoctor",
+				"redirect": "",
+				"component": "drug/hpPmInfo/drugDoctor",
+				"meta": {
+					"title": "开方医师管理",
+					"icon": "",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1gj371ktta7co2s180t7s31ip9s3518u",
+				"pid": "1g7b5saec2fhgi882d6tcck2rj84bo1u",
+				"name": "diagnosisManage",
+				"weight": 1,
+				"path": "/drug/basicInfo/diagnosisManage",
+				"redirect": "",
+				"component": "drug/basicInfo/diagnosisManage",
+				"meta": {
+					"title": "诊断管理",
+					"icon": "zy-orders",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1gjoac7u9s4guik2qqbm291pd8jas13g",
+				"pid": "1g7b4mncg136e9r3iib2n83t5qs852u0",
+				"name": "userCenter",
+				"weight": 1,
+				"path": "/usercenter",
+				"redirect": "",
+				"component": "userCenter",
+				"meta": {
+					"title": "个人信息",
+					"icon": "",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": true,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1gkunu4103i9o6692q4f28h183aoqh2l",
+				"pid": "1gkunqsl13s310ua2cem409hd6ll01tv",
+				"name": "teachContentManage",
+				"weight": 1,
+				"path": "/covid/teachContentManage",
+				"redirect": "",
+				"component": "covid/teachContentManage",
+				"meta": {
+					"title": "宣教内容管理",
+					"icon": "zy-institutions",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1gkunvkh73o5nopj3leku5fglefv37pk",
+				"pid": "1gkunqsl13s310ua2cem409hd6ll01tv",
+				"name": "teachPlateManage",
+				"weight": 1,
+				"path": "/covid/teachPlateManage",
+				"redirect": "",
+				"component": "covid/teachPlateManage",
+				"meta": {
+					"title": "宣教板块管理",
+					"icon": "zy-disease",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g7b4prvq3l0hhtmu9u6hr1klq2973gn",
+				"pid": "1g7b4mncg136e9r3iib2n83t5qs852u0",
+				"name": "dashboard",
+				"weight": 2,
+				"path": "/dashboard",
+				"redirect": "",
+				"component": "home",
+				"meta": {
+					"title": "控制台",
+					"icon": "zy-menu-control",
+					"affix": true,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": [
+					{ "label": "系统用户详情查询", "method": "get", "api": "/nethos/admin/sysUser/detail/current" },
+					{ "label": "获取当前用户权限菜单列表", "method": "post", "api": "/nethos/admin/menu/currentUserRange" },
+					{ "label": "文件oss直传获取Token", "method": "get", "api": "/nethos/admin/oss/token" },
+					{ "label": "新增时获取新的流水号id", "method": "get", "api": "/nethos/admin/base/nextId" },
+					{ "label": "获取地区", "method": "get", "api": "/nethos/admin/region/next/*" },
+					{ "label": "数据字典", "method": "get", "api": "/nethos/admin/dict/table/*" },
+					{ "label": "切换机构", "method": "get", "api": "/nethos/admin/login/changeOrg/*" },
+					{ "label": "获取验证码", "method": "post", "api": "/nethos/admin/sms/code" },
+					{ "label": "修改密码获取验证码", "method": "post", "api": "/nethos/admin/sms/codeChangPwd" }
+				]
+			},
+			{
+				"id": "1g7b4ndss2ath6mb1naotqf24hgn7qq7",
+				"pid": "0",
+				"name": "platform",
+				"weight": 3,
+				"path": "/platform",
+				"redirect": "/platform/applica",
+				"component": null,
+				"meta": {
+					"title": "平台",
+					"icon": "zy-platform",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g7b4so5s3fnevkcta70l6djvj038q53",
+				"pid": "1g7b4ndss2ath6mb1naotqf24hgn7qq7",
+				"name": "applica",
+				"weight": 4,
+				"path": "/platform/applica",
+				"redirect": null,
+				"component": "platformManage/applica",
+				"meta": {
+					"title": "应用管理",
+					"icon": "zy-applica",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": [
+					{ "label": "获取应用列表", "method": "post", "api": "/nethos/admin/application/page" },
+					{ "label": "新增应用", "method": "post", "api": "/nethos/admin/application" },
+					{ "label": "编辑应用", "method": "put", "api": "/nethos/admin/application/edit" },
+					{ "label": "应用详情", "method": "get", "api": "/nethos/admin/application/*" },
+					{ "label": "获取医院列表", "method": "post", "api": "/nethos/admin/organization/page" }
+				]
+			},
+			{
+				"id": "1g7b4t4p52j9dccn25gvu5623dvhraeu",
+				"pid": "1g7b4ndss2ath6mb1naotqf24hgn7qq7",
+				"name": "prolist",
+				"weight": 5,
+				"path": "/platform/prolist",
+				"redirect": null,
+				"component": "platformManage/projectList",
+				"meta": {
+					"title": "项目管理",
+					"icon": "zy-pro",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": [
+					{ "label": "获取项目列表", "method": "post", "api": "/nethos/admin/project/page" },
+					{ "label": "新增项目", "method": "post", "api": "/nethos/admin/project" },
+					{ "label": "编辑项目", "method": "put", "api": "/nethos/admin/project/edit" },
+					{ "label": "项目详情", "method": "get", "api": "/nethos/admin/project/*" },
+					{ "label": "获取应用列表", "method": "post", "api": "/nethos/admin/application/page" },
+					{ "label": "获取医院列表", "method": "post", "api": "/nethos/admin/organization/page" }
+				]
+			},
+			{
+				"id": "1g7b4udfb138ovtr292atsl1benhnd25",
+				"pid": "1g7b4ndss2ath6mb1naotqf24hgn7qq7",
+				"name": "hospital",
+				"weight": 6,
+				"path": "/institutions/hospital",
+				"redirect": null,
+				"component": "institutionsManage/hospital",
+				"meta": {
+					"title": "医院管理",
+					"icon": "zy-hospital",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": [
+					{ "label": "获取医院列表", "method": "post", "api": "/nethos/admin/organization/page" },
+					{ "label": "新增医院", "method": "post", "api": "/nethos/admin/organization" },
+					{ "label": "编辑医院", "method": "put", "api": "/nethos/admin/organization" },
+					{ "label": "医院详情", "method": "get", "api": "/nethos/admin/organization/*" },
+					{ "label": "获取区域地址", "method": "get", "api": "/nethos/admin/region/next" }
+				]
+			},
+			{
+				"id": "1g7b4umj61jle65333ra3b0134hh1o2o",
+				"pid": "1g7b4ndss2ath6mb1naotqf24hgn7qq7",
+				"name": "department",
+				"weight": 7,
+				"path": "/institutions/department",
+				"redirect": null,
+				"component": "institutionsManage/department",
+				"meta": {
+					"title": "科室管理",
+					"icon": "zy-department",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": [
+					{ "label": "获取科室列表", "method": "post", "api": "/nethos/admin/dept/page" },
+					{ "label": "新增科室", "method": "post", "api": "/nethos/admin/dept" },
+					{ "label": "编辑科室", "method": "put", "api": "/nethos/admin/dept" },
+					{ "label": "科室详情", "method": "get", "api": "/nethos/admin/dept/*" },
+					{ "label": "获取医院列表", "method": "post", "api": "/nethos/admin/organization/page" },
+					{ "label": "医院详情", "method": "get", "api": "/nethos/admin/organization/*" },
+					{ "label": "获取字典结构", "method": "get", "api": "/nethos/admin/dict/table" }
+				]
+			},
+			{
+				"id": "1g7b4v0b2nrlmms3a41jja2bts79p2hp",
+				"pid": "1g7b4ndss2ath6mb1naotqf24hgn7qq7",
+				"name": "medical",
+				"weight": 8,
+				"path": "/institutions/medical",
+				"redirect": null,
+				"component": "institutionsManage/medical",
+				"meta": {
+					"title": "医护管理",
+					"icon": "zy-yihu",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": [
+					{ "label": "获取医护列表", "method": "post", "api": "/nethos/admin/doctor/page" },
+					{ "label": "新增医护", "method": "post", "api": "/nethos/admin/doctor" },
+					{ "label": "编辑医护", "method": "put", "api": "/nethos/admin/doctor" },
+					{ "label": "医护详情", "method": "get", "api": "/nethos/admin/doctor/*" },
+					{ "label": "获取科室列表", "method": "post", "api": "/nethos/admin/dept/page" },
+					{ "label": "获取医院列表", "method": "post", "api": "/nethos/admin/organization/page" },
+					{ "label": "获取字典结构", "method": "get", "api": "/nethos/admin/dict/table" },
+					{ "label": "字典查询", "method": "post", "api": "/nethos/admin/dict/page" },
+					{ "label": "获取医生导入模板", "method": "get", "api": "/nethos/admin/import/doctor/template/download" },
+					{ "label": "医生批量导入", "method": "post", "api": "/nethos/admin/import/doctor" }
+				]
+			},
+			{
+				"id": "1g7b4vsghsgv30r12slk5923ogfjq3cn",
+				"pid": "1g7b4ndss2ath6mb1naotqf24hgn7qq7",
+				"name": "patientsList",
+				"weight": 9,
+				"path": "/patients/patientsList",
+				"redirect": null,
+				"component": "patientsManage/patients",
+				"meta": {
+					"title": "用户管理",
+					"icon": "zy-patientsList",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": [
+					{ "label": "获取用户列表", "method": "post", "api": "/nethos/admin/user/page" },
+					{ "label": "用户详情", "method": "get", "api": "/nethos/admin/user/*" },
+					{ "label": "停用启用", "method": "put", "api": "/nethos/admin/user/edit" }
+				]
+			},
+			{
+				"id": "1g7b4nmas253h4q021adc772o59puu9a",
+				"pid": "0",
+				"name": "business",
+				"weight": 10,
+				"path": "/business",
+				"redirect": "/business/businessList",
+				"component": null,
+				"meta": {
+					"title": "业务",
+					"icon": "zy-business",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g96bkig52qubbgprh0g861137vdl2ve",
+				"pid": "1g7b4ndss2ath6mb1naotqf24hgn7qq7",
+				"name": "teamList",
+				"weight": 10,
+				"path": "/platform/teamList",
+				"redirect": "",
+				"component": "platformManage/team",
+				"meta": {
+					"title": "团队管理",
+					"icon": "zy-patients",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": [
+					{ "label": "获取团队分页列表", "method": "post", "api": "/nethos/admin/team/page" },
+					{ "label": "获取团队详情", "method": "get", "api": "/nethos/admin/team/detail/*" },
+					{ "label": "新增团队", "method": "post", "api": "/nethos/admin/team" },
+					{ "label": "编辑团队", "method": "put", "api": "/nethos/admin/team" }
+				]
+			},
+			{
+				"id": "1g7b52i9khpprhtl56fh836a42rfarhk",
+				"pid": "1g7b4nmas253h4q021adc772o59puu9a",
+				"name": "businessList",
+				"weight": 11,
+				"path": "/business/businessList",
+				"redirect": null,
+				"component": "businessManage/business",
+				"meta": {
+					"title": "业务开通",
+					"icon": "zy-businessList",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": [
+					{ "label": "获取医护列表", "method": "post", "api": "/nethos/admin/operation/page" },
+					{ "label": "更新业务", "method": "put", "api": "/nethos/admin/operation" },
+					{ "label": "获取服务包列表", "method": "post", "api": "/nethos/admin/serve/combo/page" },
+					{ "label": "单个医生开通业务", "method": "get", "api": "/nethos/admin/operation/byDoctorId/*" }
+				]
+			},
+			{
+				"id": "1g7b4nvjnkgob3034h2f621hotfgrn8e",
+				"pid": "0",
+				"name": "service",
+				"weight": 12,
+				"path": "/service",
+				"redirect": "/service/category",
+				"component": null,
+				"meta": {
+					"title": "服务",
+					"icon": "zy-serv",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1ga0me8t5nptdeb322gqc1l5pvbj2nve",
+				"pid": "1g7b4nmas253h4q021adc772o59puu9a",
+				"name": "teamBusiness",
+				"weight": 12,
+				"path": "/business/teamBusiness",
+				"redirect": "",
+				"component": "businessManage/teamBusiness",
+				"meta": {
+					"title": "团队业务开通",
+					"icon": "zy-refund",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": [
+					{ "label": "获取团队业务列表", "method": "post", "api": "/nethos/admin/teamOperation/page" },
+					{ "label": "获取服务包列表", "method": "post", "api": "/nethos/admin/serve/combo/page" },
+					{ "label": "获取医院列表", "method": "post", "api": "/nethos/admin/organization/page" },
+					{ "label": "获取科室列表", "method": "post", "api": "/nethos/admin/dept/page" },
+					{ "label": "获取团队详情", "method": "get", "api": "/nethos/admin/teamOperation/byDoctorId/*" },
+					{ "label": "添加团队业务", "method": "post", "api": "/nethos/admin/teamOperation" },
+					{ "label": "保存团队业务", "method": "put", "api": "/nethos/admin/teamOperation" }
+				]
+			},
+			{
+				"id": "1g7b534f42utu6e61hq9f2sl5rlrf3om",
+				"pid": "1g7b4nvjnkgob3034h2f621hotfgrn8e",
+				"name": "serviceCategory",
+				"weight": 13,
+				"path": "/service/category",
+				"redirect": null,
+				"component": "serviceManage/serviceCategory",
+				"meta": {
+					"title": "服务分类",
+					"icon": "zy-serv-custom",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": [
+					{ "label": "服务分类列表", "method": "post", "api": "/nethos/admin/serve/combo/category/page" },
+					{ "label": "新增服务分类", "method": "post", "api": "/nethos/admin/serve/combo/category" },
+					{ "label": "编辑服务分类", "method": "put", "api": "/nethos/admin/serve/combo/category" },
+					{ "label": "服务分类详情", "method": "get", "api": "/nethos/admin/serve/combo/category/*" },
+					{ "label": "获取医院列表", "method": "post", "api": "/nethos/admin/organization/page" }
+				]
+			},
+			{
+				"id": "1ga0mh69a2cihum02uiv8tt2kn9eoq3r",
+				"pid": "1g7b4nmas253h4q021adc772o59puu9a",
+				"name": "teamOnDuty",
+				"weight": 13,
+				"path": "/business/teamOnDuty",
+				"redirect": "",
+				"component": "businessManage/teamOnDuty",
+				"meta": {
+					"title": "团队值班设置",
+					"icon": "zy-orders",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": [
+					{ "label": "获取是否设置排班", "method": "get", "api": "/nethos/admin/teamScheduling/count" },
+					{ "label": "获取排班列表", "method": "post", "api": "/nethos/admin/teamScheduling/page" },
+					{ "label": "获取排班详情", "method": "get", "api": "/nethos/admin/teamScheduling/detail/*" },
+					{ "label": "获取团队医护", "method": "get", "api": "/nethos/admin/team/doctorInfo/*" },
+					{ "label": "排班设置", "method": "post", "api": "/nethos/admin/teamScheduling" }
+				]
+			},
+			{
+				"id": "1g7b53o953u5ea4i3h3blan27k0tr2in",
+				"pid": "1g7b4nvjnkgob3034h2f621hotfgrn8e",
+				"name": "serviceCheck",
+				"weight": 14,
+				"path": "/service/check",
+				"redirect": null,
+				"component": "serviceManage/serviceCheck",
+				"meta": {
+					"title": "检查检验项目",
+					"icon": "zy-serv-bind",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": [
+					{ "label": "获取检查检验项目列表", "method": "get", "api": "/nethos/admin/serve/combo/category" },
+					{ "label": "新增检查检验项目", "method": "post", "api": "/nethos/admin/inspect" },
+					{ "label": "编辑检查检验项目", "method": "put", "api": "/nethos/admin/inspect/edit" },
+					{ "label": "检查检验项目详情", "method": "get", "api": "/nethos/admin/inspect/*" }
+				]
+			},
+			{
+				"id": "1g7b54pk29ulu8h2tkq4f333a00eu1q2",
+				"pid": "1g7b4nvjnkgob3034h2f621hotfgrn8e",
+				"name": "ServiceProject",
+				"weight": 15,
+				"path": "/service/project",
+				"redirect": null,
+				"component": "serviceManage/serviceProject",
+				"meta": {
+					"title": "服务项目管理",
+					"icon": "zy-admin-user",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": [
+					{ "label": "第三方对接项目列表", "method": "post", "api": "/nethos/admin/thirdPart/ServeItem/page" },
+					{ "label": "新增第三方对接项目", "method": "post", "api": "/nethos/admin/thirdPart/ServeItem" },
+					{ "label": "编辑第三方对接项目", "method": "put", "api": "/nethos/admin/thirdPart/ServeItem/edit" },
+					{ "label": "第三方应用详情", "method": "get", "api": "/nethos/admin/thirdPart/ServeItem/detailApps/*" },
+					{ "label": "获取项目详情", "method": "get", "api": "/nethos/admin/project" },
+					{ "label": "自定义项目列表", "method": "post", "api": "/nethos/admin/custom/page" },
+					{ "label": "新增自定义项目", "method": "post", "api": "/nethos/admin/custom" },
+					{ "label": "编辑自定义项目", "method": "put", "api": "/nethos/admin/custom" },
+					{ "label": "自定义项目详情", "method": "get", "api": "/nethos/admin/custom/*" }
+				]
+			},
+			{
+				"id": "1g7b566e42kgtasa1qesmrgq3eg942p0",
+				"pid": "1g7b4nvjnkgob3034h2f621hotfgrn8e",
+				"name": "servicePack",
+				"weight": 16,
+				"path": "/service/pack",
+				"redirect": null,
+				"component": "serviceManage/servicePack",
+				"meta": {
+					"title": "服务包管理",
+					"icon": "zy-serv-pack",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": [
+					{ "label": "获取服务包列表", "method": "post", "api": "/nethos/admin/serve/combo/page" },
+					{ "label": "新增服务", "method": "post", "api": "/nethos/admin/serve/combo" },
+					{ "label": "编辑服务", "method": "put", "api": "/nethos/admin/serve/combo" },
+					{ "label": "服务详情", "method": "get", "api": "/nethos/admin/serve/combo/*" },
+					{ "label": "第三方对接项目列表", "method": "post", "api": "/nethos/admin/thirdPart/ServeItem/page" },
+					{ "label": "第三方对接项目详情", "method": "get", "api": "/nethos/admin/thirdPart/ServeItem/*" },
+					{ "label": "获取检查检验列表", "method": "post", "api": "/nethos/admin/inspect/page" },
+					{ "label": "自定义项目列表", "method": "post", "api": "/nethos/admin/custom/page" },
+					{ "label": "获取服务分类列表", "method": "post", "api": "/nethos/admin/serve/combo/category/page" },
+					{ "label": "服务分类详情", "method": "get", "api": "/nethos/admin/serve/combo/category/*" }
+				]
+			},
+			{
+				"id": "1g7b574ss1gk7n0m3moqht32povv5e3n",
+				"pid": "1g7b4nvjnkgob3034h2f621hotfgrn8e",
+				"name": "serviceOrder",
+				"weight": 17,
+				"path": "/service/order",
+				"redirect": null,
+				"component": "serviceManage/serviceOrder",
+				"meta": {
+					"title": "服务包订单",
+					"icon": "zy-orders",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": [
+					{ "label": "获取服务订单列表", "method": "post", "api": "/nethos/admin/order/serve/combo/getList" },
+					{ "label": "服务订单详情", "method": "get", "api": "/nethos/admin/order/serve/combo/*" },
+					{ "label": "订单退款申请", "method": "post", "api": "/nethos/admin/order/refund/apply" },
+					{ "label": "检查评估记录查询", "method": "post", "api": "/nethos/admin/record/assess/page" },
+					{ "label": "面诊申请记录查询", "method": "post", "api": "/nethos/admin/record/consult/page" },
+					{ "label": "自定义记录查询", "method": "post", "api": "/nethos/admin/record/custom/page" },
+					{ "label": "自定义服务核销", "method": "post", "api": "/nethos/admin/record/custom" },
+					{ "label": "提前完成订单", "method": "get", "api": "/nethos/admin/order/serve/combo/endEarly/*" },
+					{ "label": "代写评价", "method": "post", "api": "/nethos/admin/order/evaluation" },
+					{ "label": "服务包订单导出", "method": "post", "api": "/nethos/admin/order/serve/combo/export" },
+					{ "label": "当前订单是否申请退款", "method": "get", "api": "/nethos/admin/order/refund/detailByOrderId/*" }
+				]
+			},
+			{
+				"id": "1gik9ut16347emts3ovskif1u9lc5r31",
+				"pid": "1g7b4nvjnkgob3034h2f621hotfgrn8e",
+				"name": "serviceAuditOrder",
+				"weight": 18,
+				"path": "/service/audit_order",
+				"redirect": "",
+				"component": "serviceManage/serviceAuditOrder",
+				"meta": {
+					"title": "服务退款审核",
+					"icon": "zy-review",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": [
+					{ "label": "获取退款审核列表", "method": "post", "api": "/nethos/admin/order/refund/page" },
+					{ "label": "退款审核拒绝", "method": "post", "api": "/nethos/admin/order/refund/refuseRefund" },
+					{ "label": "退款审核同意", "method": "post", "api": "/nethos/admin//order/refund/agreeRefund" }
+				]
+			},
+			{
+				"id": "1gj0ii9mn1civ9go1cucecccsmqot36m",
+				"pid": "1gj0iaqc43orht122g5iho82pfkam914",
+				"name": "Agree",
+				"weight": 18,
+				"path": "/service/agree",
+				"redirect": "",
+				"component": "serviceManage/serviceAgreeConfig",
+				"meta": {
+					"title": "服务包协议配置",
+					"icon": "zy-system",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": [
+					{ "label": "获取项目列表", "method": "post", "api": "/nethos/admin/project/page" },
+					{ "label": "编辑服务包协议", "method": "post", "api": "/nethos/admin/serve/combo/config/edit" },
+					{ "label": "服务包协议详情", "method": "get", "api": "/nethos/admin/serve/combo/config/detail/*" }
+				]
+			},
+			{
+				"id": "1g7livenj2rlh92q32opdbj2pm3p4b3i",
+				"pid": "1g7b4nvjnkgob3034h2f621hotfgrn8e",
+				"name": "eval",
+				"weight": 19,
+				"path": "/service/eval",
+				"redirect": "/service/eval_audit_list",
+				"component": null,
+				"meta": {
+					"title": "评价管理",
+					"icon": "zy-eavl",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1gits3p5p250p5262qpsfvf3e59ocabr",
+				"pid": "1g7b4nvjnkgob3034h2f621hotfgrn8e",
+				"name": "serviceRecommend",
+				"weight": 19,
+				"path": "/service/recommend",
+				"redirect": "/serviceManage/servicePackRecommend",
+				"component": "",
+				"meta": {
+					"title": "服务包推荐",
+					"icon": "zy-evalList",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g7lj155u37dnf9i6ofavo19tqefn7mr",
+				"pid": "1g7livenj2rlh92q32opdbj2pm3p4b3i",
+				"name": "serviceEvalAuditList",
+				"weight": 20,
+				"path": "/service/eval_audit_list",
+				"redirect": "",
+				"component": "serviceManage/serviceEval/evalAudit",
+				"meta": {
+					"title": "评价审核",
+					"icon": "zy-evalList",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": [
+					{ "label": "评价审核分页列表查询", "method": "post", "api": "/nethos/admin/order/evaluation/page" },
+					{ "label": "评价审核通过拒绝", "method": "post", "api": "/nethos/admin/order/evaluation/dealBatchExamined" },
+					{ "label": "评价待审核总条数查询", "method": "get", "api": "/nethos/admin/order/evaluation/waitEvaluationAllCount" }
+				]
+			},
+			{
+				"id": "1giuqcmb31q4aev89ed16q3l42jjf1c1",
+				"pid": "1g7b4nvjnkgob3034h2f621hotfgrn8e",
+				"name": "ThirdOrderMenu",
+				"weight": 20,
+				"path": "",
+				"redirect": "/service/third_order",
+				"component": "",
+				"meta": {
+					"title": "第三方合作订单",
+					"icon": "zy-evalList",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1gj0iaqc43orht122g5iho82pfkam914",
+				"pid": "1g7b4nvjnkgob3034h2f621hotfgrn8e",
+				"name": "serviceOperate",
+				"weight": 20,
+				"path": "/service/operate",
+				"redirect": "/service/agree",
+				"component": "",
+				"meta": {
+					"title": "运营基础设置",
+					"icon": "zy-medical",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1gj0imkc6es1ma21c1f9sr3r3jjr125q",
+				"pid": "1gj0iaqc43orht122g5iho82pfkam914",
+				"name": "customerServiceList",
+				"weight": 20,
+				"path": "/service/customer",
+				"redirect": "",
+				"component": "serviceManage/customerService",
+				"meta": {
+					"title": "医护端客服配置",
+					"icon": "zy-customer-service",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": [
+					{ "label": "客服配置分页查询", "method": "post", "api": "/nethos/admin/housekeeper/page" },
+					{ "label": " 新增客服配置", "method": "post", "api": "/nethos/admin/housekeeper" },
+					{ "label": " 编辑客服配置", "method": "put", "api": "/nethos/admin/housekeeper/edit" }
+				]
+			},
+			{
+				"id": "1g7lj4l3hmghb3e32aruhj228k4r52ei",
+				"pid": "1g7livenj2rlh92q32opdbj2pm3p4b3i",
+				"name": "serviceEvalList",
+				"weight": 21,
+				"path": "/service/evalList",
+				"redirect": "",
+				"component": "serviceManage/serviceEval/evalPlaced",
+				"meta": {
+					"title": "服务包评价",
+					"icon": "zy-edit",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": [
+					{ "label": "服务包评价列表", "method": "post", "api": "/nethos/admin/order/evaluation/comboTopEvaluationPage" }
+				]
+			},
+			{
+				"id": "1giuqkctvh4vkfr6ka5p125sabgj3bnj",
+				"pid": "1giuqcmb31q4aev89ed16q3l42jjf1c1",
+				"name": "ServiceThirdOrder",
+				"weight": 21,
+				"path": "/service/third_order",
+				"redirect": "",
+				"component": "serviceManage/servicethirdOrder",
+				"meta": {
+					"title": "第三方服务订单",
+					"icon": "zy-water-subsidiary",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": [
+					{ "label": "获取第三方渠道服务订单列表", "method": "post", "api": "/nethos/admin/order/third/channel/order/page" },
+					{ "label": "第三方渠道服务订单详情", "method": "get", "api": "/nethos/admin/order/third/channel/order/*" },
+					{ "label": "导出服务包第三方渠道订单列表", "method": "post", "api": "/nethos/admin/order/third/channel/order/export" },
+					{ "label": "检查评估记录查询", "method": "post", "api": "/nethos/admin/record/assess/page" },
+					{ "label": "面诊申请记录查询", "method": "post", "api": "/nethos/admin/record/consult/page" },
+					{ "label": "自定义记录查询", "method": "post", "api": "/nethos/admin/record/custom/page" },
+					{ "label": "自定义服务核销", "method": "post", "api": "/nethos/admin/record/custom" },
+					{ "label": "代写评价", "method": "post", "api": "/nethos/admin/order/evaluation" },
+					{ "label": "第三方服务核销", "method": "post", "api": "/nethos/admin/record/third" }
+				]
+			},
+			{
+				"id": "1g7lj6vma1l9scj62eo5nlj3g6prri3g",
+				"pid": "1g7livenj2rlh92q32opdbj2pm3p4b3i",
+				"name": "serviceEvalDetails",
+				"weight": 22,
+				"path": "/service/evalDetails",
+				"redirect": null,
+				"component": "serviceManage/serviceEval/evalPlaced/details",
+				"meta": {
+					"title": "评价列表",
+					"icon": "zy-evalList",
+					"affix": null,
+					"type": "menu",
+					"active": "/service/evalList",
+					"hidden": true,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": [
+					{ "label": "服务评价列表", "method": "post", "api": "/nethos/admin/order/evaluation/pageByComboId" },
+					{ "label": "服务评价置顶", "method": "post", "api": "/nethos/admin/order/evaluation/dealEvaluationTop" }
+				]
+			},
+			{
+				"id": "1giuqqoah22kfl3n3ds8dhg1lhtuuj3h",
+				"pid": "1giuqcmb31q4aev89ed16q3l42jjf1c1",
+				"name": "thirdPartyChannel",
+				"weight": 22,
+				"path": "/setting/third_party",
+				"redirect": "",
+				"component": "setting/thirdParty",
+				"meta": {
+					"title": "第三方服务渠道",
+					"icon": "zy-businessList",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": [
+					{ "label": "第三方渠道分页查询", "method": "post", "api": "/nethos/admin/third/channel/page" },
+					{ "label": "新增第三方渠道", "method": "post", "api": "/nethos/admin/third/channel" },
+					{ "label": "编辑第三方渠道", "method": "put", "api": "/nethos/admin/third/channel" },
+					{ "label": "第三方渠道详情", "method": "get", "api": "/nethos/admin/third/channel/*" }
+				]
+			},
+			{
+				"id": "1g7b4oc7k2bqn3h2m7dg8412mnm0ee1f",
+				"pid": "0",
+				"name": "finance",
+				"weight": 23,
+				"path": "/finance",
+				"redirect": "/finance/wallet",
+				"component": null,
+				"meta": {
+					"title": "财务",
+					"icon": "zy-cash",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g7b58qp2bc4fnt36dr6a73omrjcl2ij",
+				"pid": "1g7b4oc7k2bqn3h2m7dg8412mnm0ee1f",
+				"name": "wallet",
+				"weight": 24,
+				"path": "/finance/wallet",
+				"redirect": "/finance/insWallet",
+				"component": null,
+				"meta": {
+					"title": "钱包管理",
+					"icon": "zy-wallet",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1gj0k638hsofspj3usk9k08e15ju1i5a",
+				"pid": "1gj0jqr072r864i3nvks4a3a1ob55f66",
+				"name": "serviceEmailconfig",
+				"weight": 24,
+				"path": "/service/emailconfig",
+				"redirect": "",
+				"component": "serviceManage/serviceEmailconfig",
+				"meta": {
+					"title": "服务购买通知",
+					"icon": "zy-notice",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": [
+					{ "label": "查询服务购买通知列表", "method": "post", "api": "/nethos/admin/serve/combo/notify/page" },
+					{ "label": "新增服务购买通知邮箱", "method": "post", "api": "/nethos/admin/serve/combo/notify" },
+					{ "label": "编辑服务购买通知邮箱", "method": "put", "api": "/nethos/admin/serve/combo/notify" }
+				]
+			},
+			{
+				"id": "1g7b59nrn1fqp0mm55sk071cqh4vhqpi",
+				"pid": "1g7b58qp2bc4fnt36dr6a73omrjcl2ij",
+				"name": "insWallet",
+				"weight": 25,
+				"path": "/finance/insWallet",
+				"redirect": null,
+				"component": "financeManage/walletManage/institutionWallet",
+				"meta": {
+					"title": "机构钱包",
+					"icon": "zy-ins-wallet",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1gj0jqr072r864i3nvks4a3a1ob55f66",
+				"pid": "1g7b4nvjnkgob3034h2f621hotfgrn8e",
+				"name": "contractualCapacity",
+				"weight": 25,
+				"path": "/service/contractual",
+				"redirect": "serviceManage/serviceEmailconfig",
+				"component": "",
+				"meta": {
+					"title": "运营履约助手",
+					"icon": "zy-customer-service",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g7b5i69c3dp23kk22g8eu01ape9o717",
+				"pid": "1g7b58qp2bc4fnt36dr6a73omrjcl2ij",
+				"name": "insDetails",
+				"weight": 26,
+				"path": "/finance/insDetails",
+				"redirect": null,
+				"component": "financeManage/walletManage/institutionWallet/details",
+				"meta": {
+					"title": "机构钱包详情",
+					"icon": "",
+					"affix": null,
+					"type": "menu",
+					"active": "/finance/insWallet",
+					"hidden": true,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1gj0kcc1cagni1c190s7tb3orcbhq3sd",
+				"pid": "1g7b4nvjnkgob3034h2f621hotfgrn8e",
+				"name": "servicePreorder",
+				"weight": 26,
+				"path": "/service/preorder",
+				"redirect": "/serviceManage/servicePurchaseAdvance",
+				"component": "",
+				"meta": {
+					"title": "服务包预购管理",
+					"icon": "zy-eavl",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g7b5ii4q370btu3macjhd2mqtmsl3k5",
+				"pid": "1g7b58qp2bc4fnt36dr6a73omrjcl2ij",
+				"name": "insRecord",
+				"weight": 27,
+				"path": "/finance/insRecord",
+				"redirect": null,
+				"component": "financeManage/walletManage/institutionWallet/record",
+				"meta": {
+					"title": "机构提现记录",
+					"icon": "",
+					"affix": null,
+					"type": "menu",
+					"active": "/finance/insWallet",
+					"hidden": true,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g7b5j18e3d19fnp1sljdq21lcq5brh7",
+				"pid": "1g7b58qp2bc4fnt36dr6a73omrjcl2ij",
+				"name": "docWallet",
+				"weight": 28,
+				"path": "/finance/docWallet",
+				"redirect": null,
+				"component": "financeManage/walletManage/doctorNurseWallet",
+				"meta": {
+					"title": "医护钱包",
+					"icon": "zy-doc-wallet",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1gj0m0ujf29350822ur611q3k8eia8a7",
+				"pid": "1g7b4nvjnkgob3034h2f621hotfgrn8e",
+				"name": "serviceRecomRecord",
+				"weight": 28,
+				"path": "/service/recommend_record",
+				"redirect": "",
+				"component": "serviceManage/serviceRecommendRecord",
+				"meta": {
+					"title": "服务包推荐记录",
+					"icon": "zy-orders",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": [
+					{ "label": "获取医护服务包推荐列表", "method": "post", "api": "/nethos/admin/serve/combo/doctor/recommend/list" },
+					{ "label": "导出医护推荐", "method": "post", "api": "/nethos/admin/doctor/recommend/record/export" }
+				]
+			},
+			{
+				"id": "1g7b5jmlt3jgm58f2mt9h9v3i7ckm01t",
+				"pid": "1g7b58qp2bc4fnt36dr6a73omrjcl2ij",
+				"name": "docDetails",
+				"weight": 29,
+				"path": "/finance/docDetails",
+				"redirect": null,
+				"component": "financeManage/walletManage/doctorNurseWallet/details",
+				"meta": {
+					"title": "医护钱包详情",
+					"icon": "",
+					"affix": null,
+					"type": "menu",
+					"active": "/finance/docWallet",
+					"hidden": true,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g7b5k2i4110iftu3rgvcm43ku3hhf1s",
+				"pid": "1g7b58qp2bc4fnt36dr6a73omrjcl2ij",
+				"name": "plaWallet",
+				"weight": 30,
+				"path": "/finance/plaWallet",
+				"redirect": null,
+				"component": "financeManage/walletManage/platformWallet",
+				"meta": {
+					"title": "平台钱包",
+					"icon": "zy-pla-wallet",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g7b5kkvl204pb8v1u7e0c630kfbi2ss",
+				"pid": "1g7b58qp2bc4fnt36dr6a73omrjcl2ij",
+				"name": "plaDetail",
+				"weight": 31,
+				"path": "/finance/plaDetails",
+				"redirect": null,
+				"component": "financeManage/walletManage/platformWallet/details",
+				"meta": {
+					"title": "平台钱包详情",
+					"icon": "",
+					"affix": null,
+					"type": "menu",
+					"active": "/finance/plaWallet",
+					"hidden": true,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g7b5l3cbj8a9l829dblpn3p7fgr833s",
+				"pid": "1g7b58qp2bc4fnt36dr6a73omrjcl2ij",
+				"name": "plaRecord",
+				"weight": 32,
+				"path": "/finance/plaRecord",
+				"redirect": null,
+				"component": "financeManage/walletManage/platformWallet/record",
+				"meta": {
+					"title": "平台提现记录",
+					"icon": "",
+					"affix": null,
+					"type": "menu",
+					"active": "/finance/plaWallet",
+					"hidden": true,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g7b5bhqk1sa762hmhk322qa9r3u30ar",
+				"pid": "1g7b4oc7k2bqn3h2m7dg8412mnm0ee1f",
+				"name": "walletBusiness",
+				"weight": 33,
+				"path": "/finance/walletBusiness",
+				"redirect": null,
+				"component": null,
+				"meta": {
+					"title": "业务管理",
+					"icon": "zy-business",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g7b5bv6u56k38b2dretaspp4tbe24lq",
+				"pid": "1g7b5bhqk1sa762hmhk322qa9r3u30ar",
+				"name": "walletBusinessList",
+				"weight": 34,
+				"path": "/finance/walletBusinessList",
+				"redirect": null,
+				"component": "financeManage/businessManage",
+				"meta": {
+					"title": "业务列表",
+					"icon": "zy-business-list",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g7b5cors1a9l9b5epq1sc1etp0lm36a",
+				"pid": "1g7b4oc7k2bqn3h2m7dg8412mnm0ee1f",
+				"name": "scheme",
+				"weight": 35,
+				"path": "/finance/scheme",
+				"redirect": "/finance/schemeList",
+				"component": null,
+				"meta": {
+					"title": "分成配置",
+					"icon": "zy-scheme",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g7b5d2vfk67b6i6eailc12v2a20rlmi",
+				"pid": "1g7b5cors1a9l9b5epq1sc1etp0lm36a",
+				"name": "schemeList",
+				"weight": 36,
+				"path": "/finance/schemeList",
+				"redirect": null,
+				"component": "financeManage/schemeManage",
+				"meta": {
+					"title": "分成管理",
+					"icon": "zy-scheme-list",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g7b5lqg81cfjnnbhsaqhu27u5141cj3",
+				"pid": "1g7b5cors1a9l9b5epq1sc1etp0lm36a",
+				"name": "schemeDetails",
+				"weight": 37,
+				"path": "/finance/schemeDetails",
+				"redirect": null,
+				"component": "financeManage/schemeManage/details",
+				"meta": {
+					"title": "设置基础分成方案",
+					"icon": "",
+					"affix": null,
+					"type": "menu",
+					"active": "/finance/schemeList",
+					"hidden": true,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g7b5f2of1l5ova337v0pq19t6cea2dp",
+				"pid": "1g7b4oc7k2bqn3h2m7dg8412mnm0ee1f",
+				"name": "settlement",
+				"weight": 38,
+				"path": "/finance/settlement",
+				"redirect": "/finance/settlementList",
+				"component": null,
+				"meta": {
+					"title": "结算管理",
+					"icon": "zy-settlement",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g7b5mtlvkiaoe73hn4q6q1jq06761av",
+				"pid": "1g7b5f2of1l5ova337v0pq19t6cea2dp",
+				"name": "settlementList",
+				"weight": 39,
+				"path": "/finance/settlementList",
+				"redirect": null,
+				"component": "financeManage/settlementManage/billDetail",
+				"meta": {
+					"title": "流水明细",
+					"icon": "zy-water-subsidiary",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g7b5nbkn1jdsa6e2sc3q41286rr393n",
+				"pid": "1g7b5f2of1l5ova337v0pq19t6cea2dp",
+				"name": "settlementDetails",
+				"weight": 40,
+				"path": "/finance/settlementDetails",
+				"redirect": null,
+				"component": "financeManage/settlementManage/billDetail/details",
+				"meta": {
+					"title": "流水详情",
+					"icon": "",
+					"affix": null,
+					"type": "menu",
+					"active": "/finance/settlementList",
+					"hidden": true,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g7b5o7ms25ucb9g8hodq01r0jrqv1i8",
+				"pid": "1g7b5f2of1l5ova337v0pq19t6cea2dp",
+				"name": "billSettlement",
+				"weight": 41,
+				"path": "/finance/settlement_billSettlement",
+				"redirect": null,
+				"component": "financeManage/settlementManage/billSettlement",
+				"meta": {
+					"title": "流水结算",
+					"icon": "zy-settlement-list",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g7b5oo1vtgtuq5a7po0ekqgi1c1edc6",
+				"pid": "1g7b5f2of1l5ova337v0pq19t6cea2dp",
+				"name": "billSetDetails",
+				"weight": 42,
+				"path": "/finance/billSetDetails",
+				"redirect": null,
+				"component": "financeManage/settlementManage/billSettlement/details",
+				"meta": {
+					"title": "结算详情",
+					"icon": "",
+					"affix": null,
+					"type": "menu",
+					"active": "/finance/settlement_billSettlement",
+					"hidden": true,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g7b5p3o12feis91199jp4j10f829b1m",
+				"pid": "1g7b5f2of1l5ova337v0pq19t6cea2dp",
+				"name": "settlementRecord",
+				"weight": 43,
+				"path": "/finance/settlement_record",
+				"redirect": null,
+				"component": "financeManage/settlementManage/billRecord",
+				"meta": {
+					"title": "提现记录",
+					"icon": "zy-hospital",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g7b5q70c3iudnj93iijk7k3seph7o28",
+				"pid": "1g7b4oc7k2bqn3h2m7dg8412mnm0ee1f",
+				"name": "reviewManage",
+				"weight": 44,
+				"path": "/finance/review",
+				"redirect": null,
+				"component": null,
+				"meta": {
+					"title": "审批管理",
+					"icon": "zy-review",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1gm2uo8028h0spf2j4bmpp193erfc3ut",
+				"pid": "1g7b5f2of1l5ova337v0pq19t6cea2dp",
+				"name": "transferRecord",
+				"weight": 44,
+				"path": "/finance/transfer_record",
+				"redirect": "",
+				"component": "financeManage/transferAccountsRecord/billRecord",
+				"meta": {
+					"title": "转账记录",
+					"icon": "mryu-setting",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g7b5r3jocdk1g92727bnn2em13lv31f",
+				"pid": "1g7b5q70c3iudnj93iijk7k3seph7o28",
+				"name": "refund",
+				"weight": 45,
+				"path": "/finance/refund",
+				"redirect": null,
+				"component": "financeManage/reviewManage",
+				"meta": {
+					"title": "退款审批",
+					"icon": "zy-refund",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g7b5ri3lfnue0lpob44m3dqaj8q35t6",
+				"pid": "1g7b5q70c3iudnj93iijk7k3seph7o28",
+				"name": "refundDetails",
+				"weight": 46,
+				"path": "/finance/refundDetails",
+				"redirect": null,
+				"component": "financeManage/reviewManage/details",
+				"meta": {
+					"title": "审批详情",
+					"icon": "",
+					"affix": null,
+					"type": "menu",
+					"active": "/finance/refund",
+					"hidden": true,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g7b4oudl16svmdq20gqmli3sfquk819",
+				"pid": "0",
+				"name": "drug",
+				"weight": 47,
+				"path": "/drug",
+				"redirect": "/drug/basicInfo",
+				"component": null,
+				"meta": {
+					"title": "药事服务",
+					"icon": "zy-serv-pack",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1ga2mufsqfci76o3h5hpes1k4jaib236",
+				"pid": "1g7b4oc7k2bqn3h2m7dg8412mnm0ee1f",
+				"name": "financeSettings",
+				"weight": 47,
+				"path": "/finance/settings",
+				"redirect": "",
+				"component": "",
+				"meta": {
+					"title": "设置",
+					"icon": "mryu-setting",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g7b5saec2fhgi882d6tcck2rj84bo1u",
+				"pid": "1g7b4oudl16svmdq20gqmli3sfquk819",
+				"name": "basicInfo",
+				"weight": 48,
+				"path": "/drug/basicInfo",
+				"redirect": "/drug/basicInfo/drugDict",
+				"component": null,
+				"meta": {
+					"title": "基础信息管理",
+					"icon": "zy-businessList",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1ga2mvm3g26t1h3d2ibie9p2l2rsjq2q",
+				"pid": "1ga2mufsqfci76o3h5hpes1k4jaib236",
+				"name": "restriction",
+				"weight": 48,
+				"path": "/finance/restriction",
+				"redirect": "",
+				"component": "financeManage/settingsManage",
+				"meta": {
+					"title": "钱包限制类型",
+					"icon": "mryu-restriction",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1gkunqsl13s310ua2cem409hd6ll01tv",
+				"pid": "0",
+				"name": "/covid",
+				"weight": 48,
+				"path": "",
+				"redirect": "/covid/teachManage",
+				"component": "",
+				"meta": {
+					"title": "新冠卫士",
+					"icon": "zy-serv",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g7b5srabdpgjq72qfqn7j2afqu3s20i",
+				"pid": "1g7b5saec2fhgi882d6tcck2rj84bo1u",
+				"name": "drugDict",
+				"weight": 49,
+				"path": "/drug/basicInfo/drugDict",
+				"redirect": null,
+				"component": "drug/basicInfo/drugDict",
+				"meta": {
+					"title": "药品字典管理",
+					"icon": "zy-yihu",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1gf4su0pdijnvmq2i76np51ue6nbq3ls",
+				"pid": "1g7b4oudl16svmdq20gqmli3sfquk819",
+				"name": "hpPmInfo",
+				"weight": 49,
+				"path": "/drug/hpPmInfo",
+				"redirect": "/drug/hpPmInfo/hospital",
+				"component": "",
+				"meta": {
+					"title": "医院/药店信息管理",
+					"icon": "zy-platform",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g7b5tc8u3j18p562kkfnqo148tm8f1h",
+				"pid": "1g7b4oudl16svmdq20gqmli3sfquk819",
+				"name": "operating",
+				"weight": 50,
+				"path": "/drug/operating",
+				"redirect": "/drug/operating/order",
+				"component": null,
+				"meta": {
+					"title": "运营管理",
+					"icon": "zy-platform",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g7b5tpj220o1rn2uoo6q93qr12jj25e",
+				"pid": "1g7b5tc8u3j18p562kkfnqo148tm8f1h",
+				"name": "order",
+				"weight": 51,
+				"path": "/drug/operating/order",
+				"redirect": null,
+				"component": "drug/operating/order",
+				"meta": {
+					"title": "药品订单管理",
+					"icon": "zy-orders",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g8q1rao42cf6a7d42cfp21qh61rt1th",
+				"pid": "1g7b4oudl16svmdq20gqmli3sfquk819",
+				"name": "payCheck",
+				"weight": 51,
+				"path": "/drug/payCheck",
+				"redirect": "/drug/payCheck/billWater",
+				"component": "",
+				"meta": {
+					"title": "支付对账",
+					"icon": "zy-cash",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g7b5uamfjoub9s2pkfdqm3v4vui0phq",
+				"pid": "1g7b5tc8u3j18p562kkfnqo148tm8f1h",
+				"name": "drugSales",
+				"weight": 52,
+				"path": "/drug/operating/drugSales",
+				"redirect": null,
+				"component": "drug/operating/drugSales",
+				"meta": {
+					"title": "药品销量查看",
+					"icon": "zy-scheme",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g7b4pbf83q1s3k636kjma13ec0cpf1e",
+				"pid": "0",
+				"name": "setting",
+				"weight": 53,
+				"path": "/setting",
+				"redirect": null,
+				"component": null,
+				"meta": {
+					"title": "配置",
+					"icon": "zy-system",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g7b61e2g2lirue03tktu3r20jahgf2s",
+				"pid": "1g7b4pbf83q1s3k636kjma13ec0cpf1e",
+				"name": "sysUserList",
+				"weight": 54,
+				"path": "/setting/user",
+				"redirect": null,
+				"component": "setting/user",
+				"meta": {
+					"title": "账号管理",
+					"icon": "zy-users",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": [
+					{ "label": "获取系统用户列表", "method": "post", "api": "/nethos/admin/sysUser/page" },
+					{ "label": "新增系统用户", "method": "post", "api": "/nethos/admin/sysUser" },
+					{ "label": "编辑系统用户", "method": "put", "api": "/nethos/admin/sysUser" },
+					{ "label": "删除系统用户", "method": "delete", "api": "/nethos/admin/sysUser/remove" },
+					{ "label": "系统用户详情", "method": "get", "api": "/nethos/admin/sysUser/detail/*" },
+					{ "label": "获取部门列表", "method": "get", "api": "/nethos/admin/sysDept/all" },
+					{ "label": "获取角色列表", "method": "post", "api": "/nethos/admin/role/page" },
+					{ "label": "获取医院列表", "method": "post", "api": "/nethos/admin/organization/page" },
+					{ "label": "重置密码", "method": "put", "api": "/nethos/admin/sysUser/resetPwd/*" }
+				]
+			},
+			{
+				"id": "1g7b61sv92od311u2qgqv4544k5f51ib",
+				"pid": "1g7b4pbf83q1s3k636kjma13ec0cpf1e",
+				"name": "sysDep",
+				"weight": 55,
+				"path": "/setting/dep",
+				"redirect": null,
+				"component": "setting/dep",
+				"meta": {
+					"title": "部门管理",
+					"icon": "zy-dep",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": [
+					{ "label": "获取部门列表", "method": "get", "api": "/nethos/admin/sysDept/all" },
+					{ "label": "新增、编辑部门", "method": "post", "api": "/nethos/admin/sysDept" },
+					{ "label": "删除部门", "method": "delete", "api": "/nethos/admin/sysDept/*" }
+				]
+			},
+			{
+				"id": "1gits9baf3ecu8ea1lqi8q2a7kgra2v1",
+				"pid": "1gits3p5p250p5262qpsfvf3e59ocabr",
+				"name": "servicePackRecommend",
+				"weight": 55,
+				"path": "/service/pack_recommend",
+				"redirect": "",
+				"component": "serviceManage/servicePackRecommend",
+				"meta": {
+					"title": "已购订单推荐服务",
+					"icon": "zy-patientsList",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": [
+					{ "label": "获取推荐列表", "method": "post", "api": "/nethos/admin/serveCombo/recommend/rule/page" },
+					{ "label": "获取规则详情", "method": "get", "api": "/nethos/admin/serveCombo/recommend/rule/detail/*" },
+					{ "label": "获取服务包下面的医护", "method": "get", "api": "/nethos/admin/serve/combo/teamAndDoctorInfoById/*" },
+					{ "label": "新增推荐规则", "method": "post", "api": "/nethos/admin/serveCombo/recommend/rule" },
+					{ "label": "删除推荐规则", "method": "delete", "api": "/nethos/admin/serveCombo/recommend/rule/*" }
+				]
+			},
+			{
+				"id": "1g7b62bsh1r0qm0l24hr1r4vo018k2to",
+				"pid": "1g7b4pbf83q1s3k636kjma13ec0cpf1e",
+				"name": "sysRole",
+				"weight": 56,
+				"path": "/setting/role",
+				"redirect": null,
+				"component": "setting/role",
+				"meta": {
+					"title": "角色管理",
+					"icon": "zy-role",
+					"affix": null,
+					"type": "menu",
+					"active": "",
+					"hidden": null,
+					"hiddenBreadcrumb": null
+				},
+				"apiPermissions": [
+					{ "label": "获取角色列表", "method": "post", "api": "/nethos/admin/role/page" },
+					{ "label": "新增、编辑角色", "method": "post", "api": "/nethos/admin/role" },
+					{ "label": "删除角色", "method": "delete", "api": "/nethos/admin/role/*" },
+					{ "label": "权限配置", "method": "post", "api": "/nethos/admin/role/permission" }
+				]
+			},
+			{
+				"id": "1gj0kg7ac19fsu2l3cl64neicqjml344",
+				"pid": "1gj0kcc1cagni1c190s7tb3orcbhq3sd",
+				"name": "PurchaseAdvance",
+				"weight": 56,
+				"path": "/service/purchase_advance",
+				"redirect": "",
+				"component": "serviceManage/servicePurchaseAdvance",
+				"meta": {
+					"title": "服务预购白名单",
+					"icon": "zy-evalList",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": [
+					{ "label": "分页查询预购白名单", "method": "post", "api": "/nethos/admin/preorder/page" },
+					{ "label": "保存", "method": "post", "api": "/nethos/admin/preorder/save" },
+					{ "label": "批量保存", "method": "post", "api": "/nethos/admin/preorder/batchSave" }
+				]
+			},
+			{
+				"id": "1g7b62v433ruv1hk3ousbf9k74r9r16n",
+				"pid": "1g7b4pbf83q1s3k636kjma13ec0cpf1e",
+				"name": "settingMenu",
+				"weight": 57,
+				"path": "/setting/menu",
+				"redirect": null,
+				"component": "setting/menu",
+				"meta": {
+					"title": "菜单管理",
+					"icon": "zy-menu",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": [
+					{ "label": "获取菜单列表", "method": "get", "api": "/nethos/admin/menu/all" },
+					{ "label": "新增菜单", "method": "post", "api": "/nethos/admin/menu" },
+					{ "label": "编辑菜单", "method": "put", "api": "/nethos/admin/menu" },
+					{ "label": "删除菜单", "method": "delete", "api": "/nethos/admin/menu" }
+				]
+			},
+			{
+				"id": "1giufdnav17io2la31kmq49uvngfvl7u",
+				"pid": "1gits3p5p250p5262qpsfvf3e59ocabr",
+				"name": "serviceHomeRecommend",
+				"weight": 57,
+				"path": "/service/home_recommend",
+				"redirect": "",
+				"component": "serviceManage/serviceHomeRecommend",
+				"meta": {
+					"title": "首页服务推荐",
+					"icon": "zy-orders",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g8vagmml3afeivq384qvec2b7qpnc2l",
+				"pid": "1g7b4pbf83q1s3k636kjma13ec0cpf1e",
+				"name": "theLog",
+				"weight": 58,
+				"path": "/setting/theLog",
+				"redirect": "/setting/log/operationLog",
+				"component": "",
+				"meta": {
+					"title": "日志管理",
+					"icon": "zy-water-subsidiary",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": null
+			},
+			{
+				"id": "1g8vaqjtu1d3n9i0kfu5281kuq83uvu0",
+				"pid": "1g8vagmml3afeivq384qvec2b7qpnc2l",
+				"name": "operationLog",
+				"weight": 58,
+				"path": "/setting/operationLog",
+				"redirect": "",
+				"component": "setting/log/operationLog",
+				"meta": {
+					"title": "操作日志",
+					"icon": "zy-water-subsidiary",
+					"affix": false,
+					"type": "menu",
+					"active": "",
+					"hidden": false,
+					"hiddenBreadcrumb": false
+				},
+				"apiPermissions": [{ "label": "获取分页操作日志", "method": "post", "api": "/nethos/admin/sysLog/page" }]
+			}
+		],
+		"permissions": ["user:add:btn", "user:edit:btn", "user:del:btn", "user:reset:btn"]
+	},
+	"traceId": "1862f1251114c83860844257",
+	"ok": true
+}

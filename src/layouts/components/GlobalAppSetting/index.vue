@@ -145,10 +145,6 @@
 				<el-switch v-model="settings.tab.visible" />
 			</div>
 			<div v-if="settingsStore.mode === 'pc'" class="setting-item">
-				<div class="label">多页签是否缓存</div>
-				<el-switch v-model="settings.tab.isCache" />
-			</div>
-			<div v-if="settingsStore.mode === 'pc'" class="setting-item">
 				<div class="label">多页签风格</div>
 				<el-select v-model="settings.tab.mode" class="w-1/2" placeholder="请选择">
 					<el-option v-for="item in settings.tab.modeList" :key="item.value" :label="item.label" :value="item.value" />
@@ -189,11 +185,11 @@
 						</el-icon>
 					</el-tooltip>
 				</div>
-				<el-switch v-model="settings.dashboard.enable" />
+				<el-switch v-model="settings.home.enable" />
 			</div>
 			<div class="setting-item">
 				<div class="label">控制台名称</div>
-				<el-input v-model="settings.dashboard.title" size="small" />
+				<el-input v-model="settings.home.title" size="small" />
 			</div>
 			<el-divider>其它</el-divider>
 			<div class="setting-item">
@@ -260,7 +256,6 @@ import { ElMessage } from 'element-plus';
 import useSettingsStore from '@/store/modules/settings';
 import useMenuStore from '@/store/modules/menu';
 import globalSettingsDefault from '@/settings.default';
-import { useTheme } from '@/hooks/useTheme';
 
 const route = useRoute();
 

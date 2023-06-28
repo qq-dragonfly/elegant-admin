@@ -30,7 +30,7 @@
 							<svg-icon name="ep:bottom-left" />
 						</el-icon>
 						<el-icon v-else class="el-dialog__close">
-							<svg-icon name="ele_fullscreen" />
+							<svg-icon name="local-fullscreen" />
 						</el-icon>
 					</button>
 					<button v-if="showClose" aria-label="close" type="button" @click="closeDialog">
@@ -122,7 +122,7 @@ const setFullscreen = () => {
 	overflow: hidden;
 }
 .pro-dialog:deep(.dialogClass) .el-dialog__body {
-	max-height: 80vh;
+	max-height: 74vh;
 	overflow-y: auto;
 }
 .pro-dialog:deep(.el-dialog).is-fullscreen .el-dialog__footer {

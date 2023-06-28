@@ -1,52 +1,77 @@
 <template>
-	<ProDialog :title="`${drawerProps.title}用户`" width="75%" v-model="drawerVisible" :destroy-on-close="true" size="450px">
+	<ProDialog
+		:title="`${infoProps.title}用户`"
+		minWidth="600px"
+		width="75%"
+		v-model="dialogVisible"
+		:destroy-on-close="true"
+		size="450px"
+	>
 		<el-form
 			ref="ruleFormRef"
 			label-width="140px"
 			label-suffix=" :"
 			:rules="rules"
-			:model="drawerProps.rowData"
-			:hide-required-asterisk="drawerProps.isView"
+			:model="infoProps.rowData"
+			:hide-required-asterisk="infoProps.isView"
 		>
-			<div class="flex flex-wrap">
-				<el-form-item label="用户头像头像" prop="avatar">
-					<el-input></el-input>
+			<div class="flex flex-wrap justify-center grid grid-cols-2">
+				<el-form-item label="登录账号(手机号)" prop="phone">
+					<el-input v-model="infoProps.rowData.phone" clearable placeholder="请输入登录账号"></el-input>
 				</el-form-item>
-				<el-form-item label="用户头像" prop="avatar">
-					<el-input></el-input>
+				<el-form-item label="用户姓名" prop="name">
+					<el-input v-model="infoProps.rowData.name" clearable placeholder="请输入用户姓名" />
 				</el-form-item>
-				<el-form-item label="用户头像" prop="avatar">
-					<el-input></el-input>
+				<el-form-item label="状态" prop="openStatus">
+					<el-switch
+						v-model="infoProps.rowData.openStatus"
+						active-value="OPEN"
+						inactive-value="CLOSE"
+						inline-prompt
+						:active-icon="Check"
+						:inactive-icon="Close"
+					/>
 				</el-form-item>
-				<el-form-item label="用户头像" prop="avatar">
-					<el-input></el-input>
-				</el-form-item>
-				<el-form-item class="col-span-2" label="用户账号" prop="avatar">
-					<el-input v-model="drawerProps.rowData.name" placeholder="请输入用户账号" />
-				</el-form-item>
-				<el-form-item label="用户角色" prop="role">
+				<el-form-item label="关联角色" prop="roleIdList">
 					<pro-table-select
-						v-model="drawerProps.rowData.role"
-						:disabled="drawerProps.isView"
+						v-model="infoProps.rowData.roleIdList"
+						:disabled="infoProps.isView"
 						:params="params"
-						:request-api="getSysRoleList"
-						clearable
+						:request-api="getSysRoleListApi"
+						collapseTags
+						collapseTagsTooltip
 						multiple
-						collapse-tags
-						collapse-tags-tooltip
 						:propsObj="propsObj"
-						@change-emit="handleChangeVal"
 					>
 						<template #header="{ form, submit }">
 							<el-form :inline="true" :model="form">
 								<el-form-item>
-									<el-date-picker
-										v-model="form.date"
-										value-format="YYYY-MM-DD"
-										type="date"
-										placeholder="注册时间"
-										:teleported="false"
-									></el-date-picker>
+									<el-input v-model="form.name" clearable></el-input>
+								</el-form-item>
+								<el-form-item>
+									<el-button type="primary" @click="submit">查询</el-button>
+								</el-form-item>
+							</el-form>
+						</template>
+						<el-table-column prop="name" label="名称"></el-table-column>
+						<el-table-column prop="alias" label="别名"></el-table-column>
+					</pro-table-select>
+				</el-form-item>
+				<el-form-item label="关联医护" prop="role" v-if="false">
+					<pro-table-select
+						v-model="infoProps.rowData.role"
+						:disabled="infoProps.isView"
+						:params="params"
+						:request-api="getSysRoleListApi"
+						collapseTags
+						collapseTagsTooltip
+						multiple
+						:propsObj="propsObj"
+					>
+						<template #header="{ form, submit }">
+							<el-form :inline="true" :model="form">
+								<el-form-item>
+									<el-input v-model="form.name" clearable></el-input>
 								</el-form-item>
 								<el-form-item>
 									<el-button type="primary" @click="submit">查询</el-button>
@@ -60,8 +85,8 @@
 			</div>
 		</el-form>
 		<template #footer>
-			<el-button @click="drawerVisible = false">取消</el-button>
-			<el-button type="primary" v-show="!drawerProps.isView" @click="handleSubmit">确定</el-button>
+			<el-button @click="dialogVisible = false">取消</el-button>
+			<el-button type="primary" v-show="!infoProps.isView" @click="handleSubmit">确定</el-button>
 		</template>
 	</ProDialog>
 </template>
@@ -70,18 +95,32 @@
 import { getSysUserDetailApi } from '@/api/modules/user';
 import { ref, reactive } from 'vue';
 import { ElMessage, FormInstance } from 'element-plus';
+import { Check, Close } from '@element-plus/icons-vue';
 import ProDialog from '@/components/ProDialog/index.vue';
-import { getSysRoleList } from '@/api/modules/role';
+import { getSysRoleListApi } from '@/api/modules/role';
+import { cloneDeep } from 'lodash-es';
 const params = ref({
-	name: 'name'
+	openStatus: 'OPEN'
 });
 const propsObj = ref({
 	label: 'name',
-	value: 'id',
-	keyword: 'keyword'
+	value: 'id'
 });
+const validateRole = (rule: any, value: any, callback: any) => {
+	if (!value || JSON.stringify(value) === '{}' || JSON.stringify(value) === '[]') {
+		callback(new Error('请选择角色'));
+	} else {
+		callback();
+	}
+};
 const rules = reactive({
-	role: [{ required: true, message: '请填写居住地址' }]
+	roleIdList: [
+		{
+			required: true,
+			validator: validateRole,
+			trigger: 'change' // blur 或 change 这里就不指定触发方式了，保存提交时再校验
+		}
+	]
 });
 
 interface dialogProps {
@@ -90,15 +129,17 @@ interface dialogProps {
 	rowData?: any;
 	api?: (params: any) => Promise<any>;
 	getTableList?: () => Promise<any>;
-	role?: [];
 }
 
 // drawer框状态
-const drawerVisible = ref(false);
-const drawerProps = ref<dialogProps>({
+const dialogVisible = ref(false);
+const infoProps = ref<dialogProps>({
 	isView: false,
 	title: '',
-	role: []
+	rowData: {
+		roleIdList: [],
+		openStatus: true
+	}
 });
 
 // 接收父组件传过来的参数
@@ -108,12 +149,15 @@ const acceptParams = (params: dialogProps): void => {
 		add: '新增',
 		edit: '编辑'
 	};
-	drawerProps.value = JSON.parse(JSON.stringify(params));
-	drawerProps.value.title = titleObj[params.title];
-	drawerVisible.value = true;
-	console.log('para', params.title);
+	infoProps.value = Object.assign(infoProps.value, params);
+	infoProps.value.rowData.roleIdList = [];
+	infoProps.value.title = titleObj[params.title];
+
+	dialogVisible.value = true;
 	if (params.rowData.id) {
 		getSysUserDetail(params);
+	} else {
+		infoProps.value.rowData.openStatus = true;
 	}
 };
 //
@@ -123,7 +167,8 @@ const getSysUserDetail = (row: any) => {
 	};
 	getSysUserDetailApi(para).then(res => {
 		if (res) {
-			drawerProps.value.rowData = res.data;
+			infoProps.value.rowData = res.data;
+			infoProps.value.rowData.roleIdList = res.data.roleList || [];
 		}
 	});
 };
@@ -136,20 +181,21 @@ const handleSubmit = () => {
 			return;
 		}
 		try {
-			console.log('drawerProps.value.rowData', drawerProps.value.rowData);
-			await drawerProps.value.api!(drawerProps.value.rowData);
-			ElMessage.success({ message: `${drawerProps.value.title}用户成功！` });
-			await drawerProps.value.getTableList;
-			drawerVisible.value = false;
+			const formData = cloneDeep(infoProps.value.rowData);
+			let roleIdArr: any = [];
+			formData.roleIdList.map((item: any) => {
+				roleIdArr.push(item.id);
+			});
+			formData.roleIdList = roleIdArr;
+			await infoProps.value.api!(formData);
+			ElMessage.success({ message: `${infoProps.value.title}用户成功！` });
+			await infoProps.value.getTableList!();
+			dialogVisible.value = false;
 		} catch (error) {
 			console.log(error);
 		}
 	});
 };
-//值变化
-function handleChangeVal(val: any) {
-	console.log('返回选中数据', val);
-}
 defineExpose({
 	acceptParams
 });

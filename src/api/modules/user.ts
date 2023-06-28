@@ -12,38 +12,33 @@ export const getSysUserListApi = (params: User.ReqGetUserParams) => {
 
 // * 新增用户
 export const addUserApi = (params: any) => {
-	return http.post(PORT1 + `/sysUser`, params);
+	return http.post<any>(PORT1 + `/sysUser/save`, params);
 };
 
 // * 批量添加用户
 export const BatchAddUser = (params: FormData) => {
-	return http.post(PORT1 + `/user/import`, params);
+	return http.post<any>(PORT1 + `/user/import`, params);
 };
 
 // * 编辑用户
 export const editUserApi = (params: any) => {
-	return http.put(PORT1 + `/sysUser`, params);
+	return http.put<any>(PORT1 + `/sysUser/update`, params);
 };
 // * 用户详情
 export const getSysUserDetailApi = (params: any) => {
-	return http.get(PORT1 + `/sysUser/detail/${params.id}`, params);
+	return http.get<any>(PORT1 + `/sysUser/${params.id}`, params);
 };
 // * 删除用户
-export const delSysUserApi = (params: { ids: string[] }) => {
-	return http.delete(PORT1 + `/sysUser/remove`, params);
+export const delSysUserApi = (params: { id: string }) => {
+	return http.delete<any>(PORT1 + `/sysUser/delete`, params);
 };
 
 // * 重置用户密码
 export const resetUserPassWordApi = (params: { id: string }) => {
-	return http.put(PORT1 + `/sysUser/resetPwd/${params.id}`);
+	return http.put<any>(PORT1 + `/sysUser/resetPwd/${params.id}`);
 };
 
 // * 导出用户数据
 export const exportUserInfoApi = (params: User.ReqGetUserParams) => {
 	return http.post<BlobPart>(PORT1 + `/user/export`, params, { responseType: 'blob' });
-};
-
-// * 获取用户部门列表
-export const getUserDepartment = () => {
-	return http.get<User.ResDepartment>(PORT1 + `/user/department`);
 };

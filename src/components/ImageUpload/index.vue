@@ -1,6 +1,9 @@
 <template>
 	<div class="upload-container">
 		<el-upload
+			v-loading="loading"
+			element-loading-background="rgba(0, 0, 0, 0.5)"
+			element-loading-text="上传中..."
 			:show-file-list="false"
 			:headers="headers"
 			:action="action"
@@ -9,6 +12,7 @@
 			:before-upload="beforeUpload"
 			:on-progress="onProgress"
 			:on-success="onSuccess"
+			:http-request="imageRequest"
 			drag
 			class="image-upload"
 		>
@@ -35,7 +39,7 @@
 								<svg-icon name="ep:zoom-in" />
 							</el-icon>
 						</span>
-						<span title="移除" @click.stop="remove">
+						<span title="移除" @click.stop="remove" v-if="!isRemove">
 							<el-icon>
 								<svg-icon name="ep:delete" />
 							</el-icon>
@@ -51,7 +55,7 @@
 		<div v-if="!notip" class="el-upload__tip">
 			<div style="display: inline-block">
 				<el-alert
-					:title="`上传图片支持 ${ext.join(' / ')} 格式，且图片大小不超过 ${size}MB，建议图片尺寸为 ${width}*${height}`"
+					:title="`上传图片支持 ${ext.join(' / ')} 格式，且图片大小不超过 ${size}MB`"
 					type="info"
 					show-icon
 					:closable="false"
@@ -64,11 +68,11 @@
 <script lang="ts" setup name="ImageUpload">
 import type { UploadProps } from 'element-plus';
 import { ElMessage } from 'element-plus';
+import { uploadApi } from '@/api/modules/upload';
 
 const props = defineProps({
 	action: {
-		type: String,
-		required: true
+		type: String
 	},
 	headers: {
 		type: Object,
@@ -88,7 +92,7 @@ const props = defineProps({
 	},
 	size: {
 		type: Number,
-		default: 2
+		default: 10
 	},
 	width: {
 		type: Number,
@@ -106,9 +110,13 @@ const props = defineProps({
 		type: Boolean,
 		default: false
 	},
+	isRemove: {
+		type: Boolean,
+		default: true
+	},
 	ext: {
 		type: Array,
-		default: () => ['jpg', 'png', 'gif', 'bmp']
+		default: () => ['jpg', 'png', 'gif', 'bmp', 'jpeg']
 	}
 });
 
@@ -121,7 +129,6 @@ const uploadData = ref({
 		percent: 0
 	}
 });
-
 // 预览
 function preview() {
 	uploadData.value.imageViewerVisible = true;
@@ -136,14 +143,16 @@ function remove() {
 }
 const beforeUpload: UploadProps['beforeUpload'] = file => {
 	const fileName = file.name.split('.');
-	const fileExt = fileName.at(-1);
+	const fileExt = fileName[fileName.length - 1];
 	const isTypeOk = props.ext.includes(fileExt);
 	const isSizeOk = file.size / 1024 / 1024 < props.size;
 	if (!isTypeOk) {
 		ElMessage.error(`上传图片只支持 ${props.ext.join(' / ')} 格式！`);
+		return false;
 	}
 	if (!isSizeOk) {
 		ElMessage.error(`上传图片大小不能超过 ${props.size}MB！`);
+		return false;
 	}
 	if (isTypeOk && isSizeOk) {
 		uploadData.value.progress.preview = URL.createObjectURL(file);
@@ -153,10 +162,35 @@ const beforeUpload: UploadProps['beforeUpload'] = file => {
 const onProgress: UploadProps['onProgress'] = file => {
 	uploadData.value.progress.percent = ~~file.percent;
 };
-const onSuccess: UploadProps['onSuccess'] = res => {
+const onSuccess = (url: any) => {
 	uploadData.value.progress.preview = '';
 	uploadData.value.progress.percent = 0;
-	emit('onSuccess', res);
+	if (url) {
+		emit('onSuccess', url);
+	}
+};
+const loading = ref(false);
+const imageRequest = async (options: any) => {
+	try {
+		// 上传文件
+		loading.value = true;
+		let formData = new FormData();
+		formData.append('multipartFile', options.file);
+		formData.append('type', 'IMAGE');
+		loading.value = true;
+		await uploadApi(formData).then((res: any) => {
+			if (res.code === 200) {
+				ElMessage.success('图片上传成功！');
+				options.onSuccess(res.data);
+				loading.value = false;
+			} else {
+				options.onError('上传失败');
+				loading.value = false;
+			}
+		});
+	} catch (e) {
+		options.onError('上传失败', e);
+	}
 };
 </script>
 
@@ -212,6 +246,7 @@ const onSuccess: UploadProps['onSuccess'] = res => {
 	vertical-align: top;
 }
 :deep(.el-upload) {
+	font-size: 0;
 	.el-upload-dragger {
 		display: inline-block;
 		padding: 0;

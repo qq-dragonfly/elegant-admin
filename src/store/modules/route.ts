@@ -1,11 +1,11 @@
 import { cloneDeep } from 'lodash-es';
 import useSettingsStore from './settings';
 import useUserStore from './user';
-import api from '@/api';
-import { resolveRoutePath } from '@/utils';
+import type { RouteMeta, RouteRecordRaw } from 'vue-router';
+import { resolveRoutePath, convertTree } from '@/utils';
 import { systemRoutes } from '@/router/routes';
 import type { Route } from '#/global';
-
+// 判断是否有权限
 function hasPermission(permissions: string[], route: Route.recordMainRaw | Route.recordRaw) {
 	let isAuth = false;
 	if (route.meta?.auth) {
@@ -21,15 +21,15 @@ function hasPermission(permissions: string[], route: Route.recordMainRaw | Route
 	}
 	return isAuth;
 }
-
+// 根据权限过滤路由
 function filterAsyncRoutes<T extends Route.recordMainRaw[] | Route.recordRaw[]>(routes: T, permissions: string[]): T {
 	const res: any = [];
-	routes.forEach(route => {
+	routes.forEach((route: any) => {
 		if (hasPermission(permissions, route)) {
 			const tmpRoute = cloneDeep(route);
-			if (tmpRoute.children) {
+			if (tmpRoute.children && tmpRoute.children?.length) {
 				tmpRoute.children = filterAsyncRoutes(tmpRoute.children, permissions);
-				tmpRoute.children.length && res.push(tmpRoute);
+				tmpRoute.children?.length && res.push(tmpRoute);
 			} else {
 				res.push(tmpRoute);
 			}
@@ -37,8 +37,8 @@ function filterAsyncRoutes<T extends Route.recordMainRaw[] | Route.recordRaw[]>(
 	});
 	return res;
 }
-
-function formatBackRoutes(routes: any, views = import.meta.glob('../../views/**/*.vue')): Route.recordMainRaw[] {
+// 格式化后端路由数据
+function formatBackRoutes(routes: any, views = import.meta.glob('../../views/**/*.vue')): any {
 	return routes.map((route: any) => {
 		switch (route.component) {
 			case 'Layout':
@@ -49,7 +49,7 @@ function formatBackRoutes(routes: any, views = import.meta.glob('../../views/**/
 					route.component = views[`../../views/${route.component}`];
 				}
 		}
-		if (route.children) {
+		if (route.children && route.children?.length) {
 			route.children = formatBackRoutes(route.children, views);
 		}
 		return route;
@@ -57,31 +57,34 @@ function formatBackRoutes(routes: any, views = import.meta.glob('../../views/**/
 }
 
 // 将多层嵌套路由处理成两层，保留顶层和最子层路由，中间层级将被拍平
-function flatAsyncRoutes<T extends Route.recordRaw>(routes: T): T {
-	if (routes.children) {
-		routes.children = flatAsyncRoutesRecursive(
-			routes.children,
+function flatAsyncRoutes<T extends RouteRecordRaw>(route: T): T {
+	if (route.children && route.children?.length) {
+		route.children = flatAsyncRoutesRecursive(
+			route.children,
 			[
 				{
-					path: routes.path,
-					title: routes.meta.title,
-					hide: !routes.meta.breadcrumb && routes.meta.breadcrumb === false
+					path: route.path,
+					title: route.meta?.title,
+					hide: !route.meta?.breadcrumb && route.meta?.breadcrumb === false
 				}
 			],
-			routes.path
+			route.path,
+			route.meta?.auth
 		);
 	}
-	return routes;
+	return route;
 }
 function flatAsyncRoutesRecursive(
-	routes: Route.recordRaw[],
+	routes: RouteRecordRaw[],
 	breadcrumb: Route.breadcrumb[] = [],
-	baseUrl = ''
-): Route.recordRaw[] {
-	const res: Route.recordRaw[] = [];
+	baseUrl = '',
+	baseAuth: RouteMeta['auth']
+): RouteRecordRaw[] {
+	const res: RouteRecordRaw[] = [];
 	routes.forEach(route => {
-		if (route.children) {
+		if (route.children && route.children?.length) {
 			const childrenBaseUrl = resolveRoutePath(baseUrl, route.path);
+			const childrenBaseAuth = baseAuth ?? route.meta?.auth;
 			const tmpBreadcrumb = cloneDeep(breadcrumb);
 			tmpBreadcrumb.push({
 				path: childrenBaseUrl,
@@ -91,12 +94,13 @@ function flatAsyncRoutesRecursive(
 			const tmpRoute = cloneDeep(route);
 			tmpRoute.path = childrenBaseUrl;
 			if (!tmpRoute.meta) {
-				tmpRoute.meta = { title: '' };
+				tmpRoute.meta = {};
 			}
+			tmpRoute.meta.auth = childrenBaseAuth;
 			tmpRoute.meta.breadcrumbNeste = tmpBreadcrumb;
 			delete tmpRoute.children;
 			res.push(tmpRoute);
-			const childrenRoutes = flatAsyncRoutesRecursive(route.children, tmpBreadcrumb, childrenBaseUrl);
+			const childrenRoutes = flatAsyncRoutesRecursive(route.children, tmpBreadcrumb, childrenBaseUrl, childrenBaseAuth);
 			childrenRoutes.forEach(item => {
 				// 如果 path 一样则覆盖，因为子路由的 path 可能设置为空，导致和父路由一样，直接注册会提示路由重复
 				if (res.some(v => v.path === item.path)) {
@@ -120,8 +124,9 @@ function flatAsyncRoutesRecursive(
 				hide: !tmpRoute.meta?.breadcrumb && tmpRoute.meta?.breadcrumb === false
 			});
 			if (!tmpRoute.meta) {
-				tmpRoute.meta = { title: '' };
+				tmpRoute.meta = {};
 			}
+			tmpRoute.meta.auth = baseAuth ?? tmpRoute.meta?.auth;
 			tmpRoute.meta.breadcrumbNeste = tmpBreadcrumb;
 			res.push(tmpRoute);
 		}
@@ -143,16 +148,16 @@ const useRouteStore = defineStore(
 			flatRoutes: state => {
 				const routes: Route.recordRaw[] = [];
 				if (state.routes) {
-					state.routes.forEach(item => {
+					state.routes.forEach((item: any) => {
 						routes.push(...cloneDeep(item.children));
 					});
-					routes.forEach(item => flatAsyncRoutes(item));
+					routes.forEach((item: any) => flatAsyncRoutes(item));
 				}
 				return routes;
 			},
 			flatSystemRoutes: () => {
 				const routes = [...systemRoutes];
-				routes.forEach(item => flatAsyncRoutes(item));
+				routes.forEach((item: any) => flatAsyncRoutes(item));
 				return routes;
 			}
 		},
@@ -173,34 +178,30 @@ const useRouteStore = defineStore(
 					}
 					// 设置 routes 数据
 					this.isGenerate = true;
-					this.routes = accessedRoutes.filter(item => item.children?.length !== 0);
+					this.routes = accessedRoutes.filter((item: any) => item.children?.length !== 0);
 					resolve();
 				});
 			},
 			// 根据权限动态生成路由（后端获取）
 			generateRoutesAtBack() {
-				return new Promise<void>(resolve => {
-					api
-						.get('route/list', {
-							baseURL: '/mock/'
-						})
-						.then(async res => {
-							const settingsStore = useSettingsStore();
-							const userStore = useUserStore();
-							const asyncRoutes = formatBackRoutes(res.data);
-							let accessedRoutes;
-							// 如果权限功能开启，则需要对路由数据进行筛选过滤
-							if (settingsStore.app.enablePermission) {
-								const permissions = await userStore.getPermissions();
-								accessedRoutes = filterAsyncRoutes(asyncRoutes, permissions);
-							} else {
-								accessedRoutes = cloneDeep(asyncRoutes);
-							}
-							// 设置 routes 数据
-							this.isGenerate = true;
-							this.routes = accessedRoutes.filter(item => item.children.length !== 0);
-							resolve();
-						});
+				return new Promise<void>(async resolve => {
+					const settingsStore = useSettingsStore();
+					const userStore = useUserStore();
+					const permissionsData: any = await userStore.getPermissions();
+					const menuList = convertTree(permissionsData.menuList);
+					const asyncRoutes = formatBackRoutes(menuList);
+					let accessedRoutes;
+					// 如果权限功能开启，则需要对路由数据进行筛选过滤
+					if (settingsStore.app.enablePermission) {
+						// accessedRoutes = filterAsyncRoutes(asyncRoutes, permissionsData.permissions);
+						accessedRoutes = cloneDeep(asyncRoutes);
+					} else {
+						accessedRoutes = cloneDeep(asyncRoutes);
+					}
+					// 设置 routes 数据
+					this.isGenerate = true;
+					this.routes = accessedRoutes.filter((item: any) => item.children?.length !== 0);
+					resolve();
 				});
 			},
 			// 记录 accessRoutes 路由，用于登出时删除路由
@@ -211,7 +212,7 @@ const useRouteStore = defineStore(
 			removeRoutes() {
 				this.isGenerate = false;
 				this.routes = [];
-				this.currentRemoveRoutes.forEach(removeRoute => {
+				this.currentRemoveRoutes.forEach((removeRoute: any) => {
 					removeRoute();
 				});
 				this.currentRemoveRoutes = [];

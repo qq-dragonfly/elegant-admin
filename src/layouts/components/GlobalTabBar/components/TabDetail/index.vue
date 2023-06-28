@@ -31,7 +31,6 @@
 </template>
 
 <script setup lang="ts" name="TabDetail">
-import { useDeviceInfo } from '@/utils/composables/useDeviceInfo';
 import { useElementBounding } from '@vueuse/core';
 import { computed, nextTick, reactive, ref, watch } from 'vue';
 import BetterScroll from '@/components/BetterScroll/BetterScroll.vue';

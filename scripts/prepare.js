@@ -8,5 +8,4 @@ async function prepare() {
 	await fs.emptyDir(outputDir);
 	await fs.writeJSON(path.resolve(outputDir, 'icons.json'), icons);
 }
-
 prepare();

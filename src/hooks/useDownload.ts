@@ -29,9 +29,9 @@ export const useDownload = async (
 		const res = await api(params);
 		// 这个地方的 type，经测试不传也没事，因为会自动识别文件类型
 		// const blob = new Blob([res], {
-		// 	type: "application/vnd.ms-excel;charset=UTF-8"
+		// 	type: 'application/vnd.ms-excel;charset=UTF-8'
 		// });
-		const blob = new Blob([res]);
+		const blob = new Blob([res.data.records]);
 		// 兼容edge不支持createObjectURL方法
 		const nav = window.navigator as any;
 		if (nav.msSaveOrOpenBlob) {

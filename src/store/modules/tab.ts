@@ -1,23 +1,18 @@
-import type { RouteLocationNormalizedLoaded, Router } from 'vue-router';
 import { defineStore } from 'pinia';
-import { useRouterPush } from '@/utils/composables/useRouter';
-import useSettingsStore from '@/store/modules/settings';
-import type { GlobalTabRoute } from '#/global';
 import {
 	clearTabRoutes,
 	getIndexInTabRoutes,
 	getIndexInTabRoutesByRouteName,
 	getTabRouteByVueRoute,
-	getTabRoutes,
-	isInTabRoutes,
-	setTabRoutes
+	isInTabRoutes
 } from '@/utils/tabHelpers';
+import useSettingsStore from '@/store/modules/settings';
 
 interface TabState {
 	/** 多页签数据 */
-	tabs: GlobalTabRoute[];
+	tabs: any;
 	/** 多页签首页 */
-	homeTab: GlobalTabRoute;
+	homeTab: any;
 	/** 当前激活状态的页签(路由fullPath) */
 	activeTab: string;
 }
@@ -29,8 +24,8 @@ export const useTabStore = defineStore('tab-store', {
 			name: 'dashboard',
 			fullPath: '/dashboard',
 			meta: {
-				title: useSettingsStore().dashboard.title,
-				icon: 'ele_home'
+				title: useSettingsStore().home.title,
+				icon: 'local-home'
 			},
 			scrollPosition: {
 				left: 0,
@@ -43,7 +38,7 @@ export const useTabStore = defineStore('tab-store', {
 		/** 当前激活状态的页签索引 */
 		activeTabIndex(state) {
 			const { tabs, activeTab } = state;
-			return tabs.findIndex(tab => tab.fullPath === activeTab);
+			return tabs.findIndex((tab: any) => tab.fullPath === activeTab);
 		}
 	},
 	actions: {
@@ -51,10 +46,6 @@ export const useTabStore = defineStore('tab-store', {
 		resetTabStore() {
 			clearTabRoutes();
 			this.$reset();
-		},
-		/** 缓存页签路由数据 */
-		cacheTabRoutes() {
-			setTabRoutes(this.tabs);
 		},
 		/**
 		 * 设置当前路由对应的页签为激活状态
@@ -68,30 +59,17 @@ export const useTabStore = defineStore('tab-store', {
 		 * @param title - tab名称
 		 */
 		setActiveTabTitle(title: string) {
-			const item = this.tabs.find(tab => tab.fullPath === this.activeTab);
+			const item: any = this.tabs.find((tab: any) => tab.fullPath === this.activeTab);
 			if (item) {
 				item.meta.title = title;
-			}
-		},
-		/**
-		 * 初始化首页页签路由
-		 * @param routeHomeName - 路由首页的name
-		 * @param router - 路由实例
-		 */
-		initHomeTab(routeHomeName: string, router: Router) {
-			const routes = router.getRoutes();
-			const findHome = routes.find(item => item.name === routeHomeName);
-			if (findHome && !findHome.children.length) {
-				// 有子路由的不能作为Tab
-				this.homeTab = getTabRouteByVueRoute(findHome);
 			}
 		},
 		/**
 		 * 添加多页签
 		 * @param route - 路由
 		 */
-		addTab(route: RouteLocationNormalizedLoaded) {
-			const tab = getTabRouteByVueRoute(route);
+		addTab(route: any) {
+			const tab: any = getTabRouteByVueRoute(route);
 			if (isInTabRoutes(this.tabs, tab.fullPath)) {
 				return;
 			}
@@ -120,7 +98,7 @@ export const useTabStore = defineStore('tab-store', {
 			const { routerPush } = useRouterPush(false);
 
 			const isActive = this.activeTab === fullPath;
-			const updateTabs = this.tabs.filter(tab => tab.fullPath !== fullPath);
+			const updateTabs = this.tabs.filter((tab: any) => tab.fullPath !== fullPath);
 			this.tabs = updateTabs;
 			if (isActive && updateTabs.length) {
 				const activePath = updateTabs[updateTabs.length - 1].fullPath;
@@ -138,7 +116,7 @@ export const useTabStore = defineStore('tab-store', {
 			const homePath = this.homeTab.fullPath;
 			const remain = [homePath, ...excludes];
 			const hasActive = remain.includes(this.activeTab);
-			const updateTabs = this.tabs.filter(tab => remain.includes(tab.fullPath));
+			const updateTabs = this.tabs.filter((tab: any) => remain.includes(tab.fullPath));
 			this.tabs = updateTabs;
 			if (!hasActive && updateTabs.length) {
 				const activePath = updateTabs[updateTabs.length - 1].fullPath;
@@ -153,7 +131,7 @@ export const useTabStore = defineStore('tab-store', {
 		clearLeftTab(fullPath: string) {
 			const index = getIndexInTabRoutes(this.tabs, fullPath);
 			if (index > -1) {
-				const excludes = this.tabs.slice(index).map(item => item.fullPath);
+				const excludes = this.tabs.slice(index).map((item: any) => item.fullPath);
 				this.clearTab(excludes);
 			}
 		},
@@ -164,7 +142,7 @@ export const useTabStore = defineStore('tab-store', {
 		clearRightTab(fullPath: string) {
 			const index = getIndexInTabRoutes(this.tabs, fullPath);
 			if (index > -1) {
-				const excludes = this.tabs.slice(0, index + 1).map(item => item.fullPath);
+				const excludes = this.tabs.slice(0, index + 1).map((item: any) => item.fullPath);
 				this.clearTab(excludes);
 			}
 		},
@@ -211,15 +189,12 @@ export const useTabStore = defineStore('tab-store', {
 			return position;
 		},
 		/** 初始化Tab状态 */
-		iniTabStore(currentRoute: RouteLocationNormalizedLoaded) {
-			const settingStore = useSettingsStore();
-			const tabs: GlobalTabRoute[] = settingStore.tab.isCache ? getTabRoutes() : [];
-
+		iniTabStore(currentRoute: any) {
+			const tabs: any = [];
 			const hasHome = getIndexInTabRoutesByRouteName(tabs, this.homeTab.name as string) > -1;
-			if (!hasHome && this.homeTab.name !== 'root') {
+			if (!hasHome && this.homeTab.name === 'dashboard') {
 				tabs.unshift(this.homeTab);
 			}
-
 			const isHome = currentRoute.fullPath === this.homeTab.fullPath;
 			const index = getIndexInTabRoutesByRouteName(tabs, currentRoute.name as string);
 			if (!isHome) {
@@ -237,7 +212,6 @@ export const useTabStore = defineStore('tab-store', {
 					}
 				}
 			}
-
 			this.tabs = tabs;
 			this.setActiveTab(currentRoute.fullPath);
 		}

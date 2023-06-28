@@ -53,33 +53,33 @@ const options = computed<Option[]>(() => {
 			label: '重新加载',
 			key: 'reload-current',
 			disabled: props.currentPath !== tab.activeTab,
-			icon: 'ele_refresh'
+			icon: 'local-refresh'
 		},
 		{
 			label: '关闭',
 			key: 'close-current',
 			disabled: props.currentPath === tab.homeTab.fullPath,
-			icon: 'ele_close_outlined'
+			icon: 'local-close_outlined'
 		},
 		{
 			label: '关闭其他',
 			key: 'close-other',
-			icon: 'ele_column_width'
+			icon: 'local-column_width'
 		},
 		{
 			label: '关闭左侧',
 			key: 'close-left',
-			icon: 'ele_horizontal_align_left'
+			icon: 'local-horizontal_align_left'
 		},
 		{
 			label: '关闭右侧',
 			key: 'close-right',
-			icon: 'ele_horizontal-align-right'
+			icon: 'local-horizontal-align-right'
 		},
 		{
 			label: '关闭所有',
 			key: 'close-all',
-			icon: 'ele_line'
+			icon: 'local-close_all'
 		}
 	];
 });

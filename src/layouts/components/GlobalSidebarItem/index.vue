@@ -55,7 +55,7 @@ const props = defineProps({
 
 const hasChildren = computed(() => {
 	let flag = true;
-	if (props.item.children) {
+	if (props.item.children && props.item?.children?.length) {
 		if (props.item.children.every(item => item.meta.sidebar === false)) {
 			flag = false;
 		}

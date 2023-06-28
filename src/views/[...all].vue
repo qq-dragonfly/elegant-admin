@@ -28,7 +28,7 @@ function goBack() {
 
 <template>
 	<div class="notfound">
-		<svg-icon name="404" class="icon" />
+		<svg-icon name="local-404" class="icon" />
 		<div class="content">
 			<h1>404</h1>
 			<div class="desc">抱歉，你访问的页面不存在</div>

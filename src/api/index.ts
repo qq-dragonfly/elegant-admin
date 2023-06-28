@@ -1,11 +1,41 @@
+/*
+ *    ┏┓　　　┏┓
+ *  ┏┛┻━━━┛┻┓
+ *  ┃　　　　　　　┃
+ *  ┃　　　━　   ┃
+ *  ┃　＞　　　＜　┃
+ *  ┃　　　　　　　┃
+ *  ┃...　⌒　...　┃
+ *  ┃　　　　　　　┃
+ *  ┗━┓　　　  ┏━┛
+ *      ┃　　　┃
+ *      ┃　　　┃
+ *      ┃　　　┃
+ *      ┃　　　┃  神兽保佑
+ *      ┃　　　┃  代码无bug
+ *      ┃　　　┃
+ *      ┃　　　┗━━━┓
+ *      ┃　　　　　　　┣┓
+ *      ┃　　　　　　　┏┛
+ *      ┗┓┓┏━┳┓┏┛
+ *        ┃┫┫　┃┫┫
+ *        ┗┻┛　┗┻┛
+ *
+ * @Description:axios封装
+ * @version:
+ * @Date: 2023-02-07
+ * @LastEditors: 97972619@qq.com
+ * @LastEditTime:
+ * @Author: 97972619@qq.com
+ */
 import { getSession, removeSession } from '@/utils/storage';
 import axios, { AxiosInstance, AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { showFullScreenLoading, tryHideFullScreenLoading } from '@/api/config/serviceLoading';
-import { AxiosCanceler } from './helper/axiosCancel';
+// import { AxiosCanceler } from './helper/axiosCancel'; //取消重复请求暂时没用到
 import { ResultData } from '@/api/interface';
 import { ResultEnum } from '@/enums/httpEnum';
 import { checkStatus } from './helper/checkStatus';
-import { ElMessage } from 'element-plus';
+import { ElMessage, ElMessageBox } from 'element-plus';
 import useUserStore from '@/store/modules/user';
 import router from '@/router';
 
@@ -16,9 +46,10 @@ const toLogin = () => {
 			redirect: router.currentRoute.value.path !== '/login' ? router.currentRoute.value.fullPath : undefined
 		}
 	});
+	window.location.reload();
 };
-const TOKEN_NAME = 'x-token';
-const axiosCanceler = new AxiosCanceler();
+const TOKEN_NAME = 'Authorization';
+// const axiosCanceler = new AxiosCanceler();
 
 const config = {
 	// 默认地址请求地址，可在 .env 开头文件中修改
@@ -44,7 +75,7 @@ class RequestHttp {
 			(config: any) => {
 				const userStore = useUserStore();
 				// * 将当前请求添加到 pending 中
-				axiosCanceler.addPending(config);
+				// axiosCanceler.addPending(config);
 				// * 如果当前请求不需要显示 loading,在 api 服务中通过指定的第三个参数: { headers: { noLoading: true } }来控制不显示loading，参见loginApi
 				config.headers!.noLoading || showFullScreenLoading();
 				const token: string = userStore.token;
@@ -54,11 +85,11 @@ class RequestHttp {
 						config.headers[TOKEN_NAME] = token;
 					}
 					if (passwordKey) {
-						config.headers['passwordKey'] = passwordKey;
+						config.headers['codeKey'] = passwordKey;
 						removeSession('psKey');
 					}
 				}
-				return { ...config };
+				return config;
 			},
 			(error: AxiosError) => {
 				return Promise.reject(error);
@@ -70,22 +101,29 @@ class RequestHttp {
 		 *  服务器换返回信息 -> [拦截统一处理] -> 客户端JS获取到信息
 		 */
 		this.service.interceptors.response.use(
-			(response: AxiosResponse) => {
-				const { data, config } = response;
+			async (response: AxiosResponse) => {
+				const { data } = response;
 				const userStore = useUserStore();
 				// * 在请求结束后，移除本次请求，并关闭请求 loading
-				axiosCanceler.removePending(config);
+				// axiosCanceler.removePending(config);
 				tryHideFullScreenLoading();
-				// * 登陆失效（code == 401）
+				// * 登陆失效（code == 104）
 				if (data.code == ResultEnum.OVERDUE) {
-					ElMessage.error(data.msg);
-					userStore.logout();
-					toLogin();
+					ElMessageBox.confirm(`您已经登出，您可以取消留在此页面，或者重新登录!`, '登录失效', {
+						confirmButtonText: '重新登录',
+						cancelButtonText: '取消',
+						type: 'warning'
+					})
+						.then(async () => {
+							await userStore.logout();
+							toLogin();
+						})
+						.catch(() => {});
 					return Promise.reject(data);
 				}
 				// * 全局错误信息拦截（防止下载文件得时候返回数据流，没有code，直接报错）
 				if (data.code && data.code !== ResultEnum.SUCCESS) {
-					ElMessage.error(data.msg);
+					ElMessage.error(data.message);
 					return Promise.reject(data);
 				}
 				// * 成功请求（在页面上除非特殊情况，否则不用处理失败逻辑）
@@ -122,7 +160,7 @@ class RequestHttp {
 		return this.service.put(url, params, _object);
 	}
 	delete<T>(url: string, params?: any, _object = {}): Promise<ResultData<T>> {
-		return this.service.delete(url, { params, ..._object });
+		return this.service.delete(url, { params, data: params, ..._object }); // data是以JSON传参,params是问号后面带参
 	}
 }
 

@@ -13,11 +13,9 @@
 import zhCn from 'element-plus/es/locale/lang/zh-cn';
 import hotkeys from 'hotkeys-js';
 import eventBus from './utils/eventBus';
-import { useGlobalEvents } from '@/hooks/useEvent';
 import useSettingsStore from '@/store/modules/settings';
-// import useMenuStore from '@/store/modules/menu';
-// 测试提交
 const settingsStore = useSettingsStore();
+const { changePrimary } = useTheme();
 
 const buttonConfig = ref({
 	autoInsertSpace: true
@@ -40,7 +38,15 @@ const subSidebarActualWidth = computed(() => {
 	}
 	return `${actualWidth}px`;
 });
-
+watch(
+	() => settingsStore.app.themeColor,
+	() => {
+		changePrimary(settingsStore.app.themeColor);
+	},
+	{
+		deep: true
+	}
+);
 watch(
 	() => settingsStore.app.colorScheme,
 	() => {
@@ -107,5 +113,4 @@ onMounted(() => {
 		eventBus.emit('global-system-info-toggle');
 	});
 });
-useGlobalEvents();
 </script>

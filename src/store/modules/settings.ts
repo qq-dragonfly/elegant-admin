@@ -28,8 +28,8 @@ const useSettingsStore = defineStore(
 		}),
 		actions: {
 			// 设置网页标题
-			setTitle(title: string) {
-				this.title = title;
+			setTitle(_title: string) {
+				this.title = _title;
 			},
 			// 设置访问模式
 			setMode(width: number) {

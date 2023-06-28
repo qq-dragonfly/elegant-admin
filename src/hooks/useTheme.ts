@@ -1,4 +1,4 @@
-import { onBeforeMount, ref } from 'vue';
+import { onBeforeMount } from 'vue';
 import useSettingsStore from '@/store/modules/settings';
 import { getLightColor, getDarkColor } from '@/utils/theme';
 import { ElMessage } from 'element-plus';
@@ -9,7 +9,7 @@ import { ElMessage } from 'element-plus';
 export const useTheme = () => {
 	const settingsStore = useSettingsStore();
 	// 修改主题颜色
-	const changePrimary = (val: string) => {
+	const changePrimary = (val: string | null) => {
 		if (!val) {
 			val = settingsStore.app.themeColor;
 			ElMessage({

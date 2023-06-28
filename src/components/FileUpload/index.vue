@@ -7,7 +7,7 @@
 		:before-upload="beforeUpload"
 		:on-exceed="onExceed"
 		:on-success="onSuccess"
-		:file-list="files"
+		:file-list="files as UploadUserFile[]"
 		:limit="max"
 		drag
 	>
@@ -33,7 +33,7 @@
 </template>
 <script lang="ts" setup name="FileUpload">
 import type { UploadProps } from 'element-plus';
-import { ElMessage } from 'element-plus';
+import { ElMessage, UploadUserFile } from 'element-plus';
 
 const props = defineProps({
 	action: {

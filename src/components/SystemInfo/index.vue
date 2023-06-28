@@ -38,12 +38,11 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 :deep(.el-drawer__header) {
-	margin-bottom: initial;
 	padding-bottom: 20px;
+	margin-bottom: initial;
 	border-bottom: 1px solid var(--el-border-color);
 	transition: var(--el-transition-border);
 }
-
 :deep(.el-descriptions) {
 	margin-bottom: 20px;
 }

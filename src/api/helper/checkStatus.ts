@@ -1,5 +1,5 @@
 import useUserStore from '@/store/modules/user';
-import { ElMessage } from 'element-plus';
+import { ElMessage, ElMessageBox } from 'element-plus';
 import router from '@/router';
 
 const toLogin = () => {
@@ -9,6 +9,7 @@ const toLogin = () => {
 			redirect: router.currentRoute.value.path !== '/login' ? router.currentRoute.value.fullPath : undefined
 		}
 	});
+	window.location.reload();
 };
 /**
  * @description: 校验网络请求状态码
@@ -22,9 +23,16 @@ export const checkStatus = (status: number): void => {
 			ElMessage.error('请求失败！请您稍后重试');
 			break;
 		case 401:
-			ElMessage.error('登录失效！请您重新登录');
-			userStore.logout();
-			toLogin();
+			ElMessageBox.confirm(`您已经登出，您可以取消留在此页面，或者重新登录!`, '登录失效', {
+				confirmButtonText: '重新登录',
+				cancelButtonText: '取消',
+				type: 'warning'
+			})
+				.then(async () => {
+					await userStore.logout();
+					toLogin();
+				})
+				.catch(() => {});
 			break;
 		case 403:
 			ElMessage.error('当前账号无权限访问！');

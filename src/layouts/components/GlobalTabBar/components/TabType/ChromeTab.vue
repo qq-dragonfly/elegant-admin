@@ -41,7 +41,6 @@
 <script setup lang="ts" name="ChromeTab">
 import { CssRender } from 'css-render';
 import { IconClose, SvgRadiusBg } from './components';
-import { useBoolean } from '@/hooks/useBoolean';
 
 /** 填充颜色： [默认颜色, 暗黑主题颜色] */
 type FillColor = [string, string];

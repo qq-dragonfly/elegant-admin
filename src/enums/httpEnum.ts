@@ -5,7 +5,7 @@
 export enum ResultEnum {
 	SUCCESS = 200,
 	ERROR = 500,
-	OVERDUE = 401,
+	OVERDUE = 104, //根据自己后端返回定义
 	TIMEOUT = 10000,
 	TYPE = 'success'
 }

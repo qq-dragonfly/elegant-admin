@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="page-main"
+		class="page-main px-8 mx-[8px] mb-[8px] flex-1 py-4"
 		:class="{
 			'is-collaspe': collaspeData
 		}"
@@ -50,8 +50,6 @@ function unCollaspe() {
 <style lang="scss" scoped>
 .page-main {
 	position: relative;
-	padding: 8px;
-	margin: 8px;
 	background-color: var(--g-app-bg);
 	transition: background-color 0.3s;
 	&.is-collaspe {

@@ -42,13 +42,14 @@ const useUserStore = defineStore(
 			username: getLocal('username') || '',
 			token: getLocal('token') || '',
 			failure_time: getLocal('failure_time') || '',
-			permissions: [] as string[]
+			permissions: [] as string[],
+			controlResponseList: []
 		}),
 		getters: {
 			isLogin: state => {
 				let flag = false;
 				if (state.token) {
-					if (new Date().getTime() < parseInt(state.failure_time) * 1000) {
+					if (new Date().getTime() < parseInt(state.failure_time)) {
 						flag = true;
 					}
 				}
@@ -65,8 +66,10 @@ const useUserStore = defineStore(
 					loginApi(data)
 						.then(async (res: any) => {
 							if (res.code === 200) {
-								setLocal('token', res.data);
-								this.token = res.data;
+								setLocal('token', res.data.authInfo);
+								setLocal('failure_time', new Date(res.data.expires).getTime());
+								this.failure_time = new Date(res.data.expires).getTime();
+								this.token = res.data.authInfo;
 								resolve(res);
 							}
 						})
@@ -84,10 +87,8 @@ const useUserStore = defineStore(
 								reject('error');
 							}
 							// 储存登录信息
-							setLocal('username', res.data.phone);
-							setLocal('failure_time', new Date(res.data.createTime).valueOf());
-							this.username = res.data.phone;
-							this.failure_time = new Date(res.data.createTime).valueOf();
+							setLocal('username', res.data.name);
+							this.username = res.data.name;
 							resolve(res);
 						})
 						.catch(error => {
@@ -112,13 +113,11 @@ const useUserStore = defineStore(
 			},
 			// 获取我的权限
 			getPermissions() {
-				// 通过 mock 获取权限
 				return new Promise<string[]>(resolve => {
-					// 通过 mock 获取权限
 					getAuthMenuListApi().then(res => {
-						console.log('res', res.data);
 						this.permissions = res.data.permissions;
-						resolve(res.data.permissions);
+						this.controlResponseList = res.data.controlResponseList;
+						resolve(res.data);
 					});
 				});
 			},

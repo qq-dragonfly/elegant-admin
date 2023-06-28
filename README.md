@@ -1,5 +1,5 @@
 <div align="center">
-	<img src="https://gjwlyy-specialdisease.oss-cn-hangzhou.aliyuncs.com/prileImg/1665477481856_.png"/>
+	<img src="https://gjwlyy-specialdisease.oss-cn-hangzhou.aliyuncs.com/prileImg/1675818152379_.png"/>
 	<h1>Elegant Admin</h1>
 </div>
 
@@ -12,27 +12,21 @@
 
 ## 特性
 
-- **最新技术栈**：使用 Vue3/Vite3 等前端前沿技术开发, 使用高效率的 npm 包管理器 pnpm
+- **最新技术栈**：使用 Vue3/Vite3/Pinia 等前端前沿技术开发, 使用高效率的 npm 包管理器 pnpm
 - **TypeScript**：应用程序级 JavaScript 的语言
 - **主题**：丰富可配置的主题、暗黑模式，基于原子 css tailwindcss 框架
-- **代码规范**：丰富的规范插件及极高的代码规范
-- **权限路由**：简易的路由配置、可使用前端路由、文件路由和后端动态路由
+- **代码规范**：引入规范插件及极高的代码规范
+- **权限路由**：简易的路由配置、可使用前端路由和后端动态路由
 - **请求函数**：基于 axios 的完善的请求函数封装
-- **表格封装**：基于elementPlus 封装的表格组件、表格查询组件
+- **表格封装**：基于 elementPlus 封装的表格组件、表格查询组件
 
 ## 预览
 
-- [elegant-admin]('https://zhangyao1990.github.io/admin-vue3-elementplus/#/login/')
-
-[//]: # (## 文档)
-
-[//]: # ()
-
-[//]: # (- [项目文档: docs.soybean.pro]&#40;https://docs.soybean.pro&#41;)
+- [elegant-admin]('https://zergj-followup.zjwlyy.cn/#/login?redirect=/dashboard')
 
 ## 代码仓库
 
-- [github](https://github.com/zhangyao1990/elegant-admin)
+- [github](https://gitee.com/smart-china/zergj-followup-admin.git)
 
 ## 更新日志
 
@@ -46,7 +40,7 @@
 - 克隆代码
 
 ```bash
-git clone https://github.com/zhangyao1990/elegant-admin.git
+git clone https://gitee.com/smart-china/zergj-followup-admin.git
 ```
 
 - 安装依赖
@@ -72,7 +66,6 @@ pnpm build:sit
 pnpm build:pro
 ```
 
-
 ## 浏览器支持
 
 本地开发推荐使用`Chrome 90+` 浏览器
@@ -82,7 +75,6 @@ pnpm build:pro
 | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_48x48.png" alt="IE" width="24px" height="24px"  />](http://godban.github.io/browsers-support-badges/)IE | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt=" Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)Safari |
 | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 |                                                                                                                not support                                                                                                                |                                                                                          last 2 versions                                                                                          |                                                                                               last 2 versions                                                                                                |                                                                                             last 2 versions                                                                                              |                                                                                             last 2 versions                                                                                              |
-
 
 ## License
 

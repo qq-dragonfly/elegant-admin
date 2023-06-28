@@ -11,5 +11,3 @@ dist
 .husky
 .local
 /bin
-components.d.ts
-auto-imports.d.ts

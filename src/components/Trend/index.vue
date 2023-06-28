@@ -46,19 +46,15 @@ const isUp = computed(() => {
 	display: flex;
 	align-items: center;
 	transition: var(--el-transition-color);
-
 	&.up {
 		color: var(--el-color-success);
 	}
-
 	&.down {
 		color: var(--el-color-danger);
-
 		.el-icon {
 			transform: rotate(180deg);
 		}
 	}
-
 	.el-icon {
 		margin-left: 5px;
 		transition: transform 0.3s;

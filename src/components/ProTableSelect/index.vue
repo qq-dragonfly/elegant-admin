@@ -6,11 +6,12 @@
  * @LastEditors:
  * @LastEditTime:
 -->
-
 <template>
 	<el-select
 		ref="selectRef"
+		class="w-full"
 		v-model="state.defaultValue"
+		v-if="state.defaultValue"
 		:size="size"
 		:clearable="clearable"
 		:multiple="multiple"
@@ -30,17 +31,15 @@
 				</el-icon>
 			</div>
 			<div class="ele-table-select__table" :style="{ width: tableWidth + '' }" v-loading="state.loading">
-				<div class="sc-table-select__header">
+				<div class="ele-table-select__header">
 					<slot name="header" :form="state.formData" :submit="formSubmit"></slot>
 				</div>
 				<el-table
 					ref="tableRef"
 					:data="state.tableData"
 					:height="245"
-					border
 					:highlight-current-row="!multiple"
 					@row-click="handleTableClick"
-					@selection-change="handleSelectionChange"
 					@select="handleSelect"
 					@select-all="handleSelectAll"
 				>
@@ -62,7 +61,7 @@
 						v-model:currentPage="state.currentPage"
 						@current-change="reload"
 					></el-pagination>
-					<div @click="selectRef.blur()">
+					<div v-if="multiple" @click="selectRef.blur()">
 						<el-button type="primary">确 认</el-button>
 					</div>
 				</div>
@@ -73,31 +72,27 @@
 
 <script lang="ts" name="ProTableSelect" setup>
 import config from './index.ts';
-
 interface PaginationProps {
 	requestApi: (params: any) => Promise<any>; // 请求表格数据的api ==> 必传
 	modelValue: any;
 	propsObj?: object;
 	placeholder?: string;
-	size?: string;
+	size?: any;
 	clearable?: boolean;
 	multiple?: boolean;
 	collapseTags?: boolean;
 	collapseTagsTooltip?: boolean;
 	disabled?: boolean;
 	tableWidth?: string;
+	params: object;
 }
 
 // 接受父组件参数，配置默认值
 const props = withDefaults(defineProps<PaginationProps>(), {
 	modelValue: null,
-	params: {
-		type: Object,
-		default: () => {}
-	},
 	placeholder: '请选择',
 	size: 'default',
-	clearable: false,
+	clearable: true,
 	multiple: false,
 	collapseTags: false,
 	collapseTagsTooltip: false,
@@ -124,7 +119,7 @@ const state = reactive<any>({
 watch(
 	() => props.modelValue,
 	newVal => {
-		state.defaultValue = props.modelValue;
+		state.defaultValue = newVal;
 		autoCurrentLabel();
 	},
 	{ deep: true }
@@ -137,11 +132,10 @@ onMounted(() => {
 	} else {
 		state.defaultValue = props.modelValue || {};
 	}
-
 	autoCurrentLabel();
 });
 //表格显示隐藏回调
-const visibleChange = (visible: any) => {
+function visibleChange(visible: any) {
 	if (visible) {
 		state.currentPage = 1;
 		state.keyword = null;
@@ -150,27 +144,12 @@ const visibleChange = (visible: any) => {
 	} else {
 		autoCurrentLabel();
 	}
-};
-//自动模拟options赋值
-const selectRef = ref();
-const autoCurrentLabel = () => {
-	nextTick(() => {
-		if (props.multiple) {
-			selectRef.value.selected.forEach((item: any) => {
-				item.currentLabel = item.value[state.defaultProps.label];
-			});
-		} else {
-			if (state.defaultValue[state.defaultProps.label]) {
-				selectRef.value.selectedLabel = state.defaultValue[state.defaultProps.label];
-			}
-		}
-	});
-};
+}
 //获取表格数据
 const tableRef = ref();
 const getData = async () => {
 	state.loading = true;
-	const reqData = {
+	let reqData = {
 		[state.defaultProps.page]: state.currentPage,
 		[state.defaultProps.pageSize]: state.pageSize,
 		[state.defaultProps.keyword]: state.keyword
@@ -207,20 +186,34 @@ const getData = async () => {
 	});
 };
 //插糟表单提交
-const formSubmit = () => {
+function formSubmit() {
 	state.currentPage = 1;
 	state.keyword = null;
 	getData();
-};
-//点击复选框触发，复选框样式的改变
-function handleSelectionChange(val: any) {
-	state.defaultValue = val;
-	autoCurrentLabel();
-	emits('update:modelValue', state.defaultValue);
-	emits('changeEmit', state.defaultValue);
 }
+//分页刷新表格
+function reload() {
+	getData();
+}
+//自动模拟options赋值
+const selectRef = ref();
+const autoCurrentLabel = () => {
+	nextTick(() => {
+		if (props.multiple) {
+			if (selectRef.value) {
+				selectRef.value.selected.forEach((item: any) => {
+					item.currentLabel = item.value[state.defaultProps.label];
+				});
+			}
+		} else {
+			if (state.defaultValue && state.defaultValue[state.defaultProps.label]) {
+				selectRef.value.selectedLabel = state.defaultValue[state.defaultProps.label];
+			}
+		}
+	});
+};
 //表格勾选事件
-function handleSelect(rows: any, row: any) {
+const handleSelect = (rows: any, row: any) => {
 	const isSelect = rows.length && rows.indexOf(row) !== -1;
 	if (isSelect) {
 		state.defaultValue.push(row);
@@ -233,8 +226,7 @@ function handleSelect(rows: any, row: any) {
 	autoCurrentLabel();
 	emits('update:modelValue', state.defaultValue);
 	emits('changeEmit', state.defaultValue);
-}
-
+};
 //表格全选事件
 function handleSelectAll(rows: any) {
 	const isAllSelect = rows.length > 0;
@@ -260,11 +252,20 @@ function handleSelectAll(rows: any) {
 	emits('update:modelValue', state.defaultValue);
 	emits('changeEmit', state.defaultValue);
 }
-
+//点击表格行
 function handleTableClick(row: any) {
 	if (props.multiple) {
 		//处理多选点击行
 		tableRef.value.toggleRowSelection(row);
+		const isHas = state.defaultValue.find((item: any) => item[state.defaultProps.value] == row[state.defaultProps.value]);
+		if (isHas) {
+			state.defaultValue.splice(
+				state.defaultValue.findIndex((item: any) => item[state.defaultProps.value] == row[state.defaultProps.value]),
+				1
+			);
+		} else {
+			state.defaultValue.push(row);
+		}
 	} else {
 		state.defaultValue = row;
 		selectRef.value.blur();
@@ -273,27 +274,25 @@ function handleTableClick(row: any) {
 		emits('changeEmit', state.defaultValue);
 	}
 }
-
 //tags删除后回调
 function handleRemoveTag(tag: any) {
 	const row = findRowByKey(tag[state.defaultProps.value]);
 	tableRef.value.toggleRowSelection(row, false);
 	emits('update:modelValue', state.defaultValue);
 }
-
 // 关键值查询表格数据行
 function findRowByKey(value: any) {
 	return state.tableData.find((item: any) => item[state.defaultProps.value] === value);
 }
-
 //清空后的回调
 function handleClear() {
+	if (props.multiple) {
+		state.defaultValue = [];
+	} else {
+		state.defaultValue = {};
+	}
+	emits('changeEmit', state.defaultValue);
 	emits('update:modelValue', state.defaultValue);
-}
-
-//分页刷新表格
-function reload() {
-	getData();
 }
 const filterMethod = (keyword: any) => {
 	if (!keyword) {
@@ -303,11 +302,27 @@ const filterMethod = (keyword: any) => {
 	state.keyword = keyword;
 	getData();
 };
+// 触发select隐藏
+function handleBlur() {
+	selectRef.value.blur();
+}
+// 触发select显示
+function handleFocus() {
+	selectRef.value.focus();
+}
 </script>
 
 <style lang="scss" scoped>
 .ele-table-select__table {
 	padding: 12px;
+	.ele-table-select__header {
+		:deep(.el-form-item) {
+			margin-right: 10px;
+		}
+		:deep(.el-form-item__content) {
+			width: 200px;
+		}
+	}
 }
 .ele-table-select__page {
 	padding-top: 12px;
@@ -316,6 +331,9 @@ const filterMethod = (keyword: any) => {
 			margin-left: 10px;
 		}
 	}
+}
+:deep(.el-table__row) {
+	cursor: pointer;
 }
 .close-icon {
 	padding-top: 10px;

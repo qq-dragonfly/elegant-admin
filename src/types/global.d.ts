@@ -20,9 +20,7 @@ declare namespace Settings {
 		colorScheme?: '' | 'light' | 'dark';
 		/**
 		 * 主题颜色
-		 * @默认值 `''` 跟随系统
-		 * @可选值 `'light'` 明亮模式
-		 * @可选值 `'dark'` 暗黑模式
+		 * @默认值 `''`
 		 */
 		themeColor?: string;
 		/**
@@ -59,7 +57,7 @@ declare namespace Settings {
 		 */
 		routeBaseOn?: 'frontend' | 'backend' | 'filesystem';
 	}
-	interface dashboard {
+	interface home {
 		/**
 		 * 是否开启控制台页面
 		 * @默认值 `true`
@@ -87,8 +85,6 @@ declare namespace Settings {
 		mode: EnumType.ThemeTabMode;
 		/** 多页签风格列表 */
 		modeList: themeTabModeList[];
-		/** 开启多页签缓存 */
-		isCache: boolean;
 	}
 
 	/** 多页签风格列表 */
@@ -98,12 +94,6 @@ declare namespace Settings {
 	}
 
 	interface menu {
-		/**
-		 * 导航栏数据来源，当 `app.routeBaseOn: 'filesystem'` 时生效
-		 * @默认值 `'frontend'` 前端
-		 * @可选值 `'backend'` 后端
-		 */
-		baseOn?: 'frontend' | 'backend';
 		/**
 		 * 导航栏模式
 		 * @默认值 `'side'` 侧边栏模式（有主导航）
@@ -212,10 +202,10 @@ declare namespace Settings {
 		/** 应用设置 */
 		app?: app;
 		/** 控制台设置 */
-		dashboard?: dashboard;
+		home?: home;
 		/** 布局设置 */
 		layout?: layout;
-		/** 多页签样式设置 */
+		/** 多页签设置 */
 		tab?: tab;
 		/** 导航栏设置 */
 		menu?: menu;
@@ -255,6 +245,7 @@ declare namespace Route {
 	}
 
 	interface recordMainRaw {
+		name: string;
 		meta: {
 			title?: string | Function;
 			icon?: string;
@@ -265,7 +256,7 @@ declare namespace Route {
 
 	interface breadcrumb {
 		path: string;
-		title: string | Function;
+		title?: string | Function;
 		hide: boolean;
 	}
 }
@@ -280,6 +271,7 @@ declare namespace Menu {
 			defaultOpened?: boolean;
 			auth?: string | string[];
 			sidebar?: boolean;
+			link?: string;
 		};
 		children?: recordRaw[];
 	}
@@ -294,18 +286,13 @@ declare namespace Menu {
 		children: recordRaw[];
 	}
 }
-/** 多页签Tab的路由 */
-interface GlobalTabRoute extends Pick<import('vue-router').RouteLocationNormalizedLoaded, 'name' | 'fullPath' | 'meta'> {
-	/** 滚动的位置 */
-	scrollPosition: {
-		left: number;
-		top: number;
-	};
-}
 
 /** vue 的defineExpose导出的类型 */
 declare namespace Expose {
 	interface BetterScroll {
 		instance: import('@better-scroll/core').BScrollInstance;
 	}
+}
+interface anyObj {
+	[key: string]: any;
 }

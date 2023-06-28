@@ -22,11 +22,9 @@ import 'tinymce/plugins/table';
 import 'tinymce/plugins/wordcount';
 import 'tinymce/plugins/code';
 import 'tinymce/plugins/searchreplace';
-
 import useSettingsStore from '@/store/modules/settings';
-import useCurrentInstance from '@/utils/composables/useCurrentInstance';
-
-const proxy = useCurrentInstance();
+import { uploadApi } from '@/api/modules/upload';
+import { ElMessage } from 'element-plus';
 const props = defineProps({
 	modelValue: {
 		type: String,
@@ -47,13 +45,13 @@ const emit = defineEmits(['update:modelValue']);
 const settingsStore = useSettingsStore();
 
 const defaultSetting = ref({
-	language_url: 'tinymce/langs/zh-Hans.js',
+	language_url: '/tinymce/langs/zh-Hans.js',
 	language: 'zh-Hans',
-	skin_url: settingsStore.app.colorScheme === 'light' ? 'tinymce/skins/ui/oxide' : 'tinymce/skins/ui/oxide-dark',
+	skin_url: settingsStore.app.colorScheme === 'light' ? '/tinymce/skins/ui/oxide' : '/tinymce/skins/ui/oxide-dark',
 	content_css:
 		settingsStore.app.colorScheme === 'light'
-			? 'tinymce/skins/content/default/content.min.css'
-			: 'tinymce/skins/content/dark/content.min.css',
+			? '/tinymce/skins/content/default/content.min.css'
+			: '/tinymce/skins/content/dark/content.min.css',
 	min_height: 250,
 	max_height: 600,
 	selector: 'textarea',
@@ -63,12 +61,17 @@ const defaultSetting = ref({
 	branding: false,
 	menubar: false,
 	toolbar_mode: 'sliding',
+	content_style: 'img{width:100%;height:auto;}',
 	insertdatetime_formats: ['%Y年%m月%d日', '%H点%M分%S秒', '%Y-%m-%d', '%H:%M:%S'],
 	// https://www.tiny.cloud/docs/tinymce/6/file-image-upload/#images_upload_handler
 	images_upload_handler: (blobInfo: any, progress: any) => {
 		return new Promise(async (resolve, reject) => {
-			const { url } = await uploadImageFile(blobInfo);
-			resolve(url);
+			try {
+				const { url }: any = await uploadImageFile(blobInfo);
+				resolve(url);
+			} catch (error) {
+				reject(error);
+			}
 		});
 	},
 	file_picker_types: 'media',
@@ -84,7 +87,7 @@ const defaultSetting = ref({
 				const file = inputElem.files[0]; // 为 HTMLInputElement 构造函数中的 this，指向 input 实例对象
 				const isValid = await validateVideo(file);
 				if (isValid) {
-					const { url } = await uploadVideoFile(file, 'video');
+					const { url }: any = await uploadVideoFile(file, 'video');
 					callback(url);
 				} else {
 					callback();
@@ -127,14 +130,14 @@ onMounted(() => {
  * @returns {boolean}
  */
 const validateVideo = async (file: any) => {
-	const isLt500M = file.size / 1024 / 1024 < 500;
-	if (!isLt500M) {
-		proxy.$message.error('上传视频大小限制 500M 以内！');
+	const isLt100M = file.size / 1024 / 1024 < 100;
+	if (!isLt100M) {
+		ElMessage.error('上传视频大小限制 100M 以内！');
 		return false;
 	}
 	const duration: any = await getVideoDuration(file);
 	if (duration > 3600) {
-		proxy.$message.error('上传视频时长不能超过 1小时！');
+		ElMessage.error('上传视频时长不能超过 1小时！');
 		return false;
 	}
 	return true;
@@ -146,18 +149,31 @@ const validateVideo = async (file: any) => {
  * @returns {boolean}
  */
 const uploadVideoFile = async (file: any, type: string = 'video') => {
-	console.log(file);
-	return { url: 'https://womanhospital.oss-cn-beijing.aliyuncs.com/health/voice/20221116/1668587036075120.MOV' };
+	let formData = new FormData();
+	formData.append('multipartFile', file);
+	formData.append('type', 'VIDEO');
+	let res: any = await uploadApi(formData);
+	if (res.code === 200) {
+		return { url: res.data };
+	} else {
+		ElMessage.error('上传失败');
+	}
 };
 /**
- * @description 调用后端接口上传图征
+ * @description 调用后端接口上传图片
  * @param {blobInfo} blobInfo - 要上传的图片
  * @returns {boolean}
  */
 const uploadImageFile = async (blobInfo: any) => {
-	console.log('blobInfo', blobInfo);
-	const img = `data:image/jpeg;base64,${blobInfo.base64()}`;
-	return { url: img };
+	let formData = new FormData();
+	formData.append('multipartFile', blobInfo.blob());
+	formData.append('type', 'IMAGE');
+	let res: any = await uploadApi(formData);
+	if (res.code === 200) {
+		return { url: res.data };
+	} else {
+		ElMessage.error('上传失败');
+	}
 };
 
 /**

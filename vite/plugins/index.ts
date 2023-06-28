@@ -11,9 +11,10 @@ import createSvgIcon from './svg-icon';
 import createCompression from './compression';
 import createBanner from './banner';
 import pluginEslint from './pluginEslint';
+import createVisualizer from './visualizer';
 
 export default function createVitePlugins(viteEnv: any, isBuild = false) {
-	const vitePlugins: (PluginOption | PluginOption[])[] = [
+	const vitePlugins: (PluginOption | PluginOption[] | any)[] = [
 		vue({
 			reactivityTransform: true
 		}),
@@ -28,5 +29,6 @@ export default function createVitePlugins(viteEnv: any, isBuild = false) {
 	isBuild && vitePlugins.push(...createCompression(viteEnv));
 	vitePlugins.push(createBanner());
 	vitePlugins.push(pluginEslint());
+	vitePlugins.push(createVisualizer());
 	return vitePlugins;
 }

@@ -5,13 +5,13 @@ const copyright_main_style = `${copyright_common_style} background: #707070;`;
 const copyright_sub_style = `${copyright_common_style} background: #707070;`;
 
 export default function createHtml(env: any, isBuild: any) {
-	const { VITE_APP_TITLE, VITE_APP_DEBUG_TOOL, VITE_APP_MODE } = env;
+	const { VITE_APP_TITLE, VITE_APP_MODE } = env;
 	let copyrightScript = `
 <script>
 if ((navigator.language || navigator.browserLanguage).toLowerCase() === 'zh-cn') {
-  console.info('%c由%cElegant-admin%c提供技术支持', '${copyright_sub_style}', '${copyright_main_style}', '${copyright_sub_style}', '\\nhttps://github.com/zhangyao1990/elegant-admin');
+  console.info('%c由%c 智慧网络医院 %c提供技术支持', '${copyright_sub_style}', '${copyright_main_style}', '${copyright_sub_style}', '\\nMr Zhang');
 } else {
-  console.info('%cPowered by%cElegant-admin', '${copyright_sub_style}', '${copyright_main_style}', '\\nhttps://github.com/zhangyao1990/elegant-admin');
+  console.info('%c由%c 智慧网络医院 %c提供技术支持', '${copyright_sub_style}', '${copyright_main_style}', '${copyright_sub_style}', '\\nMr Zhang');
 }
 </script>
   `;
@@ -24,34 +24,10 @@ if ((navigator.language || navigator.browserLanguage).toLowerCase() === 'zh-cn')
       return newPath && oldPath;
     }
   }]);
-  (function() {
-    let hm = document.createElement("script");
-    hm.src = "https://hm.baidu.com/hm.js?c31a3e8267162de8420bc73e06d62463";
-    let s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-  })();
 </script>
     `;
 	}
-	let devtoolScript = '';
-	switch (VITE_APP_DEBUG_TOOL) {
-		case 'eruda':
-			devtoolScript = `
-<script src="//unpkg.com/eruda/eruda.js"></script>
-<script>
-  eruda.init()
-</script>
-      `;
-			break;
-		case 'vconsole':
-			devtoolScript = `
-<script src="//unpkg.com/vconsole/dist/vconsole.min.js"></script>
-<script>
-  new VConsole()
-</script>
-      `;
-			break;
-	}
+
 	const loadingScript = `
 <script>
 (function(){
@@ -77,8 +53,7 @@ if ((navigator.language || navigator.browserLanguage).toLowerCase() === 'zh-cn')
 			data: {
 				title: VITE_APP_TITLE,
 				copyrightScript,
-				loadingScript,
-				devtoolScript
+				loadingScript
 			}
 		},
 		minify: isBuild

@@ -1,15 +1,13 @@
-import type { RouteLocationNormalizedLoaded, RouteRecordNormalized } from 'vue-router';
 import { EnumStorageKey } from '@/enums/common';
 import { getLocal, setLocal } from '@/utils/storage';
-import type { GlobalTabRoute } from '#/global';
 /**
  * 根据vue路由获取tab路由
  * @param route
  */
-export function getTabRouteByVueRoute(route: RouteRecordNormalized | RouteLocationNormalizedLoaded) {
+export function getTabRouteByVueRoute(route: any) {
 	const fullPath = hasFullPath(route) ? route.fullPath : route.path;
 
-	const tabRoute: GlobalTabRoute = {
+	const tabRoute: any = {
 		name: route.name,
 		fullPath,
 		meta: route.meta,
@@ -26,8 +24,8 @@ export function getTabRouteByVueRoute(route: RouteRecordNormalized | RouteLocati
  * @param tabs - 多页签数据
  * @param fullPath - 该页签的路径
  */
-export function getIndexInTabRoutes(tabs: GlobalTabRoute[], fullPath: string) {
-	return tabs.findIndex(tab => tab.fullPath === fullPath);
+export function getIndexInTabRoutes(tabs: any, fullPath: string) {
+	return tabs.findIndex((tab: any) => tab.fullPath === fullPath);
 }
 
 /**
@@ -35,7 +33,7 @@ export function getIndexInTabRoutes(tabs: GlobalTabRoute[], fullPath: string) {
  * @param tabs - 多页签数据
  * @param fullPath - 该页签的路径
  */
-export function isInTabRoutes(tabs: GlobalTabRoute[], fullPath: string) {
+export function isInTabRoutes(tabs: any, fullPath: string) {
 	return getIndexInTabRoutes(tabs, fullPath) > -1;
 }
 
@@ -44,7 +42,7 @@ export function isInTabRoutes(tabs: GlobalTabRoute[], fullPath: string) {
  * @param tabs - 多页签数据
  * @param routeName - 路由名称
  */
-export function getIndexInTabRoutesByRouteName(tabs: GlobalTabRoute[], routeName: string) {
+export function getIndexInTabRoutesByRouteName(tabs: any, routeName: string) {
 	return tabs.findIndex((tab: any) => tab.name === routeName);
 }
 
@@ -52,19 +50,19 @@ export function getIndexInTabRoutesByRouteName(tabs: GlobalTabRoute[], routeName
  * 判断路由是否有fullPath属性
  * @param route 路由
  */
-function hasFullPath(route: RouteRecordNormalized | RouteLocationNormalizedLoaded): route is RouteLocationNormalizedLoaded {
-	return Boolean((route as RouteLocationNormalizedLoaded).fullPath);
+function hasFullPath(route: any) {
+	return Boolean((route as any).fullPath);
 }
 
 /** 缓存多页签数据 */
-export function setTabRoutes(data: GlobalTabRoute[]) {
+export function setTabRoutes(data: any) {
 	setLocal(EnumStorageKey['multi-tab-routes'], data);
 }
 
 /** 获取缓存的多页签数据 */
 export function getTabRoutes() {
-	const routes: GlobalTabRoute[] = [];
-	const data = getLocal<GlobalTabRoute[]>(EnumStorageKey['multi-tab-routes']);
+	const routes: any = [];
+	const data = getLocal<any[]>(EnumStorageKey['multi-tab-routes']);
 	if (data) {
 		const defaultTabRoutes = data.map((item: any) => ({
 			...item,

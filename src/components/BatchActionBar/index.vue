@@ -47,28 +47,23 @@ const isIndeterminate = computed(() => {
 .batch-action-bar {
 	display: flex;
 	align-items: center;
-	margin: 20px 0;
 	padding: 0 10px;
-
+	margin: 20px 0;
 	&:first-child {
 		margin-top: 0;
 	}
-
 	.el-checkbox {
 		margin-right: 20px;
 	}
-
 	.tips {
 		margin-right: 20px;
-		color: #909399;
 		font-size: 13px;
+		color: #909399;
 	}
-
 	:deep(.el-form) {
 		> .el-button {
 			margin-right: 10px;
 		}
-
 		> .el-button-group {
 			margin-right: 10px;
 		}

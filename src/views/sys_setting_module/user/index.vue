@@ -1,7 +1,7 @@
 <template>
 	<div class="table-box">
 		<ProTable
-			ref="proTable"
+			ref="proTableRef"
 			title="用户列表"
 			:columns="columns"
 			:toolButtonPrint="true"
@@ -10,36 +10,49 @@
 			:dataCallback="dataCallback"
 		>
 			<!-- 表格 header 按钮 -->
-			<template #tableHeader="scope">
-				<el-button type="primary" :icon="CirclePlus" @click="openDialog('add')">新增用户</el-button>
-				<el-button type="primary" :icon="Upload" plain @click="batchAdd">批量添加用户</el-button>
-				<el-button type="primary" :icon="Download" plain @click="downloadFile">导出用户数据</el-button>
-				<el-button type="danger" :icon="Delete" plain @click="batchDelete(scope.selectedListIds)" :disabled="!scope.isSelected">
-					批量删除用户
-				</el-button>
+			<template #tableHeader>
+				<Auth :value="['add:user:btn']">
+					<el-button type="primary" :icon="CirclePlus" @click="openDialog('add')">新增用户</el-button>
+				</Auth>
+				<!--				<el-button type="primary" :icon="Upload" plain @click="batchAdd">批量添加用户</el-button>-->
+				<!--				<el-button type="primary" :icon="Download" plain @click="downloadFile">导出用户数据</el-button>-->
+				<!--				<el-button type="danger" :icon="Delete" plain @click="batchDelete(scope.selectedListIds)" :disabled="!scope.isSelected">-->
+				<!--					批量删除用户-->
+				<!--				</el-button>-->
 			</template>
 			<!-- Expand -->
 			<template #expand="scope">
 				{{ scope.row }}
 			</template>
 			<!-- usernameHeader -->
-			<template #nameHeader="scope">
-				<el-button type="primary" @click="ElMessage.success('我是通过作用域插槽渲染的表头')">
-					{{ scope.row.label }}
-				</el-button>
-			</template>
+			<!--			<template #nameHeader="scope">-->
+			<!--				<el-button type="primary" @click="ElMessage.success('我是通过作用域插槽渲染的表头')">-->
+			<!--					{{ scope.row.label }}-->
+			<!--				</el-button>-->
+			<!--			</template>-->
 			<!-- createTime -->
-			<template #createTime="scope">
-				<el-button type="primary" link @click="ElMessage.success('我是通过作用域插槽渲染的内容')">
-					{{ scope.row.createTime }}
-				</el-button>
-			</template>
+			<!--			<template #createTime="scope">-->
+			<!--				<el-button type="primary" link @click="ElMessage.success('我是通过作用域插槽渲染的内容')">-->
+			<!--					{{ scope.row.createTime }}-->
+			<!--				</el-button>-->
+			<!--			</template>-->
 			<!-- 表格操作 -->
 			<template #operation="scope">
-				<el-button type="primary" link :icon="View" @click="openDialog('show', scope.row)">查看</el-button>
-				<el-button type="primary" link :icon="EditPen" @click="openDialog('edit', scope.row)">编辑</el-button>
-				<el-button type="primary" link :icon="Refresh" @click="resetPass(scope.row)">重置密码</el-button>
-				<el-button type="primary" link :icon="Delete" @click="deleteAccount(scope.row)">删除</el-button>
+				<Auth :value="['edit:user:btn']">
+					<el-button :disabled="scope.row.id === '1'" type="primary" link :icon="EditPen" @click="openDialog('edit', scope.row)"
+						>编辑</el-button
+					>
+				</Auth>
+				<Auth :value="['reset:user:pwd']">
+					<el-button :disabled="scope.row.id === '1'" type="primary" link :icon="Refresh" @click="resetPass(scope.row)"
+						>重置密码</el-button
+					>
+				</Auth>
+				<Auth :value="['del:user:btn']">
+					<el-button :disabled="scope.row.id === '1'" type="primary" link :icon="Delete" @click="deleteAccount(scope.row)">
+						删除
+					</el-button>
+				</Auth>
 			</template>
 		</ProTable>
 		<DetailDialog ref="detailDialogRef" />
@@ -51,12 +64,7 @@
 import { ElMessage } from 'element-plus';
 import { User } from '@/api/interface/sys_user';
 import { ColumnProps } from '@/components/ProTable/interface';
-import { useHandleData } from '@/hooks/useHandleData';
-import { useDownload } from '@/hooks/useDownload';
-import ProTable from '@/components/ProTable/index.vue';
-import DetailDialog from './components/detailDialog.vue';
-import ImportExcel from '@/components/ImportExcel/index.vue';
-import { CirclePlus, Delete, EditPen, Download, Upload, View, Refresh } from '@element-plus/icons-vue';
+import { CirclePlus, Delete, EditPen, Download, Upload, Refresh } from '@element-plus/icons-vue';
 import publicDict from '@/views/sys_setting_module/dict';
 import {
 	getSysUserListApi,
@@ -67,12 +75,16 @@ import {
 	BatchAddUser,
 	resetUserPassWordApi
 } from '@/api/modules/user';
-const router = useRouter();
+// 组件引入
+const DetailDialog = defineAsyncComponent(() => import('./components/detailDialog.vue'));
+const ProTable = defineAsyncComponent(() => import('@/components/ProTable/index.vue'));
+const ImportExcel = defineAsyncComponent(() => import('@/components/ImportExcel/index.vue'));
+// const router = useRouter();
 
-// 获取 ProTable 元素，调用其获取刷新数据方法（还能获取到当前查询参数，方便导出携带参数）
-const proTable = ref();
+// 获取 proTableRef 元素，调用其获取刷新数据方法（还能获取到当前查询参数，方便导出携带参数）
+const proTableRef = ref();
 
-// 如果表格需要初始化请求参数，直接定义传给 ProTable(之后每次请求都会自动带上该参数，此参数更改之后也会一直带上，改变此参数会自动刷新表格数据)
+// 如果表格需要初始化请求参数，直接定义传给 ProTable(之后每次请求都会自动带上该参数，此参数更改之后也会一直带上)
 const initParam = reactive({
 	sysDeptId: '0'
 });
@@ -80,15 +92,15 @@ const initParam = reactive({
 // dataCallback 是对于返回的表格数据做处理，如果你后台返回的数据不是 datalist && total && pageNum && pageSize 这些字段，那么你可以在这里进行处理成这些字段
 const dataCallback = (data: any) => {
 	return {
-		datalist: data.records,
-		total: data.total
+		datalist: (data && data.records) || [],
+		total: (data && data.total) || 0
 	};
 };
 // 如果你想在请求之前对当前请求参数做一些操作，可以自定义如下函数：params 为当前所有的请求参数（包括分页），最后返回请求列表接口
 // 默认不做操作就直接在 ProTable 组件上绑定	:requestApi="getSysUserListApi"
 const getTableList = (params: any) => {
 	let newParams = { ...params };
-	if (newParams.timeArr) {
+	if (newParams.timeArr && newParams.timeArr.length) {
 		newParams.startTime = newParams.timeArr[0];
 		newParams.endTime = newParams.timeArr[1];
 		delete newParams.timeArr;
@@ -103,31 +115,30 @@ const headerRender = (row: ColumnProps) => {
 		<el-button
 			type='primary'
 			onClick={() => {
-				ElMessage.success('我是通过 tsx 语法渲染的表头');
+				// ElMessage.success('我是通过 tsx 语法渲染的表头');
 			}}
 		>
 			{row.label}
 		</el-button>
 	);
 };
-
 // 表格配置项
 const columns: ColumnProps[] = [
-	{ type: 'selection', fixed: 'left', width: 80 },
-	// { type: 'index', label: '#', width: 80 },
+	// { type: 'selection', fixed: 'left', width: 80 },
+	// { type: 'index', label: '#', width: 60 },
 	// { type: 'expand', label: 'Expand', width: 100 },
 	{
 		prop: 'name',
 		label: '姓名',
-		minWidth: 120,
-		search: { el: 'input' },
-		render: scope => {
-			return (
-				<el-button type='primary' link onClick={() => ElMessage.success('我是通过 tsx 语法渲染的内容')}>
-					{scope.row.name}
-				</el-button>
-			);
-		}
+		minWidth: 140,
+		search: { el: 'input' }
+		// render: scope => {
+		// 	return (
+		// 		<el-button class='w-full truncate' type='primary' link onClick={() => openDialog('edit', scope.row)}>
+		// 			{scope.row.name}
+		// 		</el-button>
+		// 	);
+		// }
 	},
 	// {
 	// 	prop: 'gender',
@@ -139,7 +150,7 @@ const columns: ColumnProps[] = [
 	// 多级 prop
 	// { prop: 'user.detail.age', label: '年龄', search: { el: 'input' } },
 	{ prop: 'phone', label: '登录账号', width: 120 },
-	{ prop: 'roleAlisa', label: '角色', width: 120 },
+	{ prop: 'roleNames', label: '角色', width: 120 },
 	{
 		prop: 'openStatus',
 		label: '用户状态',
@@ -158,14 +169,14 @@ const columns: ColumnProps[] = [
 	{
 		prop: 'createTime',
 		label: '创建时间',
-		headerRender,
+		// headerRender,
 		width: 200,
 		search: {
 			el: 'date-picker',
 			span: 2,
 			key: 'timeArr',
-			props: { type: 'datetimerange' },
-			defaultValue: ['2022-11-12 11:35:00', '2022-12-12 11:35:00']
+			props: { type: 'datetimerange' }
+			// defaultValue: ['2022-11-12 11:35:00', '2022-12-12 11:35:00']
 		}
 	},
 	{ prop: 'operation', label: '操作', fixed: 'right', width: 330 }
@@ -173,26 +184,25 @@ const columns: ColumnProps[] = [
 
 // 删除用户信息
 const deleteAccount = async (params: User.ResUserList) => {
-	await useHandleData(delSysUserApi, { ids: [params.id] }, `删除【${params.name}】用户`);
-	proTable.value.getTableList();
+	await useHandleData(delSysUserApi, { id: params.id }, `删除【${params.name}】用户`);
+	proTableRef.value.getTableList();
 };
 
 // 批量删除用户信息
-const batchDelete = async (ids: string[]) => {
-	await useHandleData(delSysUserApi, { ids }, '删除所选用户信息');
-	proTable.value.clearSelection();
-	proTable.value.getTableList();
-};
+// const batchDelete = async (ids: string[]) => {
+// 	await useHandleData(delSysUserApi, { ids }, '删除所选用户信息');
+// 	proTableRef.value.clearSelection();
+// 	proTableRef.value.getTableList();
+// };
 
 // 重置用户密码
 const resetPass = async (params: User.ResUserList) => {
 	await useHandleData(resetUserPassWordApi, { id: params.id }, `重置【${params.name}】用户密码`);
-	proTable.value.getTableList();
+	proTableRef.value.getTableList();
 };
 // 导出用户列表
 const downloadFile = async () => {
-	console.log('proTable.value.searchParam', proTable.value.searchParam);
-	await useDownload(getTableList, '用户列表', proTable.value.searchParam);
+	await useExportExcel(getSysUserListApi, '用户列表', proTableRef.value.searchParam, columns);
 };
 
 // 批量添加用户
@@ -202,7 +212,7 @@ const batchAdd = () => {
 		title: '用户',
 		tempApi: exportUserInfoApi,
 		importApi: BatchAddUser,
-		getTableList: proTable.value.getTableList
+		getTableList: proTableRef.value.getTableList
 	};
 	importExcelDialogRef.value.acceptParams(params);
 };
@@ -214,8 +224,8 @@ const openDialog = (type: string, rowData: Partial<User.ResUserList> = {}) => {
 		title: type,
 		rowData: { ...rowData },
 		isView: type === 'show',
-		api: type === 'add' ? addUserApi : type === 'edit' ? editUserApi : '',
-		getTableList: proTable.value.getTableList
+		api: type === 'add' ? addUserApi : type === 'edit' ? editUserApi : addUserApi,
+		getTableList: proTableRef.value.getTableList
 	};
 	detailDialogRef.value.acceptParams(params);
 };

@@ -23,20 +23,21 @@
 						"
 						:scroll-top="scrollTop"
 					/>
-					<div class="main" :class="{ 'main-mg': settingsStore.tab.visible }">
-						<router-view v-slot="{ Component, route }">
-							<transition name="main" mode="out-in" :appear="true">
-								<keep-alive :include="keepAliveList">
-									<component :is="Component" :key="route.fullPath" />
-								</keep-alive>
-							</transition>
-						</router-view>
-						<!--						<router-view v-slot="{ Component }">-->
-						<!--							<keep-alive>-->
-						<!--								<component :is="Component" v-if="$route.meta.cache" :key="$route.fullPath" />-->
-						<!--							</keep-alive>-->
-						<!--							<component :is="Component" v-if="!$route.meta.cache" :key="$route.fullPath" />-->
+					<div class="main flex flex-col" :class="{ 'main-mg': settingsStore.tab.visible }">
+						<!--						<router-view v-slot="{ Component, route }">-->
+						<!--							<transition name="main" mode="out-in" appear>-->
+						<!--								<keep-alive :include="keepAliveStore.list">-->
+						<!--									<component :is="Component" v-show="!isLink" :key="route.fullPath" />-->
+						<!--								</keep-alive>-->
+						<!--							</transition>-->
 						<!--						</router-view>-->
+						<router-view v-slot="{ Component, route }">
+							<keep-alive>
+								<component :is="Component" v-if="route.meta.cache && !isLink" :key="route.fullPath" />
+							</keep-alive>
+							<component :is="Component" v-if="!route.meta.cache && !isLink" :key="route.fullPath" />
+						</router-view>
+						<LinkView v-if="isLink" />
 					</div>
 					<Copyright />
 				</div>
@@ -55,16 +56,15 @@ import GlobalTopBar from './components/GlobalTopBar/index.vue';
 import GlobalSearch from './components/GlobalSearch/index.vue';
 import GlobalAppSetting from './components/GlobalAppSetting/index.vue';
 import GlobalBuyIt from './components/GlobalBuyIt/index.vue';
+import LinkView from './components/views/link.vue';
 import useSettingsStore from '@/store/modules/settings';
 import useKeepAliveStore from '@/store/modules/keepAlive';
-
 const routeInfo = useRoute();
 
 const settingsStore = useSettingsStore();
 const keepAliveStore = useKeepAliveStore();
 const keepAliveList = computed(() => keepAliveStore.list);
-console.log('keepAliveList', keepAliveList);
-
+const isLink = computed(() => !!routeInfo.meta.link);
 watch(
 	() => settingsStore.menu.subMenuCollapse,
 	val => {

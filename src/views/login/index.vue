@@ -3,7 +3,7 @@
 		<div class="bg-banner">
 			<login-bg :theme-color="bgThemeColor" v-if="settingsStore.mode === 'pc'" />
 		</div>
-		<div id="login-box" :class="{ shadow: settingsStore.mode === 'pc', 'login-box': settingsStore.mode === 'pc' }">
+		<div id="login-box" :class="{ 'shadow-2xl': settingsStore.mode === 'pc', 'login-box': settingsStore.mode === 'pc' }">
 			<el-form
 				v-show="formType === 'login'"
 				ref="loginFormRef"
@@ -291,8 +291,8 @@ type FormInstance = InstanceType<typeof ElForm>;
 const loginFormRef = ref<FormInstance>();
 const loginPasswordRef = ref<HTMLElement>();
 const loginForm = reactive({
-	username: (getLocal('login_username') as string) || 'admin',
-	password: '203899',
+	username: (getLocal('login_username') as string) || '',
+	password: (getLocal('login_pwd') as string) || '',
 	remember: !!getLocal('login_username'),
 	verifyCode: '',
 	captchaId: ''
@@ -344,7 +344,7 @@ function handleLogin() {
 				// console.log('加密后----->', password)
 				setSession('psKey', randomNumber);
 				// proxy.$TOOL.session.set('psKey', randomNumber);
-				// let aesDecryptVal = await AesDecrypt(password, randomNumber)
+				let aesDecryptVal = AesDecrypt(password, randomNumber);
 				// console.log('aesDecryptVal', aesDecryptVal)
 
 				let para = {
@@ -360,6 +360,7 @@ function handleLogin() {
 							await userStore.getUserInfo();
 							if (loginForm.remember) {
 								setLocal('login_username', loginForm.username);
+								setLocal('login_pwd', loginForm.password);
 							} else {
 								removeLocal('login_username');
 							}
@@ -452,7 +453,7 @@ function handleRegister() {
 // 重置密码
 const resetFormRef = ref<FormInstance>();
 const resetNewPasswordRef = ref<HTMLElement>();
-const resetForm = ref({
+const resetForm = ref<any>({
 	username: getLocal('login_username') || '',
 	captcha: '',
 	newPassword: ''

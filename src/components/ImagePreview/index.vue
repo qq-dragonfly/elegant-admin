@@ -3,7 +3,7 @@
 		<template #error>
 			<div class="image-slot">
 				<el-icon>
-					<svg-icon name="ele_image_load_fail" />
+					<svg-icon name="local-image_load_fail" />
 				</el-icon>
 			</div>
 		</template>
