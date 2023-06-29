@@ -68,13 +68,12 @@ type ParameterCSSProperties = (item?: string) => CSSProperties | undefined;
 
 const props = defineProps({
 	modelValue: {
-		require: false,
-		type: String
+		type: String,
+		default: ''
 	}
 });
 const emit = defineEmits(['update:modelValue']);
 const visible = ref(false);
-const inputValue = toRef(props, 'modelValue');
 const iconList = ref<any>(getIconList());
 const icon = ref('add-location');
 const currentActiveType = ref('ep:');
@@ -82,6 +81,7 @@ const currentActiveType = ref('ep:');
 const copyIconList: any = cloneDeep(iconList.value);
 const pageSize = ref(96);
 const currentPage = ref(1);
+const inputValue = ref('');
 
 // 搜索条件
 const filterValue = ref('');
@@ -96,7 +96,25 @@ const tabsList = [
 		name: 'local-'
 	}
 ];
-
+watch(
+	() => {
+		return filterValue.value;
+	},
+	() => {
+		currentPage.value = 1;
+	}
+);
+watch(
+	() => {
+		return props.modelValue;
+	},
+	newVal => {
+		inputValue.value = newVal;
+	}
+);
+onMounted(() => {
+	inputValue.value = props.modelValue;
+});
 const pageList = computed(() => {
 	if (currentPage.value === 1) {
 		return copyIconList[currentActiveType.value]
@@ -136,15 +154,6 @@ function onChangeIcon(item: any) {
 function onCurrentChange(page: any) {
 	currentPage.value = page;
 }
-
-watch(
-	() => {
-		return filterValue.value;
-	},
-	() => {
-		currentPage.value = 1;
-	}
-);
 </script>
 
 <style lang="scss" scoped>
