@@ -79,14 +79,9 @@ class RequestHttp {
 				// * 如果当前请求不需要显示 loading,在 api 服务中通过指定的第三个参数: { headers: { noLoading: true } }来控制不显示loading，参见loginApi
 				config.headers!.noLoading || showFullScreenLoading();
 				const token: string = userStore.token;
-				const passwordKey: any = getSession('psKey');
 				if (config.headers) {
 					if (token) {
 						config.headers[TOKEN_NAME] = token;
-					}
-					if (passwordKey) {
-						config.headers['codeKey'] = passwordKey;
-						removeSession('psKey');
 					}
 				}
 				return config;

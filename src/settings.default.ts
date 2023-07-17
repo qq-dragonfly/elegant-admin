@@ -28,7 +28,7 @@ const globalSettingsDefault: RecursiveRequired<Settings.all> = {
 		enablePermission: true, //是否开启权限功能
 		enableProgress: true, //是否开启载入进度条
 		enableDynamicTitle: false, //enableDynamicTitle
-		routeBaseOn: 'frontend', //'frontend'：前端 'backend' 后端
+		routeBaseOn: 'backend', //'frontend'：前端 'backend' 后端
 		themeColor: '#007AFF' //主题颜色
 	},
 	//控制台配置
@@ -86,7 +86,7 @@ const globalSettingsDefault: RecursiveRequired<Settings.all> = {
 	// 底部版权设置
 	copyright: {
 		enable: true,
-		dates: '2022-2022',
+		dates: '2023-2023',
 		company: 'Elegant-admin'
 	}
 };

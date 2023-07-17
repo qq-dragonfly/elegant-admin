@@ -121,7 +121,6 @@ const props = defineProps({
 });
 
 const emit = defineEmits(['update:url', 'onSuccess']);
-
 const uploadData = ref({
 	imageViewerVisible: false,
 	progress: {
@@ -167,6 +166,7 @@ const onSuccess = (url: any) => {
 	uploadData.value.progress.percent = 0;
 	if (url) {
 		emit('onSuccess', url);
+		emit('update:url', url);
 	}
 };
 const loading = ref(false);

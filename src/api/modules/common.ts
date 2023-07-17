@@ -19,10 +19,6 @@ export const getDictTypeCodeApi = (params: any) => {
 export const getDictIdApi = (params: any) => {
 	return http.get<any>(PORT1 + `/dict/detail`, params);
 };
-// * 获取控制台信息全部信息
-export const getControlAllApi = (params: any) => {
-	return http.get<any>(PORT1 + `/control/all`, params);
-};
 // * 获取首页- 当日随访信息
 export const getCollectDayFollowInfoApi = (params: any) => {
 	return http.post<any>(PORT1 + `/index/collectDay`, params);

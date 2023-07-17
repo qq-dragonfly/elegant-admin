@@ -1,6 +1,6 @@
 <template>
 	<div class="selector w-[350px]">
-		<el-input v-model="inputValue">
+		<el-input v-model="inputValue" @input="handleInput">
 			<template #append>
 				<el-popover
 					:width="350"
@@ -13,8 +13,11 @@
 				>
 					<template #reference>
 						<div class="w-[40px] h-[32px] cursor-pointer flex justify-center items-center" @click="visible = !visible">
-							<el-icon class="icon">
-								<svg-icon :name="currentActiveType + icon" />
+							<el-icon class="icon" v-if="inputValue">
+								<svg-icon :name="inputValue" />
+							</el-icon>
+							<el-icon class="icon" v-else>
+								<svg-icon name="ep:arrow-down" />
 							</el-icon>
 						</div>
 					</template>
@@ -64,6 +67,7 @@
 import { cloneDeep } from 'lodash-es';
 import { getIconList } from './select';
 import { ref, computed, CSSProperties, toRef, watch } from 'vue';
+
 type ParameterCSSProperties = (item?: string) => CSSProperties | undefined;
 
 const props = defineProps({
@@ -105,16 +109,18 @@ watch(
 	}
 );
 watch(
-	() => {
-		return props.modelValue;
-	},
+	() => props.modelValue,
 	newVal => {
 		inputValue.value = newVal;
-	}
+	},
+	{ deep: true }
 );
 onMounted(() => {
 	inputValue.value = props.modelValue;
 });
+const handleInput = (e: any) => {
+	emit('update:modelValue', e);
+};
 const pageList = computed(() => {
 	if (currentPage.value === 1) {
 		return copyIconList[currentActiveType.value]

@@ -30,12 +30,12 @@
 						<el-form-item label="规则类型">
 							<el-select v-model="permissionData.roleDateType" placeholder="请选择">
 								<el-option label="仅自己可见" value="USERSELF"></el-option>
-								<el-option label="所在科室可见" value="SELF_DEPT"></el-option>
-								<el-option label="全部科室可见" value="ALL_DEPT"></el-option>
-								<el-option label="选择的科室可见" value="SELECT_DEPT"></el-option>
+								<el-option label="所在部门可见" value="SELF_DEPT"></el-option>
+								<el-option label="全部可见" value="ALL_DEPT"></el-option>
+								<el-option label="选择的部门可见" value="SELECT_DEPT"></el-option>
 							</el-select>
 						</el-form-item>
-						<el-form-item label="选择科室" v-show="permissionData.roleDateType == 'SELECT_DEPT'">
+						<el-form-item label="选择部门" v-show="permissionData.roleDateType == 'SELECT_DEPT'">
 							<div class="treeMain" style="width: 100%">
 								<el-tree
 									ref="deptTreeRef"
@@ -48,18 +48,6 @@
 							</div>
 						</el-form-item>
 					</el-form>
-				</el-tab-pane>
-				<el-tab-pane label="控制台模块">
-					<div class="treeMain">
-						<el-tree
-							ref="gridTreeRef"
-							node-key="id"
-							:data="dashboardData.dashboardOptions"
-							:props="dashboardData.props"
-							:default-checked-keys="dashboardData.checked"
-							show-checkbox
-						></el-tree>
-					</div>
 				</el-tab-pane>
 			</el-tabs>
 		</div>
@@ -76,7 +64,6 @@ import { saveSysRoleAuthApi, getSysRoleAuthApi } from '@/api/modules/role';
 import { getDepartmentListApi } from '@/api/modules/org';
 import { convertTree } from '@/utils';
 import { ElMessage } from 'element-plus';
-import { getControlAllApi } from '@/api/modules/common';
 import { anyObj } from '#/global';
 import type Node from 'element-plus/es/components/tree/src/model/node';
 interface DrawerProps {
@@ -113,18 +100,6 @@ const permissionData = ref<any>({
 		}
 	}
 });
-const dashboardData = ref<any>({
-	checked: [],
-	props: {
-		label: (data: any) => {
-			return data.name;
-		}
-		// disabled: (data: any) => {
-		// 	return data.isFixed;
-		// }
-	},
-	dashboardOptions: []
-});
 const getSysMenuList = async () => {
 	const resData = await getSysMenuAllListApi({});
 	menuData.menuList = resData.data;
@@ -139,17 +114,11 @@ const getSysRoleAuth = async (id: string) => {
 		menuData.isIndeterminate = menuCheck.length > 0 && menuCheck.length < menuData.menuList.length;
 		permissionData.value.roleDateType = resData.data.roleData.dataType;
 		permissionData.value.depChecked = resData.data.roleData.departmentIdList;
-		dashboardData.value.checked = resData.data.roleControlIdList;
 	});
 };
 const getDepartmentList = () => {
 	getDepartmentListApi({}).then((res: any) => {
 		permissionData.value.departmentList = res.data.records;
-	});
-};
-const getControlAll = () => {
-	getControlAllApi({}).then((res: any) => {
-		dashboardData.value.dashboardOptions = res.data;
 	});
 };
 // 接收父组件传过来的参数
@@ -158,7 +127,6 @@ const acceptParams = async (params: DrawerProps): Promise<void> => {
 	drawerVisible.value = true;
 	await getSysMenuList();
 	await getDepartmentList();
-	await getControlAll();
 	if (params.rowData.id) {
 		await getSysRoleAuth(params.rowData.id);
 	}
@@ -227,11 +195,9 @@ function handleClose() {
 	menuData.menuList = [];
 	menuData.isIndeterminate = false;
 	menuData.isChecked = false;
-	dashboardData.value.checked = [];
 }
 // 提交数据
 const deptTreeRef = ref();
-const gridTreeRef = ref();
 const handleSubmit = async () => {
 	// 注意点：传递参数（获取了父子节点）
 	let menuIdList = menuRef.value.getCheckedNodes(false, true).map((item: any) => item.id);
@@ -240,18 +206,16 @@ const handleSubmit = async () => {
 		ElMessage.warning('请至少选择一个科室!');
 		return;
 	}
-	let roleControlIdList = gridTreeRef.value.getCheckedNodes(false, true).map((item: any) => item.id);
 	let reqData: any = {
 		roleId: drawerProps.value.rowData.id,
 		menuIdList,
 		roleData: {
 			roleDateType: permissionData.value.roleDateType,
 			departmentIdList: departmentIdList
-		},
-		roleControlIdList: roleControlIdList
+		}
 	};
-	let res = await saveSysRoleAuthApi(reqData);
-	if (res.data.code === 200) {
+	let res: any = await saveSysRoleAuthApi(reqData);
+	if (res.code === 200) {
 		ElMessage.success({
 			message: '操作成功!',
 			showClose: true,

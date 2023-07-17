@@ -49,9 +49,10 @@ const useUserStore = defineStore(
 			isLogin: state => {
 				let flag = false;
 				if (state.token) {
-					if (new Date().getTime() < parseInt(state.failure_time)) {
-						flag = true;
-					}
+					// if (new Date().getTime() < parseInt(state.failure_time)) {
+					// 	flag = true;
+					// }
+					flag = true;
 				}
 				return flag;
 			}

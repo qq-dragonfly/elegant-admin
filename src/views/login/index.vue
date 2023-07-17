@@ -68,7 +68,10 @@
 								</el-icon>
 							</template>
 							<template #append>
-								<img v-if="captchaImg" :src="captchaImg" class="w-full h-12 verify-code-img" @click="getImageCaptcha" alt="" />
+								<div class="w-[130px] h-[48px]">
+									<ImgVerify ref="verifyRef" />
+								</div>
+								<!--								<img v-if="captchaImg" :src="captchaImg" class="w-full h-12 verify-code-img" @click="getImageCaptcha" alt="" />-->
 							</template>
 						</el-input>
 					</el-form-item>
@@ -274,6 +277,7 @@ import useUserStore from '@/store/modules/user';
 import { ref } from 'vue';
 import LoginBg from './components/LoginBg/index.vue';
 import useSettingsStore from '@/store/modules/settings';
+
 const route = useRoute();
 const router = useRouter();
 const settingsStore = useSettingsStore();
@@ -291,8 +295,8 @@ type FormInstance = InstanceType<typeof ElForm>;
 const loginFormRef = ref<FormInstance>();
 const loginPasswordRef = ref<HTMLElement>();
 const loginForm = reactive({
-	username: (getLocal('login_username') as string) || '',
-	password: (getLocal('login_pwd') as string) || '',
+	username: (getLocal('login_username') as string) || 'admin',
+	password: (getLocal('login_pwd') as string) || '123456',
 	remember: !!getLocal('login_username'),
 	verifyCode: '',
 	captchaId: ''
@@ -321,10 +325,11 @@ const loginRules = ref<FormRules>({
 	verifyCode: [{ required: true, message: '请输入图形验证码', trigger: 'blur' }]
 });
 onMounted(() => {
-	getImageCaptcha();
+	// getImageCaptcha(); //获取后端图形验证码,演示注释掉了，用前端生成的验证码
 });
 //获取图形验证码
 const captchaImg = ref('');
+
 function getImageCaptcha() {
 	loginForm.captchaId = randomString(64);
 	let para = {
@@ -334,17 +339,19 @@ function getImageCaptcha() {
 		captchaImg.value = window.URL.createObjectURL(res);
 	});
 }
+
 function handleLogin() {
 	loginFormRef.value &&
 		loginFormRef.value.validate(valid => {
 			if (valid) {
 				loading.value = true;
 				let randomNumber = randomString(16);
-				let password = AesEncrypt(loginForm.password, randomNumber);
+				// let password = AesEncrypt(loginForm.password, randomNumber); //演示加密注释
+				let password = loginForm.password;
 				// console.log('加密后----->', password)
 				setSession('psKey', randomNumber);
 				// proxy.$TOOL.session.set('psKey', randomNumber);
-				let aesDecryptVal = AesDecrypt(password, randomNumber);
+				// let aesDecryptVal = AesDecrypt(password, randomNumber);
 				// console.log('aesDecryptVal', aesDecryptVal)
 
 				let para = {

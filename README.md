@@ -20,13 +20,14 @@
 - **请求函数**：基于 axios 的完善的请求函数封装
 - **表格封装**：基于 elementPlus 封装的表格组件、表格查询组件
 
-## 预览
+[//]: # (## 预览)
 
-- [elegant-admin]('https://zergj-followup.zjwlyy.cn/#/login?redirect=/dashboard')
+[//]: # ()
+[//]: # (- [elegant-admin]&#40;'https://zergj-followup.zjwlyy.cn/#/login?redirect=/dashboard'&#41;)
 
 ## 代码仓库
 
-- [github](https://gitee.com/smart-china/zergj-followup-admin.git)
+- [github](https://github.com/zhangyao1990/elegant-admin.git)
 
 ## 更新日志
 
@@ -40,7 +41,7 @@
 - 克隆代码
 
 ```bash
-git clone https://gitee.com/smart-china/zergj-followup-admin.git
+git clone https://github.com/zhangyao1990/elegant-admin.git
 ```
 
 - 安装依赖

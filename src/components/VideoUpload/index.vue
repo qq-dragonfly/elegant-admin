@@ -69,18 +69,19 @@
 				/>
 			</div>
 		</div>
-		<el-dialog
-			title="查看视频"
-			:append-to-body="true"
+		<ProDialog
 			v-if="uploadData.videoViewerVisible"
-			v-model="uploadData.videoViewerVisible"
-			width="750px"
 			@close="previewClose"
+			title="查看视频"
+			width="750px"
+			v-model="uploadData.videoViewerVisible"
+			:destroy-on-close="true"
+			size="450px"
 		>
 			<div v-if="itemVideoUrl">
 				<video-player :src="itemVideoUrl" :options="videoOptions"></video-player>
 			</div>
-		</el-dialog>
+		</ProDialog>
 	</div>
 </template>
 <script lang="ts" setup name="VideoUpload">

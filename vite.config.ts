@@ -42,13 +42,13 @@ export default ({ mode = 'development', command = 'serve' }) => {
 			port: 3000,
 			host: '0.0.0.0',
 			proxy: {
-				'/nethos': {
-					target: 'https://zergj-followup.zjwlyy.cn/',
+				'/admin': {
+					target: 'https://www.fastmock.site/mock/ffbd1a652f84b5aee2f4ef14440a10df/',
 					changeOrigin: true,
-					rewrite: path => path.replace(/^\/nethos/, 'nethos')
+					rewrite: path => path.replace(/^\/admin/, 'admin')
 				}
 				// '/nethos': {
-				// 	target: 'https://t-zbzk.zjwlyy.cn',
+				// 	target: 'https://xxxxxxxxxxx.cn',
 				// 	changeOrigin: true,
 				// 	rewrite: path => path.replace(/^\/nethos/, 'nethos')
 				// }
@@ -91,44 +91,45 @@ export default ({ mode = 'development', command = 'serve' }) => {
 				lastBuildTime: dayjs().format('YYYY-MM-DD HH:mm:ss')
 			})
 		},
-		// optimizeDeps: {
-		// 	// vite在启动之初就对以下资源进行预打包
-		// 	include: [
-		// 		'element-plus',
-		// 		'element-plus/es',
-		// 		'@element-plus/icons-vue',
-		// 		'tinymce',
-		// 		'tinymce/tinymce',
-		// 		'@tinymce/tinymce-vue',
-		// 		'tinymce/themes/silver/theme',
-		// 		'tinymce/icons/default/icons',
-		// 		'tinymce/models/dom',
-		// 		'tinymce/plugins/autolink',
-		// 		'tinymce/plugins/autoresize',
-		// 		'tinymce/plugins/fullscreen',
-		// 		'tinymce/plugins/image',
-		// 		'tinymce/plugins/insertdatetime',
-		// 		'tinymce/plugins/link',
-		// 		'tinymce/plugins/lists',
-		// 		'tinymce/plugins/media',
-		// 		'tinymce/plugins/preview',
-		// 		'tinymce/plugins/table',
-		// 		'tinymce/plugins/wordcount',
-		// 		'tinymce/plugins/code',
-		// 		'tinymce/plugins/searchreplace',
-		// 		'vue',
-		// 		'pinia',
-		// 		'sass',
-		// 		'vue-router',
-		// 		'tailwindcss/plugin',
-		// 		'@better-scroll/core',
-		// 		'xgplayer',
-		// 		'xgplayer-hls',
-		// 		'ali-oss',
-		// 		'@vueuse/core',
-		// 		'axios'
-		// 	]
-		// },
+		optimizeDeps: {
+			// vite在启动之初就对以下资源进行预打包
+			include: [
+				'element-plus',
+				'element-plus/es',
+				'@element-plus/icons-vue',
+				'tinymce',
+				'tinymce/tinymce',
+				'@tinymce/tinymce-vue',
+				'tinymce/themes/silver/theme',
+				'tinymce/icons/default/icons',
+				'tinymce/models/dom',
+				'tinymce/plugins/autolink',
+				'tinymce/plugins/autoresize',
+				'tinymce/plugins/fullscreen',
+				'tinymce/plugins/image',
+				'tinymce/plugins/insertdatetime',
+				'tinymce/plugins/link',
+				'tinymce/plugins/lists',
+				'tinymce/plugins/media',
+				'tinymce/plugins/preview',
+				'tinymce/plugins/table',
+				'tinymce/plugins/wordcount',
+				'tinymce/plugins/code',
+				'tinymce/plugins/searchreplace',
+				'vue',
+				'pinia',
+				'mitt',
+				'sass',
+				'vue-router',
+				'tailwindcss/plugin',
+				'@better-scroll/core',
+				'xgplayer',
+				'xgplayer-hls',
+				'ali-oss',
+				'@vueuse/core',
+				'axios'
+			]
+		},
 		plugins: createVitePlugins(env, command === 'build'),
 		resolve: {
 			alias: {

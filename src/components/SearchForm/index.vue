@@ -22,7 +22,7 @@
 				</el-button>
 			</div>
 		</div>
-		<el-form ref="formRef" :model="searchParam" :inline="true" label-width="100px">
+		<el-form ref="formRef" :model="searchParam" :inline="true" label-width="120px">
 			<Grid ref="gridRef" :collapsed="collapsed" :gap="[20, 0]" :cols="searchCol">
 				<GridItem v-for="(item, index) in columns" :key="item.prop" v-bind="getResponsive(item)" :index="index">
 					<el-form-item v-if="!item.search?.searchSlotBool" :label="`${item.label} :`">

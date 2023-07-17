@@ -25,9 +25,15 @@
 			<div v-if="toolButton" class="header-button-ri">
 				<slot name="toolButton">
 					<el-button :icon="Refresh" circle @click="getTableList" />
-					<el-button v-if="columns.length" :icon="Printer" circle @click="print" />
-					<el-button v-if="columns.length" :icon="Operation" circle @click="openColSetting" />
-					<el-button v-if="searchColumns.length" :icon="Search" circle @click="isShowSearch = !isShowSearch" />
+					<el-button :icon="Printer" circle v-if="columns.length && isToolButtonPrint" @click="handlePrint"> </el-button>
+					<el-button :icon="Operation" circle v-if="columns.length && isToolButtonSetting" @click="openColSetting"> </el-button>
+					<el-button
+						:icon="Search"
+						circle
+						v-if="searchColumns.length && isToolButtonSearch"
+						@click="isShowSearch = !isShowSearch"
+					>
+					</el-button>
 				</slot>
 			</div>
 		</div>
@@ -115,6 +121,9 @@ export interface ProTableProps {
 	pagination?: boolean; // 是否需要分页组件 ==> 非必传（默认为true）
 	initParam?: any; // 初始化请求参数 ==> 非必传（默认为{}）
 	border?: boolean; // 是否带有纵向边框 ==> 非必传（默认为true）
+	isToolButtonPrint?: boolean; // 是否显示表格功能按钮打印 ==> 非必传（默认为false）
+	isToolButtonSetting?: boolean; // 是否显示表格功能按钮设置 ==> 非必传（默认为true）
+	isToolButtonSearch?: boolean; // 是否显示表格功能按钮查询 ==> 非必传（默认为true）
 	toolButton?: boolean; // 是否显示表格功能按钮 ==> 非必传（默认为true）
 	rowKey?: string; // 行数据的 Key，用来优化 Table 的渲染，当表格数据多选时，所指定的 id ==> 非必传（默认为 id）
 	searchCol?: number | Record<BreakPoint, number>; // 表格搜索项 每列占比配置 ==> 非必传 { xs: 1, sm: 2, md: 2, lg: 3, xl: 4 }
@@ -128,6 +137,9 @@ const props = withDefaults(defineProps<ProTableProps>(), {
 	initParam: {},
 	border: true,
 	toolButton: true,
+	isToolButtonPrint: false,
+	isToolButtonSearch: true,
+	isToolButtonSetting: true,
 	rowKey: 'id',
 	searchCol: () => ({ xs: 1, sm: 2, md: 2, lg: 3, xl: 4 })
 });
@@ -258,7 +270,7 @@ const printData = computed(() => {
 });
 
 // 打印表格数据（💥 多级表头数据打印时，只能扁平化成一维数组，printJs 不支持多级表头打印）
-const print = () => {
+const handlePrint = () => {
 	const header = `<div style="text-align: center"><h2>${props.title}</h2></div>`;
 	const gridHeaderStyle = 'border: 1px solid #ebeef5;height: 45px;color: #232425;text-align: center;background-color: #fafafa;';
 	const gridStyle = 'border: 1px solid #ebeef5;height: 40px;color: #494b4e;text-align: center';
