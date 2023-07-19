@@ -23,7 +23,7 @@ setTimeout(() => {
 
 onMounted(() => {
 	settingsStore.$patch((state: any) => {
-		if (VITE_APP_MODE.value === 'dev') {
+		if (VITE_APP_MODE.value === 'dev' || VITE_APP_MODE.value === 'test') {
 			state.toolbar.enableAppSetting = true;
 		}
 	});

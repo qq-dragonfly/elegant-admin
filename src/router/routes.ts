@@ -102,14 +102,6 @@ const asyncRoutes: Route.recordMainRaw[] = [
 			icon: 'local-sidebar_setting'
 		},
 		children: [SysSettingModule]
-	},
-	{
-		name: 'Org',
-		meta: {
-			title: '机构',
-			icon: 'local-sidebar_institutional'
-		},
-		children: [OrgModule]
 	}
 ];
 

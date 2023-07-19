@@ -184,17 +184,24 @@ textarea {
 	flex-direction: column;
 	height: 100%;
 	margin: 8px;
+	.table-card {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+	}
 
 	// table-search 表格搜索样式
 	.table-search {
 		padding: 18px 18px 0;
 		.el-form {
 			.el-form-item {
-				margin-right: 5px;
+				width: 100%;
+				margin-right: 0;
 				.el-input,
 				.el-select,
+				.el-cascader,
 				.el-date-editor--timerange {
-					width: 210px;
+					width: 100%;
 				}
 				.el-date-editor--datetimerange,
 				.el-date-editor--daterange {
@@ -210,7 +217,6 @@ textarea {
 				.el-select__tags {
 					overflow: hidden;
 					white-space: nowrap;
-
 				}
 			}
 		}
@@ -238,7 +244,9 @@ textarea {
 
 	// el-table 表格样式
 	.el-table {
+		display: flex;
 		flex: 1;
+		flex-direction: column;
 		.el-table__header th {
 			height: 45px;
 			font-size: 15px;
@@ -254,6 +262,9 @@ textarea {
 		// 设置 el-table 中 header 文字不换行
 		.el-table__header .el-table__cell > .cell {
 			white-space: nowrap;
+		}
+		.el-table__inner-wrapper {
+			flex: 1;
 		}
 
 		// 解决表格数据为空时样式不居中问题(仅在element-plus中)

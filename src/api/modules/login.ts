@@ -1,7 +1,5 @@
 import { Login } from '@/api/interface/login';
 import { PORT1 } from '@/api/config/servicePort';
-// @ts-ignore
-import DynamicRouter from '@/assets/json/dynamicRouter.json';
 // import qs from 'qs';
 import http from '@/api';
 
@@ -33,6 +31,6 @@ export const getAuthMenuListApi = () => {
 	// 如果想让菜单变为本地数据，注释上一行代码，并引入本地 dynamicRouter.json 数据
 	// return new Promise<any>(resolve => {
 	// 	// 通过 mock 获取权限
-	// 	resolve(DynamicRouter);
+	// 	resolve();
 	// });
 };
