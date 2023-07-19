@@ -10,6 +10,9 @@
 [Elegant Admin](https://github.com/zhangyao1990/elegant-admin) 是一个基于 Vue3、Vite3、TypeScript、elementPlus、Pinia
 的清新优雅的中后台模版，它使用了最新的前端技术栈，内置多个主题配置，开箱即用的中后台前端解决方案，也可用于学习参考。
 
+## 线上预览
+[预览](https://zhangyao1990.github.io/elegant-admin/#/login)
+
 ## 特性
 
 - **最新技术栈**：使用 Vue3/Vite3/Pinia 等前端前沿技术开发, 使用高效率的 npm 包管理器 pnpm

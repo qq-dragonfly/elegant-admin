@@ -36,7 +36,7 @@ export default ({ mode = 'development', command = 'serve' }) => {
 		}
 	});
 	return defineConfig({
-		base: './',
+		base: '/elegant-admin/',
 		// 开发服务器选项 https://cn.vitejs.dev/config/#server-options
 		server: {
 			port: 3000,

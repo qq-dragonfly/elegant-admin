@@ -4,11 +4,11 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts" name="ImgVerify">
 import { ref } from 'vue';
 import { setVerify } from '@/hooks/useVerify';
 export default {
-	setup(props, con) {
+	setup(props: any, con: any) {
 		const verify = ref(null);
 		return {
 			...setVerify(verify)

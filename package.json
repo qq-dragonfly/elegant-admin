@@ -10,6 +10,7 @@
 		"build:sit": "cross-env NODE_OPTIONS=--max-old-space-size=2048 vue-tsc --noEmit && vite build --mode sit",
 		"build:pro": "cross-env NODE_OPTIONS=--max-old-space-size=2048 vue-tsc --noEmit && vite build --mode production",
 		"serve:test": "http-server ./dist-tests -o",
+		"deploy": "sh deploy.sh",
 		"svgo": "svgo -f src/assets/icons",
 		"new": "plop",
 		"lint:eslint": "eslint src/**/*.{ts,vue} --fix",
