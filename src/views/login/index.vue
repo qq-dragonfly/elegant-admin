@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="bg-banner">
-			<login-bg :theme-color="bgThemeColor" v-if="settingsStore.mode === 'pc'" />
+			<!--			<login-bg :theme-color="bgThemeColor" v-if="settingsStore.mode === 'pc'" />-->
 		</div>
 		<div id="login-box" :class="{ 'shadow-2xl': settingsStore.mode === 'pc', 'login-box': settingsStore.mode === 'pc' }">
 			<el-form
@@ -550,12 +550,13 @@ const bgThemeColor = computed(() => settingsStore.app.themeColor);
 	z-index: 0;
 	width: 100%;
 	height: 100%;
-	background-color: var(--el-color-primary-light-8);
+	background: var(--el-color-primary-light-8) url('../../assets/images/login_bj.png') no-repeat center center;
+	background-size: 100% 100%;
 }
 #login-box {
 	position: absolute;
-	top: 50%;
-	left: 50%;
+	top: 53%;
+	left: 23%;
 	display: flex;
 	justify-content: space-between;
 	overflow: hidden;

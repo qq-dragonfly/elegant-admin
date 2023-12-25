@@ -143,5 +143,4 @@ router.afterEach((to, from) => {
 	}
 	document.documentElement.scrollTop = 0;
 });
-
 export default router;

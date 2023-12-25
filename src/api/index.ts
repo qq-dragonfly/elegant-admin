@@ -28,7 +28,7 @@
  * @LastEditTime:
  * @Author: 97972619@qq.com
  */
-import { getSession, removeSession } from '@/utils/storage';
+import { getLocal } from '@/utils/storage';
 import axios, { AxiosInstance, AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { showFullScreenLoading, tryHideFullScreenLoading } from '@/api/config/serviceLoading';
 // import { AxiosCanceler } from './helper/axiosCancel'; //取消重复请求暂时没用到
@@ -73,12 +73,11 @@ class RequestHttp {
 		 */
 		this.service.interceptors.request.use(
 			(config: any) => {
-				const userStore = useUserStore();
 				// * 将当前请求添加到 pending 中
 				// axiosCanceler.addPending(config);
 				// * 如果当前请求不需要显示 loading,在 api 服务中通过指定的第三个参数: { headers: { noLoading: true } }来控制不显示loading，参见loginApi
 				config.headers!.noLoading || showFullScreenLoading();
-				const token: string = userStore.token;
+				const token: any = getLocal('token');
 				if (config.headers) {
 					if (token) {
 						config.headers[TOKEN_NAME] = token;
@@ -118,7 +117,8 @@ class RequestHttp {
 				}
 				// * 全局错误信息拦截（防止下载文件得时候返回数据流，没有code，直接报错）
 				if (data.code && data.code !== ResultEnum.SUCCESS) {
-					ElMessage.error(data.message);
+					console.log('data', data);
+					ElMessage.error(data.message || data.desc);
 					return Promise.reject(data);
 				}
 				// * 成功请求（在页面上除非特殊情况，否则不用处理失败逻辑）
@@ -126,6 +126,7 @@ class RequestHttp {
 			},
 			async (error: AxiosError) => {
 				const { response } = error;
+				console.log('response', response);
 				tryHideFullScreenLoading();
 				// 请求超时单独判断，因为请求超时没有 response
 				if (error.message.indexOf('timeout') !== -1) {

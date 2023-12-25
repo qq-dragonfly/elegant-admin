@@ -29,7 +29,7 @@ const globalSettingsDefault: RecursiveRequired<Settings.all> = {
 		enableProgress: true, //是否开启载入进度条
 		enableDynamicTitle: false, //enableDynamicTitle
 		routeBaseOn: 'backend', //'frontend'：前端 'backend' 后端
-		themeColor: '#007AFF' //主题颜色
+		themeColor: '#352DE4' //主题颜色
 	},
 	//控制台配置
 	home: {

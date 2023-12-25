@@ -54,11 +54,6 @@ export const useTable = (
 		}
 	});
 
-	// 初始化的时候需要做的事情就是 设置表单查询默认值 && 获取表格数据(reset函数的作用刚好是这两个功能)
-	onMounted(async () => {
-		await handleReset();
-	});
-
 	/**
 	 * @description 获取表格数据
 	 * @return void
@@ -66,6 +61,7 @@ export const useTable = (
 	const getTableList = async () => {
 		try {
 			// 先把初始化参数和分页参数放到总参数里面
+			// isPageable = false;
 			Object.assign(state.totalParam, initParam, isPageable ? pageParam.value : {});
 			let { data } = await api({ ...state.searchInitParam, ...state.totalParam });
 			dataCallBack && (data = dataCallBack(data));
@@ -124,6 +120,7 @@ export const useTable = (
 		state.searchParam = {};
 		// 重置搜索表单的时，如果有默认搜索参数，则重置默认的搜索参数
 		Object.keys(state.searchInitParam).forEach(key => {
+			console.log('key', key);
 			state.searchParam[key] = state.searchInitParam[key];
 		});
 		updatedTotalParam();

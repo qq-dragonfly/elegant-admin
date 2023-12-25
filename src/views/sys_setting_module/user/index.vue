@@ -173,7 +173,7 @@ const columns: ColumnProps[] = [
 		width: 200,
 		search: {
 			el: 'date-picker',
-			span: 2,
+			span: 1,
 			key: 'timeArr',
 			props: { type: 'datetimerange' }
 			// defaultValue: ['2022-11-12 11:35:00', '2022-12-12 11:35:00']

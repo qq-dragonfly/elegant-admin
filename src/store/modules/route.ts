@@ -82,7 +82,7 @@ function flatAsyncRoutesRecursive(
 ): RouteRecordRaw[] {
 	const res: RouteRecordRaw[] = [];
 	routes.forEach(route => {
-		if (route.children && route.children?.length) {
+		if (route.children && route.children?.length && !route.meta?.threeMenu) {
 			const childrenBaseUrl = resolveRoutePath(baseUrl, route.path);
 			const childrenBaseAuth = baseAuth ?? route.meta?.auth;
 			const tmpBreadcrumb = cloneDeep(breadcrumb);

@@ -8,7 +8,7 @@ export default function useAuth() {
 		const settingsStore = useSettingsStore();
 		const userStore = useUserStore();
 		if (settingsStore.app.enablePermission) {
-			return userStore.permissions.includes(permission);
+			return userStore.permissions?.includes(permission);
 		} else {
 			return true;
 		}

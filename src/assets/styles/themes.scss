@@ -83,6 +83,7 @@
 	/* --------表格表头--------- */
 	--g-table-header-bj-color: var(--el-bg-color);
 	--g-table-header-text-color: var(--el-text-color-primary);
+  --normal-box-bg-color: var(--el-color-primary-light-9);
 
 	/* ----- 暗黑模式 ----- */
 	&.dark {
@@ -170,5 +171,6 @@
 		/* --------表格表头--------- */
 		--g-table-header-bj-color: var(--el-bg-color);
 		--g-table-header-text-color: #ffffff;
+    --normal-box-bg-color: transparent;
 	}
 }

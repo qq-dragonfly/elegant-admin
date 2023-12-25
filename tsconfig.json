@@ -1,34 +1,34 @@
 {
-	"compilerOptions": {
-		"composite": true,
-		"target": "ESNext", //target用于指定编译之后的版本目录
-		"useDefineForClassFields": true,
-		"module": "ESNext", //指定生成代码的模板标准
-		"moduleResolution": "Node", // 模块解析策略，ts默认用node的解析策略，即相对的方式导入
-		"strict": true, //开启所有严格的类型检查
-		"jsx": "preserve",
-		"sourceMap": true, //生成目标文件的sourceMap文件
-		"resolveJsonModule": true,
-		"isolatedModules": true,
-		"esModuleInterop": true, //允许export=导出，由import from 导入
-		"lib": ["ESNext", "DOM"], // TS需要引用的库，即声明文件，es5 默认引用dom、es5、scripthost,如需要使用es的高级版本特性，通常都需要配置，如es8的数组新特性需要引入"ES2019.Array",
-		"skipLibCheck": true,
-		"baseUrl": "./", //解析非相对模块的基地址，默认是当前目录
-		"forceConsistentCasingInFileNames": true,
+  "compilerOptions": {
+    "composite": true,
+    "target": "ESNext", //target用于指定编译之后的版本目录
+    "useDefineForClassFields": true,
+    "module": "ESNext", //指定生成代码的模板标准
+    "moduleResolution": "Node", // 模块解析策略，ts默认用node的解析策略，即相对的方式导入
+    "strict": true, //开启所有严格的类型检查
+    "jsx": "preserve",
+    "sourceMap": true, //生成目标文件的sourceMap文件
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true, //允许export=导出，由import from 导入
+    "lib": ["ESNext", "DOM"], // TS需要引用的库，即声明文件，es5 默认引用dom、es5、scripthost,如需要使用es的高级版本特性，通常都需要配置，如es8的数组新特性需要引入"ES2019.Array",
+    "skipLibCheck": true,
+    "baseUrl": "./", //解析非相对模块的基地址，默认是当前目录
+    "forceConsistentCasingInFileNames": true,
     "strictNullChecks": true,
     "noUnusedParameters":false,
-		"paths": {
-			//路径映射，相对于baseUrl
-			"@/*": ["src/*"],
-			"#/*": ["src/types/*"]
-		},
-		"types": ["vite/client", "element-plus/global", "node"] // 加载的声明文件包
-	},
-	"exclude": ["dist", "node_modules"], // 排除src目录下的lib文件夹下的文件不会编译
-	"include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "package.json", "vite.config.ts"], //指定编译需要编译的文件或目录。
-	"references": [
-		{
-			"path": "./tsconfig.node.json"
-		}
-	]
+    "paths": {
+      //路径映射，相对于baseUrl
+      "@/*": ["src/*"],
+      "#/*": ["src/types/*"]
+    },
+    "types": ["vite/client", "element-plus/global", "node"] // 加载的声明文件包
+  },
+  "exclude": ["dist", "node_modules"], // 排除src目录下的lib文件夹下的文件不会编译
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "package.json", "vite.config.ts"], //指定编译需要编译的文件或目录。
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
 }

@@ -55,6 +55,7 @@ import debounce from './modules/debounce';
 import throttle from './modules/throttle';
 import auth from './modules/auth';
 import authAll from './modules/authAll';
+import resizeObserver from './modules/resizeObserver';
 
 const directivesList: any = {
 	// Custom directives
@@ -64,7 +65,8 @@ const directivesList: any = {
 	waterMarker,
 	draggable,
 	debounce,
-	throttle
+	throttle,
+	resizeObserver
 };
 
 const directives = {

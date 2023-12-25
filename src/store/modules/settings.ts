@@ -39,7 +39,7 @@ const useSettingsStore = defineStore(
 						this.mode = 'mobile';
 					} else {
 						// 如果为桌面设备，再根据页面宽度判断是否需要切换为移动端展示
-						this.mode = width < 992 ? 'mobile' : 'pc';
+						this.mode = width < 1200 ? 'mobile' : 'pc';
 					}
 				} else {
 					this.mode = 'pc';

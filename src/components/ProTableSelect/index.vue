@@ -42,9 +42,10 @@
 					@row-click="handleTableClick"
 					@select="handleSelect"
 					@select-all="handleSelectAll"
+					border
 				>
-					<el-table-column v-if="multiple" type="selection" width="45"></el-table-column>
-					<el-table-column v-else type="index" width="45">
+					<el-table-column v-if="multiple" type="selection" width="60"></el-table-column>
+					<el-table-column v-else type="index" width="60" label="#" align="center">
 						<template #default="scope"
 							><span>{{ scope.$index + (state.currentPage - 1) * state.pageSize + 1 }}</span></template
 						>
@@ -270,15 +271,16 @@ function handleTableClick(row: any) {
 		state.defaultValue = row;
 		selectRef.value.blur();
 		autoCurrentLabel();
-		emits('update:modelValue', state.defaultValue);
-		emits('changeEmit', state.defaultValue);
 	}
+	emits('update:modelValue', state.defaultValue);
+	emits('changeEmit', state.defaultValue);
 }
 //tags删除后回调
 function handleRemoveTag(tag: any) {
 	const row = findRowByKey(tag[state.defaultProps.value]);
 	tableRef.value.toggleRowSelection(row, false);
 	emits('update:modelValue', state.defaultValue);
+	emits('changeEmit', state.defaultValue);
 }
 // 关键值查询表格数据行
 function findRowByKey(value: any) {

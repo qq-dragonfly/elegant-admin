@@ -6,7 +6,7 @@
 		:searchParam="searchParam"
 		:columns="searchColumns"
 		:searchCol="searchCol"
-		v-show="isShowSearch"
+		v-show="isShowSearch && searchColumns.length"
 	>
 		<template v-for="item in searchColumns" #[item?.search?.key!]>
 			<template v-if="item.search?.searchSlotBool">
@@ -14,7 +14,6 @@
 			</template>
 		</template>
 	</SearchForm>
-
 	<!-- 表格内容 card -->
 	<div class="card table-card">
 		<!-- 表格头部 操作按钮 -->
@@ -173,18 +172,20 @@ const {
 	props.resetCallBack,
 	props.requestError
 );
+
 // 清空选中数据列表
 const clearSelection = () => tableRef.value!.clearSelection();
 
 // 初始化请求
-onMounted(() => props.requestAuto && getTableList());
+onMounted(() => {
+	props.requestAuto && getTableList();
+});
 
 // 监听页面 initParam 改化，重新获取表格数据
 watch(() => props.initParam, getTableList, { deep: true });
 
 // 接收 columns 并设置为响应式
 const tableColumns = ref<ColumnProps[]>(props.columns);
-
 // 定义 enumMap 存储 enum 值（避免异步请求无法格式化单元格内容 || 无法填充搜索下拉选择）
 const enumMap = ref(new Map<string, { [key: string]: any }[]>());
 provide('enumMap', enumMap);
@@ -211,7 +212,6 @@ const flatColumnsFunc = (columns: ColumnProps[], flatArr: ColumnProps[] = []) =>
 		// 给每一项 column 添加 isShow && isFilterEnum 默认属性
 		col.isShow = col.isShow ?? true;
 		col.isFilterEnum = col.isFilterEnum ?? true;
-
 		// 设置 enumMap
 		setEnumMap(col);
 	});

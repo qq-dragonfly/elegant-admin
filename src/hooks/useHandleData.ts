@@ -14,23 +14,31 @@ export const useHandleData = <P = any, R = any>(
 	api: (params: P) => Promise<R>,
 	params: Parameters<typeof api>[0],
 	message: string,
-	confirmType: HandleData.MessageType = 'warning'
+	type: HandleData.type = 'confirm',
+	confirmType: HandleData.MessageType = 'warning',
+	title?: any,
+	confirmButtonText?: any,
+	cancelButtonText?: any
 ) => {
 	return new Promise((resolve, reject) => {
-		ElMessageBox.confirm(`是否${message}?`, '温馨提示', {
-			confirmButtonText: '确定',
-			cancelButtonText: '取消',
+		ElMessageBox[type](`${message}?`, `${title || '温馨提示'}`, {
+			confirmButtonText: `${confirmButtonText || '确认'}`,
+			cancelButtonText: `${cancelButtonText || '取消'}`,
 			type: confirmType,
-			draggable: true
+			draggable: true,
+			inputPattern: /^.+$/,
+			inputErrorMessage: '请输入!'
 		})
-			.then(async () => {
+			.then(async ({ value }) => {
+				let para: any = params;
+				para.auditRemark = value;
 				const res = await api(params);
 				if (!res) {
 					return reject(new Error('err'));
 				}
 				ElMessage({
 					type: 'success',
-					message: `${message}成功!`
+					message: `操作成功!`
 				});
 				resolve(true);
 			})

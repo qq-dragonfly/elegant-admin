@@ -24,4 +24,5 @@ export namespace Table {
 
 export namespace HandleData {
 	export type MessageType = '' | 'success' | 'warning' | 'info' | 'error';
+	export type type = 'confirm' | 'alert' | 'prompt';
 }

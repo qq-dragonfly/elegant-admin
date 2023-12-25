@@ -10,7 +10,7 @@
  *               每晚灯火阑珊处，夜难寐，加班狂。
  *
  *
- * @Description:vite.config.js配置
+ * @Description:vite.config.js配置===
  * @version:
  * @Date: 2023-02-07
  * @LastEditors:  97972619@qq.com
@@ -20,6 +20,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { defineConfig, loadEnv } from 'vite';
+import { wrapperEnv } from './vite/utils';
+import { createProxy } from './vite/proxy';
 import dayjs from 'dayjs';
 import pkg from './package.json';
 import createVitePlugins from './vite/plugins';
@@ -28,6 +30,10 @@ import createVitePlugins from './vite/plugins';
 // 开发环境command值为serve，生产环境为build
 export default ({ mode = 'development', command = 'serve' }) => {
 	const env = loadEnv(mode, process.cwd());
+	const viteEnv = wrapperEnv(env);
+
+	const { VITE_PROXY } = viteEnv;
+	const isBuild = command === 'build';
 	// 全局 scss 资源
 	const scssResources: Array<any> = [];
 	fs.readdirSync('src/assets/styles/resources').forEach(dirname => {
@@ -39,47 +45,43 @@ export default ({ mode = 'development', command = 'serve' }) => {
 		base: '/elegant-admin/',
 		// 开发服务器选项 https://cn.vitejs.dev/config/#server-options
 		server: {
-			port: 3000,
+			port: 8888,
 			host: '0.0.0.0',
-			proxy: {
-				'/admin': {
-					target: 'https://www.fastmock.site/mock/ffbd1a652f84b5aee2f4ef14440a10df/',
-					changeOrigin: true,
-					rewrite: path => path.replace(/^\/admin/, 'admin')
-				}
-				// '/nethos': {
-				// 	target: 'https://xxxxxxxxxxx.cn',
-				// 	changeOrigin: true,
-				// 	rewrite: path => path.replace(/^\/nethos/, 'nethos')
-				// }
-			}
+			proxy: createProxy(VITE_PROXY)
 		},
 		// 构建选项 https://cn.vitejs.dev/config/#server-fsserve-root
 		build: {
+			target: 'es2015',
+			cssTarget: 'chrome80', //以防止 vite 将 rgba() 颜色转化为 #RGBA 十六进制符号的形式。
 			outDir: 'dist',
 			sourcemap: false, //是否在打包时生成 sourcemap
 			minify: 'esbuild', // 混淆器，terser 构建后文件体积更小，'terser' | 'esbuild'
-			// terserOptions: {
-			// 	compress: {
-			// 		// warnings: false,
-			// 		drop_console: true, //打包时删除console
-			// 		drop_debugger: true, //打包时删除 debugger
-			// 		pure_funcs: ['console.log']
-			// 	}
-			// },
 			// 禁用 gzip 压缩大小报告，可略微减少打包时间
 			reportCompressedSize: false,
 			// 规定触发警告的 chunk 大小.默认500
 			chunkSizeWarningLimit: 4000,
 			rollupOptions: {
+				// 关闭除屑优化，防止删除重要代码，导致打包后功能出现异常
+				treeshake: false,
 				// 静态资源分类打包
 				output: {
 					// Static resource classification and packaging
 					chunkFileNames: 'assets/js/[name]-[hash].js',
 					entryFileNames: 'assets/js/[name]-[hash].js',
-					assetFileNames: 'assets/[ext]/[name]-[hash].[ext]'
+					// manualChunks配置 (依赖包从大到小排列)
+					manualChunks: {
+						'tinymce-vendor': ['tinymce'],
+						'echarts-vendor': ['echarts'],
+						'element-plus-vue-vendor': ['element-plus', 'element-plus/es', '@element-plus/icons-vue'],
+						// 将 Lodash 库的代码单独打包
+						'lodash-es-vendor': ['lodash-es']
+					}
 				}
 			}
+		},
+		esbuild: {
+			//清除全局的console.log和debug
+			drop: isBuild ? ['console', 'debugger'] : []
 		},
 		define: {
 			__SYSTEM_INFO__: JSON.stringify({
@@ -91,8 +93,11 @@ export default ({ mode = 'development', command = 'serve' }) => {
 				lastBuildTime: dayjs().format('YYYY-MM-DD HH:mm:ss')
 			})
 		},
+		// 预加载构建配置,vite在启动之初就对以下资源进行预打包（首屏性能)
 		optimizeDeps: {
-			// vite在启动之初就对以下资源进行预打包
+			esbuildOptions: {
+				target: 'es2020'
+			},
 			include: [
 				'element-plus',
 				'element-plus/es',
@@ -127,7 +132,22 @@ export default ({ mode = 'development', command = 'serve' }) => {
 				'xgplayer-hls',
 				'ali-oss',
 				'@vueuse/core',
-				'axios'
+				'axios',
+				'qs',
+				'lodash-es',
+				'echarts',
+				'echarts/charts',
+				'echarts/components',
+				'echarts/core',
+				'echarts/renderers',
+				'cropperjs',
+				'crypto-js/aes',
+				'crypto-js/enc-base64',
+				'crypto-js/enc-utf8',
+				'crypto-js/md5',
+				'crypto-js/mode-ecb',
+				'crypto-js/pad-pkcs7',
+				'sortablejs'
 			]
 		},
 		plugins: createVitePlugins(env, command === 'build'),
