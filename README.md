@@ -1,5 +1,5 @@
 <div align="center">
- <img src="https://gjwlyy-specialdisease.oss-cn-hangzhou.aliyuncs.com/prileImg/1675818152379_.png"/>
+ <img src="https://isdm-public.oss-cn-hangzhou.aliyuncs.com/doctor/elegant-logo.png"/>
  <h1>Elegant Admin</h1>
 </div>
 
