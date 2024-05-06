@@ -1,161 +1,154 @@
-import { Table } from './interface';
-import { reactive, computed, onMounted, toRefs } from 'vue';
+import { computed, reactive, toRefs } from 'vue'
+import type { Pageable, StateProps } from './interface'
 
 /**
  * @description table 页面操作方法封装
- * @param {Function} api 获取表格数据 api 方法(必传)
- * @param {Object} initParam 获取数据初始化参数(非必传，默认为{})
- * @param {Boolean} isPageable 是否有分页(非必传，默认为true)
- * @param {Function} dataCallBack 对后台返回的数据进行处理的方法(非必传)
- * @param {Function} SearchCallBack 对自定义查询处理(非必传)
- * @param {Function} ResetCallBack 对自定义查询处理(非必传)
- * */
-export const useTable = (
-	api: (params: any) => Promise<any>,
-	initParam: object = {},
-	isPageable: boolean = true,
-	dataCallBack?: (data: any) => any,
-	searchCallBack?: (data: any) => any,
-	resetCallBack?: () => any,
-	requestError?: (error: any) => void
-) => {
-	const state = reactive<Table.StateProps>({
-		// 表格数据
-		tableData: [],
-		// 分页数据
-		pageable: {
-			// 当前页数
-			pageNum: 1,
-			// 每页显示条数
-			pageSize: 10,
-			// 总条数
-			total: 0
-		},
-		// 查询参数(只包括查询)
-		searchParam: {},
-		// 初始化默认的查询参数
-		searchInitParam: {},
-		// 总参数(包含分页和查询参数)
-		totalParam: {}
-	});
+ * @param {Function} api 获取表格数据 api 方法 (必传)
+ * @param {object} initParam 获取数据初始化参数 (非必传，默认为{})
+ * @param {boolean} isPageable 是否有分页 (非必传，默认为true)
+ * @param {Function} dataCallBack 对后台返回的数据进行处理的方法 (非必传)
+ */
+export function useTable(api?: (params: any) => Promise<any>,
+  initParam: object = {},
+  isPageable: boolean = true,
+  dataCallBack?: (data: any) => any,
+  requestError?: (error: any) => void) {
+  const state = reactive<StateProps>({
+    // 表格数据
+    tableData: [],
+    // 分页数据
+    pageable: {
+      // 当前页数
+      pageNum: 1,
+      // 每页显示条数
+      pageSize: 10,
+      // 总条数
+      total: 0,
+    },
+    // 查询参数(只包括查询)
+    searchParam: {},
+    // 初始化默认的查询参数
+    searchInitParam: {},
+    // 总参数(包含分页和查询参数)
+    totalParam: {},
+  })
 
-	/**
-	 * @description 分页查询参数(只包括分页和表格字段排序,其他排序方式可自行配置)
-	 * */
-	const pageParam = computed({
-		get: () => {
-			return {
-				pageNum: state.pageable.pageNum,
-				pageSize: state.pageable.pageSize
-			};
-		},
-		set: (newVal: any) => {
-			console.log('我是分页更新之后的值', newVal);
-		}
-	});
+  /**
+   * @description 分页查询参数(只包括分页和表格字段排序,其他排序方式可自行配置)
+   */
+  const pageParam = computed({
+    get: () => {
+      return {
+        pageNum: state.pageable.pageNum || 1,
+        pageSize: state.pageable.pageSize || 10,
+      }
+    },
+    set: (newVal: any) => {
+      console.log('我是分页更新之后的值', newVal)
+    },
+  })
+  /**
+   * @description 更新分页信息
+   * @param {object} pageable 后台返回的分页数据
+   * @return void
+   */
+  const updatePageable = (pageable: Pageable) => {
+    Object.assign(state.pageable, pageable)
+  }
+  /**
+   * @description 获取表格数据
+   * @return void
+   */
+  const getTableList = async () => {
+    if (!api) {
+      return
+    }
+    try {
+      // 先把初始化参数和分页参数放到总参数里面
+      Object.assign(state.totalParam, initParam, isPageable ? pageParam.value : {})
+      let params = {
+        ...state.searchInitParam, ...state.totalParam,
+      }
+      console.log('我是请求的参数', params)
+      let { data } = await api(params)
+      dataCallBack && (data = dataCallBack(data))
+      state.tableData = isPageable ? data.list : data
+      // 解构后台返回的分页数据 (如果有分页更新分页信息)
+      isPageable && updatePageable({ pageNum: pageParam.value.pageNum, pageSize: pageParam.value.pageSize, total: data.total })
+    }
+    catch (error) {
+      requestError && requestError(error)
+    }
+  }
 
-	/**
-	 * @description 获取表格数据
-	 * @return void
-	 * */
-	const getTableList = async () => {
-		try {
-			// 先把初始化参数和分页参数放到总参数里面
-			// isPageable = false;
-			Object.assign(state.totalParam, initParam, isPageable ? pageParam.value : {});
-			let { data } = await api({ ...state.searchInitParam, ...state.totalParam });
-			dataCallBack && (data = dataCallBack(data));
+  /**
+   * @description 更新查询参数
+   * @return void
+   */
+  const updatedTotalParam = () => {
+    state.totalParam = {}
+    // 处理查询参数，可以给查询参数加自定义前缀操作
+    const nowSearchParam: StateProps['searchParam'] = {}
+    // 防止手动清空输入框携带参数（这里可以自定义查询参数前缀）
+    for (const key in state.searchParam) {
+      // 某些情况下参数为 false/0 也应该携带参数
+      if (state.searchParam[key] || state.searchParam[key] === false || state.searchParam[key] === 0) {
+        nowSearchParam[key] = state.searchParam[key]
+      }
+    }
+    Object.assign(state.totalParam, nowSearchParam, isPageable ? pageParam.value : {})
+  }
 
-			state.tableData = isPageable ? data.datalist : data;
-			isPageable && updatePageable({ pageNum: pageParam.value.pageNum, pageSize: pageParam.value.pageSize, total: data.total });
-		} catch (error) {
-			console.log(error);
-			requestError && requestError(error);
-		}
-	};
+  /**
+   * @description 表格数据查询
+   * @return void
+   */
+  const search = () => {
+    state.pageable.pageNum = 1
+    updatedTotalParam()
+    getTableList()
+  }
 
-	/**
-	 * @description 更新查询参数
-	 * @return void
-	 * */
-	const updatedTotalParam = () => {
-		state.totalParam = {};
-		// 处理查询参数，可以给查询参数加自定义前缀操作
-		let nowSearchParam: Table.StateProps['searchParam'] = {};
-		// 防止手动清空输入框携带参数（这里可以自定义查询参数前缀）
-		for (let key in state.searchParam) {
-			// * 某些情况下参数为 false/0 也应该携带参数
-			if (state.searchParam[key] || state.searchParam[key] === false || state.searchParam[key] === 0) {
-				nowSearchParam[key] = state.searchParam[key];
-			}
-		}
-		Object.assign(state.totalParam, nowSearchParam, isPageable ? pageParam.value : {});
-	};
+  /**
+   * @description 表格数据重置
+   * @return void
+   */
+  const reset = () => {
+    state.pageable.pageNum = 1
+    // 重置搜索表单的时，如果有默认搜索参数，则重置默认的搜索参数
+    state.searchParam = { ...state.searchInitParam }
+    updatedTotalParam()
+    getTableList()
+  }
 
-	/**
-	 * @description 更新分页信息
-	 * @param {Object} resPageable 后台返回的分页数据
-	 * @return void
-	 * */
-	const updatePageable = (resPageable: Table.Pageable) => {
-		Object.assign(state.pageable, resPageable);
-	};
+  /**
+   * @description 每页条数改变
+   * @param {number} val 当前条数
+   * @return void
+   */
+  const handleSizeChange = (val: number) => {
+    state.pageable.pageNum = 1
+    state.pageable.pageSize = val
+    getTableList()
+  }
 
-	/**
-	 * @description 表格数据查询
-	 * @return void
-	 * */
-	const handleSearch = async () => {
-		state.pageable.pageNum = 1;
-		updatedTotalParam();
-		searchCallBack && searchCallBack({});
-		await getTableList();
-	};
-	/**
-	 * @description 表格数据重置
-	 * @return void
-	 * */
-	const handleReset = async () => {
-		state.pageable.pageNum = 1;
-		state.searchParam = {};
-		// 重置搜索表单的时，如果有默认搜索参数，则重置默认的搜索参数
-		Object.keys(state.searchInitParam).forEach(key => {
-			console.log('key', key);
-			state.searchParam[key] = state.searchInitParam[key];
-		});
-		updatedTotalParam();
-		resetCallBack && resetCallBack();
-		await getTableList();
-	};
+  /**
+   * @description 当前页改变
+   * @param {number} val 当前页
+   * @return void
+   */
+  const handleCurrentChange = (val: number) => {
+    state.pageable.pageNum = val
+    getTableList()
+  }
 
-	/**
-	 * @description 每页条数改变
-	 * @param {Number} val 当前条数
-	 * @return void
-	 * */
-	const handleSizeChange = async (val: number) => {
-		state.pageable.pageNum = 1;
-		state.pageable.pageSize = val;
-		await getTableList();
-	};
-
-	/**
-	 * @description 当前页改变
-	 * @param {Number} val 当前页
-	 * @return void
-	 * */
-	const handleCurrentChange = async (val: number) => {
-		state.pageable.pageNum = val;
-		await getTableList();
-	};
-
-	return {
-		...toRefs(state),
-		getTableList,
-		handleSearch,
-		handleReset,
-		handleSizeChange,
-		handleCurrentChange,
-		updatedTotalParam
-	};
-};
+  return {
+    ...toRefs(state),
+    getTableList,
+    search,
+    reset,
+    handleSizeChange,
+    handleCurrentChange,
+    updatedTotalParam,
+  }
+}

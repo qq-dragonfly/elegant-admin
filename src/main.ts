@@ -30,36 +30,53 @@
  * @LastEditTime:
  * @Author: 97972619@qq.com
  */
-import 'default-passive-events'; //Chrome51 版本以后，Chrome 增加了新的事件捕获机制－Passive Event Listeners，导致触发了告警
-import { createApp } from 'vue';
-import ElementPlus from 'element-plus';
-import App from './App.vue';
-import pinia from './store';
-import router from './router';
-import useSettingsStore from './store/modules/settings';
+
+import '@/utils/system.copyright'
+
+import FloatingVue from 'floating-vue'
+import 'floating-vue/dist/style.css'
+
+import Message from 'vue-m-message'
+import 'vue-m-message/dist/style.css'
+
+import 'overlayscrollbars/overlayscrollbars.css'
+
+import App from './App.vue'
+import pinia from './store'
+import router from './router'
+import ui from './ui-provider'
 
 // 自定义指令
-import directives from '@/directives/index';
+import directives from '@/directives/index'
+
 // 加载 svg 图标
-import 'virtual:svg-icons-register';
+import 'virtual:svg-icons-register'
+
+// 加载 iconify 图标
+import { downloadAndInstall } from '@/iconify'
+import icons from '@/iconify/index.json'
+
+import 'virtual:uno.css'
+
 // 全局样式
-import '@/assets/styles/globals.scss';
-//(tailwindcss），原子化css项目初体验~~哈哈nice
-import '@/assets/styles/tailwind.css';
+import '@/assets/styles/globals.scss'
 
-// 加载 iconify 图标（element plus）
-import { downloadAndInstall } from '@/iconify-ep';
-// errorHandler
-import errorHandler from '@/utils/errorHandler';
+// element-plus样式覆盖
+import '@/assets/styles/element.scss'
 
-if (useSettingsStore().app.iconifyOfflineUse) {
-	downloadAndInstall();
+const app = createApp(App)
+app.use(FloatingVue, {
+  distance: 12,
+})
+app.use(Message)
+app.use(pinia)
+app.use(router)
+app.use(ui)
+app.use(directives)
+if (icons.isOfflineUse) {
+  for (const info of icons.collections) {
+    downloadAndInstall(info)
+  }
 }
-const app = createApp(App);
-app.config.errorHandler = errorHandler;
 
-app.use(directives);
-app.use(ElementPlus);
-app.use(pinia);
-app.use(router);
-router.isReady().then(() => app.mount('#app'));
+app.mount('#app')

@@ -1,9 +1,11 @@
-import banner from 'vite-plugin-banner';
-//打包的文件添加注释
+import banner from 'vite-plugin-banner'
+
 export default function createBanner() {
-	return banner(`
-	/**
- * 	由 智慧网络医院 提供技术支持
+  return banner(`
+/**
+ * 由 MrZhang 提供技术支持
+ * Powered by elegant-admin
+ * Github https://github.com/zhangyao1990/elegant-admin
  */
-	`);
+`)
 }

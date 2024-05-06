@@ -1,6 +1,6 @@
 /*
  *           佛曰:
- *	                写字楼里写字间，写字间里程序员；
+ *                   写字楼里写字间，写字间里程序员；
  *                   程序人员写程序，又拿程序换酒钱。
  *                   酒醒只在网上坐，酒醉还来网下眠；
  *                   酒醉酒醒日复日，网上网下年复年。
@@ -12,30 +12,51 @@
  *
  * @Description:该文件为系统配置
  * @version:
- * @Date: 2023-02-07
+ * @Date: 2024-03-11
  * @LastEditors:  97972619@qq.com
  * @LastEditTime:
  * @Author: 97972619@qq.com
  */
-import type { Settings } from '#/global';
+import { defaultsDeep } from 'lodash-es'
+import type { RecursiveRequired, Settings } from '#/global'
+import settingsDefault from '@/settings.default'
 
 const globalSettings: Settings.all = {
-	app: {
-		enablePermission: true,
-		enableDynamicTitle: false
-	},
-	layout: {
-		enableMobileAdaptation: true
-	},
-	menu: {
-		enableSubMenuCollapseButton: true
-	},
-	toolbar: {
-		enableFullscreen: true,
-		enablePageReload: true,
-		enableColorScheme: true,
-		enableAppSetting: false
-	}
-};
+  app: {
+    enablePermission: true,
+    enableDynamicTitle: true,
+  },
+  layout: {
+    enableMobileAdaptation: true,
+  },
+  menu: {
+    enableSubMenuCollapseButton: true,
+    enableHotkeys: true,
+    switchMainMenuAndPageJump: true,
+  },
+  topbar: {
+    mode: 'fixed',
+  },
+  tabbar: {
+    enable: true,
+    enableIcon: true,
+    enableHotkeys: true,
+  },
+  toolbar: {
+    fullscreen: true,
+    pageReload: true,
+    colorScheme: true,
+    breadcrumb: true,
+  },
+  mainPage: {
+    enableHotkeys: true,
+  },
+  copyright: {
+    enable: true,
+    dates: '2023-present',
+    company: 'Elegant-admin',
+    website: 'https://github.com/zhangyao1990/elegant-admin',
+  },
+}
 
-export default globalSettings;
+export default defaultsDeep(globalSettings, settingsDefault) as RecursiveRequired<Settings.all>

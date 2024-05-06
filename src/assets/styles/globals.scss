@@ -1,83 +1,93 @@
-@use './element-plus/index.scss';
-@use './themes.scss';
-
-// 全局变量
+// 页面布局 CSS 变量
 :root {
-  // 头部宽度（默认自适应宽度，可固定宽度，固定宽度后为居中显示）
-  --g-header-width: 100%;
-
   // 头部高度
   --g-header-height: 60px;
-
   // 侧边栏宽度
-  --g-main-sidebar-width: 88px;
-  --g-sub-sidebar-width: 210px;
-
-  // 侧边栏Logo高度
-  --g-sidebar-logo-height: 50px;
-
-  // 顶栏高度
-  --g-topbar-height: 50px;
-
+  --g-main-sidebar-width: 80px;
+  --g-sub-sidebar-width: 220px;
+  --g-sub-sidebar-collapse-width: 64px;
+  // 侧边栏 Logo 区域高度
+  --g-sidebar-logo-height: 46px;
   // 标签栏高度
-  --g-tabbar-height: 50px;
+  --g-tabbar-height: 32px;
+  // 标签栏item高度
+  --g-tabbar-item-height: 32px;
+  // 工具栏高度
+  --g-toolbar-height: 46px;
 }
 
-// 全局样式
+// 明暗模式 CSS 变量
+/* stylelint-disable-next-line no-duplicate-selectors */
+:root {
+  &::view-transition-old(root),
+  &::view-transition-new(root) {
+    mix-blend-mode: normal;
+    animation: none;
+  }
+
+  &::view-transition-old(root) {
+    z-index: 1;
+  }
+
+  &::view-transition-new(root) {
+    z-index: 9999;
+  }
+
+  --g-box-shadow-color: rgb(0 0 0 / 12%);
+
+  &.dark {
+    &::view-transition-old(root) {
+      z-index: 9999;
+    }
+
+    &::view-transition-new(root) {
+      z-index: 1;
+    }
+
+    --g-box-shadow-color: rgb(0 0 0 / 72%);
+  }
+}
+
 ::-webkit-scrollbar {
   width: 12px;
   height: 12px;
 }
+
 ::-webkit-scrollbar-thumb {
   background-color: rgb(0 0 0 / 40%);
   background-clip: padding-box;
   border: 3px solid transparent;
   border-radius: 6px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background-color: rgb(0 0 0 / 50%);
 }
+
 ::-webkit-scrollbar-track {
   background-color: transparent;
 }
+
 html,
 body {
   height: 100%;
 }
+
 body {
   box-sizing: border-box;
   margin: 0;
-  overflow: hidden;
-  font-family: Lato, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: Lato, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 400;
+  background-color: var(--g-container-bg);
   -webkit-tap-highlight-color: transparent;
-  &.hidden_body {
+
+  &.overflow-hidden {
     overflow: hidden;
   }
 }
+
 * {
   box-sizing: inherit;
-}
-ul {
-  padding: 0;
-  margin: 0;
-}
-
-/* 滚动条 */
-*::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-*::-webkit-scrollbar-thumb {
-  cursor: pointer;
-  background: var(gray);
-  border-radius: 8px;
-}
-*::-webkit-scrollbar-thumb:hover {
-  display: block !important;
-  opacity: 1;
-}
-*::-webkit-scrollbar-track {
-  background-color: transparent;
 }
 
 // 右侧内容区针对fixed元素，有横向铺满的需求，可在fixed元素上设置 [data-fixed-calc-width]
@@ -86,417 +96,50 @@ ul {
   right: 0;
   left: 50%;
   width: calc(100% - var(--g-main-sidebar-actual-width) - var(--g-sub-sidebar-actual-width));
-  transform: translateX(-50%) translateX(calc(var(--g-main-sidebar-actual-width) / 2))
-  translateX(calc(var(--g-sub-sidebar-actual-width) / 2));
+  transform: translateX(-50%) translateX(calc(var(--g-main-sidebar-actual-width) / 2)) translateX(calc(var(--g-sub-sidebar-actual-width) / 2));
 }
-[data-mode='mobile'] {
+
+[data-mode="mobile"] {
   [data-fixed-calc-width] {
     width: 100% !important;
     transform: translateX(-50%) !important;
   }
 }
-
 // textarea 字体跟随系统
 textarea {
   font-family: inherit;
 }
 
-/***********  element-plus样式复盖  ***********/
-
-// * 设置 notification/message 层级在 loading 之上
-.el-message,
-.el-notification {
-  z-index: 99999 !important;
+/* Overrides Floating Vue */
+.v-popper--theme-dropdown,
+.v-popper--theme-tooltip {
+  --at-apply: inline-flex;
 }
 
-// * 解决 popup 弹出时宽度会 100%-8px 问题，在浏览器缩放 特定的情况下才会出现
-.el-popup-parent--hidden {
-  width: 100% !important;
+.v-popper--theme-dropdown .v-popper__inner,
+.v-popper--theme-tooltip .v-popper__inner {
+  --at-apply: bg-white dark:bg-stone-8 text-dark dark:text-white rounded shadow ring-1 ring-gray-200 dark:ring-gray-800 border border-solid border-stone/20 text-xs font-normal;
+
+  box-shadow: 0 6px 30px rgb(0 0 0 / 10%);
 }
 
-// 设置最大宽度
-.el-popper.is-dark {
-  max-width: 500px !important;
+.v-popper--theme-tooltip .v-popper__arrow-inner,
+.v-popper--theme-dropdown .v-popper__arrow-inner {
+  visibility: visible;
+
+  --at-apply: border-white dark:border-stone-8;
 }
 
-// * 当前页面最大化 css
-.main-maximize {
-  .aside-split,
-  .el-aside,
-  .el-header,
-  .el-footer,
-  .tabs-box {
-    display: none !important;
-  }
+.v-popper--theme-tooltip .v-popper__arrow-outer,
+.v-popper--theme-dropdown .v-popper__arrow-outer {
+  --at-apply: border-stone/20;
 }
 
-// * card 卡片样式
-.card {
-  box-sizing: border-box;
-  padding: 20px;
-  overflow-x: hidden;
-  background-color: var(--el-fill-color-blank);
-  border: 1px solid var(--el-border-color-light);
-  border-radius: 4px;
-  box-shadow: 0 0 12px rgb(0 0 0 / 5%);
+.v-popper--theme-tooltip.v-popper--shown,
+.v-popper--theme-tooltip.v-popper--shown * {
+  transition: none !important;
 }
 
-// * 不需要 card 卡片样式（在组件内使用 proTable 会使用到）
-.no-card {
-  .card {
-    padding: 0;
-    background-color: transparent;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-  }
-}
-
-// * content-box (常用内容盒子)
-.content-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
-  .text {
-    margin: 20px 0 30px;
-    font-size: 23px;
-    font-weight: bold;
-    color: rgb(88 88 88);
-  }
-  .el-descriptions {
-    width: 100%;
-    padding: 40px 0 0;
-    .el-descriptions__title {
-      font-size: 18px;
-    }
-    .el-descriptions__label {
-      width: 200px;
-    }
-  }
-}
-
-// * main-box (树形表格 treeFilter 页面会使用，左右布局 flex)
-.main-box {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  .table-box {
-    width: calc(100% - 260px);
-  }
-}
-
-// * table-box 表格页面样式
-.table-box {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  height: 100%;
-  margin: 8px;
-  .table-card {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-  }
-
-  // table-search 表格搜索样式
-  .table-search {
-    padding: 10px 18px 0;
-    .el-form {
-      .el-form-item {
-        width: 100%;
-        margin-right: 0;
-        .el-input,
-        .el-select,
-        .el-cascader,
-        .el-date-editor--timerange {
-          width: 100%;
-        }
-        .el-date-editor--datetimerange,
-        .el-date-editor--daterange {
-          width: 380px;
-        }
-
-        // 去除时间选择器上下 padding
-        .el-range-editor.el-input__wrapper {
-          padding: 0 10px;
-        }
-
-        // el-select 为多选时不换行显示
-        .el-select__tags {
-          overflow: hidden;
-          white-space: nowrap;
-        }
-      }
-    }
-    .search-operation {
-      margin-left: 15px;
-      white-space: nowrap;
-      .search-isOpen {
-        margin-left: 15px;
-      }
-    }
-  }
-
-  // 表格 header 样式
-  .table-header {
-    .header-button-lf {
-      float: left;
-    }
-    .header-button-ri {
-      float: right;
-    }
-    .el-button {
-      margin-bottom: 15px;
-    }
-  }
-
-  // el-table 表格样式
-  .el-table {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    .el-table__header th {
-      height: 45px;
-      font-size: 15px;
-      font-weight: bold;
-      color: var(--normal-box-text-color);
-      background: var(--normal-box-bg-color);
-    }
-    .el-table__row {
-      height: 45px;
-      font-size: 14px;
-    }
-
-    // 设置 el-table 中 header 文字不换行
-    .el-table__header .el-table__cell > .cell {
-      white-space: nowrap;
-    }
-    .el-table__inner-wrapper {
-      flex: 1;
-    }
-
-    // 解决表格数据为空时样式不居中问题(仅在element-plus中)
-    .el-table__empty-block {
-      .table-empty {
-        line-height: 30px;
-      }
-    }
-
-    // table 中 image 图片样式
-    .table-image {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-    }
-  }
-
-  // 表格 pagination 样式
-  .el-pagination {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 20px;
-  }
-}
-
-// * el-table 组件大小切换样式
-.el-table--small {
-  .el-table__header th {
-    height: 40px !important;
-    font-size: 14px !important;
-  }
-  .el-table__row {
-    height: 40px !important;
-    font-size: 13px !important;
-  }
-}
-.el-table--large {
-  .el-table__header th {
-    height: 50px !important;
-    font-size: 16px !important;
-  }
-  .el-table__row {
-    height: 50px !important;
-    font-size: 15px !important;
-  }
-}
-
-// * el-drawer 样式
-.el-drawer {
-  // drawer header 样式
-  .el-drawer__header {
-    padding: 15px 20px 14px;
-    margin-bottom: 0;
-    border-bottom: 1px solid var(--el-border-color-lighter);
-    span {
-      font-size: 17px;
-      color: var(--el-text-color-primary) !important;
-    }
-  }
-
-  // drawer footer 样式
-  .el-drawer__footer {
-    border-top: 1px solid var(--el-border-color-lighter);
-  }
-
-  // drawer-form 中两列 form-item
-  .drawer-multiColumn-form {
-    display: flex;
-    flex-wrap: wrap;
-    .el-form-item {
-      width: 47%;
-      &:nth-child(2n-1) {
-        margin-right: 5%;
-      }
-    }
-  }
-}
-.el-button__text--expand {
-  letter-spacing: 0;
-}
-
-// * el-dialog 样式
-.pro-dialog {
-  .el-dialog {
-    overflow: hidden;
-    border-radius: 8px;
-    .el-dialog__header {
-      padding: 15px 20px;
-      margin: 0;
-      background-image: linear-gradient(135deg, var(--el-color-primary-light-1) 10%, var(--el-color-primary-light-5)) !important;
-      border-bottom: 1px solid var(--el-border-color-lighter);
-      .el-dialog__title {
-        font-size: 17px;
-        font-weight: bold;
-        color: #ffffff;
-      }
-    }
-  }
-}
-.form-box,
-.pro-dialog {
-  .el-select,
-  .el-cascader,
-  .el-input-number,
-  .el-autocomplete,
-  .el-input__inner {
-    width: 100%;
-  }
-  .el-form-item {
-    width: 100%;
-  }
-  .el-form-item__content {
-    align-items: start;
-  }
-  .el-input__inner {
-    text-align: left;
-  }
-  .el-date-editor.el-input,
-  .el-date-editor.el-input__wrapper {
-    width: 100%;
-  }
-  .el-select__tags-text {
-    max-width: 85px !important;
-  }
-  .option-item {
-    .el-form-item {
-      margin-bottom: 20px;
-    }
-  }
-}
-
-/* message在同一位置弹出 */
-
-/* reset elementUI message */
-.el-message {
-  top: 20px !important;
-}
-.el-message:not(:last-child) {
-  visibility: hidden;
-}
-
-/* 覆盖tinymce样式 */
-.editor .tox-tinymce {
-  border: 1px solid #dcdfe6;
-  border-radius: 0;
-}
-body .tox-tinymce-aux {
-  z-index: 9999;
-}
-body .tox-textarea-wrap {
-  display: flex;
-  height: 100% !important;
-}
-.border-e6 {
-  border: 1px solid #e6e6e6;
-}
-.theme-bj {
-  background-color: var(--el-color-primary-light-1);
-}
-.bj-e6 {
-  background-color: #e6e6e6;
-}
-.bj-9 {
-  background-color: #999999;
-}
-.bj-3 {
-  background-color: #333333;
-}
-.color-3 {
-  color: #e6e6e6;
-}
-.color-primary {
-  color: var(--el-color-primary);
-}
-.title-left {
-  width: 8px;
-  height: 19px;
-  background-color: var(--el-color-primary-light-1);
-  border-radius: 10px;
-}
-.border-base {
-  border: 1px solid #e5e5e5;
-}
-.border-t-base {
-  border-top: solid 1px #e5e5e5;
-}
-.border-b-base {
-  border-right: solid 1px #e5e5e5;
-}
-.border-r-base {
-  border-right: solid 1px #e5e5e5;
-}
-.border-l-base {
-  border-left: solid 1px #e5e5e5;
-}
-.border-x-base {
-  border-right: solid 1px #e5e5e5;
-  border-left: solid 1px #e5e5e5;
-}
-.border-y-base {
-  border-top: solid 1px #e5e5e5;
-  border-bottom: solid 1px #e5e5e5;
-}
-.border-b-dashed {
-  border-bottom: dashed 1px #b4b4b4;
-}
-.box-shadow {
-  box-shadow: 0 12px 32px rgb(240 248 255 / 100%);
-}
-.ellipsis {
-  display: -webkit-box;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-}
-.ellipsis--l2 {
-  display: -webkit-box;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-}
-.border-b-e5 {
-  border-bottom: 1px solid #e5e5e5;
+[data-overlayscrollbars-contents] {
+  overscroll-behavior: contain;
 }

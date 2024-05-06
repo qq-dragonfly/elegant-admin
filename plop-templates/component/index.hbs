@@ -1,13 +1,17 @@
-<script lang="ts" setup{{#if isGlobal}} name="{{ properCase name }}"{{/if}}>
-// const proxy = useCurrentInstance()
+<script setup lang="ts">
+{{#if isGlobal}}
+defineOptions({
+  name: '{{ properCase name }}',
+})
+{{/if}}
 </script>
 
 <template>
   <div>
-    <!-- 内容区 -->
+    <!-- 布局 -->
   </div>
 </template>
 
 <style lang="scss" scoped>
-// scss
+// 样式
 </style>

@@ -1,88 +1,67 @@
-<script lang="ts" setup name="LinkView">
-const route: any = useRoute();
+<script setup lang="ts">
+import { useClipboard } from '@vueuse/core'
+import Message from 'vue-m-message'
+
+defineOptions({
+  name: 'LinkView',
+})
+const route = useRoute()
+
+const { copy, copied } = useClipboard()
+watch(copied, (val) => {
+  val && Message.success('复制成功', {
+    zIndex: 2000,
+  })
+})
 
 function open() {
-	window.open(route.meta.link, '_blank');
+  let win: any = window.open(route.meta.link, '_blank')
+  win.focus()
 }
 </script>
 
 <template>
-	<div class="link-view">
-		<transition name="link" mode="out-in" appear>
-			<page-main :key="route.meta.link" title="⚠️访问提醒">
-				<div class="container">
-					<div class="title">是否访问此链接</div>
-					<div class="link">
-						{{ route.meta.link }}
-					</div>
-					<el-button type="primary" plain round @click="open">
-						<template #icon>
-							<el-icon>
-								<svg-icon name="ep:link" />
-							</el-icon>
-						</template>
-						立即访问
-					</el-button>
-				</div>
-			</page-main>
-		</transition>
-	</div>
+  <div class="absolute h-full w-full flex flex-col">
+    <Transition name="slide-right" mode="out-in" appear>
+      <PageMain :key="route.meta.link" class="flex flex-1 flex-col justify-center">
+        <div class="flex flex-col items-center">
+          <SvgIcon name="i-icon-park-twotone:planet" :size="120" class="text-ui-primary/80" />
+          <div class="my-2 text-xl text-dark dark:text-white">
+            是否访问此链接
+          </div>
+          <div class="my-2 max-w-[300px] cursor-pointer text-center text-[14px] text-stone-5" @click="route.meta.link && copy(route.meta.link)">
+            <HTooltip text="复制链接">
+              <div class="line-clamp-3">
+                {{ route.meta.link }}
+              </div>
+            </HTooltip>
+          </div>
+          <HButton class="my-4" @click="open">
+            <SvgIcon name="i-ri:external-link-fill" />
+            立即访问
+          </HButton>
+        </div>
+      </PageMain>
+    </Transition>
+  </div>
 </template>
 
 <style lang="scss" scoped>
-.link-view {
-	position: absolute;
-	top: 0;
-	left: 0;
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	height: 100%;
-	.page-main {
-		display: flex;
-		flex: 1;
-		flex-direction: column;
-		height: 100%;
-		.container {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			height: 100%;
-			margin: 0 50px;
-			.title {
-				margin: 10px 0;
-				font-size: 22px;
-				color: var(--el-text-color-primary);
-			}
-			.link {
-				max-width: 300px;
-				margin: 10px 0;
-				font-size: 14px;
-				color: var(--el-text-color-disabled);
-
-				@include text-overflow(3);
-			}
-			.el-button {
-				margin: 20px 0;
-			}
-		}
-	}
+.slide-right-enter-active {
+  transition: 0.2s;
 }
 
-// link 区动画
-.link-enter-active {
-	transition: 0.2s;
+.slide-right-leave-active {
+  transition: 0.15s;
 }
-.link-leave-active {
-	transition: 0.15s;
+
+.slide-right-enter-from {
+  margin-left: -20px;
+  opacity: 0;
 }
-.link-enter-from {
-	opacity: 0;
-	transform: translateX(-20px);
-}
-.link-leave-to {
-	opacity: 0;
-	transform: translateX(20px);
+
+.slide-right-leave-to {
+  margin-left: 20px;
+  opacity: 0;
 }
 </style>

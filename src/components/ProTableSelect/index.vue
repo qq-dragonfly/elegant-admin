@@ -1,345 +1,261 @@
-<!--
- * @Descripttion: 表格选择器组件
- * @version: 1.3
- * @Author: 97972619@qq.com
- * @Date: 2023年01月11日10:04:07
- * @LastEditors:
- * @LastEditTime:
--->
-<template>
-	<el-select
-		ref="selectRef"
-		class="w-full"
-		v-model="state.defaultValue"
-		v-if="state.defaultValue"
-		:size="size"
-		:clearable="clearable"
-		:multiple="multiple"
-		:collapse-tags="collapseTags"
-		:collapse-tags-tooltip="collapseTagsTooltip"
-		:placeholder="placeholder"
-		:disabled="disabled"
-		:filter-method="filterMethod"
-		@remove-tag="handleRemoveTag"
-		@visible-change="visibleChange"
-		@clear="handleClear"
-	>
-		<template #empty>
-			<div class="close-icon">
-				<el-icon class="el-dialog__close cursor-pointer" @click="selectRef.blur()">
-					<svg-icon name="ep:close-bold" />
-				</el-icon>
-			</div>
-			<div class="ele-table-select__table" :style="{ width: tableWidth + '' }" v-loading="state.loading">
-				<div class="ele-table-select__header">
-					<slot name="header" :form="state.formData" :submit="formSubmit"></slot>
-				</div>
-				<el-table
-					ref="tableRef"
-					:data="state.tableData"
-					:height="245"
-					:highlight-current-row="!multiple"
-					@row-click="handleTableClick"
-					@select="handleSelect"
-					@select-all="handleSelectAll"
-					border
-				>
-					<el-table-column v-if="multiple" type="selection" width="60"></el-table-column>
-					<el-table-column v-else type="index" width="60" label="#" align="center">
-						<template #default="scope"
-							><span>{{ scope.$index + (state.currentPage - 1) * state.pageSize + 1 }}</span></template
-						>
-					</el-table-column>
-					<slot></slot>
-				</el-table>
-				<div class="ele-table-select__page flex justify-between">
-					<el-pagination
-						small
-						background
-						layout="prev, pager, next, total"
-						:total="state.total"
-						:page-size="state.pageSize"
-						v-model:currentPage="state.currentPage"
-						@current-change="reload"
-					></el-pagination>
-					<div v-if="multiple" @click="selectRef.blur()">
-						<el-button type="primary">确 认</el-button>
-					</div>
-				</div>
-			</div>
-		</template>
-	</el-select>
-</template>
-
 <script lang="ts" name="ProTableSelect" setup>
-import config from './index.ts';
+import ProTable from '@/components/ProTable/index.vue'
 interface PaginationProps {
-	requestApi: (params: any) => Promise<any>; // 请求表格数据的api ==> 必传
-	modelValue: any;
-	propsObj?: object;
-	placeholder?: string;
-	size?: any;
-	clearable?: boolean;
-	multiple?: boolean;
-	collapseTags?: boolean;
-	collapseTagsTooltip?: boolean;
-	disabled?: boolean;
-	tableWidth?: string;
-	params: object;
+  requestApi: (params: any) => Promise<any> // 请求表格数据的api ==> 必传
+  placeholder?: string // 占位符
+  size?: any // 尺寸
+  clearable?: boolean // 是否可清空
+  multiple?: boolean// 是否多选
+  collapseTags?: boolean // 多选时是否将选中值按文字的形式展示
+  collapseTagsTooltip?: boolean // 是否在多选模式下将选中值按文字的形式展示
+  fitInputWidth?: boolean // 是否将下拉框的宽度设置为与选择框一致
+  disabled?: boolean // 是否禁用
+  teleported?: boolean // 是否将弹出框teleport到body
+  selectWidth?: string // 选择框的宽度
+  tableWidth?: string // 表格的宽度
+  columns?: any // 表格参数
+  initTableParam?: any // 表格初始化查询参数
+  tableProps: { [key: string]: any } //
 }
 
 // 接受父组件参数，配置默认值
 const props = withDefaults(defineProps<PaginationProps>(), {
-	modelValue: null,
-	placeholder: '请选择',
-	size: 'default',
-	clearable: true,
-	multiple: false,
-	collapseTags: false,
-	collapseTagsTooltip: false,
-	disabled: false,
-	tableWidth: '600px'
-});
-const state = reactive<any>({
-	loading: false,
-	keyword: null,
-	defaultValue: [],
-	tableData: [],
-	pageSize: config.pageSize,
-	total: 0,
-	currentPage: 1,
-	defaultProps: {
-		label: config.props.label,
-		value: config.props.value,
-		page: config.request.page,
-		pageSize: config.request.pageSize,
-		keyword: config.request.keyword
-	},
-	formData: {}
-});
-watch(
-	() => props.modelValue,
-	newVal => {
-		state.defaultValue = newVal;
-		autoCurrentLabel();
-	},
-	{ deep: true }
-);
-const emits = defineEmits(['update:modelValue', 'changeEmit']);
-onMounted(() => {
-	state.defaultProps = Object.assign(state.defaultProps, props.propsObj);
-	if (props.multiple) {
-		state.defaultValue = props.modelValue || [];
-	} else {
-		state.defaultValue = props.modelValue || {};
-	}
-	autoCurrentLabel();
-});
-//表格显示隐藏回调
-function visibleChange(visible: any) {
-	if (visible) {
-		state.currentPage = 1;
-		state.keyword = null;
-		state.formData = {};
-		getData();
-	} else {
-		autoCurrentLabel();
-	}
+  placeholder: '请选择',
+  size: 'default',
+  clearable: true,
+  multiple: false,
+  collapseTags: false,
+  collapseTagsTooltip: false,
+  disabled: false,
+  teleported: true,
+  fitInputWidth: true,
+  tableWidth: '',
+  columns: [],
+  initTableParam: {},
+  tableProps: () => ({ label: 'label', value: 'value' }), // 映射字段
+})
+const modelValue = defineModel<any>({
+  default: [],
+})
+
+const proTableRef = ref()
+function init() {
+  proTableRef.value.clearSelection!()
+  proTableRef.value.reset!()
 }
-//获取表格数据
-const tableRef = ref();
-const getData = async () => {
-	state.loading = true;
-	let reqData = {
-		[state.defaultProps.page]: state.currentPage,
-		[state.defaultProps.pageSize]: state.pageSize,
-		[state.defaultProps.keyword]: state.keyword
-	};
-	Object.assign(reqData, props.params, state.formData);
-	let res = await props.requestApi(reqData);
-	let parseData = config.parseData(res);
-	state.tableData = parseData.data.records ? parseData.data.records : parseData.data;
-	state.total = parseData.data.total;
-	state.loading = false;
-	//表格默认赋值
-	await nextTick(() => {
-		//表格默认赋值
-		if (props.multiple) {
-			state.defaultValue.forEach((row: any) => {
-				let setRow = state.tableData.filter((item: any) => item[state.defaultProps.value] === row[state.defaultProps.value]);
-				if (setRow.length > 0) {
-					nextTick(() => {
-						tableRef.value.toggleRowSelection(setRow[0], true);
-					});
-				}
-			});
-		} else {
-			let setRow = state.tableData.filter(
-				(item: any) => item[state.defaultProps.value] === state.defaultValue[state.defaultProps.value]
-			);
-			if (setRow.length > 0) {
-				nextTick(() => {
-					tableRef.value.setCurrentRow(setRow[0]);
-				});
-			}
-		}
-		tableRef.value.setScrollTop(0);
-	});
-};
-//插糟表单提交
-function formSubmit() {
-	state.currentPage = 1;
-	state.keyword = null;
-	getData();
+const selectTableRef = ref()
+function selectBlue() {
+  selectTableRef.value.blur()
 }
-//分页刷新表格
-function reload() {
-	getData();
+
+function visibleChange(visible: boolean) {
+  console.log('visibleChange', visible)
+  if (visible) {
+    init()
+  }
+  else {
+    console.log('关闭')
+  }
 }
-//自动模拟options赋值
-const selectRef = ref();
-const autoCurrentLabel = () => {
-	nextTick(() => {
-		if (props.multiple) {
-			if (selectRef.value) {
-				selectRef.value.selected.forEach((item: any) => {
-					item.currentLabel = item.value[state.defaultProps.label];
-				});
-			}
-		} else {
-			if (state.defaultValue && state.defaultValue[state.defaultProps.label]) {
-				selectRef.value.selectedLabel = state.defaultValue[state.defaultProps.label];
-			}
-		}
-	});
-};
-//表格勾选事件
-const handleSelect = (rows: any, row: any) => {
-	const isSelect = rows.length && rows.indexOf(row) !== -1;
-	if (isSelect) {
-		state.defaultValue.push(row);
-	} else {
-		state.defaultValue.splice(
-			state.defaultValue.findIndex((item: any) => item[state.defaultProps.value] == row[state.defaultProps.value]),
-			1
-		);
-	}
-	autoCurrentLabel();
-	emits('update:modelValue', state.defaultValue);
-	emits('changeEmit', state.defaultValue);
-};
-//表格全选事件
-function handleSelectAll(rows: any) {
-	const isAllSelect = rows.length > 0;
-	if (isAllSelect) {
-		rows.forEach((row: any) => {
-			const isHas = state.defaultValue.find((item: any) => item[state.defaultProps.value] == row[state.defaultProps.value]);
-			if (!isHas) {
-				state.defaultValue.push(row);
-			}
-		});
-	} else {
-		state.tableData.forEach((row: any) => {
-			const isHas = state.defaultValue.find((item: any) => item[state.defaultProps.value] == row[state.defaultProps.value]);
-			if (isHas) {
-				state.defaultValue.splice(
-					state.defaultValue.findIndex((item: any) => item[state.defaultProps.value] == row[state.defaultProps.value]),
-					1
-				);
-			}
-		});
-	}
-	autoCurrentLabel();
-	emits('update:modelValue', state.defaultValue);
-	emits('changeEmit', state.defaultValue);
+// 清空后的回调
+function handleClear() {
+  if (props.multiple) {
+    modelValue.value = []
+  }
+  else {
+    modelValue.value = {}
+  }
 }
-//点击表格行
-function handleTableClick(row: any) {
-	if (props.multiple) {
-		//处理多选点击行
-		tableRef.value.toggleRowSelection(row);
-		const isHas = state.defaultValue.find((item: any) => item[state.defaultProps.value] == row[state.defaultProps.value]);
-		if (isHas) {
-			state.defaultValue.splice(
-				state.defaultValue.findIndex((item: any) => item[state.defaultProps.value] == row[state.defaultProps.value]),
-				1
-			);
-		} else {
-			state.defaultValue.push(row);
-		}
-	} else {
-		state.defaultValue = row;
-		selectRef.value.blur();
-		autoCurrentLabel();
-	}
-	emits('update:modelValue', state.defaultValue);
-	emits('changeEmit', state.defaultValue);
-}
-//tags删除后回调
+
+// tags删除后回调
 function handleRemoveTag(tag: any) {
-	const row = findRowByKey(tag[state.defaultProps.value]);
-	tableRef.value.toggleRowSelection(row, false);
-	emits('update:modelValue', state.defaultValue);
-	emits('changeEmit', state.defaultValue);
+  const row = findRowByKey(tag[props.tableProps.value])
+  proTableRef.value.toggleRowSelection(row, false)
 }
 // 关键值查询表格数据行
 function findRowByKey(value: any) {
-	return state.tableData.find((item: any) => item[state.defaultProps.value] === value);
+  return proTableRef.value.tableData.find((item: any) => item[props.tableProps.value] === value)
 }
-//清空后的回调
-function handleClear() {
-	if (props.multiple) {
-		state.defaultValue = [];
-	} else {
-		state.defaultValue = {};
-	}
-	emits('changeEmit', state.defaultValue);
-	emits('update:modelValue', state.defaultValue);
+
+// 表格数据回调
+function dataCallback(data: any) {
+  setSelected()
+  return {
+    list: (data && data.records) || [],
+    total: (data && data.total) || 0,
+  }
 }
-const filterMethod = (keyword: any) => {
-	if (!keyword) {
-		keyword = null;
-		return false;
-	}
-	state.keyword = keyword;
-	getData();
-};
-// 触发select隐藏
-function handleBlur() {
-	selectRef.value.blur();
+// 回显数据
+function setSelected() {
+  if (props.multiple) {
+    nextTick(() => {
+      proTableRef.value?.tableData?.forEach((item: any) => {
+        modelValue.value.forEach((key: any) => {
+          if (key.id === item.id) {
+            const exists = proTableRef.value?.selectedList?.some((v: any) => v.id === key.id)
+            if (!exists) {
+              proTableRef?.value?.toggleRowSelection(item, true)
+            }
+          }
+        })
+      })
+    })
+  }
+  else {
+    proTableRef.value.radio = modelValue.value.id
+  }
 }
-// 触发select显示
-function handleFocus() {
-	selectRef.value.focus();
+// 单个选择或取消
+function handleSelectionChange(selecteds: any, row: any) {
+  console.log(row)
+  if (props.multiple) {
+    const exists = modelValue.value?.some((item: any) => item.id === row.id)
+    if (!exists) {
+    // 回显数据里没有本条，把这条加进来(选中)
+      modelValue.value.push({
+        id: row[props.tableProps.value],
+        label: row[props.tableProps.label],
+      })
+    }
+    else {
+    // 回显数据里有本条，把这条删除(取消选中)
+      modelValue.value.forEach((item: any, index: number) => {
+        if (item.id === row.id) {
+          modelValue.value.splice(index, 1)
+        }
+      })
+    }
+  }
+  else {
+    modelValue.value = {
+      id: row[props.tableProps.value],
+      label: row[props.tableProps.label],
+    }
+  }
+}
+// 全选、取消全选
+function handleAllChange(selecteds: any) {
+  if (props.multiple) {
+    if (selecteds.length > 0) {
+      selecteds.forEach((item: any) => {
+        const exists = modelValue.value?.some((v: { id: any }) => v.id === item.id)
+        if (!exists) {
+          modelValue.value.push({
+            id: item[props.tableProps.value],
+            label: item[props.tableProps.label],
+          })
+        }
+      })
+    }
+    else {
+      proTableRef.value?.tableData?.forEach((item: any) => {
+        modelValue.value.forEach((v: any, index: number) => {
+          if (v.id === item.id) {
+            modelValue.value.splice(index, 1)
+          }
+        })
+      })
+    }
+  }
 }
 </script>
 
+<template>
+  <el-select
+    ref="selectTableRef"
+    v-model="modelValue"
+    popper-class="tip-dropdown"
+    :teleported="teleported"
+    :fit-input-width="fitInputWidth"
+    :style="{ width: selectWidth ? `${selectWidth}` : '100%' }"
+    class="select-box"
+    value-key="id"
+    :size="size"
+    :clearable="clearable"
+    :multiple="multiple"
+    :collapse-tags="collapseTags"
+    :collapse-tags-tooltip="collapseTagsTooltip"
+    :placeholder="placeholder"
+    :disabled="disabled"
+    @remove-tag="handleRemoveTag"
+    @visible-change="visibleChange"
+    @clear="handleClear"
+  >
+    <template #empty>
+      <div class="select-empty">
+        <div class="select-close">
+          <el-icon class="select-close__icon" @click="selectBlue">
+            <svg-icon name="ep:close-bold" />
+          </el-icon>
+        </div>
+        <div class="select-table" :style="{ width: tableWidth ? `${tableWidth}` : '100%' }">
+          <div class="table-box">
+            <ProTable
+              ref="proTableRef"
+              :search-col="{ xs: 1, sm: 2, md: 2, lg: 2, xl: 2 }"
+              :init-param="initTableParam"
+              :tool-button="false"
+              :data-callback="dataCallback"
+              :show-pagination="true"
+              highlight-current-row
+              page-layout="total, prev, pager, next"
+              :request-api="requestApi"
+              :columns="columns"
+              @select="handleSelectionChange"
+              @select-all="handleAllChange"
+            />
+            <div class="confirm-btn">
+              <div v-if="multiple" @click="selectBlue">
+                <el-button type="primary">
+                  确 认
+                </el-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+  </el-select>
+</template>
+
 <style lang="scss" scoped>
-.ele-table-select__table {
-	padding: 12px;
-	.ele-table-select__header {
-		:deep(.el-form-item) {
-			margin-right: 10px;
-		}
-		:deep(.el-form-item__content) {
-			width: 200px;
-		}
-	}
+.select-box {
+  width: 100%;
 }
-.ele-table-select__page {
-	padding-top: 12px;
-	.el-pagination {
-		:deep(.el-pagination__total) {
-			margin-left: 10px;
-		}
-	}
+
+.tip-dropdown {
+  width: 700px;
 }
+
+.select-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding-top: 10px;
+  padding-right: 10px;
+  text-align: right;
+
+  &__icon {
+    font-size: 16px;
+    cursor: pointer;
+  }
+}
+
+.select-empty {
+  height: 100%;
+
+  .select-table {
+    height: 100%;
+    padding: 12px;
+
+    .confirm-btn {
+      padding-top: 20px;
+      text-align: right;
+    }
+  }
+}
+
 :deep(.el-table__row) {
-	cursor: pointer;
-}
-.close-icon {
-	padding-top: 10px;
-	padding-right: 10px;
-	text-align: right;
+  cursor: pointer;
 }
 </style>

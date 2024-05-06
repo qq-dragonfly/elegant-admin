@@ -1,108 +1,116 @@
-import type { RouteRecordRaw } from 'vue-router';
-import type { Route } from '#/global';
-import SysSettingModule from './modules/sys_setting_module';
-import OrgModule from './modules/org_module';
-import useSettingsStore from '@/store/modules/settings';
+import type { RouteRecordRaw } from 'vue-router'
+import MultilevelMenuExample from './modules/multilevel.menu.example'
+import BreadcrumbExample from './modules/breadcrumb.example'
+import KeepAliveExample from './modules/keep.alive.example'
+import IconExample from './modules/icon.example'
+import FeatureExample from './modules/feature.example'
+import PluginExample from './modules/plugin.example'
+import PermissionExample from './modules/permission.example'
+import MockExample from './modules/mock.example'
+import ExternalLinkExample from './modules/external.link.example'
+import type { Route } from '#/global'
+import useSettingsStore from '@/store/modules/settings'
 
 // 固定路由（默认路由）
 const constantRoutes: RouteRecordRaw[] = [
-	{
-		path: '/login',
-		name: 'login',
-		component: () => import('@/views/login/index.vue'),
-		meta: {
-			title: '登录'
-		}
-	},
-	{
-		path: '/:all(.*)*',
-		name: 'notFound',
-		component: () => import('@/views/[...all].vue'),
-		meta: {
-			title: '找不到页面'
-		}
-	}
-];
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/login/index.vue'),
+    meta: {
+      title: '登录',
+    },
+  },
+  {
+    path: '/:all(.*)*',
+    name: 'notFound',
+    component: () => import('@/views/[...all].vue'),
+    meta: {
+      title: '找不到页面',
+    },
+  },
+]
 
 // 系统路由
 const systemRoutes: RouteRecordRaw[] = [
-	{
-		path: '/',
-		component: () => import('@/pages_layouts/index.vue'),
-		meta: {
-			title: '拓展路由',
-			breadcrumb: false
-		},
-		children: [
-			{
-				path: 'test_pages_layout',
-				name: 'TestPagesLayout',
-				component: () => import('@/views/test_pages_layout/index.vue'),
-				meta: {
-					title: '拓展路由',
-					icon: 'local-home',
-					breadcrumb: false
-				}
-			}
-		]
-	},
-	{
-		path: '/',
-		component: () => import('@/layouts/index.vue'),
-		meta: {
-			title: () => useSettingsStore().home.title,
-			breadcrumb: false
-		},
-		children: [
-			{
-				path: 'dashboard',
-				name: 'dashboard',
-				component: () => import('@/views/welcome/index.vue'),
-				meta: {
-					title: () => useSettingsStore().home.title,
-					icon: 'local-home',
-					breadcrumb: false
-				}
-			},
-			{
-				path: 'reload',
-				name: 'reload',
-				component: () => import('@/views/reload.vue'),
-				meta: {
-					title: '重新加载',
-					breadcrumb: false
-				}
-			},
-			{
-				path: 'setting',
-				name: 'personalSetting',
-				component: () => import('@/views/personal/setting.vue'),
-				meta: {
-					title: '个人设置',
-					cache: 'personalEditPassword'
-				}
-			},
-			{
-				path: 'edit/password',
-				name: 'personalEditPassword',
-				component: () => import('@/views/personal/edit.password.vue'),
-				meta: {
-					title: '修改密码'
-				}
-			}
-		]
-	}
-];
+  {
+    path: '/',
+    component: () => import('@/layouts/index.vue'),
+    meta: {
+      title: () => useSettingsStore().settings.home.title,
+      breadcrumb: false,
+    },
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/welcome/index.vue'),
+        meta: {
+          title: () => useSettingsStore().settings.home.title,
+          icon: 'i-ant-design:home-twotone',
+          breadcrumb: false,
+        },
+      },
+      {
+        path: 'reload',
+        name: 'reload',
+        component: () => import('@/views/reload/index.vue'),
+        meta: {
+          title: '重新加载',
+          breadcrumb: false,
+        },
+      },
+      {
+        path: 'personal/setting',
+        name: 'personalSetting',
+        component: () => import('@/views/personal/setting.vue'),
+        meta: {
+          title: '个人设置',
+          cache: 'personalEditPassword',
+        },
+      },
+      {
+        path: 'personal/edit/password',
+        name: 'personalEditPassword',
+        component: () => import('@/views/personal/edit.password.vue'),
+        meta: {
+          title: '修改密码',
+        },
+      },
+    ],
+  },
+]
+
 // 动态路由（异步路由、导航栏路由）
 const asyncRoutes: Route.recordMainRaw[] = [
-	{
-		name: 'Setting',
-		meta: {
-			title: '设置',
-			icon: 'local-sidebar_setting'
-		},
-		children: [SysSettingModule]
-	}
-];
+  {
+    meta: {
+      title: '演示功能',
+      icon: 'i-uim:box',
+    },
+    children: [
+      MultilevelMenuExample,
+      BreadcrumbExample,
+      KeepAliveExample,
+      IconExample,
+      FeatureExample,
+      PluginExample,
+      PermissionExample,
+      MockExample,
+    ],
+  },
+  {
+    meta: {
+      title: '生态',
+      icon: 'i-icon-park-outline:circular-connection',
+    },
+    children: [
+      ExternalLinkExample,
+    ],
+  },
+]
 
-export { constantRoutes, systemRoutes, asyncRoutes };
+export {
+  constantRoutes,
+  systemRoutes,
+  asyncRoutes,
+}

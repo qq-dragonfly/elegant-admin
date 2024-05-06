@@ -1,34 +1,33 @@
-/**
- * Used to parse the .env.development proxy configuration
- */
-import type { ProxyOptions } from 'vite';
+import type { ProxyOptions } from 'vite'
 
-type ProxyItem = [string, string];
+type ProxyItem = [string, string]
 
-type ProxyList = ProxyItem[];
+type ProxyList = ProxyItem[]
 
-type ProxyTargetList = Record<string, ProxyOptions>;
+type ProxyTargetList = Record<string, ProxyOptions>
 
-const httpsRE = /^https:\/\//;
+const httpsRE = /^https:\/\//
 
 /**
- * Generate proxy
- * @param list
+ * 创建代理配置对象
+ * @param list 代理列表，是一个键为前缀、值为目标地址的键值对数组，默认为空数组
+ * @param VITE_OPEN_PROXY 环境变量，用于控制是否开启代理，字符串值，默认为字符串形式的 'true' 或其他非 'true' 值
+ * @returns 返回一个对象，键为前缀，值为代理配置对象
  */
-export function createProxy(list: ProxyList = []) {
-	const ret: ProxyTargetList = {};
-	for (const [prefix, target] of list) {
-		const isHttps = httpsRE.test(target);
-
-		// https://github.com/http-party/node-http-proxy#options
-		ret[prefix] = {
-			target: target,
-			changeOrigin: true,
-			// ws: true,
-			rewrite: path => path.replace(new RegExp(`^${prefix}`), `${prefix}`),
-			// https is require secure=false
-			...(isHttps ? { secure: false } : {})
-		};
-	}
-	return ret;
+export function createProxy(list: ProxyList = [], VITE_OPEN_PROXY: string) {
+  const ret: ProxyTargetList = {}
+  for (const [prefix, target] of list) {
+    const isHttps = httpsRE.test(target)
+    // 根据代理目标地址配置代理选项
+    ret[prefix] = {
+      target,
+      changeOrigin: VITE_OPEN_PROXY === 'true',
+      // 如果环境变量 VITE_OPEN_PROXY 为 'true'，则重写路径，否则移除路径中的 '/proxy'
+      rewrite: path => VITE_OPEN_PROXY === 'true' ? path.replace(new RegExp(`^${prefix}`), `${prefix}`) : path.replace(/\/proxy/, ''),
+      // 如果目标地址是 HTTPS，则设置 secure 为 false
+      ...(isHttps ? { secure: false } : {}),
+    }
+  }
+  console.log('ret', ret)
+  return ret
 }

@@ -1,15 +1,22 @@
-<script lang="ts" setup name="{{ properCase componentName }}">
-// const proxy = useCurrentInstance()
-// const router = useRouter()
-// const route = useRoute()
+{{#if isFilesystem}}
+<route lang="yaml">
+meta:
+  title: 页面标题
+</route>
+
+{{/if}}
+<script setup lang="ts">
+defineOptions({
+  name: '{{ properCase componentName }}',
+})
 </script>
 
 <template>
   <div>
-    页面内容区域
+    <!-- 布局 -->
   </div>
 </template>
 
 <style lang="scss" scoped>
-// scss
+// 样式
 </style>

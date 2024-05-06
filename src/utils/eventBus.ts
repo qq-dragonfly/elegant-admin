@@ -1,3 +1,8 @@
-import mitt from 'mitt';
+import mitt from 'mitt'
 
-export default mitt();
+interface MittTypes {
+  [key: string | symbol]: any
+  'global-search-toggle'?: 'menu' | 'tab'
+}
+
+export default mitt<MittTypes>()

@@ -1,18 +1,16 @@
-<template>
-	<div>
-		<canvas ref="verify" :width="width" :height="height" @click="handleDraw"></canvas>
-	</div>
-</template>
+<script lang="ts" name="ImgVerify" setup>
+import { useVerify } from '@/hooks/useVerify'
 
-<script lang="ts" name="ImgVerify">
-import { ref } from 'vue';
-import { setVerify } from '@/hooks/useVerify';
-export default {
-	setup(props: any, con: any) {
-		const verify = ref(null);
-		return {
-			...setVerify(verify)
-		};
-	}
-};
+const verify = ref(null)
+
+const { width, height, handleDraw, imgCode } = useVerify(verify)
+defineExpose({
+  imgCode,
+})
 </script>
+
+<template>
+  <div :style="{ width: '131px', height: `${height}px`, cursor: 'pointer' }">
+    <canvas ref="verify" :width="width" :height="height" @click="handleDraw" />
+  </div>
+</template>
