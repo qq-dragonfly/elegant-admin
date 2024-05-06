@@ -20,7 +20,7 @@
 
 ## 预览
 
-- [elegant-admin]('https://zhangyao1990.github.io/elegant-admin/#/login')
+- [elegant-admin](https://zhangyao1990.github.io/elegant-admin/#/login)
 
 ## 代码仓库
 
