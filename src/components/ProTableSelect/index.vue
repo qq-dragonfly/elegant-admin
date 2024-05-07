@@ -1,5 +1,26 @@
-<script lang="ts" name="ProTableSelect" setup>
+<script lang="ts" setup>
 import ProTable from '@/components/ProTable/index.vue'
+
+defineOptions({
+  name: 'ProTableSelect',
+})
+// 接受父组件参数，配置默认值
+const props = withDefaults(defineProps<PaginationProps>(), {
+  placeholder: '请选择',
+  size: 'default',
+  clearable: true,
+  multiple: false,
+  collapseTags: false,
+  collapseTagsTooltip: false,
+  disabled: false,
+  teleported: true,
+  fitInputWidth: true,
+  tableWidth: '',
+  columns: [],
+  initTableParam: {},
+  tableProps: () => ({ label: 'label', value: 'value' }), // 映射字段
+})
+
 interface PaginationProps {
   requestApi: (params: any) => Promise<any> // 请求表格数据的api ==> 必传
   placeholder?: string // 占位符
@@ -18,22 +39,6 @@ interface PaginationProps {
   tableProps: { [key: string]: any } //
 }
 
-// 接受父组件参数，配置默认值
-const props = withDefaults(defineProps<PaginationProps>(), {
-  placeholder: '请选择',
-  size: 'default',
-  clearable: true,
-  multiple: false,
-  collapseTags: false,
-  collapseTagsTooltip: false,
-  disabled: false,
-  teleported: true,
-  fitInputWidth: true,
-  tableWidth: '',
-  columns: [],
-  initTableParam: {},
-  tableProps: () => ({ label: 'label', value: 'value' }), // 映射字段
-})
 const modelValue = defineModel<any>({
   default: [],
 })
