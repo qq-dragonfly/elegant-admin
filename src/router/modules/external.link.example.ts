@@ -22,7 +22,7 @@ const routes: RouteRecordRaw = {
       name: 'linkExampleWindowGitee',
       meta: {
         title: 'Gitee 仓库',
-        link: 'https://github.com/zhangyao1990/elegant-admin',
+        link: 'https://gitee.com/git.zhangyao_ping.net/elegant-admin',
       },
     },
     {

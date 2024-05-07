@@ -30,14 +30,14 @@ function handleJump(url: string, type?: string) {
       </template>
       <template #content>
         <div class="mb-40px flex justify-end">
-          <HButton outline @click="handleJump('https://zhangyao1990.github.io/elegant-admin/#/login', 'doc')">
+          <HButton outline @click="handleJump('https://zhangyao1990.github.io/elegant-admin-docs', 'doc')">
             <SvgIcon name="i-ri:file-text-line" />
             开发文档
           </HButton>
           <HDropdownMenu
             :items="[
               [
-                { label: 'Gitee', handle: () => handleJump('https://github.com/zhangyao1990/elegant-admin') },
+                { label: 'Gitee', handle: () => handleJump('https://gitee.com/git.zhangyao_ping.net/elegant-admin') },
                 { label: 'Github', handle: () => handleJump('https://github.com/zhangyao1990/elegant-admin') },
               ],
             ]"
