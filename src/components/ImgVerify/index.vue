@@ -1,6 +1,9 @@
-<script lang="ts" name="ImgVerify" setup>
+<script lang="ts" setup>
 import { useVerify } from '@/hooks/useVerify'
 
+defineOptions({
+  name: 'ImgVerify',
+})
 const verify = ref(null)
 
 const { width, height, handleDraw, imgCode } = useVerify(verify)

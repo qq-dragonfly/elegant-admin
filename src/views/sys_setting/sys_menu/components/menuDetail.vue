@@ -156,7 +156,7 @@ async function acceptParams(data: any, pid: any, type = 'add') {
     sort: data.sort || 1,
     meta: {
       title: data?.meta?.title,
-      icon: data?.meta?.icon,
+      icon: data?.meta?.icon || '',
       activeMenu: data?.meta?.activeMenu,
       type: data?.meta?.type,
       menu: data?.meta?.menu,
@@ -265,17 +265,15 @@ defineExpose({
             <el-tree-select
               v-model="menuForm.pid"
               :data="menuOptions"
-
               :render-after-expand="false"
-
               class="w-full"
               placeholder="顶级菜单"
-              check-strictly show-checkbox clearable check-on-click-node
+              clearable check-strictly show-checkbox check-on-click-node
             />
           </el-form-item>
 
           <el-form-item label="菜单图标:" prop="meta.icon">
-            <!-- <IconSelect v-model="menuForm.meta.icon" /> -->
+            <ProIconSelect v-model="menuForm.meta.icon" />
           </el-form-item>
           <el-form-item label="是否缓存:" prop="meta.cache">
             <el-checkbox v-model="menuForm.meta.cache">

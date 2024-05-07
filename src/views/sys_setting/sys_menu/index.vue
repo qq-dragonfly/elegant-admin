@@ -201,12 +201,10 @@ function expandAllNodes(isExpanded: boolean) {
                 node-key="id"
                 :data="menuTreeList"
                 :props="menuProps"
-
                 :expand-on-click-node="false"
-
-                draggable check-strictly show-checkbox highlight-current
+                check-strictly show-checkbox draggable highlight-current
                 :filter-node-method="menuFilterNode"
-                @node-click="handleMenuTreeClick"
+                :check-on-click-node="true"
               >
                 <template #default="{ node, data }">
                   <span class="custom-tree-node el-tree-node__label">

@@ -5,10 +5,10 @@ function Layout() {
 }
 
 const routes: RouteRecordRaw = {
-  path: '/breadcrumb_example',
+  path: '/breadcrumb_demo',
   component: Layout,
-  redirect: '/breadcrumb_example/list1',
-  name: 'breadcrumbExample',
+  redirect: '/breadcrumb_demo/list1',
+  name: 'breadcrumbDemo',
   meta: {
     title: '面包屑导航',
     icon: 'i-mdi:biscuit-crumbs',
@@ -16,33 +16,33 @@ const routes: RouteRecordRaw = {
   children: [
     {
       path: 'list1',
-      name: 'breadcrumbExampleList1',
-      component: () => import('@/views/breadcrumb_example/list1.vue'),
+      name: 'breadcrumbDemoList1',
+      component: () => import('@/views/breadcrumb_demo/list1.vue'),
       meta: {
         title: '列表1（平级模式）',
       },
     },
     {
       path: 'detail1',
-      name: 'breadcrumbExampleDetail1',
-      component: () => import('@/views/breadcrumb_example/detail1.vue'),
+      name: 'breadcrumbDemoDetail1',
+      component: () => import('@/views/breadcrumb_demo/detail1.vue'),
       meta: {
         title: '详情1',
         menu: false,
-        activeMenu: '/breadcrumb_example/list1',
+        activeMenu: '/breadcrumb_demo/list1',
       },
     },
     {
       path: 'list2',
-      name: 'breadcrumbExampleList2',
-      redirect: '/breadcrumb_example/list2',
+      name: 'breadcrumbDemoList2',
+      redirect: '/breadcrumb_demo/list2',
       meta: {
         title: '列表2（层级模式）',
       },
       children: [
         {
           path: '',
-          component: () => import('@/views/breadcrumb_example/list2.vue'),
+          component: () => import('@/views/breadcrumb_demo/list2.vue'),
           meta: {
             title: '列表2（层级模式）',
             menu: false,
@@ -51,12 +51,12 @@ const routes: RouteRecordRaw = {
         },
         {
           path: 'detail2',
-          name: 'breadcrumbExampleDetail2',
-          component: () => import('@/views/breadcrumb_example/detail2.vue'),
+          name: 'breadcrumbDemoDetail2',
+          component: () => import('@/views/breadcrumb_demo/detail2.vue'),
           meta: {
             title: '详情2',
             menu: false,
-            activeMenu: '/breadcrumb_example/list2',
+            activeMenu: '/breadcrumb_demo/list2',
           },
         },
       ],

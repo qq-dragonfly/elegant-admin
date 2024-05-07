@@ -1,4 +1,4 @@
-<script setup lang="ts" name="Grid">
+<script setup lang="ts">
 import type {
   VNode,
   VNodeArrayChildren,
@@ -17,12 +17,9 @@ import {
 } from 'vue'
 import type { BreakPoint } from './interface/index'
 
-interface Props {
-  cols?: number | Record<BreakPoint, number>
-  collapsed?: boolean
-  collapsedRows?: number
-  gap?: [number, number] | number
-}
+defineOptions({
+  name: 'Grid',
+})
 
 const props = withDefaults(defineProps<Props>(), {
   cols: () => ({ xs: 1, sm: 2, md: 2, lg: 3, xl: 4 }),
@@ -30,6 +27,13 @@ const props = withDefaults(defineProps<Props>(), {
   collapsedRows: 1,
   gap: 0,
 })
+
+interface Props {
+  cols?: number | Record<BreakPoint, number>
+  collapsed?: boolean
+  collapsedRows?: number
+  gap?: [number, number] | number
+}
 
 onBeforeMount(() => props.collapsed && findIndex())
 onMounted(() => {

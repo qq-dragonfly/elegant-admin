@@ -5,10 +5,10 @@ function Layout() {
 }
 
 const routes: RouteRecordRaw = {
-  path: '/plugin_example',
+  path: '/plugin_demo',
   component: Layout,
-  redirect: '/plugin_example/qrcode',
-  name: 'pluginExample',
+  redirect: '/plugin_demo/qrcode',
+  name: 'pluginDemo',
   meta: {
     title: '插件',
     icon: 'i-clarity:plugin-outline-alerted',
@@ -16,8 +16,8 @@ const routes: RouteRecordRaw = {
   children: [
     {
       path: 'qrcode',
-      name: 'pluginExampleQrcode',
-      component: () => import('@/views/plugin_example/qrcode.vue'),
+      name: 'pluginDemoQrcode',
+      component: () => import('@/views/plugin_demo/qrcode.vue'),
       meta: {
         title: '二维码',
         icon: 'i-material-symbols:qr-code',
@@ -25,8 +25,8 @@ const routes: RouteRecordRaw = {
     },
     {
       path: 'esign',
-      name: 'pluginExampleEsign',
-      component: () => import('@/views/plugin_example/esign.vue'),
+      name: 'pluginDemoEsign',
+      component: () => import('@/views/plugin_demo/esign.vue'),
       meta: {
         title: '电子签名',
         icon: 'i-mdi:draw',
@@ -34,8 +34,8 @@ const routes: RouteRecordRaw = {
     },
     {
       path: 'swiper',
-      name: 'pluginExampleSwiper',
-      component: () => import('@/views/plugin_example/swiper.vue'),
+      name: 'pluginDemoSwiper',
+      component: () => import('@/views/plugin_demo/swiper.vue'),
       meta: {
         title: '轮播动画',
         icon: 'i-carbon:carousel-horizontal',
@@ -43,8 +43,8 @@ const routes: RouteRecordRaw = {
     },
     {
       path: 'tinymce',
-      name: 'pluginExampleTinymce',
-      component: () => import('@/views/plugin_example/tinymce.vue'),
+      name: 'pluginDemoTinymce',
+      component: () => import('@/views/plugin_demo/tinymce.vue'),
       meta: {
         title: 'TinyMCE 编辑器',
         icon: 'i-file-icons:tinymce',
@@ -52,8 +52,8 @@ const routes: RouteRecordRaw = {
     },
     {
       path: 'markdown',
-      name: 'pluginExampleMarkdown',
-      component: () => import('@/views/plugin_example/markdown.vue'),
+      name: 'pluginDemoMarkdown',
+      component: () => import('@/views/plugin_demo/markdown.vue'),
       meta: {
         title: 'Markdown 编辑器',
         icon: 'i-teenyicons:markdown-outline',
@@ -61,8 +61,8 @@ const routes: RouteRecordRaw = {
     },
     {
       path: 'countto',
-      name: 'pluginExampleCountTo',
-      component: () => import('@/views/plugin_example/count.to.vue'),
+      name: 'pluginDemoCountTo',
+      component: () => import('@/views/plugin_demo/count.to.vue'),
       meta: {
         title: '计数器',
         icon: 'i-carbon:character-whole-number',
@@ -71,8 +71,8 @@ const routes: RouteRecordRaw = {
 
     {
       path: 'splitpanes',
-      name: 'pluginExampleSplitpanes',
-      component: () => import('@/views/plugin_example/splitpanes.vue'),
+      name: 'pluginDemoSplitpanes',
+      component: () => import('@/views/plugin_demo/splitpanes.vue'),
       meta: {
         title: '拆分面板',
         icon: 'i-icon-park-outline:split-cells',

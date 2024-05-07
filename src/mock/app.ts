@@ -16,10 +16,10 @@ export default defineFakeRoute([
             },
             children: [
               {
-                path: '/breadcrumb_example',
+                path: '/breadcrumb_demo',
                 component: 'Layout',
-                redirect: '/breadcrumb_example/list1',
-                name: 'breadcrumbExample',
+                redirect: '/breadcrumb_demo/list1',
+                name: 'breadcrumbDemo',
                 meta: {
                   title: '面包屑导航',
                   icon: 'i-mdi:biscuit-crumbs',
@@ -27,33 +27,33 @@ export default defineFakeRoute([
                 children: [
                   {
                     path: 'list1',
-                    name: 'breadcrumbExampleList1',
-                    component: 'breadcrumb_example/list1.vue',
+                    name: 'breadcrumbDemoList1',
+                    component: 'breadcrumb_demo/list1.vue',
                     meta: {
                       title: '列表1（平级模式）',
                     },
                   },
                   {
                     path: 'detail1',
-                    name: 'breadcrumbExampleDetail1',
-                    component: 'breadcrumb_example/detail1.vue',
+                    name: 'breadcrumbDemoDetail1',
+                    component: 'breadcrumb_demo/detail1.vue',
                     meta: {
                       title: '详情1',
                       menu: false,
-                      activeMenu: '/breadcrumb_example/list1',
+                      activeMenu: '/breadcrumb_demo/list1',
                     },
                   },
                   {
                     path: 'list2',
-                    name: 'breadcrumbExampleList2',
-                    redirect: '/breadcrumb_example/list2',
+                    name: 'breadcrumbDemoList2',
+                    redirect: '/breadcrumb_demo/list2',
                     meta: {
                       title: '列表2（层级模式）',
                     },
                     children: [
                       {
                         path: '',
-                        component: 'breadcrumb_example/list2.vue',
+                        component: 'breadcrumb_demo/list2.vue',
                         meta: {
                           title: '列表2（层级模式）',
                           menu: false,
@@ -62,13 +62,13 @@ export default defineFakeRoute([
                       },
                       {
                         path: 'detail2',
-                        name: 'breadcrumbExampleDetail2',
-                        component: 'breadcrumb_example/detail2.vue',
+                        name: 'breadcrumbDemoDetail2',
+                        component: 'breadcrumb_demo/detail2.vue',
                         meta: {
                           title: '详情2',
                           menu: false,
                           breadcrumb: false,
-                          activeMenu: '/breadcrumb_example/list2',
+                          activeMenu: '/breadcrumb_demo/list2',
                         },
                       },
                     ],
@@ -76,10 +76,10 @@ export default defineFakeRoute([
                 ],
               },
               {
-                path: '/multilevel_menu_example',
+                path: '/multilevel_menu_demo',
                 component: 'Layout',
-                redirect: '/multilevel_menu_example/page',
-                name: 'multilevelMenuExample',
+                redirect: '/multilevel_menu_demo/page',
+                name: 'multilevelMenuDemo',
                 meta: {
                   title: '菜单嵌套',
                   icon: 'heroicons-solid:menu-alt-3',
@@ -87,48 +87,48 @@ export default defineFakeRoute([
                 children: [
                   {
                     path: 'page',
-                    name: 'multilevelMenuExample1',
-                    component: 'multilevel_menu_example/page.vue',
+                    name: 'multilevelMenuDemo1',
+                    component: 'multilevel_menu_demo/page.vue',
                     meta: {
                       title: '菜单1',
                     },
                   },
                   {
                     path: 'level2',
-                    name: 'multilevelMenuExample2',
-                    redirect: '/multilevel_menu_example/level2/page',
+                    name: 'multilevelMenuDemo2',
+                    redirect: '/multilevel_menu_demo/level2/page',
                     meta: {
                       title: '菜单2',
                     },
                     children: [
                       {
                         path: 'page',
-                        name: 'multilevelMenuExample2-1',
-                        component: 'multilevel_menu_example/level2/page.vue',
+                        name: 'multilevelMenuDemo2-1',
+                        component: 'multilevel_menu_demo/level2/page.vue',
                         meta: {
                           title: '菜单2-1',
                         },
                       },
                       {
                         path: 'level3',
-                        name: 'multilevelMenuExample2-2',
-                        redirect: '/multilevel_menu_example/level2/level3/page1',
+                        name: 'multilevelMenuDemo2-2',
+                        redirect: '/multilevel_menu_demo/level2/level3/page1',
                         meta: {
                           title: '菜单2-2',
                         },
                         children: [
                           {
                             path: 'page1',
-                            name: 'multilevelMenuExample2-2-1',
-                            component: 'multilevel_menu_example/level2/level3/page1.vue',
+                            name: 'multilevelMenuDemo2-2-1',
+                            component: 'multilevel_menu_demo/level2/level3/page1.vue',
                             meta: {
                               title: '菜单2-2-1',
                             },
                           },
                           {
                             path: 'page2',
-                            name: 'multilevelMenuExample2-2-2',
-                            component: 'multilevel_menu_example/level2/level3/page2.vue',
+                            name: 'multilevelMenuDemo2-2-2',
+                            component: 'multilevel_menu_demo/level2/level3/page2.vue',
                             meta: {
                               title: '菜单2-2-2',
                             },
@@ -140,10 +140,10 @@ export default defineFakeRoute([
                 ],
               },
               {
-                path: '/plugin_example',
+                path: '/plugin_demo',
                 component: 'Layout',
-                redirect: '/plugin_example/qrcode',
-                name: 'pluginExample',
+                redirect: '/plugin_demo/qrcode',
+                name: 'pluginDemo',
                 meta: {
                   title: '插件',
                   icon: 'i-clarity:plugin-outline-alerted',
@@ -151,8 +151,8 @@ export default defineFakeRoute([
                 children: [
                   {
                     path: 'qrcode',
-                    name: 'pluginExampleQrcode',
-                    component: 'plugin_example/qrcode.vue',
+                    name: 'pluginDemoQrcode',
+                    component: 'plugin_demo/qrcode.vue',
                     meta: {
                       title: '二维码',
                       icon: 'i-material-symbols:qr-code',
@@ -160,8 +160,8 @@ export default defineFakeRoute([
                   },
                   {
                     path: 'esign',
-                    name: 'pluginExampleEsign',
-                    component: 'plugin_example/esign.vue',
+                    name: 'pluginDemoEsign',
+                    component: 'plugin_demo/esign.vue',
                     meta: {
                       title: '电子签名',
                       icon: 'i-mdi:draw',
@@ -169,8 +169,8 @@ export default defineFakeRoute([
                   },
                   {
                     path: 'swiper',
-                    name: 'pluginExampleSwiper',
-                    component: 'plugin_example/swiper.vue',
+                    name: 'pluginDemoSwiper',
+                    component: 'plugin_demo/swiper.vue',
                     meta: {
                       title: '轮播动画',
                       icon: 'i-carbon:carousel-horizontal',
@@ -178,8 +178,8 @@ export default defineFakeRoute([
                   },
                   {
                     path: 'tinymce',
-                    name: 'pluginExampleTinymce',
-                    component: 'plugin_example/tinymce.vue',
+                    name: 'pluginDemoTinymce',
+                    component: 'plugin_demo/tinymce.vue',
                     meta: {
                       title: 'TinyMCE 编辑器',
                       icon: 'i-file-icons:tinymce',
@@ -187,8 +187,8 @@ export default defineFakeRoute([
                   },
                   {
                     path: 'markdown',
-                    name: 'pluginExampleMarkdown',
-                    component: 'plugin_example/markdown.vue',
+                    name: 'pluginDemoMarkdown',
+                    component: 'plugin_demo/markdown.vue',
                     meta: {
                       title: 'Markdown 编辑器',
                       icon: 'i-teenyicons:markdown-outline',
@@ -196,8 +196,8 @@ export default defineFakeRoute([
                   },
                   {
                     path: 'countto',
-                    name: 'pluginExampleCountTo',
-                    component: 'plugin_example/count.to.vue',
+                    name: 'pluginDemoCountTo',
+                    component: 'plugin_demo/count.to.vue',
                     meta: {
                       title: '计数器',
                       icon: 'i-carbon:character-whole-number',
@@ -205,8 +205,8 @@ export default defineFakeRoute([
                   },
                   {
                     path: 'splitpanes',
-                    name: 'pluginExampleSplitpanes',
-                    component: 'plugin_example/splitpanes.vue',
+                    name: 'pluginDemoSplitpanes',
+                    component: 'plugin_demo/splitpanes.vue',
                     meta: {
                       title: '拆分面板',
                       icon: 'i-icon-park-outline:split-cells',
@@ -214,60 +214,12 @@ export default defineFakeRoute([
                   },
                 ],
               },
-              {
-                path: '/feature_example',
-                component: 'Layout',
-                redirect: '/feature_example/vueuse',
-                name: 'featureExample',
-                meta: {
-                  title: '功能',
-                  icon: 'i-ic:twotone-auto-awesome',
-                },
-                children: [
-                  {
-                    path: 'vueuse',
-                    name: 'featureExampleVueuse',
-                    component: 'feature_example/vueuse.vue',
-                    meta: {
-                      title: 'VueUse',
-                      icon: 'i-logos:vueuse',
-                    },
-                  },
-                  {
-                    path: 'rules',
-                    name: 'featureExampleRules',
-                    component: 'feature_example/rules.vue',
-                    meta: {
-                      title: '常用正则',
-                      icon: 'i-mdi:regex',
-                    },
-                  },
-                  {
-                    path: 'reload',
-                    name: 'featureExampleReload',
-                    component: 'feature_example/reload.vue',
-                    meta: {
-                      title: '主页面刷新',
-                      icon: 'i-iconoir:refresh-double',
-                      cache: true,
-                    },
-                  },
-                  {
-                    path: 'leavetips',
-                    name: 'featureExampleLeavetips',
-                    component: 'feature_example/leavetips.vue',
-                    meta: {
-                      title: '页面离开提醒',
-                      icon: 'i-pepicons:leave',
-                    },
-                  },
-                ],
-              },
+
               {
                 path: '/link',
                 component: 'Layout',
                 redirect: '/link/github',
-                name: 'externalLinkExample',
+                name: 'externalLinkDemo',
                 meta: {
                   title: '外链',
                   icon: 'i-ri:external-link-fill',
@@ -276,7 +228,7 @@ export default defineFakeRoute([
                   {
                     path: 'github',
                     component: 'LinkLayout',
-                    name: 'linkExampleWindowGithub',
+                    name: 'linkDemoWindowGithub',
                     meta: {
                       title: 'Github 仓库',
                       link: 'https://github.com/zhangyao1990/elegant-admin',
@@ -284,7 +236,7 @@ export default defineFakeRoute([
                   }, {
                     path: 'vue-doc',
                     component: 'LinkLayout',
-                    name: 'iframeExampleWindowGithub',
+                    name: 'iframeDemoWindowGithub',
                     meta: {
                       title: 'vue3文档',
                       iframe: 'https://cn.vuejs.org/guide/introduction.html',
@@ -293,10 +245,10 @@ export default defineFakeRoute([
                 ],
               },
               {
-                path: '/mock_example',
+                path: '/mock_demo',
                 component: 'Layout',
-                redirect: '/mock_example/index',
-                name: 'mockExample',
+                redirect: '/mock_demo/index',
+                name: 'MockDemo',
                 meta: {
                   title: 'Mock',
                   icon: 'i-ri:database-2-line',
@@ -304,21 +256,21 @@ export default defineFakeRoute([
                 children: [
                   {
                     path: 'index',
-                    name: 'mockExampleIndex',
-                    component: 'mock_example/index.vue',
+                    name: 'MockDemoIndex',
+                    component: 'mock_demo/index.vue',
                     meta: {
                       title: 'Mock',
                       menu: false,
                       breadcrumb: false,
-                      activeMenu: '/mock_example',
+                      activeMenu: '/mock_demo',
                     },
                   },
                 ],
               }, {
-                path: '/permission_example',
+                path: '/permission_demo',
                 component: 'Layout',
-                redirect: '/permission_example/index',
-                name: 'permissionExample',
+                redirect: '/permission_demo/index',
+                name: 'PermissionDemo',
                 meta: {
                   title: '权限验证',
                   icon: 'ri:shield-keyhole-line',
@@ -326,25 +278,25 @@ export default defineFakeRoute([
                 children: [
                   {
                     path: 'index',
-                    name: 'permissionExampleIndex',
-                    component: 'permission_example/index.vue',
+                    name: 'PermissionDemoIndex',
+                    component: 'permission_demo/index.vue',
                     meta: {
                       title: '权限验证',
                       menu: false,
                       breadcrumb: false,
-                      activeMenu: '/permission_example',
+                      activeMenu: '/permission_demo',
                     },
                   },
                   {
                     path: 'test',
-                    name: 'permissionExampleTest',
-                    component: 'permission_example/test.vue',
+                    name: 'PermissionDemoTest',
+                    component: 'permission_demo/test.vue',
                     meta: {
                       title: '测试页面',
                       auth: ['permission.browse'],
                       menu: false,
                       breadcrumb: false,
-                      activeMenu: '/permission_example',
+                      activeMenu: '/permission_demo',
                     },
                   },
                 ],
@@ -425,7 +377,7 @@ export default defineFakeRoute([
                 },
                 children: [
                   {
-                    path: '/multilevel_menu_example/page',
+                    path: '/multilevel_menu_demo/page',
                     meta: {
                       title: '导航1',
                     },
@@ -436,7 +388,7 @@ export default defineFakeRoute([
                     },
                     children: [
                       {
-                        path: '/multilevel_menu_example/level2/page',
+                        path: '/multilevel_menu_demo/level2/page',
                         meta: {
                           title: '导航2-1',
                         },
@@ -447,13 +399,13 @@ export default defineFakeRoute([
                         },
                         children: [
                           {
-                            path: '/multilevel_menu_example/level2/level3/page1',
+                            path: '/multilevel_menu_demo/level2/level3/page1',
                             meta: {
                               title: '导航2-2-1',
                             },
                           },
                           {
-                            path: '/multilevel_menu_example/level2/level3/page2',
+                            path: '/multilevel_menu_demo/level2/level3/page2',
                             meta: {
                               title: '导航2-2-2',
                             },

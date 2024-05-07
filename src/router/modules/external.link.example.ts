@@ -10,7 +10,7 @@ const routes: RouteRecordRaw = {
   path: '/link',
   component: Layout,
   redirect: '/link/gitee',
-  name: 'externalLinkExample',
+  name: 'externalLinkDemo',
   meta: {
     title: '外链',
     icon: 'i-ri:external-link-fill',
@@ -19,7 +19,7 @@ const routes: RouteRecordRaw = {
     {
       path: 'gitee',
       component: LinkLayout,
-      name: 'linkExampleWindowGitee',
+      name: 'linkDemoWindowGitee',
       meta: {
         title: 'Gitee 仓库',
         link: 'https://gitee.com/git.zhangyao_ping.net/elegant-admin',
@@ -28,7 +28,7 @@ const routes: RouteRecordRaw = {
     {
       path: 'github',
       component: LinkLayout,
-      name: 'linkExampleWindowGithub',
+      name: 'linkDemoWindowGithub',
       meta: {
         title: 'Github 仓库',
         link: 'https://github.com/zhangyao1990/elegant-admin',

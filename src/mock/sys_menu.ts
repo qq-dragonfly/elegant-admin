@@ -47,7 +47,7 @@ export default defineFakeRoute([
             meta: {
               title: '面包屑导航',
               type: 'menu',
-              icon: '',
+              icon: 'example-vip',
               activeMenu: '',
               menu: true,
               breadcrumb: true,

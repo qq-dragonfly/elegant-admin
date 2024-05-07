@@ -1,7 +1,10 @@
-<script setup lang="ts" name="ImageUpload">
+<script setup lang="ts">
 import type { UploadProps } from 'element-plus'
 import { ElMessage } from 'element-plus'
 
+defineOptions({
+  name: 'ImageUpload',
+})
 const props = withDefaults(
   defineProps<{
     action: UploadProps['action']

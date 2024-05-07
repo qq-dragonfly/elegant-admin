@@ -1,4 +1,11 @@
-<script setup lang="ts" name="Pagination">
+<script setup lang="ts">
+defineOptions({
+  name: 'Pagination',
+})
+withDefaults(defineProps<PaginationProps>(), {
+  pageLayout: 'total, sizes, prev, pager, next',
+})
+
 interface Pageable {
   pageNum: number
   pageSize: number
@@ -11,9 +18,6 @@ interface PaginationProps {
   handleCurrentChange: (currentPage: number) => void
   pageLayout?: string
 }
-withDefaults(defineProps<PaginationProps>(), {
-  pageLayout: 'total, sizes, prev, pager, next',
-})
 </script>
 
 <template>

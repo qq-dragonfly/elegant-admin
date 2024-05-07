@@ -1,6 +1,10 @@
-<script setup lang="ts" name="ColSetting">
+<script setup lang="ts">
 import { ref } from 'vue'
 import type { ColumnProps } from '@/components/ProTable/interface'
+
+defineOptions({
+  name: 'ColSetting',
+})
 
 defineProps<{ colSetting: ColumnProps[] }>()
 

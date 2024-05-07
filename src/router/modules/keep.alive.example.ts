@@ -5,10 +5,10 @@ function Layout() {
 }
 
 const routes: RouteRecordRaw = {
-  path: '/keep_alive_example',
+  path: '/keep_alive_demo',
   component: Layout,
-  redirect: '/keep_alive_example/page',
-  name: 'keepAliveExample',
+  redirect: '/keep_alive_demo/page',
+  name: 'keepAliveDemo',
   meta: {
     title: '页面缓存',
     icon: 'i-cil:window-restore',
@@ -16,8 +16,8 @@ const routes: RouteRecordRaw = {
   children: [
     {
       path: 'page',
-      name: 'keepAliveExamplePage',
-      component: () => import('@/views/keep_alive_example/page.vue'),
+      name: 'keepAliveDemoPage',
+      component: () => import('@/views/keep_alive_demo/page.vue'),
       meta: {
         title: '页面缓存',
         breadcrumb: false,
@@ -25,17 +25,17 @@ const routes: RouteRecordRaw = {
     },
     {
       path: 'detail',
-      name: 'keepAliveExampleDetail',
-      component: () => import('@/views/keep_alive_example/detail.vue'),
+      name: 'keepAliveDemoDetail',
+      component: () => import('@/views/keep_alive_demo/detail.vue'),
       meta: {
         title: '平级路由',
         menu: false,
-        activeMenu: '/keep_alive_example/page',
+        activeMenu: '/keep_alive_demo/page',
       },
     },
     {
       path: 'nested',
-      redirect: '/keep_alive_example/nested/detail',
+      redirect: '/keep_alive_demo/nested/detail',
       meta: {
         title: '嵌套路由',
         menu: false,
@@ -43,35 +43,35 @@ const routes: RouteRecordRaw = {
       children: [
         {
           path: 'detail',
-          name: 'keepAliveExampleNestedDetail',
-          component: () => import('@/views/keep_alive_example/detail.vue'),
+          name: 'keepAliveDemoNestedDetail',
+          component: () => import('@/views/keep_alive_demo/detail.vue'),
           meta: {
             title: '嵌套路由',
-            activeMenu: '/keep_alive_example/page',
+            activeMenu: '/keep_alive_demo/page',
           },
         },
       ],
     },
     {
       path: 'nested1',
-      name: 'keepAliveExampleNested1',
-      component: () => import('@/views/keep_alive_example/nested/nested.vue'),
+      name: 'keepAliveDemoNested1',
+      component: () => import('@/views/keep_alive_demo/nested/nested.vue'),
       meta: {
         title: '路由多级缓存1',
       },
       children: [
         {
           path: 'nested2',
-          name: 'keepAliveExampleNested2',
-          component: () => import('@/views/keep_alive_example/nested/nested/nested.vue'),
+          name: 'keepAliveDemoNested2',
+          component: () => import('@/views/keep_alive_demo/nested/nested/nested.vue'),
           meta: {
             title: '路由多级缓存1-1',
           },
           children: [
             {
               path: 'index',
-              name: 'keepAliveExampleNestedIndex',
-              component: () => import('@/views/keep_alive_example/nested/nested/nested/index.vue'),
+              name: 'keepAliveDemoNestedIndex',
+              component: () => import('@/views/keep_alive_demo/nested/nested/nested/index.vue'),
               meta: {
                 title: '路由多级缓存1-1-1',
                 cache: true,

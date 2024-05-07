@@ -1,7 +1,21 @@
-<script setup lang="ts" name="GridItem">
+<script setup lang="ts">
 import type { Ref } from 'vue'
 import { computed, inject, ref, useAttrs, watch } from 'vue'
 import type { BreakPoint, Responsive } from '../interface/index'
+
+defineOptions({
+  name: 'GridItem',
+})
+const props = withDefaults(defineProps<Props>(), {
+  offset: 0,
+  span: 1,
+  suffix: false,
+  xs: undefined,
+  sm: undefined,
+  md: undefined,
+  lg: undefined,
+  xl: undefined,
+})
 
 interface Props {
   offset?: number
@@ -13,17 +27,6 @@ interface Props {
   lg?: Responsive
   xl?: Responsive
 }
-
-const props = withDefaults(defineProps<Props>(), {
-  offset: 0,
-  span: 1,
-  suffix: false,
-  xs: undefined,
-  sm: undefined,
-  md: undefined,
-  lg: undefined,
-  xl: undefined,
-})
 
 const attrs = useAttrs() as { index: string }
 const isShow = ref(true)

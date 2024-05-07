@@ -34,7 +34,7 @@ const menuData = reactive<any>({
   },
 })
 const permissionData = ref<any>({
-  roleDateType: 'SELF_DEPT',
+  roleDateType: 'ALL',
   departmentList: [],
   depChecked: [],
   props: {
@@ -206,12 +206,11 @@ defineExpose({
               node-key="id"
               :data="menuData.menuTreeList"
               :props="menuData.props"
-              default-expand-all
+              :check-on-click-node="true"
               :check-strictly="true"
               :default-checked-keys="menuData.menuChecked"
-              highlight-current
               :expand-on-click-node="false"
-              show-checkbox
+              highlight-current show-checkbox default-expand-all
               @check="handleCheck"
             />
           </div>
@@ -223,9 +222,10 @@ defineExpose({
                 v-model="permissionData.roleDateType"
                 placeholder="请选择"
               >
-                <el-option label="全部可见" value="USERSELF" />
+                <el-option label="全部可见" value="ALL" />
                 <el-option label="仅部门可见" value="DEPT" />
-                <el-option label="仅本人可见" value="SELF_DEPT" />
+                <el-option label="选择的部门可见" value="SELECT_DEPT" />
+                <el-option label="仅本人可见" value="USERSELF" />
               </el-select>
             </el-form-item>
           </el-form>

@@ -1,4 +1,4 @@
-<script setup lang="ts" name="SearchForm">
+<script setup lang="ts">
 import { computed, ref } from 'vue'
 import { ArrowDown, ArrowUp, Delete, Search } from '@element-plus/icons-vue'
 import SearchFormItem from './components/SearchFormItem.vue'
@@ -7,6 +7,15 @@ import type { BreakPoint } from '@/components/Grid/interface'
 import Grid from '@/components/Grid/index.vue'
 import GridItem from '@/components/Grid/components/GridItem.vue'
 
+defineOptions ({
+  name: 'SearchForm',
+})
+// 默认值
+const props = withDefaults(defineProps<ProTableProps>(), {
+  columns: () => [],
+  searchParam: () => ({}),
+})
+
 interface ProTableProps {
   columns?: ColumnProps[] // 搜索配置列
   searchParam?: { [key: string]: any } // 搜索参数
@@ -14,12 +23,6 @@ interface ProTableProps {
   search: (params: any) => void // 搜索方法
   reset: (params: any) => void // 重置方法
 }
-
-// 默认值
-const props = withDefaults(defineProps<ProTableProps>(), {
-  columns: () => [],
-  searchParam: () => ({}),
-})
 
 // 获取响应式设置
 function getResponsive(item: ColumnProps) {

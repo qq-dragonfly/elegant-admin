@@ -5,10 +5,10 @@ function Layout() {
 }
 
 const routes: RouteRecordRaw = {
-  path: '/feature_example',
+  path: '/feature_demo',
   component: Layout,
-  redirect: '/feature_example/vueuse',
-  name: 'featureExample',
+  redirect: '/feature_demo/vueuse',
+  name: 'featureDemo',
   meta: {
     title: '功能',
     icon: 'i-ic:twotone-auto-awesome',
@@ -16,8 +16,8 @@ const routes: RouteRecordRaw = {
   children: [
     {
       path: 'vueuse',
-      name: 'featureExampleVueuse',
-      component: () => import('@/views/feature_example/vueuse.vue'),
+      name: 'featureDemoVueuse',
+      component: () => import('@/views/feature_demo/vueuse.vue'),
       meta: {
         title: 'VueUse',
         icon: 'i-logos:vueuse',
@@ -25,8 +25,8 @@ const routes: RouteRecordRaw = {
     },
     {
       path: 'rules',
-      name: 'featureExampleRules',
-      component: () => import('@/views/feature_example/rules.vue'),
+      name: 'featureDemoRules',
+      component: () => import('@/views/feature_demo/rules.vue'),
       meta: {
         title: '常用正则',
         icon: 'i-mdi:regex',
@@ -34,8 +34,8 @@ const routes: RouteRecordRaw = {
     },
     {
       path: 'reload',
-      name: 'featureExampleReload',
-      component: () => import('@/views/feature_example/reload.vue'),
+      name: 'featureDemoReload',
+      component: () => import('@/views/feature_demo/reload.vue'),
       meta: {
         title: '主页面刷新',
         icon: 'i-iconoir:refresh-double',
@@ -44,8 +44,8 @@ const routes: RouteRecordRaw = {
     },
     {
       path: 'leavetips',
-      name: 'featureExampleLeavetips',
-      component: () => import('@/views/feature_example/leavetips.vue'),
+      name: 'featureDemoLeavetips',
+      component: () => import('@/views/feature_demo/leavetips.vue'),
       meta: {
         title: '页面离开提醒',
         icon: 'i-pepicons:leave',

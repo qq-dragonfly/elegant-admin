@@ -1,6 +1,6 @@
 <template>
   <PageMain>
-    <RouterLink :to="{ name: 'breadcrumbExampleDetail2' }">
+    <RouterLink :to="{ name: 'breadcrumbDemoDetail1' }">
       查看详情页
     </RouterLink>
   </PageMain>

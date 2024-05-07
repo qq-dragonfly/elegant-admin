@@ -21,6 +21,9 @@ import 'tinymce/plugins/code'
 import 'tinymce/plugins/searchreplace'
 import useSettingsStore from '@/store/modules/settings'
 
+defineOptions({
+  name: 'ProTinymce',
+})
 const props = defineProps<{
   modelValue: string
   setting?: object

@@ -1,8 +1,11 @@
-<script setup lang="tsx" name="TableColumn">
+<script setup lang="tsx">
 import { inject, ref, useSlots } from 'vue'
 import type { ColumnProps, HeaderRenderScope, RenderScope } from '@/components/ProTable/interface'
 import { filterEnum, formatValue, handleProp, handleRowAccordingToProp } from '@/utils'
 
+defineOptions({
+  name: 'TableColumn',
+})
 defineProps<{ column: ColumnProps }>()
 
 const slots = useSlots()

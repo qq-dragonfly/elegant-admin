@@ -1,6 +1,9 @@
-<script setup lang="ts" name="NotAllowed">
+<script setup lang="ts">
 import useSettingsStore from '@/store/modules/settings'
 
+defineOptions({
+  name: 'NotAllowed',
+})
 const router = useRouter()
 
 const settingsStore = useSettingsStore()

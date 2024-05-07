@@ -5,10 +5,10 @@ function Layout() {
 }
 
 const routes: RouteRecordRaw = {
-  path: '/icon_example',
+  path: '/icon_demo',
   component: Layout,
-  redirect: '/icon_example/svg',
-  name: 'iconExample',
+  redirect: '/icon_demo/svg',
+  name: 'iconDemo',
   meta: {
     title: '扩展图标',
     icon: 'i-ri:remixicon-line',
@@ -16,16 +16,16 @@ const routes: RouteRecordRaw = {
   children: [
     {
       path: 'svg',
-      name: 'iconExampleSvg',
-      component: () => import('@/views/icon_example/svg.vue'),
+      name: 'iconDemoSvg',
+      component: () => import('@/views/icon_demo/svg.vue'),
       meta: {
         title: 'SVG Icon',
       },
     },
     {
       path: 'iconify',
-      name: 'iconExampleIconify',
-      component: () => import('@/views/icon_example/iconify.vue'),
+      name: 'iconDemoIconify',
+      component: () => import('@/views/icon_demo/iconify.vue'),
       meta: {
         title: 'Iconify',
       },
