@@ -69,7 +69,7 @@ onMounted(() => {
     </div>
     <div v-if="settingsStore.mode === 'pc'" class="absolute right-[-25px] top-40% z-100 flex items-center px-4 py-3" :class="[settingsStore.settings.menu.subMenuCollapse ? 'justify-center' : 'justify-end']">
       <span v-show="settingsStore.settings.menu.enableSubMenuCollapseButton" class="toolbar-collapse flex-center cursor-pointer rounded rounded-100px bg-stone-1 p-4px transition dark:bg-stone-9 hover:bg-stone-2 dark:hover:bg-stone-8" :class="{ '-rotate-z-180': settingsStore.settings.menu.subMenuCollapse }" @click="settingsStore.toggleSidebarCollapse()">
-        <SvgIcon name="i-ep:d-arrow-right" />
+        <SvgIcon class="text-stone-5 dark:text-stone-3" name="i-ep:d-arrow-left" />
       </span>
     </div>
   </div>
@@ -88,7 +88,7 @@ onMounted(() => {
   transition: background-color 0.3s, left 0.3s, width 0.3s;
 
   .toolbar-collapse {
-    background: #fff;
+    background: var(--g-sub-sidebar-bg);
   }
 
   &.is-collapse {

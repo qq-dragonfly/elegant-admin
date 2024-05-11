@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useClipboard } from '@vueuse/core'
 import Message from 'vue-m-message'
+import { useTheme } from '@/ui-provider/useElementTheme'
 import settingsDefault from '@/settings.default'
 import eventBus from '@/utils/eventBus'
 import useSettingsStore from '@/store/modules/settings'
@@ -14,9 +15,28 @@ const route = useRoute()
 
 const settingsStore = useSettingsStore()
 const menuStore = useMenuStore()
-
+const { changePrimary } = useTheme()
 const isShow = ref(false)
+// 预定义主题颜色
 
+const colorList: string[] = [
+  '#3b82f6',
+  '#6366f1',
+  '#8b5cf6',
+  '#a855f7',
+  '#0ea5e9',
+  '#06b6d4',
+  '#f43f5e',
+  '#ef4444',
+  '#ec4899',
+  '#d946ef',
+  '#f97316',
+  '#f59e0b',
+  '#eab308',
+  '#84cc16',
+  '#22c55e',
+  '#10b981',
+]
 watch(() => settingsStore.settings.menu.menuMode, (value) => {
   if (value === 'single') {
     menuStore.setActived(0)
@@ -93,10 +113,18 @@ function handleCopy() {
         :options="[
           { icon: 'i-ri:sun-line', label: '明亮', value: 'light' },
           { icon: 'i-ri:moon-line', label: '暗黑', value: 'dark' },
-          { icon: 'i-ri:computer-line', label: '系统', value: '' },
+          { icon: 'i-ri:contrast-fill', label: '系统', value: '' },
         ]"
         class="w-60"
       />
+    </div>
+    <div class="divider">
+      主题颜色
+    </div>
+    <div class="flex items-center justify-center pb-4">
+      <div class="text-center">
+        <el-color-picker v-model="settingsStore.settings.app.themeColor" :predefine="colorList" @change="changePrimary" />
+      </div>
     </div>
     <div v-if="settingsStore.mode === 'pc'" class="divider">
       导航栏模式
@@ -375,15 +403,21 @@ function handleCopy() {
     }
 
     &::before {
-      --at-apply: content-empty bg-ui-primary/70;
+      --at-apply: content-empty;
+
+      background-color: var(--g-ui-primary);
     }
 
     &::after {
-      --at-apply: content-empty bg-ui-primary/60;
+      --at-apply: content-empty;
+
+      background-color: var(--g-ui-primary-light-4);
     }
 
     .mode-container {
-      --at-apply: bg-ui-primary/20 border-dashed border-1px border-ui-primary;
+      --at-apply: border-dashed border-1px border-ui-primary;
+
+      background-color: var(--g-ui-primary-light-6);
 
       &::before {
         --at-apply: content-empty absolute w-full h-full;

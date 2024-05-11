@@ -25,7 +25,7 @@ onMounted(() => {
           <h2 class="m-0 text-lg font-bold">
             全局
           </h2>
-          <ul class="list-none pl-4 text-sm">
+          <ul class="list-none pl-2 text-sm">
             <li class="py-1">
               <HKbd>{{ settingsStore.os === 'mac' ? '⌥' : 'Alt' }}</HKbd>
               <HKbd>I</HKbd>
@@ -42,7 +42,7 @@ onMounted(() => {
           <h2 class="m-0 text-lg font-bold">
             主导航
           </h2>
-          <ul class="list-none pl-4 text-sm">
+          <ul class="list-none pl-2 text-sm">
             <li class="py-1">
               <HKbd>{{ settingsStore.os === 'mac' ? '⌥' : 'Alt' }}</HKbd>
               <HKbd>`</HKbd>
@@ -54,7 +54,7 @@ onMounted(() => {
           <h2 class="m-0 text-lg font-bold">
             标签栏
           </h2>
-          <ul class="list-none pl-4 text-sm">
+          <ul class="list-none pl-2 text-sm">
             <li class="py-1">
               <HKbd>{{ settingsStore.os === 'mac' ? '⌥' : 'Alt' }}</HKbd>
               <HKbd>←</HKbd>

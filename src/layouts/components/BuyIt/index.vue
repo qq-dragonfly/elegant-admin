@@ -49,7 +49,7 @@ onUnmounted(() => {
       <SvgIcon name="i-ri:code-s-slash-line" />
       <span class="title">下载<br>模版</span>
     </div>
-    <div class="item" @click="open(`https://zhangyao1990.github.io/elegant-admin`)">
+    <div class="item" @click="open(`https://zhangyao1990.github.io/elegant-admin-docs`)">
       <SvgIcon name="i-ri:book-read-line" />
       <span class="title">开发<br>文档</span>
     </div>

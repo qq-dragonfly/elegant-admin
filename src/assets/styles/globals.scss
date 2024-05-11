@@ -1,3 +1,5 @@
+@use "./el-themes.scss";
+
 // 页面布局 CSS 变量
 :root {
   // 头部高度
@@ -84,6 +86,10 @@ body {
   &.overflow-hidden {
     overflow: hidden;
   }
+}
+
+#app {
+  height: 100%;
 }
 
 * {

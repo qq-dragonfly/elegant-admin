@@ -18,6 +18,7 @@
  * @Author: 97972619@qq.com
  */
 
+import { getLocal } from '@/utils/storage'
 import type { RecursiveRequired, Settings } from '#/global'
 
 const globalSettingsDefault: RecursiveRequired<Settings.all> = {
@@ -26,6 +27,8 @@ const globalSettingsDefault: RecursiveRequired<Settings.all> = {
     enablePermission: false,
     enableProgress: true,
     enableDynamicTitle: false,
+    lightTheme: 'string',
+    themeColor: getLocal('themeColor') || '#8B5CF6',
     routeBaseOn: 'backend', // 'frontend'：前端 'backend' 后端
   },
   home: {

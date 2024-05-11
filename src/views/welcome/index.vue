@@ -3,11 +3,7 @@ import { ElMessage } from 'element-plus'
 import useUserStore from '@/store/modules/user'
 
 const userStore = useUserStore()
-function handleJump(url: string, type?: string) {
-  if (type === 'doc') {
-    ElMessage.warning('文档编写中!')
-    return
-  }
+function handleJump(url: string) {
   window.open(url, '_blank')
 }
 </script>
@@ -18,7 +14,9 @@ function handleJump(url: string, type?: string) {
       <template #title>
         <div>
           <div class="flex" items-start>
-            <div><img class="rounded-100px" :src="userStore.avatar" alt=""></div>
+            <div class="h-100px w-100px rounded-100px bg-#d4d4d8">
+              <img class="h-100px w-100px rounded-100px" :src="userStore.avatar" alt="">
+            </div>
             <div class="mt-2 flex flex-col justify-center md:ml-6 md:mt-0">
               <h1 class="text-md md:text-lg">
                 早安, {{ userStore.account }}, 开始您一天的工作吧！
@@ -30,7 +28,7 @@ function handleJump(url: string, type?: string) {
       </template>
       <template #content>
         <div class="mb-40px flex justify-end">
-          <HButton outline @click="handleJump('https://zhangyao1990.github.io/elegant-admin-docs', 'doc')">
+          <HButton outline @click="handleJump('https://zhangyao1990.github.io/elegant-admin-docs')">
             <SvgIcon name="i-ri:file-text-line" />
             开发文档
           </HButton>

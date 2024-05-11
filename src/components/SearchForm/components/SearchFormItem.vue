@@ -43,8 +43,6 @@ const handleSearchProps = computed(() => {
   const children = fieldNames.value.children
   const searchEl = props.column.search?.el
   let searchProps = props.column.search?.props ?? {}
-  console.log('searchProps', searchProps)
-  console.log('searchEl', searchEl)
   if (searchEl === 'tree-select') {
     searchProps = { ...searchProps, props: { ...searchProps.props, label, children }, nodeKey: value }
   }

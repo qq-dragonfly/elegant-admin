@@ -39,6 +39,12 @@ const tabsList = [
   {
     label: 'Remix Icon',
     name: 'ri:',
+  }, {
+    label: 'Ant-design Icon',
+    name: 'ant-design:',
+  }, {
+    label: 'Streamline Icon',
+    name: 'streamline:',
   },
 ]
 watch(

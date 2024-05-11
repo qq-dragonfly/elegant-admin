@@ -1,7 +1,3 @@
-#app {
-  height: 100%;
-}
-
 .elegant-admin-home {
   position: absolute;
   top: 0;
@@ -13,9 +9,9 @@
   justify-content: center;
   width: 100%;
   height: 100%;
-  color: #1890ff;
+  color: var(--el-color-primary);
   user-select: none;
-  background-color: #1890ff;
+  background-color: #fff;
 }
 
 /**  loading  **/
@@ -37,7 +33,7 @@
 
 .loading-box .loading-text {
   font-size: 14px;
-  color: #fff;
+  color: var(--el-color-primary);
 }
 
 .dot {
@@ -56,7 +52,7 @@
   display: block;
   width: 14px;
   height: 14px;
-  background-color: #fff;
+  background-color: var(--el-color-primary);
   border-radius: 100%;
   opacity: 0.3;
   transform: scale(0.75);

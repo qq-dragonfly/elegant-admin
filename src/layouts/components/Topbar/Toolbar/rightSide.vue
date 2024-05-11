@@ -45,7 +45,7 @@ watch(() => userStore.avatar, () => {
       ]" class="flex-center cursor-pointer px-2"
     >
       <div
-        class="flex-center gap-1 text-#333333" :class="{ '!text-#ffffff': settingsStore.settings.menu.menuMode === 'head' }"
+        class="flex-center gap-1 text-inherit"
       >
         <img v-if="userStore.avatar && !avatarError" :src="userStore.avatar" :onerror="() => (avatarError = true)" class="h-[24px] w-[24px] rounded-full">
         <SvgIcon v-else name="i-carbon:user-avatar-filled-alt" :size="24" />

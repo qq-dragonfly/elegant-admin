@@ -253,7 +253,7 @@ header:not(.header-leave-active) + .wrapper {
 }
 
 .app-setting {
-  --at-apply: text-white dark:text-dark bg-ui-primary;
+  --at-apply: text-white bg-ui-primary;
 
   position: fixed;
   top: calc(50% + 250px);

@@ -34,7 +34,7 @@ function unCollaspe() {
       'of-hidden': isCollaspe,
     }" :style="{
       height: isCollaspe ? height : '',
-      backgroundColor: background ? background : 'var(--el-color-white)',
+      backgroundColor: background ? background : 'var(--g-container-bg)',
       padding,
     }"
   >

@@ -60,23 +60,27 @@ import 'virtual:uno.css'
 
 // 全局样式
 import '@/assets/styles/globals.scss'
+import '@/assets/styles/loading.scss'
 
 // element-plus样式覆盖
 import '@/assets/styles/element.scss'
 
-const app = createApp(App)
-app.use(FloatingVue, {
-  distance: 12,
-})
-app.use(Message)
-app.use(pinia)
-app.use(router)
-app.use(ui)
-app.use(directives)
-if (icons.isOfflineUse) {
-  for (const info of icons.collections) {
-    downloadAndInstall(info)
+async function setupApp() {
+  const app = createApp(App)
+  app.use(FloatingVue, {
+    distance: 12,
+  })
+  app.use(Message)
+  app.use(pinia)
+  app.use(router)
+  app.use(ui)
+  app.use(directives)
+  if (icons.isOfflineUse) {
+    for (const info of icons.collections) {
+      downloadAndInstall(info)
+    }
   }
-}
 
-app.mount('#app')
+  app.mount('#app')
+}
+setupApp()

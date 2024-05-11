@@ -3,13 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" href="/favicon.ico" />
-    <link rel="stylesheet" href="/browser_upgrade/loading.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Expires" content="0">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="Cache" content="no-cache">
     <title>%VITE_APP_TITLE%</title>
+    <style>
+      #browser-upgrade {
+        display: none;
+      }
+      .elegant-admin-home {
+        display: none
+      }
+    </style>
   </head>
   <body>
     <div id="app">
@@ -37,7 +44,9 @@
     </div>
     <script>
       if (!!window.ActiveXObject || 'ActiveXObject' in window) {
-        document.getElementById('browser-upgrade').style.display = 'block'
+        setTimeout(function () {
+          document.getElementById('browser-upgrade').style.display = 'block'
+        }, 1000)
       }
     </script>
     <script type="module" src="/src/main.ts"></script>

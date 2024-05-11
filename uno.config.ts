@@ -10,7 +10,7 @@ import {
   transformerVariantGroup,
 } from 'unocss'
 import { entriesToCss, toArray } from '@unocss/core'
-import { darkTheme, lightTheme } from './themes'
+import { darkTheme, lightTheme } from './src/theme'
 
 export default defineConfig<Theme>({
   content: {
@@ -44,9 +44,10 @@ export default defineConfig<Theme>({
       },
     },
   ],
+
   theme: {
     colors: {
-      'ui-primary': 'rgb(var(--ui-primary))',
+      'ui-primary': 'var(--g-ui-primary)',
       'ui-text': 'rgb(var(--ui-text))',
     },
   },

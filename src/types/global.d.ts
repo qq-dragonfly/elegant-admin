@@ -38,6 +38,8 @@ declare namespace Settings {
      * @可选值 `'filesystem'` 文件系统
      */
     routeBaseOn?: 'frontend' | 'backend' | 'filesystem'
+    lightTheme?: string
+    themeColor?: string
   }
   interface home {
     /**

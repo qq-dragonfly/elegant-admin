@@ -2,7 +2,7 @@ import { defaultsDeep } from 'lodash-es'
 import type { RouteMeta } from 'vue-router'
 import type { Settings } from '#/global'
 import settingsDefault from '@/settings'
-
+import { setLocal } from '@/utils/storage'
 const useSettingsStore = defineStore(
   // 唯一ID
   'settings',
@@ -116,7 +116,11 @@ const useSettingsStore = defineStore(
     function setColorScheme(color: Required<Settings.app>['colorScheme']) {
       settings.value.app.colorScheme = color
     }
-
+    // 设置主题颜色
+    function setThemeColor(color: Required<Settings.app>['themeColor']) {
+      settings.value.app.themeColor = color
+      setLocal('themeColor', color)
+    }
     // 更新应用配置
     function updateSettings(data: Settings.all, fromBase = false) {
       settings.value = defaultsDeep(data, fromBase ? settingsDefault : settings.value)
@@ -133,6 +137,7 @@ const useSettingsStore = defineStore(
       subMenuCollapseLastStatus,
       toggleSidebarCollapse,
       setColorScheme,
+      setThemeColor,
       updateSettings,
     }
   },

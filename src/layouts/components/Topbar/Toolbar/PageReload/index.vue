@@ -7,7 +7,7 @@ const mainPage = useMainPage()
 </script>
 
 <template>
-  <span class="flex-center cursor-pointer px-2 py-1" @click="mainPage.reload()">
-    <SvgIcon name="i-iconoir:refresh-double" />
+  <span class="mx-6px flex-center transform cursor-pointer rounded-100px bg-[var(--g-bg-color-secondary)] p-8px hover:bg-[var(--g-bg-color-secondary-hover)]" @click="mainPage.reload()">
+    <SvgIcon class="text-14px" name="i-iconoir:refresh-double" />
   </span>
 </template>

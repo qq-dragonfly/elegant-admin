@@ -12,7 +12,7 @@ const { isFullscreen, toggle } = useFullscreen()
 </script>
 
 <template>
-  <span v-if="settingsStore.mode === 'pc'" class="flex-center cursor-pointer px-2 py-1" @click="toggle">
-    <SvgIcon :name="isFullscreen ? 'i-ri:fullscreen-exit-line' : 'i-ri:fullscreen-line'" />
+  <span v-if="settingsStore.mode === 'pc'" class="mx-6px flex-center transform cursor-pointer rounded-100px bg-[var(--g-bg-color-secondary)] p-8px hover:bg-[var(--g-bg-color-secondary-hover)]" @click="toggle">
+    <SvgIcon class="text-14px" :name="isFullscreen ? 'i-ri:fullscreen-exit-line' : 'i-ri:fullscreen-line'" />
   </span>
 </template>
