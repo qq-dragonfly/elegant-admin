@@ -12,6 +12,10 @@
   --g-ui-primary-light-9: var(--el-color-primary-light-9);
   // 表头背景色
   --g-table-th-bg: var(--el-color-primary-light-9);
+  // tabs
+  --g-tabs-active-bg: var(--el-color-primary-light-9);
+  // el-button
+  --g-button-bg: var(--g-ui-primary);
 
   // 主体
   --g-bg: #f2f2f2;
@@ -23,8 +27,8 @@
   --g-header-bg: #fff;
   --g-header-color: #333;
   --g-header-menu-color: #333;
-  --g-header-menu-hover-bg: var(--g-ui-primary);
-  --g-header-menu-hover-color: #fff;
+  --g-header-menu-hover-bg: var(--g-ui-primary-light-8);
+  --g-header-menu-hover-color: #333;
   --g-header-menu-active-bg: var(--g-ui-primary);
   --g-header-menu-active-color: #fff;
 
@@ -37,20 +41,20 @@
   --g-main-sidebar-menu-active-color: #fff;
 
   // 次导航
+  --g-sub-sidebar-toolbar-collapse-bg: #fff;
   --g-sub-sidebar-bg: #fff;
   --g-sub-sidebar-logo-bg: #fff;
   --g-sub-sidebar-logo-color: #333;
   --g-sub-sidebar-menu-color: #0f0f0f;
-  --g-sub-sidebar-menu-hover-bg: #e5f1ff;
+  --g-sub-sidebar-menu-hover-bg: var(--g-ui-primary-light-8);
   --g-sub-sidebar-menu-hover-color: #0f0f0f;
   --g-sub-sidebar-menu-active-bg: var(--g-ui-primary-light-8);
   --g-sub-sidebar-menu-active-color: var(--g-ui-primary);
-
   // 标签栏
   --g-tabbar-dividers-bg: #a3a3a3;
   --g-tabbar-tab-bg: #f5f7fa;
   --g-tabbar-tab-color: #a3a3a3;
-  --g-tabbar-tab-hover-bg: #e5f1ff;
+  --g-tabbar-tab-hover-bg: var(--g-ui-primary-light-8);
   --g-tabbar-tab-hover-color: #999;
   --g-tabbar-tab-active-bg: var(--g-ui-primary-light-8);
   --g-tabbar-tab-active-color: var(--g-ui-primary);
@@ -60,6 +64,11 @@
   &.dark {
     // 表头背景色
     --g-table-th-bg: #141414;
+    // el-tabs
+    --g-tabs-active-bg: #141414;
+    // el-button
+    --g-button-bg: #141414;
+
     // 主体
     --g-bg: #0a0a0a;
     --g-bg-color-secondary: #141414;
@@ -82,6 +91,7 @@
     --g-main-sidebar-menu-active-bg: var(--g-ui-primary);
     --g-main-sidebar-menu-active-color: #fff;
     // 次导航
+    --g-sub-sidebar-toolbar-collapse-bg: #333;
     --g-sub-sidebar-bg: #141414;
     --g-sub-sidebar-logo-bg: #0f0f0f;
     --g-sub-sidebar-logo-color: #e5e5e5;

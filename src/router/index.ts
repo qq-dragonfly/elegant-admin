@@ -164,3 +164,8 @@ router.afterEach((to, from) => {
 })
 
 export default router
+/** Setup Vue Router */
+export async function setupRouter(app: any) {
+  app.use(router)
+  await router.isReady()
+}

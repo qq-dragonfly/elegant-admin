@@ -53,7 +53,7 @@ const globalSettings: Settings.all = {
   },
   copyright: {
     enable: true,
-    dates: '2023-present',
+    dates: '2024-present',
     company: 'Elegant-admin',
     website: 'https://github.com/zhangyao1990/elegant-admin',
   },

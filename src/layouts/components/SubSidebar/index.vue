@@ -88,7 +88,7 @@ onMounted(() => {
   transition: background-color 0.3s, left 0.3s, width 0.3s;
 
   .toolbar-collapse {
-    background: var(--g-sub-sidebar-bg);
+    background: var(--g-sub-sidebar-toolbar-collapse-bg);
   }
 
   &.is-collapse {

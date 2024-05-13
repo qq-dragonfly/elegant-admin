@@ -43,8 +43,11 @@ import 'overlayscrollbars/overlayscrollbars.css'
 
 import App from './App.vue'
 import pinia from './store'
-import router from './router'
+import { setupRouter } from './router'
 import ui from './ui-provider'
+
+// 全局loading
+import { setupLoading } from '@/plugins/loading'
 
 // 自定义指令
 import directives from '@/directives/index'
@@ -60,27 +63,26 @@ import 'virtual:uno.css'
 
 // 全局样式
 import '@/assets/styles/globals.scss'
-import '@/assets/styles/loading.scss'
 
 // element-plus样式覆盖
 import '@/assets/styles/element.scss'
 
 async function setupApp() {
+  setupLoading()
   const app = createApp(App)
   app.use(FloatingVue, {
     distance: 12,
   })
   app.use(Message)
   app.use(pinia)
-  app.use(router)
   app.use(ui)
   app.use(directives)
+  await setupRouter(app)
   if (icons.isOfflineUse) {
     for (const info of icons.collections) {
       downloadAndInstall(info)
     }
   }
-
   app.mount('#app')
 }
 setupApp()

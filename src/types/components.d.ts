@@ -16,7 +16,6 @@ declare module 'vue' {
     GridItem: typeof import('./../components/Grid/components/GridItem.vue')['default']
     HButton: typeof import('./../layouts/ui-kit/HButton.vue')['default']
     HCheckList: typeof import('./../layouts/ui-kit/HCheckList.vue')['default']
-    HColorSelect: typeof import('./../layouts/ui-kit/HColorSelect.vue')['default']
     HDialog: typeof import('./../layouts/ui-kit/HDialog.vue')['default']
     HDropdown: typeof import('./../layouts/ui-kit/HDropdown.vue')['default']
     HDropdownMenu: typeof import('./../layouts/ui-kit/HDropdownMenu.vue')['default']

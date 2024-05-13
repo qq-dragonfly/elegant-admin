@@ -273,4 +273,8 @@
   z-index: 2070 !important;
 }
 
+.el-tabs .el-tabs__header .el-tabs__nav .el-tabs__active-bar {
+  background-color: var(--g-tabs-active-bg) !important;
+}
+
 /***************************  element-ui样式覆盖 end  ***************************/
