@@ -28,7 +28,7 @@ const globalSettingsDefault: RecursiveRequired<Settings.all> = {
     enableProgress: true,
     enableDynamicTitle: false,
     lightTheme: 'string',
-    themeColor: getLocal('themeColor') || '#8B5CF6',
+    themeColor: getLocal('themeColor') || '#3B82F6',
     routeBaseOn: 'backend', // 'frontend'：前端 'backend' 后端
   },
   home: {
