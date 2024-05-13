@@ -43,7 +43,7 @@ const useMenuStore = defineStore(
     }
     function convertRouteToMenuRecursive(routes: RouteRecordRaw[], basePath = ''): Menu.recordRaw[] {
       const returnMenus: Menu.recordRaw[] = []
-      routes.forEach((item) => {
+      routes?.forEach((item) => {
         const menuItem: Menu.recordRaw = {
           path: resolveRoutePath(basePath, item.path),
           meta: {

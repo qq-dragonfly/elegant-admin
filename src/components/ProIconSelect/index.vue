@@ -127,10 +127,10 @@ function onCurrentChange(page: any) {
         >
           <template #reference>
             <div class="h-[32px] w-[40px] flex cursor-pointer items-center justify-center" @click="visible = !visible">
-              <el-icon v-if="modelValue" class="icon text-18px">
+              <el-icon v-if="modelValue" class="icon text-15px">
                 <svg-icon :name="modelValue" />
               </el-icon>
-              <el-icon v-else class="icon text-18px">
+              <el-icon v-else class="icon text-15px">
                 <svg-icon name="ep:arrow-down" />
               </el-icon>
             </div>

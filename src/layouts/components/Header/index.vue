@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Logo from '../Logo/index.vue'
 import ToolbarRightSide from '../Topbar/Toolbar/rightSide.vue'
-import useMenuStore from '@/store/modules/menu'
+import HeaderMenu from '../HeaderMenu/index.vue'
 import useSettingsStore from '@/store/modules/settings'
 
 defineOptions({
@@ -9,18 +9,6 @@ defineOptions({
 })
 
 const settingsStore = useSettingsStore()
-const menuStore = useMenuStore()
-
-const { switchTo } = useMenu()
-
-const menuRef = ref()
-
-// 顶部模式鼠标滚动
-function handlerMouserScroll(event: WheelEvent) {
-  menuRef.value.scrollBy({
-    left: (event.deltaY || event.detail) > 0 ? 50 : -50,
-  })
-}
 </script>
 
 <template>
@@ -29,31 +17,7 @@ function handlerMouserScroll(event: WheelEvent) {
       <div class="header-container">
         <div class="main">
           <Logo class="title" />
-          <div ref="menuRef" class="menu-container" @wheel.prevent="handlerMouserScroll">
-            <!-- 顶部模式 -->
-            <div class="menu flex of-hidden transition-all">
-              <template v-for="(item, index) in menuStore.allMenus" :key="index">
-                <div
-                  class="menu-item relative transition-all" :class="{
-                    active: index === menuStore.actived,
-                  }"
-                >
-                  <div
-                    v-if="item.children && item.children.length !== 0" class="group menu-item-container h-full w-full flex cursor-pointer items-center justify-between gap-1 px-3 text-[var(--g-header-menu-color)] transition-all hover:(bg-[var(--g-header-menu-hover-bg)] text-[var(--g-header-menu-hover-color)])" :class="{
-                      'text-[var(--g-header-menu-active-color)]! bg-[var(--g-header-menu-active-bg)]!': index === menuStore.actived,
-                    }" :title="typeof item.meta?.title === 'function' ? item.meta?.title() : item.meta?.title" @click="switchTo(index)"
-                  >
-                    <div class="inline-flex flex-1 items-center justify-center gap-1">
-                      <SvgIcon v-if="item.meta?.icon" :name="item.meta?.icon" :size="20" class="menu-item-container-icon transition-transform group-hover:scale-110" async />
-                      <span class="w-full flex-1 truncate text-sm transition-height transition-opacity transition-width">
-                        {{ typeof item.meta?.title === 'function' ? item.meta?.title() : item.meta?.title }}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </template>
-            </div>
-          </div>
+          <HeaderMenu class="header-menu" />
         </div>
         <ToolbarRightSide />
       </div>
@@ -112,49 +76,6 @@ header {
       font-size: 20px;
       color: var(--g-header-color);
       letter-spacing: 1px;
-    }
-  }
-
-  .menu-container {
-    flex: 1;
-    height: 100%;
-    margin: 0 30px;
-    overflow-x: auto;
-    mask-image: linear-gradient(to right, transparent, #000 20px, #000 calc(100% - 20px), transparent);
-
-    // firefox隐藏滚动条
-    scrollbar-width: none;
-
-    // chrome隐藏滚动条
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
-
-  .menu {
-    display: inline-flex;
-    align-items: center;
-    height: 100%;
-
-    :deep(.menu-item) {
-      height: 36px;
-      margin-right: 4px;
-      overflow: hidden;
-      border-radius: 5px;
-
-      .menu-item-container {
-        color: var(--g-header-menu-color);
-
-        &:hover {
-          color: var(--g-header-menu-hover-color);
-          background-color: var(--g-header-menu-hover-bg);
-        }
-      }
-
-      &.active .menu-item-container {
-        color: var(--g-header-menu-active-color);
-        background-color: var(--g-header-menu-active-bg);
-      }
     }
   }
 }

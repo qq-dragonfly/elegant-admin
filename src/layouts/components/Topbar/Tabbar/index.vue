@@ -311,7 +311,7 @@ onUnmounted(() => {
           .tab-background {
             width: 100%;
             background-color: var(--g-tabbar-tab-hover-bg);
-            border-bottom: 3px solid var(--g-tabbar-tab-active-border-color);
+            border-bottom: 3px solid var(--g-tabbar-tab-hover-border-color);
             transition: width 0.3s ease;
           }
         }
@@ -427,9 +427,9 @@ onUnmounted(() => {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 1.5em;
-            height: 1.5em;
-            font-size: 12px;
+            width: 1.3em;
+            height: 1.3em;
+            font-size: 14px;
             color: var(--g-tabbar-tab-color);
             border-radius: 50%;
             transform: translateY(-50%);

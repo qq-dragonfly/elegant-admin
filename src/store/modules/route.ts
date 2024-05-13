@@ -86,8 +86,8 @@ const useRouteStore = defineStore(
       const returnRoutes: RouteRecordRaw[] = []
       if (routesRaw.value) {
         routesRaw.value.forEach((item) => {
-          const tmpRoutes = cloneDeep(item.children) as RouteRecordRaw[]
-          tmpRoutes.map((v) => {
+          const tmpRoutes = cloneDeep(item.children) as RouteRecordRaw[] || []
+          tmpRoutes?.map((v) => {
             if (!v.meta) {
               v.meta = {}
             }
@@ -131,7 +131,7 @@ const useRouteStore = defineStore(
     }
     // 格式化后端路由数据
     function formatBackRoutes(routes: any, views = import.meta.glob('../../views/**/*.vue')): Route.recordMainRaw[] {
-      return routes.map((route: any) => {
+      return routes?.map((route: any) => {
         switch (route.component) {
           case 'Layout':
             route.component = () => import('@/layouts/index.vue')
