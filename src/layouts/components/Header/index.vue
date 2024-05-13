@@ -118,7 +118,6 @@ header {
   .menu-container {
     flex: 1;
     height: 100%;
-    padding: 0 20px;
     margin: 0 30px;
     overflow-x: auto;
     mask-image: linear-gradient(to right, transparent, #000 20px, #000 calc(100% - 20px), transparent);

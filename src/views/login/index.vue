@@ -367,7 +367,6 @@ function handleReset() {
               width: 40px;
               height: 40px;
               border-radius: 4px;
-              box-shadow: var(--el-box-shadow-light);
             }
 
             .title {
