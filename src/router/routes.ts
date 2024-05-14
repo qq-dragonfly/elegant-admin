@@ -1,13 +1,7 @@
 import type { RouteRecordRaw } from 'vue-router'
-import MultilevelMenuExample from './modules/multilevel.menu.example'
-import BreadcrumbExample from './modules/breadcrumb.example'
-import KeepAliveExample from './modules/keep.alive.example'
-import IconExample from './modules/icon.example'
-import FeatureExample from './modules/feature.example'
-import PluginExample from './modules/plugin.example'
-import PermissionExample from './modules/permission.example'
-import MockExample from './modules/mock.example'
-import ExternalLinkExample from './modules/external.link.example'
+import PluginDemo from './modules/plugin_demo'
+import PermissionDemo from './modules/permission_demo'
+import MockDemo from './modules/mock_demo'
 import type { Route } from '#/global'
 import useSettingsStore from '@/store/modules/settings'
 
@@ -88,23 +82,9 @@ const asyncRoutes: Route.recordMainRaw[] = [
       icon: 'i-uim:box',
     },
     children: [
-      MultilevelMenuExample,
-      BreadcrumbExample,
-      KeepAliveExample,
-      IconExample,
-      FeatureExample,
-      PluginExample,
-      PermissionExample,
-      MockExample,
-    ],
-  },
-  {
-    meta: {
-      title: '生态',
-      icon: 'i-icon-park-outline:circular-connection',
-    },
-    children: [
-      ExternalLinkExample,
+      PluginDemo,
+      PermissionDemo,
+      MockDemo,
     ],
   },
 ]

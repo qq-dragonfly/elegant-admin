@@ -2,7 +2,7 @@
 import useKeepAliveStore from '@/store/modules/keepAlive'
 
 defineOptions({
-  name: 'TabExampleNested2',
+  name: 'TabDemoNested2',
 })
 
 const keepAliveStore = useKeepAliveStore()

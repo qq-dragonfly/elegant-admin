@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineOptions({
-  name: 'TabExampleNestedTest2',
+  name: 'TabDemoNestedTest2',
 })
 
 const val = ref('')

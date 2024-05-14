@@ -1,21 +1,20 @@
 <script setup lang="ts">
 const flip = ref<'horizontal' | 'vertical' | 'both'>()
-const rotate = ref(0)
+const rotate = ref(20)
 </script>
 
 <template>
-  <div>
+  <div class="flex flex-1 flex-col">
     <PageHeader title="SVG Icon" content="可以使用自定义的 SVG 图标" />
     <PageMain>
       <p>单色 SVG Icon</p>
-      <SvgIcon name="z-column-width" :size="48" :flip="flip" :rotate="rotate" />
-      <SvgIcon name="example-emotion-line" :size="48" :flip="flip" :rotate="rotate" />
-      <SvgIcon name="example-emotion-laugh-line" :size="48" :flip="flip" :rotate="rotate" />
-      <SvgIcon name="example-emotion-unhappy-line" :size="48" :flip="flip" :rotate="rotate" />
+      <SvgIcon name="example-emotion-line" :size="32" :flip="flip" />
+      <SvgIcon name="example-emotion-laugh-line" :size="32" :flip="flip" />
+      <SvgIcon name="example-emotion-unhappy-line" :size="32" :flip="flip" />
       <p>彩色 SVG Icon</p>
-      <SvgIcon name="example-crown" :size="48" :flip="flip" :rotate="rotate" />
-      <SvgIcon name="example-star" :size="48" :flip="flip" :rotate="rotate" />
-      <SvgIcon name="example-vip" :size="48" :flip="flip" :rotate="rotate" />
+      <SvgIcon name="example-crown" :size="32" :flip="flip" :rotate="rotate" />
+      <SvgIcon name="example-star" :size="32" :flip="flip" :rotate="rotate" />
+      <SvgIcon name="example-vip" :size="32" :flip="flip" :rotate="rotate" />
       <div>
         <p>翻转：</p>
         <ElRadioGroup v-model="flip">
@@ -32,8 +31,6 @@ const rotate = ref(0)
             水平垂直翻转
           </ElRadioButton>
         </ElRadioGroup>
-        <p>旋转：</p>
-        <ElSlider v-model="rotate" :min="0" :max="360" style="width: 50%;" />
       </div>
       <p>使用方法：</p>
       <ol>

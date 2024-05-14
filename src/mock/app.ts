@@ -140,6 +140,133 @@ export default defineFakeRoute([
                 ],
               },
               {
+                path: '/keep_alive_demo',
+                component: 'Layout',
+                redirect: '/keep_alive_demo/page',
+                name: 'keepAliveDemo',
+                meta: {
+                  title: '页面缓存',
+                  icon: 'i-cil:window-restore',
+                },
+                children: [
+                  {
+                    path: 'page',
+                    name: 'keepAliveDemoPage',
+                    component: 'keep_alive_demo/page.vue',
+                    meta: {
+                      title: '页面缓存',
+                      breadcrumb: false,
+                    },
+                  },
+                  {
+                    path: 'detail',
+                    name: 'keepAliveDemoDetail',
+                    component: 'keep_alive_demo/detail.vue',
+                    meta: {
+                      title: '平级路由',
+                      menu: false,
+                      activeMenu: '/keep_alive_demo/page',
+                    },
+                  },
+                  {
+                    path: 'nested',
+                    redirect: '/keep_alive_demo/nested/detail',
+                    meta: {
+                      title: '嵌套路由',
+                      menu: false,
+                    },
+                    children: [
+                      {
+                        path: 'detail',
+                        name: 'keepAliveDemoNestedDetail',
+                        component: 'keep_alive_demo/detail.vue',
+                        meta: {
+                          title: '嵌套路由',
+                          activeMenu: '/keep_alive_demo/page',
+                        },
+                      },
+                    ],
+                  },
+                  {
+                    path: 'nested1',
+                    name: 'keepAliveDemoNested1',
+                    component: 'keep_alive_demo/nested/nested.vue',
+                    meta: {
+                      title: '路由多级缓存1',
+                    },
+                    children: [
+                      {
+                        path: 'nested2',
+                        name: 'keepAliveDemoNested2',
+                        component: 'keep_alive_demo/nested/nested/nested.vue',
+                        meta: {
+                          title: '路由多级缓存1-1',
+                        },
+                        children: [
+                          {
+                            path: 'index',
+                            name: 'keepAliveDemoNestedIndex',
+                            component: 'keep_alive_demo/nested/nested/nested/index.vue',
+                            meta: {
+                              title: '路由多级缓存1-1-1',
+                              cache: true,
+                            },
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                path: '/components_demo',
+                component: 'Layout',
+                redirect: '/components_demo/iconify',
+                name: 'ComponentDemo',
+                meta: {
+                  title: '组件',
+                  icon: 'fa-solid:grip-horizontal',
+                },
+                children: [
+                  {
+                    path: 'icon',
+                    name: 'Icon',
+                    redirect: '/components_demo/icon/iconify',
+                    meta: {
+                      title: '扩展图标',
+                      icon: 'i-ri:remixicon-line',
+                    },
+                    children: [
+                      {
+                        path: 'iconify',
+                        name: 'Iconify',
+                        component: 'components_demo/svg_icon/iconify.vue',
+                        meta: {
+                          title: 'Iconify',
+                        },
+                      },
+                      {
+                        path: 'svg_icon',
+                        name: 'SvgIcon',
+                        component: 'components_demo/svg_icon/svg_icon.vue',
+                        meta: {
+                          title: 'SvgIcon',
+                        },
+                      },
+                      {
+                        path: 'pro_icon_select',
+                        name: 'ProIconSelect',
+                        component: 'components_demo/svg_icon/pro_icon_select.vue',
+                        meta: {
+                          title: 'Icon选择器',
+                        },
+                      },
+                    ],
+                  },
+
+                ],
+              },
+              {
                 path: '/plugin_demo',
                 component: 'Layout',
                 redirect: '/plugin_demo/qrcode',
@@ -155,7 +282,6 @@ export default defineFakeRoute([
                     component: 'plugin_demo/qrcode.vue',
                     meta: {
                       title: '二维码',
-                      icon: 'i-material-symbols:qr-code',
                     },
                   },
                   {
@@ -164,7 +290,6 @@ export default defineFakeRoute([
                     component: 'plugin_demo/esign.vue',
                     meta: {
                       title: '电子签名',
-                      icon: 'i-mdi:draw',
                     },
                   },
                   {
@@ -173,7 +298,6 @@ export default defineFakeRoute([
                     component: 'plugin_demo/swiper.vue',
                     meta: {
                       title: '轮播动画',
-                      icon: 'i-carbon:carousel-horizontal',
                     },
                   },
                   {
@@ -182,7 +306,6 @@ export default defineFakeRoute([
                     component: 'plugin_demo/tinymce.vue',
                     meta: {
                       title: 'TinyMCE 编辑器',
-                      icon: 'i-file-icons:tinymce',
                     },
                   },
                   {
@@ -191,7 +314,6 @@ export default defineFakeRoute([
                     component: 'plugin_demo/markdown.vue',
                     meta: {
                       title: 'Markdown 编辑器',
-                      icon: 'i-teenyicons:markdown-outline',
                     },
                   },
                   {
@@ -200,7 +322,6 @@ export default defineFakeRoute([
                     component: 'plugin_demo/count.to.vue',
                     meta: {
                       title: '计数器',
-                      icon: 'i-carbon:character-whole-number',
                     },
                   },
                   {
@@ -209,7 +330,6 @@ export default defineFakeRoute([
                     component: 'plugin_demo/splitpanes.vue',
                     meta: {
                       title: '拆分面板',
-                      icon: 'i-icon-park-outline:split-cells',
                     },
                   },
                 ],
