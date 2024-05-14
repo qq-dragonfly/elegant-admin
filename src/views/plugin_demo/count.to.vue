@@ -26,7 +26,7 @@ function open(url: string) {
 </script>
 
 <template>
-  <div>
+  <div class="flex flex-1 flex-col">
     <Alert />
     <PageHeader title="计数器">
       <template #content>

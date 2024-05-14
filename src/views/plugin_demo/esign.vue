@@ -50,7 +50,7 @@ function open(url: string) {
 </script>
 
 <template>
-  <div>
+  <div class="flex flex-1 flex-col">
     <Alert />
     <PageHeader title="电子签名">
       <template #content>
@@ -67,7 +67,7 @@ function open(url: string) {
     </PageHeader>
     <PageMain>
       <VueEsign ref="esignRef" v-model:bgColor="options.bgColor" :width="500" :height="300" :is-crop="options.isCrop" :line-width="options.lineWidth" :line-color="options.lineColor" />
-      <div>
+      <div class="pt-10px">
         <ElButton @click="handleReset">
           清空画板
         </ElButton>

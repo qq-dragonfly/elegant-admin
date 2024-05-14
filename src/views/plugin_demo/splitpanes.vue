@@ -9,7 +9,7 @@ function open(url: string) {
 </script>
 
 <template>
-  <div>
+  <div class="flex" flex-1 flex-col>
     <Alert />
     <PageHeader title="拆分面板">
       <template #content>
@@ -25,7 +25,7 @@ function open(url: string) {
       </ElButton>
     </PageHeader>
     <PageMain>
-      <Splitpanes class="default-theme" style="height: 400px;">
+      <Splitpanes class="default-theme" style="height: 500px;">
         <Pane min-size="20">
           <div class="h-full w-full flex items-center justify-center bg-#67C23A text-#ffffff">
             A
