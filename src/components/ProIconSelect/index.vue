@@ -201,6 +201,10 @@ function onCurrentChange(page: any) {
   }
 }
 
+:deep(.el-tabs__active-bar) {
+  background-color: transparent !important;
+}
+
 :deep(.el-tabs__nav-next) {
   font-size: 15px;
   line-height: 32px;

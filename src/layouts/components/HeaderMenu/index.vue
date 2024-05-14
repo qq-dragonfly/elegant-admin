@@ -13,26 +13,24 @@ const { switchTo } = useMenu()
 <template>
   <div class="menu-container">
     <!-- 顶部模式 -->
-    <div class="flex of-hidden transition-all">
-      <el-menu
-        :ellipsis="menuStore.allMenus.length > 5"
-        class="el-menu-header"
-        mode="horizontal"
-        :popper-offset="8"
-        :default-active="`${menuStore.actived}`"
-        @select="(index) => switchTo(Number(index))"
+    <div class="h-full flex of-hidden transition-all">
+      <el-tabs
+        v-model="menuStore.actived" @tab-click="(pane) => {
+          console.log('index', pane.index)
+          switchTo(Number(pane.index))
+        }"
       >
-        <template v-for="(item, index) in menuStore.allMenus" :key="index">
-          <el-menu-item :index="`${index}`">
+        <el-tab-pane v-for="(item, index) in menuStore.allMenus" :key="index" :name="index">
+          <template #label>
             <div class="inline-flex flex-1 items-center justify-center gap-1">
               <SvgIcon v-if="item.meta?.icon" :name="item.meta?.icon" :size="20" async />
               <span class="w-full flex-1 truncate text-15px transition-height transition-opacity transition-width">
                 {{ typeof item.meta?.title === 'function' ? item.meta?.title() : item.meta?.title }}
               </span>
             </div>
-          </el-menu-item>
-        </template>
-      </el-menu>
+          </template>
+        </el-tab-pane>
+      </el-tabs>
     </div>
   </div>
 </template>
@@ -43,34 +41,58 @@ const { switchTo } = useMenu()
   height: 100%;
   margin: 0 30px;
   overflow: hidden;
-}
+  // mask-image: linear-gradient(to right, transparent, #000 20px, #000 calc(100% - 20px), transparent);
 
-.el-menu-header {
-  max-width: 600px;
-  border-bottom: none;
-}
+  :deep(.el-tabs) {
+    width: 100%;
 
-:deep(.el-menu--horizontal) {
-  .el-menu-item:not(.is-disabled):focus,
-  .el-menu-item:not(.is-disabled):hover {
-    background: transparent;
+    .el-tabs__header {
+      height: 100%;
+      margin: 0;
+
+      .el-tabs__nav-wrap {
+        height: 100%;
+
+        &::after {
+          height: 0;
+        }
+
+        .el-tabs__nav-prev {
+          display: flex;
+          align-items: center;
+          height: 100%;
+          font-size: 15px;
+          box-shadow: 5px 0 10px -5px #e5e5e5;
+        }
+
+        .el-tabs__nav-next {
+          display: flex;
+          align-items: center;
+          height: 100%;
+          font-size: 15px;
+          box-shadow: -5px 0 10px -5px #e5e5e5;
+        }
+
+        .el-tabs__nav-scroll {
+          display: flex;
+          align-items: center;
+          height: 100%;
+
+          .el-tabs__nav {
+            align-items: center;
+            height: 100%;
+
+            .el-tabs__item {
+              padding: 0 15px;
+            }
+          }
+        }
+      }
+    }
   }
 
-  & > .el-menu-item.is-active {
-    border-bottom: none;
-  }
-
-  & > .el-menu-item {
-    padding: 0 15px;
-    border-bottom: none;
-  }
-
-  &.el-menu:not(.el-menu--collapse) .el-sub-menu__title {
-    border-bottom: none;
-  }
-
-  .el-sub-menu .el-icon {
-    font-size: 24px;
+  :deep(.el-tabs__active-bar) {
+    background-color: transparent !important;
   }
 }
 </style>
