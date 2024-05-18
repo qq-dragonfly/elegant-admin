@@ -26,7 +26,7 @@ const redirect = ref(route.query.redirect?.toString() ?? settingsStore.settings.
 // 登录
 const loginFormRef = ref<FormInstance>()
 const loginForm = ref<ReqLoginForm>({
-  account: getLocal('login_account') || ' admin',
+  account: getLocal('login_account') || 'admin',
   password: '123456',
   verifyCode: '',
   remember: !!getLocal('login_account'),

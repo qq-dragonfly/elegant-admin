@@ -39,19 +39,19 @@ const columns = reactive<ColumnProps[]>(
     {
       prop: 'name',
       label: '资源名称',
-      minWidth: 140,
+      minWidth: 100,
       search: { el: 'input' },
     }, {
       prop: 'method',
       label: 'API方法类型',
-      minWidth: 140,
+      minWidth: 100,
     },
     {
       prop: 'openStatus',
       label: '用户状态',
       enum: [{ label: '启用', value: 'OPEN' }, { label: '停用', value: 'CLOSE' }],
       fieldNames: { label: 'label', value: 'value' },
-      minWidth: 140,
+      minWidth: 100,
       search: { el: 'tree-select', props: { filterable: true } }, // filterable 开启模糊搜索
       render: (scope: { row: any }) => {
         return (

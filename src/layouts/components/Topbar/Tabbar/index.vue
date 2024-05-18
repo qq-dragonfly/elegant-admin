@@ -191,7 +191,7 @@ onUnmounted(() => {
               <span class="title">{{ element.title }}</span>
             </div>
             <div v-if="tabbarStore.list.length > 1" class="action-icon">
-              <SvgIcon name="i-ri:close-fill" @click.stop="tabbar.closeById(element.tabId)" />
+              <SvgIcon name="ri:close-fill" @click.stop="tabbar.closeById(element.tabId)" />
             </div>
             <div v-show="keys.alt && index < 9" class="hotkey-number">
               {{ index + 1 }}

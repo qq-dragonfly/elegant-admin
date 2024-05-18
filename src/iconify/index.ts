@@ -6,4 +6,4 @@ export async function downloadAndInstall(name: string) {
   addCollection(data)
 }
 
-export const icons = data.sort((a, b) => a.info.name.localeCompare(b.info.name))
+export const icons = data.sort((a: any, b: any) => a.info.name.localeCompare(b.info.name))

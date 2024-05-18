@@ -104,7 +104,7 @@ const enableAppSetting = import.meta.env.VITE_APP_SETTING === 'true'
     <HotkeysIntro />
     <template v-if="enableAppSetting">
       <div class="app-setting" @click="eventBus.emit('global-app-setting-toggle')">
-        <SvgIcon name="i-uiw:setting-o" class="icon" />
+        <SvgIcon name="uiw:setting-o" class="icon" />
       </div>
       <AppSetting />
     </template>

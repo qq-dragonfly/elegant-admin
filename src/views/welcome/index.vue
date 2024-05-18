@@ -29,7 +29,7 @@ function handleJump(url: string) {
       <template #content>
         <div class="mb-40px flex justify-end">
           <HButton outline @click="handleJump('https://zhangyao1990.github.io/elegant-admin-docs')">
-            <SvgIcon name="i-ri:file-text-line" />
+            <SvgIcon name="ri:file-text-line" />
             开发文档
           </HButton>
           <HDropdownMenu
@@ -41,9 +41,9 @@ function handleJump(url: string) {
             ]"
           >
             <HButton class="ml-2">
-              <SvgIcon name="i-ri:code-s-slash-line" />
+              <SvgIcon name="ri:code-s-slash-line" />
               代码仓库
-              <SvgIcon name="i-ep:arrow-down" />
+              <SvgIcon name="ep:arrow-down" />
             </HButton>
           </HDropdownMenu>
         </div>

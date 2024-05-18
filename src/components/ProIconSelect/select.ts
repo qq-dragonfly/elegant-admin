@@ -14,6 +14,5 @@ export function getIconList() {
     }
   }
   iconList['local:'] = svgNames
-  console.log('iconList', iconList)
   return iconList
 }

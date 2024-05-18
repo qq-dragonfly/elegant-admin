@@ -256,17 +256,17 @@ function pageJump(path: listTypes['path'], link: listTypes['link']) {
                   <div class="flex gap-8">
                     <div class="inline-flex items-center gap-1 text-xs">
                       <HKbd>
-                        <SvgIcon name="i-ion:md-return-left" :size="14" />
+                        <SvgIcon name="ion:md-return-left" :size="14" />
                       </HKbd>
                       <span>访问</span>
                     </div>
                     <div class="inline-flex items-center gap-1 text-xs">
                       <HKbd>
-                        <SvgIcon name="i-ant-design:caret-up-filled" :size="14" />
+                        <SvgIcon name="ant-design:caret-up-filled" :size="14" />
                       </HKbd>
 
                       <HKbd>
-                        <SvgIcon name="i-ant-design:caret-down-filled" :size="14" />
+                        <SvgIcon name="ant-design:caret-down-filled" :size="14" />
                       </HKbd>
                       <span>切换</span>
                     </div>
@@ -279,7 +279,7 @@ function pageJump(path: listTypes['path'], link: listTypes['link']) {
                   </div>
                 </div>
                 <div class="mx-[10px] mt-[10px] flex items-center rounded-[5px] px-4 py-3" border="~ solid stone-2 dark:stone-7">
-                  <SvgIcon name="i-ep:search" :size="18" class="text-stone-5" />
+                  <SvgIcon name="ep:search" :size="18" class="text-stone-5" />
                   <input ref="searchInputRef" v-model="searchInput" placeholder="搜索页面，支持标题、URL模糊查询" class="w-full border-0 rounded-md bg-transparent px-3 text-[14px] text-dark dark:text-white focus:outline-none placeholder-stone-4 dark:placeholder-stone-5" @keydown.esc="eventBus.emit('global-search-toggle')" @keydown.up.prevent="keyUp" @keydown.down.prevent="keyDown" @keydown.enter.prevent="keyEnter">
                 </div>
                 <DialogDescription class="relative m-0 mx-[10px] mt-[10px] of-y-hidden rounded-[6px]" border="~ solid stone-2 dark:stone-7">
@@ -303,7 +303,7 @@ function pageJump(path: listTypes['path'], link: listTypes['link']) {
                     </template>
                     <template v-else>
                       <div flex="center col" py-6 text-stone-5>
-                        <SvgIcon name="i-tabler:mood-empty" :size="40" />
+                        <SvgIcon name="tabler:mood-empty" :size="40" />
                         <p m-2 text-base>
                           没有找到你想要的
                         </p>

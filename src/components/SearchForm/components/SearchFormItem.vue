@@ -1,5 +1,6 @@
 <script setup lang="ts" name="SearchFormItem">
 import { computed, inject, ref } from 'vue'
+import { getPickerShortcuts } from '../index'
 import { handleProp } from '@/utils/index'
 import type { ColumnProps } from '@/components/ProTable/interface'
 
@@ -60,6 +61,7 @@ const placeholder = computed(() => {
       rangeSeparator: search?.props?.rangeSeparator ?? '至',
       startPlaceholder: search?.props?.startPlaceholder ?? '开始时间',
       endPlaceholder: search?.props?.endPlaceholder ?? '结束时间',
+      shortcuts: getPickerShortcuts(),
     }
   }
   const placeholder = search?.props?.placeholder ?? (search?.el?.includes('input') ? '请输入' : '请选择')

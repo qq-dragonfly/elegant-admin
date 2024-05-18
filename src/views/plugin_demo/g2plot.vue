@@ -158,13 +158,13 @@ function open(url: string) {
       <ElButtonGroup>
         <ElButton @click="open('https://github.com/antvis/g2')">
           <template #icon>
-            <SvgIcon name="i-ep:link" />
+            <SvgIcon name="ep:link" />
           </template>
           访问 G2
         </ElButton>
         <ElButton @click="open('https://github.com/antvis/G2Plot')">
           <template #icon>
-            <SvgIcon name="i-ep:link" />
+            <SvgIcon name="ep:link" />
           </template>
           访问 G2plot
         </ElButton>

@@ -34,7 +34,7 @@ function open(url: string) {
       </template>
       <ElButton @click="open('https://github.com/bytedance/bytemd')">
         <template #icon>
-          <SvgIcon name="i-ep:link" />
+          <SvgIcon name="ep:link" />
         </template>
         访问 bytemd
       </ElButton>

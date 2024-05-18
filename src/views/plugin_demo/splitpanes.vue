@@ -19,13 +19,13 @@ function open(url: string) {
       </template>
       <ElButton @click="open('https://github.com/antoniandre/splitpanes')">
         <template #icon>
-          <SvgIcon name="i-ep:link" />
+          <SvgIcon name="ep:link" />
         </template>
         访问 splitpanes
       </ElButton>
     </PageHeader>
     <PageMain>
-      <Splitpanes class="default-theme" style="height: 500px;">
+      <Splitpanes class="default-theme">
         <Pane min-size="20">
           <div class="h-full w-full flex items-center justify-center bg-#67C23A text-#ffffff">
             A
@@ -61,13 +61,7 @@ function open(url: string) {
 </template>
 
 <style lang="scss" scoped>
-.splitpanes__pane {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: 36px;
-  font-weight: bold;
-  color: #999;
+.default-theme {
+  height: calc(100vh - 400px);
 }
 </style>

@@ -4,7 +4,7 @@ import { PORT1 } from '@/api/config/servicePort'
 
 import http from '@/api'
 
-/** ******** 资源管理模块 */
+/** ******** 菜单管理模块 */
 // * 获取菜单列表
 export function getSysMenuListApi(params: any) {
   return http.post<ResList<ResMenuList>>(`${PORT1}/admin/sysMenu/list`, params)

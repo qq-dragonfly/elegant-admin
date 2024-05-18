@@ -48,9 +48,9 @@ watch(() => userStore.avatar, () => {
         class="flex-center gap-1 text-inherit"
       >
         <img v-if="userStore.avatar && !avatarError" :src="userStore.avatar" :onerror="() => (avatarError = true)" class="h-[24px] w-[24px] rounded-full">
-        <SvgIcon v-else name="i-carbon:user-avatar-filled-alt" :size="24" />
+        <SvgIcon v-else name="carbon:user-avatar-filled-alt" :size="24" />
         {{ userStore.account }}
-        <SvgIcon name="i-ep:caret-bottom" />
+        <SvgIcon name="ep:caret-bottom" />
       </div>
     </HDropdownMenu>
   </div>

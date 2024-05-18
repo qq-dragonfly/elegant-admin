@@ -25,7 +25,7 @@ const filterValue = ref('')
 
 const tabsList = [
   {
-    label: 'Element Plus',
+    label: 'Element Plus Icons',
     name: 'ep:',
   },
   {
@@ -33,17 +33,20 @@ const tabsList = [
     name: 'local:',
   },
   {
-    label: 'Font Awesome',
+    label: 'Font Awesome Icons',
     name: 'fa-solid:',
+  }, {
+    label: 'Material Design Icons',
+    name: 'mdi:',
   },
   {
-    label: 'Remix Icon',
+    label: 'Remix Icons',
     name: 'ri:',
   }, {
-    label: 'Ant-design Icon',
+    label: 'Ant-design Icons',
     name: 'ant-design:',
   }, {
-    label: 'Streamline Icon',
+    label: 'Streamline Icons',
     name: 'streamline:',
   },
 ]
@@ -127,10 +130,10 @@ function onCurrentChange(page: any) {
         >
           <template #reference>
             <div class="h-[32px] w-[40px] flex cursor-pointer items-center justify-center" @click="visible = !visible">
-              <el-icon v-if="modelValue" class="icon text-15px">
+              <el-icon v-if="modelValue" class="icon text-18px">
                 <svg-icon :name="modelValue" />
               </el-icon>
-              <el-icon v-else class="icon text-15px">
+              <el-icon v-else class="icon text-18px">
                 <svg-icon name="ep:arrow-down" />
               </el-icon>
             </div>
@@ -169,7 +172,7 @@ function onCurrentChange(page: any) {
 
           <el-pagination
             small
-            :total="copyIconList[currentActiveType].length"
+            :total="copyIconList[currentActiveType]?.length"
             :page-size="pageSize"
             :current-page="currentPage"
             background
@@ -193,6 +196,9 @@ function onCurrentChange(page: any) {
 }
 
 .icon-item {
+  font-size: 24px;
+  border-radius: 6px;
+
   &:hover {
     color: var(--el-color-primary);
     border-color: var(--el-color-primary);
@@ -223,7 +229,8 @@ function onCurrentChange(page: any) {
 
 :deep(.el-tabs__item) {
   height: 30px;
-  font-size: 12px;
+  padding: 0 12px;
+  font-size: 14px;
   font-weight: normal;
   line-height: 30px;
 }
@@ -231,6 +238,6 @@ function onCurrentChange(page: any) {
 :deep(.el-tabs__header),
 :deep(.el-tabs__nav-wrap) {
   position: static;
-  margin: 0;
+  margin: 5px 0;
 }
 </style>

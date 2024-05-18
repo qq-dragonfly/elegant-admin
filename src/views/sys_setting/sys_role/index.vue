@@ -37,14 +37,14 @@ const columns = reactive<ColumnProps[]>(
         return (<span>{scope.$index + (tablePageParams.value.pageNum - 1) * tablePageParams.value.pageSize + 1}</span>)
       },
     },
-    { prop: 'roleName', label: '角色名称', minWidth: 120, search: { el: 'input' } },
-    { prop: 'alias', label: '角色别名', minWidth: 120 },
+    { prop: 'roleName', label: '角色名称', minWidth: 100, search: { el: 'input' } },
+    { prop: 'alias', label: '角色别名', minWidth: 100 },
     {
       prop: 'openStatus',
       label: '状态',
       enum: [{ label: '启用', value: 'OPEN' }, { label: '停用', value: 'CLOSE' }],
       fieldNames: { label: 'label', value: 'value' },
-      minWidth: 120,
+      minWidth: 100,
       search: { el: 'tree-select', props: { filterable: true } }, // filterable 开启模糊搜索
       render: (scope) => {
         return (
@@ -54,7 +54,7 @@ const columns = reactive<ColumnProps[]>(
         )
       },
     },
-    { prop: 'sort', label: '排序值', minWidth: 120 },
+    { prop: 'sort', label: '排序值', minWidth: 100 },
     { prop: 'operation', label: '操作', fixed: 'right', width: 260 },
   ],
 )

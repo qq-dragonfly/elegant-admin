@@ -39,7 +39,7 @@ const columns = reactive<ColumnProps[]>(
     {
       prop: 'name',
       label: '姓名',
-      minWidth: 140,
+      minWidth: 100,
       search: { el: 'input' },
     },
     {
@@ -48,14 +48,14 @@ const columns = reactive<ColumnProps[]>(
       enum: [{ label: '男', value: 'MAN' }, { label: '女', value: 'WOMAN' }],
       search: { el: 'select' },
     },
-    { prop: 'phone', label: '登录账号', minWidth: 140 },
-    { prop: 'roleNames', label: '角色', minWidth: 140 },
+    { prop: 'phone', label: '登录账号', minWidth: 100 },
+    { prop: 'roleNames', label: '角色', minWidth: 100 },
     {
       prop: 'openStatus',
       label: '用户状态',
       enum: [{ label: '启用', value: 'OPEN' }, { label: '停用', value: 'CLOSE' }],
       fieldNames: { label: 'label', value: 'value' },
-      minWidth: 140,
+      minWidth: 100,
       search: { el: 'tree-select', props: { filterable: true } }, // filterable 开启模糊搜索
       render: (scope: { row: any }) => {
         return (
@@ -68,7 +68,7 @@ const columns = reactive<ColumnProps[]>(
     {
       prop: 'createTime',
       label: '创建时间',
-      minWidth: 140,
+      minWidth: 100,
       search: {
         el: 'date-picker',
         span: 1,

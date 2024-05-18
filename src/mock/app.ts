@@ -16,13 +16,93 @@ export default defineFakeRoute([
             },
             children: [
               {
+                path: '/link',
+                component: 'Layout',
+                redirect: '/link/github',
+                name: 'externalLinkDemo',
+                meta: {
+                  title: '文档',
+                  icon: 'ri:external-link-fill',
+                },
+                children: [
+                  {
+                    path: 'pro-docs',
+                    component: 'LinkLayout',
+                    name: 'iframeProDocs',
+                    meta: {
+                      title: '项目文档',
+                      iframe: 'https://zhangyao1990.github.io/elegant-admin-docs',
+                    },
+                  }, {
+                    path: 'vue-docs',
+                    component: 'LinkLayout',
+                    name: 'iframeVue3Docs',
+                    meta: {
+                      title: 'vue3文档',
+                      iframe: 'https://cn.vuejs.org',
+                    },
+                  }, {
+                    path: 'vue-router-docs',
+                    component: 'LinkLayout',
+                    name: 'iframeVueRouterDocs',
+                    meta: {
+                      title: 'vue-router文档',
+                      iframe: 'https://router.vuejs.org/zh/',
+                    },
+                  },
+                  {
+                    path: 'element-plus',
+                    component: 'LinkLayout',
+                    name: 'iframeElementPlusDocs',
+                    meta: {
+                      title: 'ElementPlus文档',
+                      iframe: 'https://element-plus.org/zh-CN/',
+                    },
+                  },
+                  {
+                    path: 'vite-docs',
+                    component: 'LinkLayout',
+                    name: 'iframeViteDocs',
+                    meta: {
+                      title: 'Vite文档',
+                      iframe: 'https://cn.vitejs.dev/',
+                    },
+                  }, {
+                    path: 'pinia-docs',
+                    component: 'LinkLayout',
+                    name: 'iframePiniaDocs',
+                    meta: {
+                      title: 'Pinia文档',
+                      iframe: 'https://pinia.vuejs.org/zh/index.html',
+                    },
+                  }, {
+                    path: 'unocss-docs',
+                    component: 'LinkLayout',
+                    name: 'iframeUnocssDocs',
+                    meta: {
+                      title: 'UnoCSS文档',
+                      iframe: 'https://unocss.dev',
+                    },
+                  },
+                  {
+                    path: 'github',
+                    component: 'LinkLayout',
+                    name: 'iframeGithub',
+                    meta: {
+                      title: 'Github 仓库',
+                      link: 'https://github.com/zhangyao1990/elegant-admin',
+                    },
+                  },
+                ],
+              },
+              {
                 path: '/breadcrumb_demo',
                 component: 'Layout',
                 redirect: '/breadcrumb_demo/list1',
                 name: 'breadcrumbDemo',
                 meta: {
                   title: '面包屑导航',
-                  icon: 'i-mdi:biscuit-crumbs',
+                  icon: 'streamline:paint-palette',
                 },
                 children: [
                   {
@@ -146,7 +226,7 @@ export default defineFakeRoute([
                 name: 'keepAliveDemo',
                 meta: {
                   title: '页面缓存',
-                  icon: 'i-cil:window-restore',
+                  icon: 'cil:window-restore',
                 },
                 children: [
                   {
@@ -221,11 +301,11 @@ export default defineFakeRoute([
               {
                 path: '/components_demo',
                 component: 'Layout',
-                redirect: '/components_demo/iconify',
+                redirect: '/components_demo/icon/iconify',
                 name: 'ComponentDemo',
                 meta: {
                   title: '组件',
-                  icon: 'fa-solid:grip-horizontal',
+                  icon: 'ri:layout-right-line',
                 },
                 children: [
                   {
@@ -234,7 +314,7 @@ export default defineFakeRoute([
                     redirect: '/components_demo/icon/iconify',
                     meta: {
                       title: '扩展图标',
-                      icon: 'i-ri:remixicon-line',
+                      icon: 'ri:remixicon-line',
                     },
                     children: [
                       {
@@ -258,10 +338,27 @@ export default defineFakeRoute([
                         name: 'ProIconSelect',
                         component: 'components_demo/svg_icon/pro_icon_select.vue',
                         meta: {
-                          title: 'Icon选择器',
+                          title: 'Icon图标选择器',
                         },
                       },
                     ],
+                  },
+                  {
+                    path: 'upload',
+                    name: 'Upload',
+                    component: 'components_demo/upload/index.vue',
+                    meta: {
+                      title: '文件上传',
+                      icon: 'mdi:folder-upload-outline',
+                    },
+                  }, {
+                    path: 'time_line',
+                    name: 'TimeLine',
+                    component: 'components_demo/time_line/index.vue',
+                    meta: {
+                      title: '时间线',
+                      icon: 'ant-design:field-time-outlined',
+                    },
                   },
 
                 ],
@@ -273,9 +370,17 @@ export default defineFakeRoute([
                 name: 'pluginDemo',
                 meta: {
                   title: '插件',
-                  icon: 'i-clarity:plugin-outline-alerted',
+                  icon: 'clarity:plugin-outline-alerted',
                 },
                 children: [
+                  {
+                    path: 'typeit',
+                    name: 'pluginDemoTypeit',
+                    component: 'plugin_demo/typeit.vue',
+                    meta: {
+                      title: '打字机组件',
+                    },
+                  },
                   {
                     path: 'qrcode',
                     name: 'pluginDemoQrcode',
@@ -334,36 +439,6 @@ export default defineFakeRoute([
                   },
                 ],
               },
-
-              {
-                path: '/link',
-                component: 'Layout',
-                redirect: '/link/github',
-                name: 'externalLinkDemo',
-                meta: {
-                  title: '外链',
-                  icon: 'i-ri:external-link-fill',
-                },
-                children: [
-                  {
-                    path: 'github',
-                    component: 'LinkLayout',
-                    name: 'linkDemoWindowGithub',
-                    meta: {
-                      title: 'Github 仓库',
-                      link: 'https://github.com/zhangyao1990/elegant-admin',
-                    },
-                  }, {
-                    path: 'vue-doc',
-                    component: 'LinkLayout',
-                    name: 'iframeDemoWindowGithub',
-                    meta: {
-                      title: 'vue3文档',
-                      iframe: 'https://cn.vuejs.org/guide/introduction.html',
-                    },
-                  },
-                ],
-              },
               {
                 path: '/mock_demo',
                 component: 'Layout',
@@ -371,7 +446,7 @@ export default defineFakeRoute([
                 name: 'MockDemo',
                 meta: {
                   title: 'Mock',
-                  icon: 'i-ri:database-2-line',
+                  icon: 'ri:database-2-line',
                 },
                 children: [
                   {
@@ -467,6 +542,39 @@ export default defineFakeRoute([
                   component: 'sys_setting/sys_resource/index.vue',
                   meta: {
                     title: '资源管理',
+                  },
+                },
+              ],
+            }, {
+              path: '/monitor',
+              component: 'Layout',
+              redirect: '/monitor/online_user',
+              name: 'Monitor',
+              meta: {
+                title: '系统监控',
+                icon: 'mdi:monitor-dashboard',
+              },
+              children: [
+                {
+                  path: 'online_user',
+                  name: 'OnlineUser',
+                  component: 'monitor/online_user/index.vue',
+                  meta: {
+                    title: '在线用户',
+                  },
+                }, {
+                  path: 'login_logs',
+                  name: 'LoginLogs',
+                  component: 'monitor/login_logs/index.vue',
+                  meta: {
+                    title: '登录日志',
+                  },
+                }, {
+                  path: 'operation_logs',
+                  name: 'OperationLogs',
+                  component: 'monitor/operation_logs/index.vue',
+                  meta: {
+                    title: '操作日志',
                   },
                 },
               ],

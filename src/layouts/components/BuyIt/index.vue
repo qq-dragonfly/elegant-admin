@@ -32,7 +32,7 @@ onUnmounted(() => {
 <template>
   <div class="buy-it" :class="{ actived: isActived }">
     <div class="item" @click="switchUI">
-      <SvgIcon name="i-icon-park-twotone:components" />
+      <SvgIcon name="icon-park-twotone:components" />
       <span class="title">切换<br>组件库</span>
       <HDialog v-model="UIdialog" title="切换组件库" overlay>
         <div class="rounded-2 bg-green/20 px-4 py-2 text-sm/6 c-green-6">
@@ -46,15 +46,15 @@ onUnmounted(() => {
       </HDialog>
     </div>
     <div class="item" @click="open('https://github.com/zhangyao1990/elegant-admin')">
-      <SvgIcon name="i-ri:code-s-slash-line" />
+      <SvgIcon name="ri:code-s-slash-line" />
       <span class="title">下载<br>模版</span>
     </div>
     <div class="item" @click="open(`https://zhangyao1990.github.io/elegant-admin-docs`)">
-      <SvgIcon name="i-ri:book-read-line" />
+      <SvgIcon name="ri:book-read-line" />
       <span class="title">开发<br>文档</span>
     </div>
     <div class="item" @click="open(`https://zhangyao1990.github.io/elegant-admin`)">
-      <SvgIcon name="i-ri:message-2-line" />
+      <SvgIcon name="ri:message-2-line" />
       <span class="title">技术<br>支持</span>
     </div>
   </div>

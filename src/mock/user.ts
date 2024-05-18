@@ -23,7 +23,7 @@ export default defineFakeRoute([
         error: '',
         status: 200,
         data: Mock.mock({
-          account: body.account,
+          account: body.account || 'admin',
           token: `${body.account}_@string`,
           avatar: 'https://isdm-public.oss-cn-hangzhou.aliyuncs.com/image/avatar.gif',
         }),

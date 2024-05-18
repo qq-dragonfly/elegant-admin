@@ -1,33 +1,26 @@
 <script setup lang="ts">
-const flip = ref<'horizontal' | 'vertical' | 'both'>()
-const rotate = ref(20)
+const flip = ref<'horizontal' | 'vertical' | 'both'>('horizontal')
 </script>
 
 <template>
   <div class="flex flex-1 flex-col">
-    <PageHeader title="SVG Icon" content="可以使用自定义的 SVG 图标" />
+    <PageHeader title="SVG Icon" content="自定义图标示例" />
     <PageMain>
-      <p>单色 SVG Icon</p>
+      <p>SVG Icon</p>
       <SvgIcon name="example-emotion-line" :size="32" :flip="flip" />
       <SvgIcon name="example-emotion-laugh-line" :size="32" :flip="flip" />
       <SvgIcon name="example-emotion-unhappy-line" :size="32" :flip="flip" />
-      <p>彩色 SVG Icon</p>
-      <SvgIcon name="example-crown" :size="32" :flip="flip" :rotate="rotate" />
-      <SvgIcon name="example-star" :size="32" :flip="flip" :rotate="rotate" />
-      <SvgIcon name="example-vip" :size="32" :flip="flip" :rotate="rotate" />
+
       <div>
         <p>翻转：</p>
         <ElRadioGroup v-model="flip">
-          <ElRadioButton label="">
-            无
-          </ElRadioButton>
-          <ElRadioButton label="horizontal">
+          <ElRadioButton value="horizontal">
             水平翻转
           </ElRadioButton>
-          <ElRadioButton label="vertical">
+          <ElRadioButton value="vertical">
             垂直翻转
           </ElRadioButton>
-          <ElRadioButton label="both">
+          <ElRadioButton value="both">
             水平垂直翻转
           </ElRadioButton>
         </ElRadioGroup>

@@ -36,7 +36,7 @@ function open(url: string) {
       </template>
       <ElButton @click="open('https://github.com/xiaofan9/vue-count-to')">
         <template #icon>
-          <SvgIcon name="i-ep:link" />
+          <SvgIcon name="ep:link" />
         </template>
         访问 vue-count-to
       </ElButton>
@@ -83,6 +83,6 @@ function open(url: string) {
   display: inline-block;
   margin-bottom: 20px;
   font-size: 60px;
-  color: #f6416c;
+  color: #333;
 }
 </style>
