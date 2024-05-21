@@ -77,7 +77,7 @@ function onTabbarContextmenu(event: MouseEvent, routeItem: Tabbar.recordRaw) {
     y: event.y,
     zIndex: 1000,
     iconFontClass: '',
-    customClass: 'contextmenu-custom',
+    customClass: 'tabbar-contextmenu',
     items: [
       {
         label: '重新加载',
@@ -169,7 +169,7 @@ onMounted(() => {
   })
 })
 onUnmounted(() => {
-  hotkeys.unbind('alt+q,alt+e,alt+w,alt+1,alt+2,alt+3,alt+4,alt+5,alt+6,alt+7,alt+8,alt+9,alt+0')
+  hotkeys.unbind('alt+left,alt+right,alt+w,alt+1,alt+2,alt+3,alt+4,alt+5,alt+6,alt+7,alt+8,alt+9,alt+0')
 })
 </script>
 
@@ -204,7 +204,7 @@ onUnmounted(() => {
 </template>
 
 <style lang="scss">
-.mx-menu-ghost-host {
+.tabbar-contextmenu {
   z-index: 1000;
 
   .mx-context-menu {

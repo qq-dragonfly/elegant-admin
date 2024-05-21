@@ -1,6 +1,6 @@
 <div align="center">
- <img style="width: 230px;" src="https://isdm-public.oss-cn-hangzhou.aliyuncs.com/doctor/elegant-logo.png"/>
- <h1>Elegant Admin</h1>
+	<img src="./public/favicon.svg" width="160" />
+  <h1>Elegant Admin</h1>
 </div>
 
 ## 简介
