@@ -4,7 +4,6 @@
 </div>
 
 ## 简介
-
 [Elegant Admin](https://github.com/zhangyao1990/elegant-admin) 是一个基于 Vue3、Vite、TypeScript、elementPlus、Pinia、Unocss
 开发的中后台模版，它使用了最新的前端技术栈，内置多个主题配置，开箱即用的中后台前端解决方案，也可用于学习参考。
 
