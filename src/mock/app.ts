@@ -388,6 +388,27 @@ export default defineFakeRoute([
                     meta: {
                       title: '二维码',
                     },
+                  }, {
+                    path: 'echarts',
+                    name: 'pluginDemoEcharts',
+                    component: 'plugin_demo/echart/index.vue',
+                    meta: {
+                      title: 'Echarts',
+                    },
+                  }, {
+                    path: 'print',
+                    name: 'pluginDemoPrint',
+                    component: 'plugin_demo/print.vue',
+                    meta: {
+                      title: '打印',
+                    },
+                  }, {
+                    path: 'xgplayer_video',
+                    name: 'pluginDemoXgplayerVideo',
+                    component: 'plugin_demo/xgplayer_video.vue',
+                    meta: {
+                      title: '视频播放',
+                    },
                   },
                   {
                     path: 'esign',

@@ -68,6 +68,7 @@ declare global {
   const useAuth: typeof import('../hooks/useAuth')['default']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
+  const useEcharts: typeof import('../hooks/useEcharts')['useEcharts']
   const useGlobalProperties: typeof import('../hooks/useGlobalProperties')['default']
   const useHandleData: typeof import('../hooks/useHandleData')['useHandleData']
   const useLink: typeof import('vue-router')['useLink']

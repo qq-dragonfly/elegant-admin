@@ -3,7 +3,7 @@ defineOptions({
   name: 'ProTypeit',
 })
 
-const options: TypeItOptions = {
+const options: any = {
   strings: ['我是一只小小小鸟', '想要飞呀飞', '却怎么也飞不高'],
 }
 function open(url: string) {

@@ -1,7 +1,9 @@
-<script lang="tsx">
+<script lang="ts">
+import { defineComponent, onMounted, ref } from 'vue'
+import TypeIt from 'typeit'
 import type { El } from 'typeit/dist/types'
-import TypeIt, { type Options as TypeItOptions } from 'typeit'
-import { type PropType, defineComponent, onMounted, ref } from 'vue'
+import type { Options as TypeItOptions } from 'typeit'
+import type { PropType } from 'vue'
 
 // 打字机效果组件（配置项详情请查阅 https://www.typeitjs.com/docs/vanilla/usage#options）
 export default defineComponent({
@@ -9,10 +11,10 @@ export default defineComponent({
   props: {
     options: {
       type: Object as PropType<TypeItOptions>,
-      default: () => ({}) as TypeItOptions,
+      default: () => ({} as TypeItOptions),
     },
   },
-  setup(props, { slots, expose }) {
+  setup(props, { expose }) {
     /**
      * 输出错误信息
      * @param message 错误信息
@@ -28,16 +30,15 @@ export default defineComponent({
       return navigator.language
     }
 
-    const typedItRef = ref<Element | null>(null)
+    const typedItRef = ref<HTMLElement | null>(null)
 
     onMounted(() => {
-      const $typed = typedItRef.value!.querySelector('.type-it') as El
+      const $typed = typedItRef.value?.querySelector('.type-it') as El
 
       if (!$typed) {
-        const errorMsg
-          = getBrowserLanguage() === 'zh-CN'
-            ? '请确保有且只有一个具有class属性为 \'type-it\' 的元素'
-            : 'Please make sure that there is only one element with a Class attribute with \'type-it\''
+        const errorMsg = getBrowserLanguage() === 'zh-CN'
+          ? '请确保有且只有一个具有class属性为 \'type-it\' 的元素'
+          : 'Please make sure that there is only one element with a class attribute of \'type-it\''
         throwError(errorMsg)
       }
 
@@ -48,11 +49,17 @@ export default defineComponent({
       })
     })
 
-    return () => (
-      <div ref={typedItRef}>
-        {slots.default?.() ?? <span class="type-it"></span>}
-      </div>
-    )
+    return {
+      typedItRef,
+    }
   },
 })
 </script>
+
+<template>
+  <div ref="typedItRef">
+    <slot>
+      <span class="type-it" />
+    </slot>
+  </div>
+</template>

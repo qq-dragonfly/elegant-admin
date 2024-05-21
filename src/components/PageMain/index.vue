@@ -30,7 +30,7 @@ function unCollaspe() {
 
 <template>
   <div
-    class="page-main relative m-8px flex flex-1 flex-col rounded-8px transition-background-color-300" :class="{
+    class="page-main relative mx-8px flex flex-1 flex-col rounded-8px transition-background-color-300" :class="{
       'of-hidden': isCollaspe,
     }" :style="{
       height: isCollaspe ? height : '',

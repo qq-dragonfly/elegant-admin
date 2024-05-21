@@ -1,16 +1,16 @@
 <div align="center">
- <img src="https://isdm-public.oss-cn-hangzhou.aliyuncs.com/doctor/elegant-logo.png"/>
+ <img style="width: 230px;" src="https://isdm-public.oss-cn-hangzhou.aliyuncs.com/doctor/elegant-logo.png"/>
  <h1>Elegant Admin</h1>
 </div>
 
 ## 简介
 
-[Elegant Admin](https://github.com/zhangyao1990/elegant-admin) 是一个基于 Vue3、Vite3、TypeScript、elementPlus、Pinia、Unocss
-的清新优雅的中后台模版，它使用了最新的前端技术栈，内置多个主题配置，开箱即用的中后台前端解决方案，也可用于学习参考。
+[Elegant Admin](https://github.com/zhangyao1990/elegant-admin) 是一个基于 Vue3、Vite、TypeScript、elementPlus、Pinia、Unocss
+开发的中后台模版，它使用了最新的前端技术栈，内置多个主题配置，开箱即用的中后台前端解决方案，也可用于学习参考。
 
 ## 特性
 
-- **最新技术栈**：使用 Vue3/Vite3/Pinia 等前端前沿技术开发, 使用高效率的 npm 包管理器 pnpm
+- **最新技术栈**：使用 Vue3/Vite/Pinia 等前端前沿技术开发, 使用高效率的 npm 包管理器 pnpm
 - **TypeScript**：应用程序级 JavaScript 的语言
 - **主题**：丰富可配置的主题、暗黑模式，基于原子 css unocss 框架
 - **代码规范**：引入规范插件及极高的代码规范
@@ -22,6 +22,10 @@
 ## 预览
 
 - [elegant-admin](https://zhangyao1990.github.io/elegant-admin/#/login)
+
+## 配套文档(进行中)
+
+[点我查看 elegant-admin 文档](https://zhangyao1990.github.io/elegant-admin-docs)
 
 ## 代码仓库
 
@@ -67,14 +71,24 @@ pnpm build:pro
 
 ## 浏览器支持
 
-本地开发推荐使用`Chrome 90+` 浏览器
+## 浏览器支持
 
-支持现代浏览器, 不支持 IE
+本地开发推荐使用 `Chrome` 浏览器
+更详细的浏览器兼容性支持请看 [Vue 支持哪些浏览器？](https://cn.vuejs.org/about/faq.html#what-browsers-does-vue-support) 和 [Vite 浏览器兼容性](https://cn.vitejs.dev/guide/build#browser-compatibility)
 
-| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_48x48.png" alt="IE" width="24px" height="24px"  />](http://godban.github.io/browsers-support-badges/)IE | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt=" Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)Safari |
-| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|                                                                                                                not support                                                                                                                |                                                                                          last 2 versions                                                                                          |                                                                                               last 2 versions                                                                                                |                                                                                             last 2 versions                                                                                              |                                                                                             last 2 versions                                                                                              |
+| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt=" Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt=" Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                                                                                                不支持                                                                                                |                                                                                              最后两个版本                                                                                              |                                                                                                   最后两个版本                                                                                                    |                                                                                                 最后两个版本                                                                                                  |                                                                                                 最后两个版本                                                                                                  |
 
-## License
 
-[MIT © elegant-2024](./LICENSE)
+## 许可证
+
+完全免费开源
+
+[MIT © 2024-present, elegant-admin](./LICENSE)
+
+## `Star`
+
+非常感谢留下星星的好心人，感谢您的支持 :heart:
+
+[![Stargazers repo roster for @zhangyao1990/elegant-admin](https://bytecrank.com/nastyox/reporoster/php/stargazersSVG.php?user=zhangyao1990&repo=elegant-admin)](https://github.com/zhangyao1990/elegant-admin/stargazers)

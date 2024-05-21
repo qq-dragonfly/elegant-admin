@@ -134,7 +134,7 @@ function onCurrentChange(page: any) {
                 <svg-icon :name="modelValue" />
               </el-icon>
               <el-icon v-else class="icon text-18px">
-                <svg-icon name="ep:arrow-down" />
+                <svg-icon name="ep:bottom" />
               </el-icon>
             </div>
           </template>
@@ -225,6 +225,7 @@ function onCurrentChange(page: any) {
 
 :deep(.el-input-group__append) {
   padding: 0;
+  background-color: var(--g-container-bg);
 }
 
 :deep(.el-tabs__item) {
