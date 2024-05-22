@@ -34,13 +34,12 @@ const globalSettingsDefault: RecursiveRequired<Settings.all> = {
   home: {
     enable: true,
     title: '控制台',
-    fullPath: '/',
+    fullPath: '/dashboard',
   },
   layout: {
     enableMobileAdaptation: false,
   },
   menu: {
-    baseOn: 'frontend',
     menuMode: 'head',
     switchMainMenuAndPageJump: false,
     subMenuUniqueOpened: true,

@@ -36,8 +36,9 @@ const systemRoutes: RouteRecordRaw[] = [
     },
     children: [
       {
-        path: '',
+        path: 'dashboard',
         component: () => import('@/views/welcome/index.vue'),
+        name: 'Dashboard',
         meta: {
           title: () => useSettingsStore().settings.home.title,
           icon: 'i-ant-design:home-twotone',

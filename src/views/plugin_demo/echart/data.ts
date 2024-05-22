@@ -2,7 +2,11 @@ import { graphic } from 'echarts'
 import type { ScatterSeriesOption } from 'echarts/charts'
 import type { SingleAxisComponentOption, TitleComponentOption } from 'echarts/components'
 import type { ECOption } from '@/hooks/useEcharts'
+import useSettingsStore from '@/store/modules/settings'
 
+const settingsStore = useSettingsStore()
+const darkMode = computed(() => settingsStore.settings.app.colorScheme)
+const titleTextColor = computed(() => darkMode.value === 'dark' ? '#ffffff' : '#333333')
 export const pieOptions: ECOption = {
   legend: {},
   toolbox: {
@@ -19,7 +23,7 @@ export const pieOptions: ECOption = {
     textStyle: {
       fontSize: 18,
       fontWeight: 'bolder',
-      color: '#333', // 主标题文字颜色
+      color: titleTextColor.value,
     },
   },
   series: [
@@ -66,7 +70,7 @@ export const lineOptions: ECOption = {
     textStyle: {
       fontSize: 18,
       fontWeight: 'bolder',
-      color: '#333', // 主标题文字颜色
+      color: titleTextColor.value,
     },
   },
   legend: {
@@ -265,7 +269,7 @@ export const barOptions: ECOption = {
     textStyle: {
       fontSize: 18,
       fontWeight: 'bolder',
-      color: '#333', // 主标题文字颜色
+      color: titleTextColor.value,
     },
   },
   xAxis: {
@@ -327,7 +331,7 @@ export function getPictorialBarOption(): ECOption {
       textStyle: {
         fontSize: 18,
         fontWeight: 'bolder',
-        color: '#333', // 主标题文字颜色
+        color: titleTextColor.value,
       },
     },
     legend: {
@@ -431,7 +435,7 @@ export function getScatterOption() {
       textStyle: {
         fontSize: 18,
         fontWeight: 'bolder',
-        color: '#333', // 主标题文字颜色
+        color: titleTextColor.value,
       },
     })
     singleAxis.push({
@@ -478,7 +482,7 @@ export const radarOptions: ECOption = {
     textStyle: {
       fontSize: 18,
       fontWeight: 'bolder',
-      color: '#333', // 主标题文字颜色
+      color: titleTextColor.value,
     },
   },
   tooltip: {
@@ -575,7 +579,7 @@ export const gaugeOptions: ECOption = {
     textStyle: {
       fontSize: 18,
       fontWeight: 'bolder',
-      color: '#333', // 主标题文字颜色
+      color: titleTextColor.value,
     },
   },
   series: [

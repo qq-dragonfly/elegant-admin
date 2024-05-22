@@ -149,3 +149,15 @@ textarea {
 [data-overlayscrollbars-contents] {
   overscroll-behavior: contain;
 }
+  /* 覆盖tinymce样式 */
+  .editor .tox-tinymce {
+    border: 1px solid #dcdfe6;
+    border-radius: 0;
+  }
+  body .tox-tinymce-aux {
+    z-index: 9999;
+  }
+  body .tox-textarea-wrap {
+    display: flex;
+    height: 100% !important;
+  }

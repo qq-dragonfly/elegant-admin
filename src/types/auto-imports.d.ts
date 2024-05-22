@@ -76,6 +76,7 @@ declare global {
   const useMenu: typeof import('../hooks/useMenu')['default']
   const useRoute: typeof import('vue-router')['useRoute']
   const useRouter: typeof import('vue-router')['useRouter']
+  const useScroll: typeof import('../hooks/useScroll')['default']
   const useSelection: typeof import('../hooks/useSelection')['useSelection']
   const useSlots: typeof import('vue')['useSlots']
   const useTabbar: typeof import('../hooks/useTabbar')['default']

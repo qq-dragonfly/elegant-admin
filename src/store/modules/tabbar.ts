@@ -1,17 +1,35 @@
 import type { RouteLocationNormalized } from 'vue-router'
 import useKeepAliveStore from './keepAlive'
 import type { Tabbar } from '#/global'
+import useSettingsStore from '@/store/modules/settings'
 
 const useTabbarStore = defineStore(
   // 唯一ID
   'tabbar',
   () => {
     const keepAliveStore = useKeepAliveStore()
+    const settingsStore = useSettingsStore()
+    // path: '',
+    //     component: () => import('@/views/welcome/index.vue'),
+    //     meta: {
+    //       title: () => useSettingsStore().settings.home.title,
+    //       icon: 'i-ant-design:home-twotone',
+    //       breadcrumb: false,
+    //     },
 
-    const list = ref<Tabbar.recordRaw[]>([])
+    const list = ref<Tabbar.recordRaw[]>([
+      {
+        tabId: '/dashboard',
+        fullPath: '/dashboard',
+        routeName: 'Dashboard',
+        title: settingsStore.settings.home.title,
+        icon: 'fluent:laptop-settings-20-regular',
+        name: [],
+      },
+    ])
     const leaveIndex = ref(-1)
 
-    // 添加标签页
+    // 添加标签s页
     async function add(route: RouteLocationNormalized) {
       const names: string[] = []
       route.matched.forEach((v, i) => {

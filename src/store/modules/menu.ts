@@ -106,11 +106,9 @@ const useMenuStore = defineStore(
     // 默认展开的导航路径
     const defaultOpenedPaths = computed(() => {
       const defaultOpenedPaths: string[] = []
-      if (settingsStore.settings.app.routeBaseOn !== 'filesystem') {
-        allMenus.value.forEach((item) => {
-          defaultOpenedPaths.push(...getDefaultOpenedPaths(item.children))
-        })
-      }
+      allMenus.value.forEach((item) => {
+        defaultOpenedPaths.push(...getDefaultOpenedPaths(item.children))
+      })
       return defaultOpenedPaths
     })
     function getDefaultOpenedPaths(menus: Menu.recordRaw[], rootPath = '') {

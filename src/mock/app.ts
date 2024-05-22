@@ -443,14 +443,6 @@ export default defineFakeRoute([
                     },
                   },
                   {
-                    path: 'countto',
-                    name: 'pluginDemoCountTo',
-                    component: 'plugin_demo/count.to.vue',
-                    meta: {
-                      title: '计数器',
-                    },
-                  },
-                  {
                     path: 'splitpanes',
                     name: 'pluginDemoSplitpanes',
                     component: 'plugin_demo/splitpanes.vue',

@@ -37,7 +37,7 @@ onUnmounted(() => {
       <HDialog v-model="UIdialog" title="切换组件库" overlay>
         <div class="rounded-2 bg-green/20 px-4 py-2 text-sm/6 c-green-6">
           <p class="my-1">
-            为了视觉风格统一，同时也能服务于更多开发者，本框架从 v4.0.0 版本开始，与 Element Plus 组件库进行了解耦，意味着可以轻松将 Element Plus 组件库替换成其他 UI 组件库，并且不会影响框架原本的功能。
+            为了视觉风格统一，与 Element Plus 组件库进行了解耦，意味着可以轻松将 Element Plus 组件库替换成其他 UI 组件库，并且不会影响框架原本的功能。
           </p>
           <p class="my-1">
             目前只提供了 Element Plus 组件库的示例，后续会陆续增加其他 UI 组件库的示例。

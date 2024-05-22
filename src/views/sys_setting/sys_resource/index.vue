@@ -1,7 +1,7 @@
 <script lang="tsx" setup>
 import { CirclePlus, Delete, EditPen } from '@element-plus/icons-vue'
 import { addResourceApi, delSysResourceApi, editResourceApi, getSysResourceListApi } from '../http/sys_resource'
-import ResourceDrawer from './components/resourceDrawer.vue'
+import ResourceDrawer from './modules/resourceDrawer.vue'
 import type { ColumnProps, ProTableInstance } from '@/components/ProTable/interface'
 
 defineOptions({
@@ -89,15 +89,8 @@ async function handleDel(row: any) {
   <div class="table-container">
     <div class="table-box">
       <ProTable
-        ref="proTableRef"
-        :border="false"
-        title="资源管理"
-        :request-api="getTableList"
-        :columns="columns"
-        :data-callback="dataCallback"
-        :init-param="initTableParam"
-        :show-pagination="true"
-        highlight-current-row
+        ref="proTableRef" :border="false" title="资源管理" :request-api="getTableList" :columns="columns"
+        :data-callback="dataCallback" :init-param="initTableParam" :show-pagination="true" highlight-current-row
       >
         <!-- 表格 header 按钮 -->
         <template #tableHeader>

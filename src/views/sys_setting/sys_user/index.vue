@@ -1,7 +1,7 @@
 <script lang="tsx" setup>
 import { CirclePlus, Delete, EditPen } from '@element-plus/icons-vue'
 import { addUserApi, delSysUserApi, editUserApi, getSysUserListApi } from '../http/sys_user'
-import UserDrawer from './components/userDrawer.vue'
+import UserDrawer from './modules/userDrawer.vue'
 import type { ColumnProps, ProTableInstance } from '@/components/ProTable/interface'
 
 defineOptions({

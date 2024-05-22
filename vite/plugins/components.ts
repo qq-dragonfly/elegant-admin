@@ -4,7 +4,7 @@ export default function createComponents() {
   return components({
     dirs: [
       'src/components',
-      'src/layouts/ui-kit',
+      'src/layouts/ui-kit-components',
     ],
     include: [/\.vue$/, /\.vue\?vue/, /\.tsx$/],
     dts: './src/types/components.d.ts',

@@ -137,7 +137,7 @@ const useRouteStore = defineStore(
             route.component = () => import('@/layouts/index.vue')
             break
           case 'LinkLayout':
-            route.component = () => import('@/layouts/components/views/link.vue')
+            route.component = () => import('@/layouts/modules/views/link.vue')
             break
           default:
             if (route.component) {

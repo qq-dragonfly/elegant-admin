@@ -2,7 +2,7 @@
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { Delete, Edit, Plus, Refresh } from '@element-plus/icons-vue'
 import { delSysMenuApi, getSysMenuListApi } from '../http/sys_menu'
-import MenuDetail from './components/menuDetail.vue'
+import MenuDetail from './modules/menuDetail.vue'
 import { convertTree } from '@/utils'
 
 defineOptions({

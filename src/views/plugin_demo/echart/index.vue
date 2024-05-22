@@ -9,16 +9,19 @@ import {
   pieOptions,
   radarOptions,
 } from './data'
+import useSettingsStore from '@/store/modules/settings'
 import { useEcharts } from '@/hooks/useEcharts'
 
-const { domRef: pieRef } = useEcharts(() => pieOptions, { onRender() {} })
-const { domRef: lineRef } = useEcharts(() => lineOptions, { onRender() {} })
-const { domRef: barRef } = useEcharts(() => barOptions, { onRender() {} })
-const { domRef: pictorialBarRef } = useEcharts(() => getPictorialBarOption(), { onRender() {} })
-const { domRef: radarRef } = useEcharts(() => radarOptions, { onRender() {} })
-const { domRef: scatterRef } = useEcharts(() => getScatterOption(), { onRender() {} })
-const { domRef: gaugeRef, setOptions: setGaugeOptions } = useEcharts(() => gaugeOptions, { onRender() {} })
+const settingsStore = useSettingsStore()
+const darkMode = computed(() => settingsStore.settings.app.colorScheme)
 
+const { domRef: pieRef, updateOptions: updatePieOptions } = useEcharts(() => pieOptions, { onRender() {} })
+const { domRef: lineRef, updateOptions: updateLineOptions } = useEcharts(() => lineOptions, { onRender() {} })
+const { domRef: barRef, updateOptions: updateBarOptions } = useEcharts(() => barOptions, { onRender() {} })
+const { domRef: pictorialBarRef, updateOptions: updatePictorialBarOptions } = useEcharts(() => getPictorialBarOption(), { onRender() {} })
+const { domRef: radarRef, updateOptions: updateRadarOptions } = useEcharts(() => radarOptions, { onRender() {} })
+const { domRef: scatterRef, updateOptions: updateScatterOptions } = useEcharts(() => getScatterOption(), { onRender() {} })
+const { domRef: gaugeRef, setOptions: setGaugeOptions, updateOptions: updateGaugeOptions } = useEcharts(() => gaugeOptions, { onRender() {} })
 let intervalId: NodeJS.Timeout
 
 function initGaugeChart() {
@@ -50,7 +53,39 @@ function initGaugeChart() {
     })
   }, 1000)
 }
-
+const titleTextColor = computed(() => darkMode.value === 'dark' ? '#ffffff' : '#333333')
+watch(() => darkMode.value, () => {
+  updatePieOptions((opts: any) => {
+    opts.title.textStyle.color = titleTextColor.value
+    return opts
+  })
+  updateLineOptions((opts: any) => {
+    opts.title.textStyle.color = titleTextColor.value
+    return opts
+  })
+  updateBarOptions((opts: any) => {
+    opts.title.textStyle.color = titleTextColor.value
+    return opts
+  })
+  updatePictorialBarOptions((opts: any) => {
+    opts.title.textStyle.color = titleTextColor.value
+    return opts
+  })
+  updateRadarOptions((opts: any) => {
+    opts.title.textStyle.color = titleTextColor.value
+    return opts
+  })
+  updateScatterOptions((opts: any) => {
+    opts.title.forEach((element: { textStyle: { color: string } }) => {
+      element.textStyle.color = titleTextColor.value
+    })
+    return opts
+  })
+  updateGaugeOptions((opts: any) => {
+    opts.title.textStyle.color = titleTextColor.value
+    return opts
+  })
+})
 function clearGaugeChart() {
   clearInterval(intervalId)
 }

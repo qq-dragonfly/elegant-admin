@@ -88,7 +88,7 @@ function onTabbarContextmenu(event: MouseEvent, routeItem: Tabbar.recordRaw) {
       {
         label: '关闭标签页',
         icon: 'i-ri:close-line',
-        disabled: tabbarStore.list.length <= 1,
+        disabled: tabbarStore.list.length <= 1 || routeItem.tabId === settingsStore.settings.home.fullPath,
         divided: true,
         onClick: () => {
           tabbar.closeById(routeItem.tabId)
@@ -190,7 +190,7 @@ onUnmounted(() => {
               <SvgIcon v-if="settingsStore.settings.tabbar.enableIcon && element.icon" :name="element.icon" class="icon" />
               <span class="title">{{ element.title }}</span>
             </div>
-            <div v-if="tabbarStore.list.length > 1" class="action-icon">
+            <div v-if="tabbarStore.list.length > 1 && element.tabId !== settingsStore.settings.home.fullPath" class="action-icon">
               <SvgIcon name="ri:close-fill" @click.stop="tabbar.closeById(element.tabId)" />
             </div>
             <div v-show="keys.alt && index < 9" class="hotkey-number">
@@ -400,6 +400,7 @@ onUnmounted(() => {
             align-items: center;
             height: 100%;
             padding: 0 6px;
+            padding-left: 14px;
             overflow: hidden;
             color: var(--g-tabbar-tab-color);
             white-space: nowrap;

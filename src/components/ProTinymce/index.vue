@@ -53,7 +53,7 @@ const defaultSetting = ref({
   skin_url: settingsStore.settings.app.colorScheme === 'light' ? 'tinymce/skins/ui/oxide' : 'tinymce/skins/ui/oxide-dark',
   content_css: settingsStore.settings.app.colorScheme === 'light' ? 'tinymce/skins/content/default/content.min.css' : 'tinymce/skins/content/dark/content.min.css',
   min_height: 250,
-  max_height: 600,
+  max_height: 700,
   placeholder: '在这里输入文字',
   plugins: 'autolink autoresize fullscreen image insertdatetime link lists media preview table wordcount code searchreplace',
   toolbar: 'undo redo | blocks | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | forecolor backcolor removeformat | link image media table insertdatetime searchreplace | preview code fullscreen | fontsizeselect fontselect',
@@ -120,4 +120,4 @@ const completeSetting = computed(() => {
       content: "预览：";
     }
   }
-  </style>
+</style>

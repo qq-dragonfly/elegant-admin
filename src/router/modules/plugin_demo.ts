@@ -60,16 +60,6 @@ const routes: RouteRecordRaw = {
       },
     },
     {
-      path: 'countto',
-      name: 'pluginDemoCountTo',
-      component: () => import('@/views/plugin_demo/count.to.vue'),
-      meta: {
-        title: '计数器',
-        icon: 'i-carbon:character-whole-number',
-      },
-    },
-
-    {
       path: 'splitpanes',
       name: 'pluginDemoSplitpanes',
       component: () => import('@/views/plugin_demo/splitpanes.vue'),

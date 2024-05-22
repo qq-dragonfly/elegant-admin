@@ -1,7 +1,7 @@
 <script setup lang="ts" name="Login">
 import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage } from 'element-plus'
-import Copyright from '@/layouts/components/Copyright/index.vue'
+import Copyright from '@/layouts/modules/Copyright/index.vue'
 import useSettingsStore from '@/store/modules/settings'
 import useUserStore from '@/store/modules/user'
 import type { ReqLoginForm } from '@/api/interface/modules/login'

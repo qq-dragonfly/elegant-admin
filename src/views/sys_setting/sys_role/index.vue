@@ -1,8 +1,8 @@
 <script lang="tsx" setup>
 import { CirclePlus, Connection, Delete, EditPen } from '@element-plus/icons-vue'
 import { addRoleApi, delSysRoleApi, editRoleApi, getSysRoleListApi } from '../http/sys_role'
-import RoleDrawer from './components/roleDrawer.vue'
-import RoleAuthDrawer from './components/roleAuthDrawer.vue'
+import RoleDrawer from './modules/roleDrawer.vue'
+import RoleAuthDrawer from './modules/roleAuthDrawer.vue'
 import type { ColumnProps, ProTableInstance } from '@/components/ProTable/interface'
 
 defineOptions({

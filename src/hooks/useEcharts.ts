@@ -96,9 +96,8 @@ export function useEcharts<T extends ECOption>(optionsFactory: () => T, hooks: C
 
   const {
     onRender = (instance) => {
-      const textColor = darkMode.value ? 'rgb(224, 224, 224)' : 'rgb(31, 31, 31)'
-      const maskColor = darkMode.value ? 'rgba(0, 0, 0, 0.4)' : 'rgba(255, 255, 255, 0.8)'
-
+      const textColor = darkMode.value === 'dark' ? 'rgb(240, 250, 255)' : 'rgb(31, 31, 31)'
+      const maskColor = darkMode.value === 'dark' ? 'rgba(0, 0, 0, 0.4)' : 'rgba(255, 255, 255, 0.8)'
       instance.showLoading({
         color: settingsStore.settings.app.themeColor,
         textColor,
@@ -109,7 +108,9 @@ export function useEcharts<T extends ECOption>(optionsFactory: () => T, hooks: C
     onUpdated = (instance) => {
       instance.hideLoading()
     },
-    onDestroy,
+    onDestroy = (instance) => {
+      instance.hideLoading()
+    },
   } = hooks
 
   /**

@@ -21,6 +21,7 @@ const props = withDefaults(defineProps<ProTableProps>(), {
   columns: () => [],
   requestAuto: true,
   pagination: true,
+  isShowSearch: true,
   initParam: {},
   border: true,
   toolButton: true,
@@ -46,6 +47,7 @@ export interface ProTableProps {
   dataCallback?: (data: any) => any // 返回数据的回调函数，可以对数据进行处理 ==> 非必传
   title?: string // 表格标题 ==> 非必传
   pagination?: boolean // 是否需要分页组件 ==> 非必传（默认为true）
+  isShowSearch?: boolean // 是否查询组件 ==> 非必传（默认为true）
   pageLayout?: string // 分页组件参数 ==> 非必传（默认为'total, sizes, prev, pager, next, jumper'）
   initParam?: any // 初始化请求参数 ==> 非必传（默认为{}）
   border?: boolean // 是否带有纵向边框 ==> 非必传（默认为true）
@@ -61,7 +63,7 @@ const tableRef = ref<InstanceType<typeof ElTable>>()
 const columnTypes: TypeProps[] = ['selection', 'radio', 'index', 'expand', 'sort']
 
 // 是否显示搜索模块
-const isShowSearch = ref(true)
+const isShowSearch = ref(props.isShowSearch)
 
 // 控制 ToolButton 显示
 function showToolButton(key: 'refresh' | 'setting' | 'search') {
