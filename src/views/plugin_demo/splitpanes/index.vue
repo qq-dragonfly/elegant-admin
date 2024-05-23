@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Pane, Splitpanes } from 'splitpanes'
 import 'splitpanes/dist/splitpanes.css'
-import Alert from './components/alert.vue'
+import Alert from '../modules/alert.vue'
 
 function open(url: string) {
   window.open(url, '_blank')

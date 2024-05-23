@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import QRCode from 'qrcode'
-import Alert from './components/alert.vue'
+import Alert from '../modules/alert.vue'
 
 const url1 = ref('')
 const url2 = ref('')

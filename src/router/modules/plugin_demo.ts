@@ -11,61 +11,61 @@ const routes: RouteRecordRaw = {
   name: 'pluginDemo',
   meta: {
     title: '插件',
-    icon: 'i-clarity:plugin-outline-alerted',
+    icon: 'clarity:plugin-outline-alerted',
   },
   children: [
     {
       path: 'qrcode',
       name: 'pluginDemoQrcode',
-      component: () => import('@/views/plugin_demo/qrcode.vue'),
+      component: () => import('@/views/plugin_demo/qrcode/index.vue'),
       meta: {
         title: '二维码',
-        icon: 'i-material-symbols:qr-code',
+        icon: 'material-symbols:qr-code',
       },
     },
     {
       path: 'esign',
       name: 'pluginDemoEsign',
-      component: () => import('@/views/plugin_demo/esign.vue'),
+      component: () => import('@/views/plugin_demo/esign/index.vue'),
       meta: {
         title: '电子签名',
-        icon: 'i-mdi:draw',
+        icon: 'mdi:draw',
       },
     },
     {
       path: 'swiper',
       name: 'pluginDemoSwiper',
-      component: () => import('@/views/plugin_demo/swiper.vue'),
+      component: () => import('@/views/plugin_demo/swiper/index.vue'),
       meta: {
         title: '轮播动画',
-        icon: 'i-carbon:carousel-horizontal',
+        icon: 'carbon:carousel-horizontal',
       },
     },
     {
       path: 'tinymce',
       name: 'pluginDemoTinymce',
-      component: () => import('@/views/plugin_demo/tinymce.vue'),
+      component: () => import('@/views/plugin_demo/tinymce/index.vue'),
       meta: {
         title: 'TinyMCE 编辑器',
-        icon: 'i-file-icons:tinymce',
+        icon: 'file-icons:tinymce',
       },
     },
     {
       path: 'markdown',
       name: 'pluginDemoMarkdown',
-      component: () => import('@/views/plugin_demo/markdown.vue'),
+      component: () => import('@/views/plugin_demo/markdown/index.vue'),
       meta: {
         title: 'Markdown 编辑器',
-        icon: 'i-teenyicons:markdown-outline',
+        icon: 'teenyicons:markdown-outline',
       },
     },
     {
       path: 'splitpanes',
       name: 'pluginDemoSplitpanes',
-      component: () => import('@/views/plugin_demo/splitpanes.vue'),
+      component: () => import('@/views/plugin_demo/splitpanes/index.vue'),
       meta: {
         title: '拆分面板',
-        icon: 'i-icon-park-outline:split-cells',
+        icon: 'icon-park-outline:split-cells',
       },
     },
   ],

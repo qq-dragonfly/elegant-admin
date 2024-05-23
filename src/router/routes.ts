@@ -30,6 +30,7 @@ const systemRoutes: RouteRecordRaw[] = [
   {
     path: '/',
     component: () => import('@/layouts/index.vue'),
+    redirect: () => useSettingsStore().settings.home.fullPath,
     meta: {
       title: () => useSettingsStore().settings.home.title,
       breadcrumb: false,
@@ -41,7 +42,7 @@ const systemRoutes: RouteRecordRaw[] = [
         name: 'Dashboard',
         meta: {
           title: () => useSettingsStore().settings.home.title,
-          icon: 'i-ant-design:home-twotone',
+          icon: 'ant-design:home-twotone',
           breadcrumb: false,
         },
       },
@@ -80,7 +81,7 @@ const asyncRoutes: Route.recordMainRaw[] = [
   {
     meta: {
       title: '演示功能',
-      icon: 'i-uim:box',
+      icon: 'uim:box',
     },
     children: [
       PluginDemo,

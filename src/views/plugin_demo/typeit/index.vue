@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import Alert from '../modules/alert.vue'
+
 defineOptions({
   name: 'ProTypeit',
 })
@@ -13,6 +15,7 @@ function open(url: string) {
 
 <template>
   <div>
+    <Alert />
     <PageHeader title="打字机组件">
       <template #content>
         <p>

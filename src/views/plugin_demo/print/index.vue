@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import printJS from 'print-js'
-import Alert from './components/alert.vue'
+import Alert from '../modules/alert.vue'
 import img from '@/assets/images/login-banner.png'
 
 const tableData = ref([
@@ -76,7 +76,7 @@ function open(url: string) {
       </ElButton>
     </PageHeader>
     <PageMain title="打印JSON" class="mb-10px">
-      <ElTable :data="tableData" stripe border :style="{ width: '100%', marginBottom: '10px' }">
+      <ElTable :data="tableData" stripe :style="{ width: '100%', marginBottom: '10px' }">
         <ElTableColumn prop="date" label="日期" width="180" />
         <ElTableColumn prop="name" label="姓名" width="180" />
         <ElTableColumn prop="address" label="地址" />

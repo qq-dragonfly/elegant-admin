@@ -11,7 +11,7 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
 
-import Alert from './components/alert.vue'
+import Alert from '../modules/alert.vue'
 
 const modules = [Navigation, Pagination, Scrollbar, A11y]
 

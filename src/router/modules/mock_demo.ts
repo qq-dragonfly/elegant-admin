@@ -11,7 +11,7 @@ const routes: RouteRecordRaw = {
   name: 'mockDemo',
   meta: {
     title: 'Mock',
-    icon: 'i-ri:database-2-line',
+    icon: 'ri:database-2-line',
   },
   children: [
     {

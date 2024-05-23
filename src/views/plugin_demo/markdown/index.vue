@@ -4,7 +4,7 @@ import gfm from '@bytemd/plugin-gfm'
 import zhHans from 'bytemd/locales/zh_Hans.json'
 import gfmLocale from '@bytemd/plugin-gfm/lib/locales/zh_Hans.json'
 import 'bytemd/dist/index.css'
-import Alert from './components/alert.vue'
+import Alert from '../modules/alert.vue'
 
 const content = ref('# Elegant-admin')
 

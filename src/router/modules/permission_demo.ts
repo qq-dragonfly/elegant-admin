@@ -11,7 +11,7 @@ const routes: RouteRecordRaw = {
   name: 'permissionDemo',
   meta: {
     title: '权限验证',
-    icon: 'i-ri:shield-keyhole-line',
+    icon: 'ri:shield-keyhole-line',
   },
   children: [
     {

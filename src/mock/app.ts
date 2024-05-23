@@ -376,7 +376,7 @@ export default defineFakeRoute([
                   {
                     path: 'typeit',
                     name: 'pluginDemoTypeit',
-                    component: 'plugin_demo/typeit.vue',
+                    component: 'plugin_demo/typeit/index.vue',
                     meta: {
                       title: '打字机组件',
                     },
@@ -384,7 +384,7 @@ export default defineFakeRoute([
                   {
                     path: 'qrcode',
                     name: 'pluginDemoQrcode',
-                    component: 'plugin_demo/qrcode.vue',
+                    component: 'plugin_demo/qrcode/index.vue',
                     meta: {
                       title: '二维码',
                     },
@@ -398,14 +398,14 @@ export default defineFakeRoute([
                   }, {
                     path: 'print',
                     name: 'pluginDemoPrint',
-                    component: 'plugin_demo/print.vue',
+                    component: 'plugin_demo/print/index.vue',
                     meta: {
                       title: '打印',
                     },
                   }, {
                     path: 'xgplayer_video',
                     name: 'pluginDemoXgplayerVideo',
-                    component: 'plugin_demo/xgplayer_video.vue',
+                    component: 'plugin_demo/xgplayer_video/index.vue',
                     meta: {
                       title: '视频播放',
                     },
@@ -413,7 +413,7 @@ export default defineFakeRoute([
                   {
                     path: 'esign',
                     name: 'pluginDemoEsign',
-                    component: 'plugin_demo/esign.vue',
+                    component: 'plugin_demo/esign/index.vue',
                     meta: {
                       title: '电子签名',
                     },
@@ -421,7 +421,7 @@ export default defineFakeRoute([
                   {
                     path: 'swiper',
                     name: 'pluginDemoSwiper',
-                    component: 'plugin_demo/swiper.vue',
+                    component: 'plugin_demo/swiper/index.vue',
                     meta: {
                       title: '轮播动画',
                     },
@@ -429,7 +429,7 @@ export default defineFakeRoute([
                   {
                     path: 'tinymce',
                     name: 'pluginDemoTinymce',
-                    component: 'plugin_demo/tinymce.vue',
+                    component: 'plugin_demo/tinymce/index.vue',
                     meta: {
                       title: 'TinyMCE 编辑器',
                     },
@@ -437,7 +437,7 @@ export default defineFakeRoute([
                   {
                     path: 'markdown',
                     name: 'pluginDemoMarkdown',
-                    component: 'plugin_demo/markdown.vue',
+                    component: 'plugin_demo/markdown/index.vue',
                     meta: {
                       title: 'Markdown 编辑器',
                     },
@@ -445,7 +445,7 @@ export default defineFakeRoute([
                   {
                     path: 'splitpanes',
                     name: 'pluginDemoSplitpanes',
-                    component: 'plugin_demo/splitpanes.vue',
+                    component: 'plugin_demo/splitpanes/index.vue',
                     meta: {
                       title: '拆分面板',
                     },

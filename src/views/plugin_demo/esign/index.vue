@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ElMessage } from 'element-plus'
 import VueEsign from 'vue-esign'
-import Alert from './components/alert.vue'
+import Alert from '../modules/alert.vue'
 
 defineOptions({
   name: 'ComponentExampleSignCanvas',

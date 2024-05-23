@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import Alert from '../modules/alert.vue'
+
 const videoOptions = ref<any>({
   pip: true,
 })
@@ -10,6 +12,7 @@ function open(url: string) {
 
 <template>
   <div class="flex flex-1 flex-col">
+    <Alert />
     <PageHeader title="视频播放器1" content="视频播放器示例">
       <template #content>
         <p style="margin-bottom: 0;">

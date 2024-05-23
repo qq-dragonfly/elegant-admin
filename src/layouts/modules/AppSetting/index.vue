@@ -111,9 +111,9 @@ function handleCopy() {
       <HTabList
         v-model="settingsStore.settings.app.colorScheme"
         :options="[
-          { icon: 'i-ri:sun-line', label: '明亮', value: 'light' },
-          { icon: 'i-ri:moon-line', label: '暗黑', value: 'dark' },
-          { icon: 'i-ri:contrast-fill', label: '系统', value: '' },
+          { icon: 'ri:sun-line', label: '明亮', value: 'light' },
+          { icon: 'ri:moon-line', label: '暗黑', value: 'dark' },
+          { icon: 'ri:contrast-fill', label: '系统', value: '' },
         ]"
         class="w-60"
       />

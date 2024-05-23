@@ -1,11 +1,12 @@
 <script setup lang="ts" name="Login">
 import type { FormInstance, FormRules } from 'element-plus'
-import { ElMessage } from 'element-plus'
+import { ElMessage, ElNotification } from 'element-plus'
 import Copyright from '@/layouts/modules/Copyright/index.vue'
 import useSettingsStore from '@/store/modules/settings'
 import useUserStore from '@/store/modules/user'
 import type { ReqLoginForm } from '@/api/interface/modules/login'
 import { getLocal, removeLocal, setLocal } from '@/utils/storage'
+import { getTimeState } from '@/utils'
 
 const route = useRoute()
 const router = useRouter()
@@ -69,6 +70,12 @@ function handleLogin() {
           removeLocal('login_account')
         }
         router.push(redirect.value)
+        ElNotification({
+          title: getTimeState(),
+          message: `欢迎登录 ${title}`,
+          type: 'success',
+          duration: 3000,
+        })
       }).catch(() => {
         loading.value = false
       })

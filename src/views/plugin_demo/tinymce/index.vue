@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Alert from './components/alert.vue'
+import Alert from '../modules/alert.vue'
 
 const content = ref('<h1>Elegant-admin</h1>')
 

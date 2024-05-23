@@ -9,18 +9,10 @@ const useTabbarStore = defineStore(
   () => {
     const keepAliveStore = useKeepAliveStore()
     const settingsStore = useSettingsStore()
-    // path: '',
-    //     component: () => import('@/views/welcome/index.vue'),
-    //     meta: {
-    //       title: () => useSettingsStore().settings.home.title,
-    //       icon: 'i-ant-design:home-twotone',
-    //       breadcrumb: false,
-    //     },
-
     const list = ref<Tabbar.recordRaw[]>([
       {
-        tabId: '/dashboard',
-        fullPath: '/dashboard',
+        tabId: settingsStore.settings.home.fullPath,
+        fullPath: settingsStore.settings.home.fullPath,
         routeName: 'Dashboard',
         title: settingsStore.settings.home.title,
         icon: 'fluent:laptop-settings-20-regular',
