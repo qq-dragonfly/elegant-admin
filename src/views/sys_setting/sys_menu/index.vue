@@ -77,6 +77,7 @@ async function handleAddMenuTree(data?: any, node?: any) {
       breadcrumb: false,
       cache: false,
       threeMenu: false,
+      isFull: false,
       link: '',
       iframe: '',
     },

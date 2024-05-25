@@ -5,7 +5,7 @@ import { ClickOutside as vClickOutside } from 'element-plus'
 import { getIconList } from './select'
 
 defineOptions({
-  name: 'ProIconSelect',
+  name: 'IconSelect',
 })
 
 type ParameterCSSProperties = (item?: string) => CSSProperties | undefined

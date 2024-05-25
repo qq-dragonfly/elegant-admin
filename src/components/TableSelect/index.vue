@@ -2,7 +2,7 @@
 import ProTable from '@/components/ProTable/index.vue'
 
 defineOptions({
-  name: 'ProTableSelect',
+  name: 'TableSelect',
 })
 // 接受父组件参数，配置默认值
 const props = withDefaults(defineProps<PaginationProps>(), {
@@ -136,6 +136,7 @@ function handleSelectionChange(selecteds: any, row: any) {
       id: row[props.tableProps.value],
       label: row[props.tableProps.label],
     }
+    selectBlue()
   }
 }
 // 全选、取消全选

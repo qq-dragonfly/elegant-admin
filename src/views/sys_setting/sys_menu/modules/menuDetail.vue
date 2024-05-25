@@ -63,6 +63,7 @@ function init() {
       breadcrumb: false,
       cache: false,
       threeMenu: false,
+      isFull: false,
       link: '',
       iframe: '',
     },
@@ -163,12 +164,13 @@ async function acceptParams(data: any, pid: any, type = 'add') {
       breadcrumb: data?.meta?.breadcrumb,
       cache: data?.meta?.cache,
       threeMenu: data?.meta?.threeMenu,
+      isFull: data?.meta?.isFull,
       link: data?.meta?.link,
       iframe: data?.meta?.iframe,
     },
     apiPermissionsIdList: data.apiPermissions || [],
   }
-  // 转换proTableSelect数据格式
+  // 转换TableSelect数据格式
   let arrPermission: { id: any, label: any }[] = []
   data.apiPermissions?.forEach((item: any) => {
     arrPermission.push({
@@ -273,7 +275,7 @@ defineExpose({
           </el-form-item>
 
           <el-form-item label="菜单图标:" prop="meta.icon">
-            <ProIconSelect v-model="menuForm.meta.icon" />
+            <IconSelect v-model="menuForm.meta.icon" />
           </el-form-item>
           <el-form-item label="是否缓存:" prop="meta.cache">
             <el-checkbox v-model="menuForm.meta.cache">
@@ -296,6 +298,11 @@ defineExpose({
             </template>
             <el-checkbox v-model="menuForm.meta.threeMenu">
               是否三级路由
+            </el-checkbox>
+          </el-form-item>
+          <el-form-item label="菜单是否全屏:" prop="meta.isFull">
+            <el-checkbox v-model="menuForm.meta.isFull">
+              菜单是否全屏
             </el-checkbox>
           </el-form-item>
           <el-form-item label="重定向:" prop="redirect">
@@ -359,7 +366,7 @@ defineExpose({
             </el-checkbox>
           </el-form-item>
           <el-form-item label="接口权限:" prop="apiPermissionsIdList" class="col-span-2">
-            <ProTableSelect
+            <TableSelect
               v-model="menuForm.apiPermissionsIdList"
               multiple
               :columns="tableSelectColumns"

@@ -4,9 +4,9 @@ const iconVal = ref<string>('')
 
 <template>
   <div class="flex" flex-1 flex-col>
-    <PageHeader title="ProIconSelect组件" content="Icon图标选择器" />
+    <PageHeader title="IconSelect组件" content="Icon图标选择器" />
     <PageMain>
-      <ProIconSelect v-model="iconVal" />
+      <IconSelect v-model="iconVal" />
     </PageMain>
   </div>
 </template>

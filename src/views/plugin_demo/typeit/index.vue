@@ -31,7 +31,7 @@ function open(url: string) {
     </PageHeader>
     <PageMain>
       <div class="flex py-20px">
-        <ProTypeit :options="options" />
+        <Typeit :options="options" />
       </div>
     </PageMain>
   </div>

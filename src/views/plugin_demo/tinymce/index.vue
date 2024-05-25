@@ -28,7 +28,7 @@ function open(url: string) {
       </ElButton>
     </PageHeader>
     <PageMain>
-      <ProTinymce v-model="content" />
+      <Tinymce v-model="content" />
       <div class="preview" v-html="content" />
     </PageMain>
   </div>

@@ -7,7 +7,7 @@ import type { PropType } from 'vue'
 
 // 打字机效果组件（配置项详情请查阅 https://www.typeitjs.com/docs/vanilla/usage#options）
 export default defineComponent({
-  name: 'ProTypeIt',
+  name: 'TypeIt',
   props: {
     options: {
       type: Object as PropType<TypeItOptions>,

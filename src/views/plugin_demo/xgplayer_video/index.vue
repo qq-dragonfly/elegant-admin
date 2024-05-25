@@ -27,7 +27,7 @@ function open(url: string) {
       </ElButton>
     </PageHeader>
     <PageMain>
-      <ProVideoPlayer :src="itemVideoUrl" :options="videoOptions" />
+      <VideoPlayer :src="itemVideoUrl" :options="videoOptions" />
     </PageMain>
   </div>
 </template>

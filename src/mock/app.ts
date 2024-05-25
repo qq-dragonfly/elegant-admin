@@ -357,9 +357,9 @@ export default defineFakeRoute([
                         },
                       },
                       {
-                        path: 'pro_icon_select',
-                        name: 'ProIconSelect',
-                        component: 'components_demo/svg_icon/pro_icon_select.vue',
+                        path: 'icon_select',
+                        name: 'IconSelect',
+                        component: 'components_demo/svg_icon/icon_select.vue',
                         meta: {
                           title: 'Icon图标选择器',
                         },
@@ -367,6 +367,14 @@ export default defineFakeRoute([
                     ],
                   },
                   {
+                    path: 'table_select',
+                    name: 'TableSelectDemo',
+                    component: 'components_demo/table_select/index.vue',
+                    meta: {
+                      title: '表格选择器',
+                      icon: 'mdi:folder-upload-outline',
+                    },
+                  }, {
                     path: 'upload',
                     name: 'Upload',
                     component: 'components_demo/upload/index.vue',

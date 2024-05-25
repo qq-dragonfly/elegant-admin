@@ -3,6 +3,9 @@ import Player from 'xgplayer'
 import HlsPlayer from 'xgplayer-hls'
 import 'xgplayer/dist/index.min.css'
 
+defineOptions({
+  name: 'VideoPlayer',
+})
 const props = withDefaults(
   defineProps<{
     src?: string

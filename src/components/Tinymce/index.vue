@@ -22,7 +22,7 @@ import 'tinymce/plugins/searchreplace'
 import useSettingsStore from '@/store/modules/settings'
 
 defineOptions({
-  name: 'ProTinymce',
+  name: 'Tinymce',
 })
 const props = defineProps<{
   modelValue: string
