@@ -45,7 +45,7 @@ export default async ({ mode, command }) => {
     base: './',
     // 开发服务器选项 https://cn.vitejs.dev/config/#server-options
     server: {
-      port: 8888,
+      port: 5858,
       host: '0.0.0.0',
       proxy: createProxy(VITE_PROXY, VITE_OPEN_PROXY),
     },

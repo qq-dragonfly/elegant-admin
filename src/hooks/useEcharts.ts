@@ -1,6 +1,7 @@
 import { computed, effectScope, nextTick, onScopeDispose, ref, watch } from 'vue'
 import * as echarts from 'echarts/core'
-import { BarChart, GaugeChart, LineChart, PictorialBarChart, PieChart, RadarChart, ScatterChart } from 'echarts/charts'
+import { BarChart, GaugeChart, LineChart, LinesChart, PictorialBarChart, PieChart, RadarChart,
+  ScatterChart } from 'echarts/charts'
 import type {
   BarSeriesOption,
   GaugeSeriesOption,
@@ -10,10 +11,14 @@ import type {
   RadarSeriesOption,
   ScatterSeriesOption,
 } from 'echarts/charts'
+import 'echarts-liquidfill'
 import {
+  DataZoomComponent,
   DatasetComponent,
+  GeoComponent,
   GridComponent,
   LegendComponent,
+  PolarComponent,
   TitleComponent,
   ToolboxComponent,
   TooltipComponent,
@@ -56,9 +61,12 @@ echarts.use([
   DatasetComponent,
   TransformComponent,
   ToolboxComponent,
+  GeoComponent,
   BarChart,
   LineChart,
+  LinesChart,
   PieChart,
+  PolarComponent,
   ScatterChart,
   PictorialBarChart,
   RadarChart,
@@ -66,6 +74,7 @@ echarts.use([
   LabelLayout,
   UniversalTransition,
   CanvasRenderer,
+  DataZoomComponent,
 ])
 
 interface ChartHooks {
@@ -104,6 +113,9 @@ export function useEcharts<T extends ECOption>(optionsFactory: () => T, hooks: C
         fontSize: 14,
         maskColor,
       })
+      setTimeout(() => {
+        instance.hideLoading()
+      }, 500)
     },
     onUpdated = (instance) => {
       instance.hideLoading()
@@ -237,5 +249,6 @@ export function useEcharts<T extends ECOption>(optionsFactory: () => T, hooks: C
     domRef,
     updateOptions,
     setOptions,
+    echarts,
   }
 }
