@@ -372,7 +372,7 @@ export default defineFakeRoute([
                     component: 'components_demo/table_select/index.vue',
                     meta: {
                       title: '表格选择器',
-                      icon: 'mdi:folder-upload-outline',
+                      icon: 'mdi:table-plus',
                     },
                   }, {
                     path: 'upload',
