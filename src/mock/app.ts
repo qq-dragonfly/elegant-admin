@@ -16,29 +16,6 @@ export default defineFakeRoute([
             },
             children: [
               {
-                path: '/data_screen_demo',
-                redirect: '/data_screen_demo/index',
-                name: 'DataScreenDemo',
-                meta: {
-                  title: '数据大屏',
-                  icon: 'ri:database-2-line',
-                },
-                children: [
-                  {
-                    path: 'index',
-                    name: 'DataScreenDemoIndex',
-                    component: 'data_screen_demo/index.vue',
-                    meta: {
-                      title: '数据大屏',
-                      menu: false,
-                      breadcrumb: false,
-                      isFull: true,
-                      activeMenu: '/data_screen_demo',
-                    },
-                  },
-                ],
-              },
-              {
                 path: '/link',
                 component: 'Layout',
                 redirect: '/link/github',
@@ -114,6 +91,29 @@ export default defineFakeRoute([
                     meta: {
                       title: 'Github 仓库',
                       link: 'https://github.com/zhangyao1990/elegant-admin',
+                    },
+                  },
+                ],
+              },
+              {
+                path: '/data_screen_demo',
+                redirect: '/data_screen_demo/index',
+                name: 'DataScreenDemo',
+                meta: {
+                  title: '数据大屏',
+                  icon: 'ri:database-2-line',
+                },
+                children: [
+                  {
+                    path: 'index',
+                    name: 'DataScreenDemoIndex',
+                    component: 'data_screen_demo/index.vue',
+                    meta: {
+                      title: '数据大屏',
+                      menu: false,
+                      breadcrumb: false,
+                      isFull: true,
+                      activeMenu: '/data_screen_demo',
                     },
                   },
                 ],
