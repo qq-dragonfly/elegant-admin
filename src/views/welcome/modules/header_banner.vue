@@ -16,9 +16,9 @@ const userStore = useUserStore()
         </div>
         <div class="mt-2 flex flex-col justify-center md:ml-6 md:mt-0">
           <h1 class="text-20px">
-            早安, {{ userStore.account }}, 开始您一天的工作吧！
+            {{ $t('home.greeting', { userName: userStore.account }) }}
           </h1>
-          <span class="text-emphasis text-16px text-#999 leading-30px"> 今日晴，20℃ - 32℃！ </span>
+          <span class="text-emphasis text-16px text-#999 leading-30px">{{ $t('home.weatherDesc') }} </span>
         </div>
       </div>
     </div>

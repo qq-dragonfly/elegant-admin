@@ -71,6 +71,7 @@ declare global {
   const useEcharts: typeof import('../hooks/useEcharts')['useEcharts']
   const useGlobalProperties: typeof import('../hooks/useGlobalProperties')['default']
   const useHandleData: typeof import('../hooks/useHandleData')['useHandleData']
+  const useI18n: typeof import('vue-i18n')['useI18n']
   const useLink: typeof import('vue-router')['useLink']
   const useMainPage: typeof import('../hooks/useMainPage')['default']
   const useMenu: typeof import('../hooks/useMenu')['default']

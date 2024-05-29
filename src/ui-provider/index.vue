@@ -1,10 +1,14 @@
 <script setup lang="ts">
-import zhCN from 'element-plus/es/locale/lang/zh-cn.mjs'
+import en from 'element-plus/es/locale/lang/en'
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
+import { useI18n } from 'vue-i18n'
 import { useTheme } from './useElementTheme'
 import useSettingsStore from '@/store/modules/settings'
 
 const settingsStore = useSettingsStore()
 const { changePrimary } = useTheme()
+// init language
+const i18n = useI18n()
 watch(
   () => settingsStore.settings.app.themeColor,
   () => {
@@ -14,10 +18,19 @@ watch(
     deep: true,
   },
 )
+const currentLocale = computed(() => {
+  return settingsStore.settings.app.translationLang === 'zh'
+    ? { ...zhCn }
+    : { ...en }
+})
+onMounted(() => {
+  const language = settingsStore.settings.app.translationLang ?? 'zh'
+  i18n.locale.value = language
+})
 </script>
 
 <template>
-  <ElConfigProvider :locale="zhCN" :button="{ autoInsertSpace: true }">
+  <ElConfigProvider :locale="currentLocale" :button="{ autoInsertSpace: true }">
     <slot />
   </ElConfigProvider>
 </template>

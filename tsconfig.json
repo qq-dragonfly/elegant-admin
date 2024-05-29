@@ -32,9 +32,13 @@
     "allowImportingTsExtensions": true,
     "allowJs": false,
     "strict": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": false,
     "noEmit": true,
     "sourceMap": true,
-    "esModuleInterop": true, // 允许export=导出，由import from 导入
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "skipLibCheck": true
   },
@@ -50,5 +54,5 @@
     "src/**/*.tsx",
     "src/**/*.vue"
   ],
-  "exclude": ["dist", "node_modules"]// 排除src目录下的lib文件夹下的文件不会编译
+  "exclude": ["dist", "node_modules", "**/*.js"]// 排除src目录下的lib文件夹下的文件不会编译
 }

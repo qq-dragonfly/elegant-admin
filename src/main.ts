@@ -67,14 +67,23 @@ import '@/assets/styles/globals.scss'
 // element-plus样式覆盖
 import '@/assets/styles/element.scss'
 
+// errorHandler
+import errorHandler from '@/utils/eroorHandler'
+
+// vue i18n
+import I18n from '@/locales/index'
+
 async function setupApp() {
   setupLoading()
   const app = createApp(App)
+  app.config.errorHandler = errorHandler
+
   app.use(FloatingVue, {
     distance: 12,
   })
   app.use(Message)
   app.use(pinia)
+  app.use(I18n)
   app.use(ui)
   app.use(directives)
   await setupRouter(app)

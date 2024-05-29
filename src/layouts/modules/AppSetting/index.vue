@@ -235,6 +235,12 @@ function handleCopy() {
       </div>
       <HToggle v-model="settingsStore.settings.toolbar.breadcrumb" />
     </div>
+    <div v-if="settingsStore.mode === 'pc'" class="setting-item">
+      <div class="label">
+        国际化
+      </div>
+      <HToggle v-model="settingsStore.settings.toolbar.translationLang" />
+    </div>
     <div class="setting-item">
       <div class="label">
         导航搜索

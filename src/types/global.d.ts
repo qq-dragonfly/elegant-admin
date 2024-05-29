@@ -39,6 +39,8 @@ declare namespace Settings {
     routeBaseOn?: 'frontend' | 'backend'
     lightTheme?: string
     themeColor?: string
+    // 国际化
+    translationLang?: string
   }
   interface home {
     /**
@@ -140,6 +142,11 @@ declare namespace Settings {
      * @默认值 `false`
      */
     fullscreen?: boolean
+    /**
+     * 是否开启国际化
+     * @默认值 `false`
+     */
+    translationLang?: boolean
     /**
      * 是否开启页面刷新
      * @默认值 `false`

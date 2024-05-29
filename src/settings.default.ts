@@ -28,6 +28,7 @@ const globalSettingsDefault: RecursiveRequired<Settings.all> = {
     enableProgress: true,
     enableDynamicTitle: false,
     lightTheme: 'string',
+    translationLang: getLocal('lang') || 'zh',
     themeColor: getLocal('themeColor') || '#6366F1',
     routeBaseOn: 'backend', // 'frontend'：前端 'backend' 后端
   },
@@ -61,6 +62,7 @@ const globalSettingsDefault: RecursiveRequired<Settings.all> = {
     fullscreen: false,
     pageReload: false,
     colorScheme: false,
+    translationLang: true,
   },
   mainPage: {
     enableHotkeys: true,

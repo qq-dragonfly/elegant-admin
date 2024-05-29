@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import NavSearch from './NavSearch/index.vue'
+import Language from './Language/index.vue'
 import Fullscreen from './Fullscreen/index.vue'
 import PageReload from './PageReload/index.vue'
 import ColorScheme from './ColorScheme/index.vue'
@@ -27,6 +28,7 @@ watch(() => userStore.avatar, () => {
 <template>
   <div class="flex items-center">
     <NavSearch v-if="settingsStore.settings.toolbar.navSearch" />
+    <Language v-if="settingsStore.settings.toolbar.translationLang" />
     <Fullscreen v-if="settingsStore.settings.toolbar.fullscreen" />
     <PageReload v-if="settingsStore.settings.toolbar.pageReload" />
     <ColorScheme v-if="settingsStore.settings.toolbar.colorScheme" />
