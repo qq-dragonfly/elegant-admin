@@ -69,7 +69,6 @@ export function useTable(api?: (params: any) => Promise<any>,
       let params = {
         ...state.searchInitParam, ...state.totalParam,
       }
-      console.log('我是请求的参数', params)
       let { data } = await api(params)
       dataCallBack && (data = dataCallBack(data))
       state.tableData = isPageable ? data.list : data

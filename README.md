@@ -73,8 +73,6 @@ pnpm build:pro
 
 ## 浏览器支持
 
-## 浏览器支持
-
 本地开发推荐使用 `Chrome` 浏览器
 更详细的浏览器兼容性支持请看 [Vue 支持哪些浏览器？](https://cn.vuejs.org/about/faq.html#what-browsers-does-vue-support) 和 [Vite 浏览器兼容性](https://cn.vitejs.dev/guide/build#browser-compatibility)
 

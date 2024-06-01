@@ -190,7 +190,7 @@ onUnmounted(() => {
               <SvgIcon v-if="settingsStore.settings.tabbar.enableIcon && element.icon" :name="element.icon" class="icon" />
               <span class="title">{{ element.title }}</span>
             </div>
-            <div v-if="tabbarStore.list.length > 1 && element.tabId !== settingsStore.settings.home.fullPath" class="action-icon">
+            <div v-if="tabbarStore.list.length > 1" class="action-icon">
               <SvgIcon name="ri:close-fill" @click.stop="tabbar.closeById(element.tabId)" />
             </div>
             <div v-show="keys.alt && index < 9" class="hotkey-number">

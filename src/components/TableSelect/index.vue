@@ -18,7 +18,7 @@ const props = withDefaults(defineProps<PaginationProps>(), {
   tableWidth: '',
   columns: [],
   initTableParam: {},
-  tableProps: () => ({ label: 'label', value: 'value' }), // 映射字段
+  tableProps: () => ({ label: 'id', value: 'name' }), // 映射字段
 })
 
 interface PaginationProps {
@@ -40,7 +40,7 @@ interface PaginationProps {
 }
 
 const modelValue = defineModel<any>({
-  default: [],
+  default: null,
 })
 
 const proTableRef = ref()
@@ -54,12 +54,8 @@ function selectBlue() {
 }
 
 function visibleChange(visible: boolean) {
-  console.log('visibleChange', visible)
   if (visible) {
     init()
-  }
-  else {
-    console.log('关闭')
   }
 }
 // 清空后的回调
@@ -96,8 +92,8 @@ function setSelected() {
     nextTick(() => {
       proTableRef.value?.tableData?.forEach((item: any) => {
         modelValue.value.forEach((key: any) => {
-          if (key.id === item.id) {
-            const exists = proTableRef.value?.selectedList?.some((v: any) => v.id === key.id)
+          if (key.value === item[props.tableProps.value]) {
+            const exists = proTableRef.value?.selectedList?.some((v: any) => v[props.tableProps.value] === key.value)
             if (!exists) {
               proTableRef?.value?.toggleRowSelection(item, true)
             }
@@ -107,25 +103,25 @@ function setSelected() {
     })
   }
   else {
-    proTableRef.value.radio = modelValue.value.id
+    proTableRef.value.radio = modelValue.value.value
   }
 }
 // 单个选择或取消
 function handleSelectionChange(selecteds: any, row: any) {
-  console.log(row)
   if (props.multiple) {
-    const exists = modelValue.value?.some((item: any) => item.id === row.id)
+    const exists = modelValue.value?.some((item: any) => item.value === row[props.tableProps.value])
     if (!exists) {
     // 回显数据里没有本条，把这条加进来(选中)
       modelValue.value.push({
-        id: row[props.tableProps.value],
+        value: row[props.tableProps.value],
         label: row[props.tableProps.label],
+        ...row,
       })
     }
     else {
     // 回显数据里有本条，把这条删除(取消选中)
       modelValue.value.forEach((item: any, index: number) => {
-        if (item.id === row.id) {
+        if (item.value === row[props.tableProps.value]) {
           modelValue.value.splice(index, 1)
         }
       })
@@ -133,8 +129,9 @@ function handleSelectionChange(selecteds: any, row: any) {
   }
   else {
     modelValue.value = {
-      id: row[props.tableProps.value],
+      value: row[props.tableProps.value],
       label: row[props.tableProps.label],
+      ...row,
     }
     selectBlue()
   }
@@ -144,11 +141,12 @@ function handleAllChange(selecteds: any) {
   if (props.multiple) {
     if (selecteds.length > 0) {
       selecteds.forEach((item: any) => {
-        const exists = modelValue.value?.some((v: { id: any }) => v.id === item.id)
+        const exists = modelValue.value?.some((v: any) => v.value === item[props.tableProps.value])
         if (!exists) {
           modelValue.value.push({
-            id: item[props.tableProps.value],
+            value: item[props.tableProps.value],
             label: item[props.tableProps.label],
+            ...item,
           })
         }
       })
@@ -156,7 +154,7 @@ function handleAllChange(selecteds: any) {
     else {
       proTableRef.value?.tableData?.forEach((item: any) => {
         modelValue.value.forEach((v: any, index: number) => {
-          if (v.id === item.id) {
+          if (v.value === item[props.tableProps.value]) {
             modelValue.value.splice(index, 1)
           }
         })
@@ -175,7 +173,6 @@ function handleAllChange(selecteds: any) {
     :fit-input-width="fitInputWidth"
     :style="{ width: selectWidth ? `${selectWidth}` : '100%' }"
     class="select-box"
-    value-key="id"
     :size="size"
     :clearable="clearable"
     :multiple="multiple"
@@ -191,7 +188,7 @@ function handleAllChange(selecteds: any) {
       <div class="select-empty">
         <div class="select-close">
           <el-icon class="select-close__icon" @click="selectBlue">
-            <svg-icon name="ep:close-bold" />
+            <svg-icon name="ep:close" />
           </el-icon>
         </div>
         <div class="select-table" :style="{ width: tableWidth ? `${tableWidth}` : '100%' }">
@@ -210,13 +207,6 @@ function handleAllChange(selecteds: any) {
               @select="handleSelectionChange"
               @select-all="handleAllChange"
             />
-            <div class="confirm-btn">
-              <div v-if="multiple" @click="selectBlue">
-                <el-button type="primary">
-                  确 认
-                </el-button>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -235,15 +225,24 @@ function handleAllChange(selecteds: any) {
 
 .select-close {
   position: absolute;
-  top: 0;
-  right: 0;
-  padding-top: 10px;
-  padding-right: 10px;
-  text-align: right;
-
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.3em;
+  height: 1.3em;
+  font-size: 14px;
+  color: var(--g-tabbar-tab-color);
+  border-radius: 50%;
   &__icon {
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
+
+  }
+  &:hover {
+    --at-apply: ring-1 ring-stone-3 dark:ring-stone-7;
+    background-color: var(--g-bg);
   }
 }
 
@@ -253,11 +252,6 @@ function handleAllChange(selecteds: any) {
   .select-table {
     height: 100%;
     padding: 12px;
-
-    .confirm-btn {
-      padding-top: 20px;
-      text-align: right;
-    }
   }
 }
 

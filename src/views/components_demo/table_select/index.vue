@@ -9,20 +9,24 @@ defineOptions({
 const tableSelectMultipleColumns = reactive<ColumnProps[]>(
   [
     { type: 'selection', fixed: 'left', width: 80 },
-    { type: 'index', label: '#', width: 60 },
     { prop: 'roleName', label: '角色名称', minWidth: 100, search: { el: 'input' } },
   ],
 )
 const tableSelectColumns = reactive<ColumnProps[]>(
   [
     { type: 'radio', fixed: 'left', width: 80 },
-    { type: 'index', label: '#', width: 60 },
     { prop: 'roleName', label: '角色名称', minWidth: 100, search: { el: 'input' } },
   ],
 )
 const formData = ref<any>({
-  selectObj: {},
-  selectArr: {},
+  selectObj: {
+    value: 1,
+    label: '管理员',
+  },
+  selectArr: [{
+    value: 1,
+    label: '管理员',
+  }],
 })
 </script>
 

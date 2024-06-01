@@ -99,7 +99,7 @@ async function handleSave() {
         let formData = cloneDeep(menuForm.value)
         let authIds: any = []
         formData.apiPermissionsIdList && formData.apiPermissionsIdList.map((item: any) => {
-          authIds.push(item.id)
+          authIds.push(item.value)
         })
         formData.apiPermissionsIdList = authIds
         formData.id = !formData.id.includes('menuId-') ? formData.id : ''
@@ -171,10 +171,10 @@ async function acceptParams(data: any, pid: any, type = 'add') {
     apiPermissionsIdList: data.apiPermissions || [],
   }
   // 转换TableSelect数据格式
-  let arrPermission: { id: any, label: any }[] = []
+  let arrPermission: { value: any, label: any }[] = []
   data.apiPermissions?.forEach((item: any) => {
     arrPermission.push({
-      id: item.id,
+      value: item.id,
       label: item.name,
     })
   })
@@ -381,7 +381,7 @@ defineExpose({
       </div>
     </template>
   </div>
-  <div class="menu-footer h-14 flex flex-col items-center justify-center">
+  <div class="menu-footer h-14 flex items-center justify-center">
     <Auth :value="['add:menu:btn']">
       <el-button type="primary" :loading="isLoading" @click="handleSave">
         保 存
