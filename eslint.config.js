@@ -5,6 +5,7 @@ export default antfu(
     unocss: true,
     ignores: [
       'public',
+      'packages',
       'dist*',
       'README.md',
     ],

@@ -9,7 +9,7 @@
     "node": "^18.18.0 || ^20.0.0"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "vite dev",
     "build:test": "vue-tsc && vite build --mode test",
     "build:pre": "vue-tsc && vite build --mode pre",
     "build:prod": "vue-tsc && vite build --mode production",
@@ -50,6 +50,7 @@
     "lodash-es": "^4.17.21",
     "mitt": "^3.0.1",
     "mockjs": "^1.1.0",
+    "monaco-editor": "^0.48.0",
     "nprogress": "^0.2.0",
     "overlayscrollbars": "^2.5.0",
     "overlayscrollbars-vue": "^0.5.7",
@@ -71,6 +72,7 @@
     "vue-i18n": "9.13.1",
     "vue-m-message": "^4.0.2",
     "vue-router": "^4.3.2",
+    "vuedraggable": "4.1.0",
     "xe-utils": "^3.5.20",
     "xgplayer": "^3.0.17",
     "xgplayer-hls": "^3.0.17",
@@ -128,6 +130,7 @@
     "vite-plugin-compression2": "^1.1.0",
     "vite-plugin-fake-server": "^2.1.1",
     "vite-plugin-html": "^3.2.2",
+    "vite-plugin-monaco-editor": "^1.1.0",
     "vite-plugin-pages": "^0.32.1",
     "vite-plugin-svg-icons": "^2.0.1",
     "vite-plugin-vue-devtools": "^7.1.3",

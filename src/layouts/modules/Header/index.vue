@@ -1,3 +1,10 @@
+<!--
+ * @Description:
+ * @Author: zhangyao
+ * @Date: 2024-03-01 09:03:25
+ * @LastEditTime: 2024-06-12 19:24:30
+ * @LastEditors: zhangyao
+-->
 <script setup lang="ts">
 import Logo from '../Logo/index.vue'
 import ToolbarRightSide from '../Topbar/Toolbar/rightSide.vue'
@@ -31,7 +38,7 @@ header {
   top: 0;
   right: 0;
   left: 0;
-  z-index: 2000;
+  z-index: 1200;
   display: flex;
   align-items: center;
   width: 100%;

@@ -27,12 +27,9 @@ function getTableList(params: any) {
 const columns = reactive<ColumnProps[]>(
   [
     {
-      prop: 'index',
+      type: 'index',
       label: '排序',
       width: 80,
-      render: (scope: any) => {
-        return <span>{scope.$index + (tablePageParams.value.pageNum - 1) * tablePageParams.value.pageSize + 1}</span>
-      },
     },
     {
       prop: 'name',

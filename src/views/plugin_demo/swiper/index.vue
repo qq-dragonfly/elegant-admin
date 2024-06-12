@@ -36,9 +36,9 @@ function open(url: string) {
         访问 swiper
       </ElButton>
     </PageHeader>
-    <ElRow :gutter="20" style="margin: -10px 10px;">
-      <ElCol :md="8">
-        <PageMain style="margin: 10px 0;">
+    <div class="mx-8px">
+      <Grid :collapsed="false" :gap="[10, 10]" :cols="{ xs: 1, sm: 1, md: 2, lg: 2, xl: 2 }">
+        <GridItem :span="1">
           <Swiper :modules="modules" class="swiper" autoplay>
             <SwiperSlide>Slide 1</SwiperSlide>
             <SwiperSlide>Slide 2</SwiperSlide>
@@ -51,10 +51,8 @@ function open(url: string) {
             <SwiperSlide>Slide 9</SwiperSlide>
             <SwiperSlide>Slide 10</SwiperSlide>
           </Swiper>
-        </PageMain>
-      </ElCol>
-      <ElCol :md="8">
-        <PageMain style="margin: 10px 0;">
+        </GridItem>
+        <GridItem :span="1">
           <Swiper :modules="modules" class="swiper" :pagination="{ clickable: true }">
             <SwiperSlide>Slide 1</SwiperSlide>
             <SwiperSlide>Slide 2</SwiperSlide>
@@ -67,10 +65,8 @@ function open(url: string) {
             <SwiperSlide>Slide 9</SwiperSlide>
             <SwiperSlide>Slide 10</SwiperSlide>
           </Swiper>
-        </PageMain>
-      </ElCol>
-      <ElCol :md="8">
-        <PageMain style="margin: 10px 0;">
+        </GridItem>
+        <GridItem :span="1">
           <Swiper :modules="modules" class="swiper" navigation>
             <SwiperSlide>Slide 1</SwiperSlide>
             <SwiperSlide>Slide 2</SwiperSlide>
@@ -83,12 +79,8 @@ function open(url: string) {
             <SwiperSlide>Slide 9</SwiperSlide>
             <SwiperSlide>Slide 10</SwiperSlide>
           </Swiper>
-        </PageMain>
-      </ElCol>
-    </ElRow>
-    <ElRow :gutter="20" style="margin: -10px 10px;">
-      <ElCol :md="8">
-        <PageMain style="margin: 10px 0;">
+        </GridItem>
+        <GridItem :span="1">
           <Swiper :modules="modules" class="swiper" :pagination="{ dynamicBullets: true }">
             <SwiperSlide>Slide 1</SwiperSlide>
             <SwiperSlide>Slide 2</SwiperSlide>
@@ -101,10 +93,8 @@ function open(url: string) {
             <SwiperSlide>Slide 9</SwiperSlide>
             <SwiperSlide>Slide 10</SwiperSlide>
           </Swiper>
-        </PageMain>
-      </ElCol>
-      <ElCol :md="8">
-        <PageMain style="margin: 10px 0;">
+        </GridItem>
+        <GridItem :span="1">
           <Swiper :modules="modules" class="swiper" :pagination="{ type: 'fraction' }">
             <SwiperSlide>Slide 1</SwiperSlide>
             <SwiperSlide>Slide 2</SwiperSlide>
@@ -117,10 +107,8 @@ function open(url: string) {
             <SwiperSlide>Slide 9</SwiperSlide>
             <SwiperSlide>Slide 10</SwiperSlide>
           </Swiper>
-        </PageMain>
-      </ElCol>
-      <ElCol :md="8">
-        <PageMain style="margin: 10px 0;">
+        </GridItem>
+        <GridItem :span="1">
           <Swiper :modules="modules" class="swiper" :scrollbar="{ draggable: true }">
             <SwiperSlide>Slide 1</SwiperSlide>
             <SwiperSlide>Slide 2</SwiperSlide>
@@ -133,9 +121,9 @@ function open(url: string) {
             <SwiperSlide>Slide 9</SwiperSlide>
             <SwiperSlide>Slide 10</SwiperSlide>
           </Swiper>
-        </PageMain>
-      </ElCol>
-    </ElRow>
+        </GridItem>
+      </Grid>
+    </div>
   </div>
 </template>
 

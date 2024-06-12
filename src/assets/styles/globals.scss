@@ -149,15 +149,73 @@ textarea {
 [data-overlayscrollbars-contents] {
   overscroll-behavior: contain;
 }
-  /* 覆盖tinymce样式 */
+  /* 覆盖tinymce样式  start*/
   .editor .tox-tinymce {
     border: 1px solid #dcdfe6;
     border-radius: 0;
   }
-  body .tox-tinymce-aux {
-    z-index: 9999;
+  .editor .tox-tinymce-aux,
+  .tox-dialog,
+  .tox .tox-menu,
+  .tox.tox-tinymce.tox-fullscreen, .tox-shadowhost.tox-fullscreen {
+    z-index: 1200!important;
   }
-  body .tox-textarea-wrap {
+  .editor .tox-textarea-wrap {
     display: flex;
     height: 100% !important;
   }
+  .tox-dialog__header .tox-button {
+    background-color: #ffffff;
+    background-image: none;
+    border-color: none;
+    border-radius: 50px!important;
+    box-shadow: none;
+    color: #999999;
+  } 
+  .tox-dialog__footer .tox-button,
+  .tox-dialog__footer .tox .tox-button
+   {
+    background-color: var(--g-ui-primary)!important;
+    background-image: none;
+    border: none!important;
+    box-shadow: none;
+    color: #ffffff;
+    &:hover {
+      background-color: var(--g-ui-primary-light-1)!important;
+      color: #ffffff!important;
+    }
+  }  
+  .tox-dialog__footer .tox-button--secondary
+   {
+    background-color: #f0f0f0!important;
+    background-image: none;
+    border: none!important;
+    box-shadow: none;
+    color: #ffffff;
+    &:hover {
+      background-color: var(--g-ui-primary-light-1)!important;
+      color: #ffffff!important;
+    }
+  }
+  .tox .tox-tbtn:active,
+  .tox .tox-mbtn--active,
+  .tox .tox-tbtn:focus,
+  .tox .tox-tbtn:hover,
+  .tox .tox-mbtn:focus:not(:disabled)
+   {
+    background: var(--g-ui-primary-light-8)!important;
+  }
+  .tox .tox-mbtn:hover:not(:disabled):not(.tox-mbtn--active){
+    background: var(--g-ui-primary-light-8)!important;
+  }
+  .tox .tox-tbtn--enabled, .tox .tox-tbtn--enabled:hover{
+    background: var(--g-ui-primary-light-8)!important;
+  }
+  .tox .tox-collection--list .tox-collection__item--active {
+    background: var(--g-ui-primary-light-8)!important;
+  }
+  .tox .tox-dialog__body-nav-item--active {
+    border-bottom: 2px solid var(--g-ui-primary)!important;
+    color: var(--g-ui-primary)!important;
+  }
+  /* 覆盖tinymce样式  end*/

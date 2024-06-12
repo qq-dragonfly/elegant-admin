@@ -18,10 +18,8 @@ function dataCallback(data: any) {
     total: (data && data.total) || 0,
   }
 }
-const tablePageParams = ref<any>({})
 // 获取表格数据
 function getTableList(params: any) {
-  tablePageParams.value = params
   let newParams = { ...params }
   // console.log('newParams', newParams)
   return getSysRoleListApi(newParams)
@@ -30,12 +28,9 @@ function getTableList(params: any) {
 const columns = reactive<ColumnProps[]>(
   [
     {
-      prop: 'index',
+      type: 'index',
       label: '排序',
       width: 80,
-      render: (scope) => {
-        return (<span>{scope.$index + (tablePageParams.value.pageNum - 1) * tablePageParams.value.pageSize + 1}</span>)
-      },
     },
     { prop: 'roleName', label: '角色名称', minWidth: 100, search: { el: 'input' } },
     { prop: 'alias', label: '角色别名', minWidth: 100 },

@@ -331,6 +331,12 @@ defineExpose({
             <el-tag v-if="item.type === 'sort'" class="move">
               <el-icon> <DCaret /></el-icon>
             </el-tag>
+            <!-- sort -->
+            <template v-if="item.type === 'index'">
+              <span>
+                {{ scope.$index + (pageable.pageNum - 1) * pageable.pageSize + 1 }}
+              </span>
+            </template>
           </template>
         </el-table-column>
         <!-- other -->

@@ -2,6 +2,8 @@ import type { PluginOption } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import vueLegacy from '@vitejs/plugin-legacy'
+import monacoEditorPlugin from 'vite-plugin-monaco-editor'
+
 import appInfo from './app-info'
 import createDevtools from './devtools'
 import createAutoImport from './auto-import'
@@ -20,6 +22,15 @@ export default function createVitePlugins(viteEnv, isBuild = false) {
   const vitePlugins: (PluginOption | PluginOption[])[] = [
     appInfo(),
     vue(),
+    (monacoEditorPlugin as any).default({
+      languageWorkers: [
+        'editorWorkerService',
+        'css',
+        'html',
+        'json',
+        'typescript',
+      ],
+    }),
     vueJsx(),
     vueLegacy({
       renderLegacyChunks: false,

@@ -11,7 +11,7 @@ const esignRef = ref()
 const options = ref({
   lineWidth: 6,
   lineColor: '#000000',
-  bgColor: '#f0f0f0',
+  bgColor: '#ffffff',
   isCrop: false,
 })
 const result = ref('')
@@ -19,7 +19,7 @@ const result = ref('')
 function handleReset() {
   esignRef.value.reset()
   nextTick(() => {
-    options.value.bgColor = '#f0f0f0'
+    options.value.bgColor = '#ffffff'
   })
 }
 function handleGenerate() {
@@ -65,9 +65,9 @@ function open(url: string) {
         访问 vue-esign
       </ElButton>
     </PageHeader>
-    <PageMain>
+    <div class="ml-8px">
       <VueEsign ref="esignRef" v-model:bgColor="options.bgColor" :width="500" :height="300" :is-crop="options.isCrop" :line-width="options.lineWidth" :line-color="options.lineColor" />
-      <div class="pt-10px">
+      <div class="py-10px">
         <ElButton @click="handleReset">
           清空画板
         </ElButton>
@@ -79,6 +79,6 @@ function open(url: string) {
         </ElButton>
       </div>
       <img v-if="result" :src="result" :width="500" :height="300">
-    </PageMain>
+    </div>
   </div>
 </template>

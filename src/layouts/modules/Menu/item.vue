@@ -1,3 +1,10 @@
+<!--
+ * @Description:
+ * @Author: zhangyao
+ * @Date: 2024-03-01 09:03:25
+ * @LastEditTime: 2024-06-10 10:26:38
+ * @LastEditors: zhangyao
+-->
 <script setup lang="ts">
 import type { SubMenuItemProps } from './types'
 import { rootMenuInjectionKey } from './types'
@@ -63,14 +70,16 @@ defineExpose({
           }"
         >
           <div
-            class="inline-flex flex-1 items-center justify-center gap-[12px]" :class="{
+            class="inline-flex flex-1 items-center justify-center gap-[8px]" :class="{
               'flex-col': rootMenu.isMenuPopup && level === 0 && rootMenu.props.mode === 'vertical',
               'gap-1!': rootMenu.isMenuPopup && level === 0 && rootMenu.props.showCollapseName,
               'w-full': rootMenu.isMenuPopup && level === 0 && rootMenu.props.showCollapseName && rootMenu.props.mode === 'vertical',
             }" :style="indentStyle"
           >
-            <SvgIcon v-if="props.item.meta?.icon" :name="props.item.meta.icon" :size="20" class="menu-item-container-icon transition-transform group-hover:scale-110" async />
-            <span
+            <div class="flex" items-center>
+              <SvgIcon v-if="props.item.meta?.icon" :name="props.item.meta.icon" :size="20" class="menu-item-container-icon transition-transform group-hover:scale-110" async />
+            </div>
+            <div
               v-if="!(rootMenu.isMenuPopup && level === 0 && !rootMenu.props.showCollapseName)" class="w-0 flex-1 truncate text-sm transition-height transition-opacity transition-width"
               :class="{
                 'opacity-0 w-0 h-0': rootMenu.isMenuPopup && level === 0 && !rootMenu.props.showCollapseName,
@@ -78,7 +87,7 @@ defineExpose({
               }"
             >
               {{ typeof item.meta?.title === 'function' ? item.meta?.title() : item.meta?.title }}
-            </span>
+            </div>
           </div>
           <i
             v-if="subMenu && !(rootMenu.isMenuPopup && level === 0)" class="relative ml-1 w-[10px] after:(absolute h-[1px] w-[8px] bg-current transition-transform-200 content-empty -translate-y-[1px]) before:(absolute h-[1px] w-[8px] bg-current transition-transform-200 content-empty -translate-y-[1px])" :class="[

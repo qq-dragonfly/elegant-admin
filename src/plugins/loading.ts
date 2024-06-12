@@ -170,7 +170,6 @@ export function setupLoading() {
       <div class="loading-wrap">
         <span class="dot dot-spin"><i></i><i></i><i></i><i></i></span>
       </div>
-      <div class="loading-text">页面初始化中，请稍候...</div>
     </div>
   </div>
 `

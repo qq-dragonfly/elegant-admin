@@ -26,8 +26,8 @@ function open(url: string) {
         访问 xgplayer
       </ElButton>
     </PageHeader>
-    <PageMain>
+    <div class="ml-8px w-600px flex items-center justify-center overflow-hidden rounded-6px">
       <VideoPlayer :src="itemVideoUrl" :options="videoOptions" />
-    </PageMain>
+    </div>
   </div>
 </template>

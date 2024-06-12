@@ -54,5 +54,5 @@
     "src/**/*.tsx",
     "src/**/*.vue"
   ],
-  "exclude": ["dist", "node_modules", "**/*.js"]// 排除src目录下的lib文件夹下的文件不会编译
+  "exclude": ["dist", "node_modules", "**/*.js", "packages"]// 排除src目录下的lib文件夹下的文件不会编译
 }

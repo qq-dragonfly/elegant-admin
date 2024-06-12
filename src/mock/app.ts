@@ -16,109 +16,6 @@ export default defineFakeRoute([
             },
             children: [
               {
-                path: '/link',
-                component: 'Layout',
-                redirect: '/link/github',
-                name: 'externalLinkDemo',
-                meta: {
-                  title: '文档',
-                  icon: 'ri:external-link-fill',
-                },
-                children: [
-                  {
-                    path: 'pro-docs',
-                    component: 'LinkLayout',
-                    name: 'iframeProDocs',
-                    meta: {
-                      title: '项目文档',
-                      iframe: 'https://zhangyao1990.github.io/elegant-admin-docs',
-                    },
-                  }, {
-                    path: 'vue-docs',
-                    component: 'LinkLayout',
-                    name: 'iframeVue3Docs',
-                    meta: {
-                      title: 'vue3文档',
-                      iframe: 'https://cn.vuejs.org',
-                    },
-                  }, {
-                    path: 'vue-router-docs',
-                    component: 'LinkLayout',
-                    name: 'iframeVueRouterDocs',
-                    meta: {
-                      title: 'vue-router文档',
-                      iframe: 'https://router.vuejs.org/zh/',
-                    },
-                  },
-                  {
-                    path: 'element-plus',
-                    component: 'LinkLayout',
-                    name: 'iframeElementPlusDocs',
-                    meta: {
-                      title: 'ElementPlus文档',
-                      iframe: 'https://element-plus.org/zh-CN/',
-                    },
-                  },
-                  {
-                    path: 'vite-docs',
-                    component: 'LinkLayout',
-                    name: 'iframeViteDocs',
-                    meta: {
-                      title: 'Vite文档',
-                      iframe: 'https://cn.vitejs.dev/',
-                    },
-                  }, {
-                    path: 'pinia-docs',
-                    component: 'LinkLayout',
-                    name: 'iframePiniaDocs',
-                    meta: {
-                      title: 'Pinia文档',
-                      iframe: 'https://pinia.vuejs.org/zh/index.html',
-                    },
-                  }, {
-                    path: 'unocss-docs',
-                    component: 'LinkLayout',
-                    name: 'iframeUnocssDocs',
-                    meta: {
-                      title: 'UnoCSS文档',
-                      iframe: 'https://unocss.dev',
-                    },
-                  },
-                  {
-                    path: 'github',
-                    component: 'LinkLayout',
-                    name: 'iframeGithub',
-                    meta: {
-                      title: 'Github 仓库',
-                      link: 'https://github.com/zhangyao1990/elegant-admin',
-                    },
-                  },
-                ],
-              },
-              {
-                path: '/data_screen_demo',
-                redirect: '/data_screen_demo/index',
-                name: 'DataScreenDemo',
-                meta: {
-                  title: '数据大屏',
-                  icon: 'ri:database-2-line',
-                },
-                children: [
-                  {
-                    path: 'index',
-                    name: 'DataScreenDemoIndex',
-                    component: 'data_screen_demo/index.vue',
-                    meta: {
-                      title: '数据大屏',
-                      menu: false,
-                      breadcrumb: false,
-                      isFull: true,
-                      activeMenu: '/data_screen_demo',
-                    },
-                  },
-                ],
-              },
-              {
                 path: '/breadcrumb_demo',
                 component: 'Layout',
                 redirect: '/breadcrumb_demo/list1',
@@ -483,6 +380,156 @@ export default defineFakeRoute([
                   },
                 ],
               },
+              {
+                path: '/link',
+                component: 'Layout',
+                redirect: '/link/github',
+                name: 'externalLinkDemo',
+                meta: {
+                  title: '文档',
+                  icon: 'ri:external-link-fill',
+                },
+                children: [
+                  {
+                    path: 'pro-docs',
+                    component: 'LinkLayout',
+                    name: 'iframeProDocs',
+                    meta: {
+                      title: '项目文档',
+                      iframe: 'https://zhangyao1990.github.io/elegant-admin-docs',
+                    },
+                  }, {
+                    path: 'vue-docs',
+                    component: 'LinkLayout',
+                    name: 'iframeVue3Docs',
+                    meta: {
+                      title: 'vue3文档',
+                      iframe: 'https://cn.vuejs.org',
+                    },
+                  }, {
+                    path: 'vue-router-docs',
+                    component: 'LinkLayout',
+                    name: 'iframeVueRouterDocs',
+                    meta: {
+                      title: 'vue-router文档',
+                      iframe: 'https://router.vuejs.org/zh/',
+                    },
+                  },
+                  {
+                    path: 'element-plus',
+                    component: 'LinkLayout',
+                    name: 'iframeElementPlusDocs',
+                    meta: {
+                      title: 'ElementPlus文档',
+                      iframe: 'https://element-plus.org/zh-CN/',
+                    },
+                  },
+                  {
+                    path: 'vite-docs',
+                    component: 'LinkLayout',
+                    name: 'iframeViteDocs',
+                    meta: {
+                      title: 'Vite文档',
+                      iframe: 'https://cn.vitejs.dev/',
+                    },
+                  }, {
+                    path: 'pinia-docs',
+                    component: 'LinkLayout',
+                    name: 'iframePiniaDocs',
+                    meta: {
+                      title: 'Pinia文档',
+                      iframe: 'https://pinia.vuejs.org/zh/index.html',
+                    },
+                  }, {
+                    path: 'unocss-docs',
+                    component: 'LinkLayout',
+                    name: 'iframeUnocssDocs',
+                    meta: {
+                      title: 'UnoCSS文档',
+                      iframe: 'https://unocss.dev',
+                    },
+                  },
+                  {
+                    path: 'github',
+                    component: 'LinkLayout',
+                    name: 'iframeGithub',
+                    meta: {
+                      title: 'Github 仓库',
+                      link: 'https://github.com/zhangyao1990/elegant-admin',
+                    },
+                  },
+                ],
+              },
+              {
+                path: '/data_screen_demo',
+                redirect: '/data_screen_demo/index',
+                name: 'DataScreenDemo',
+                meta: {
+                  title: '数据大屏',
+                  icon: 'ri:database-2-line',
+                },
+                children: [
+                  {
+                    path: 'index',
+                    name: 'DataScreenDemoIndex',
+                    component: 'data_screen_demo/index.vue',
+                    meta: {
+                      title: '数据大屏',
+                      menu: false,
+                      breadcrumb: false,
+                      isFull: true,
+                      activeMenu: '/data_screen_demo',
+                    },
+                  },
+                ],
+              },
+              {
+                path: '/form_design_demo',
+                name: 'FormDesignDemo',
+                redirect: '/form_design_demo/index',
+                meta: {
+                  title: '表单设计',
+                  icon: 'mdi:format-float-left',
+                },
+                children: [
+                  {
+                    path: 'index',
+                    name: 'FormDesignDemoIndex',
+                    component: 'form_design_demo/index.vue',
+                    meta: {
+                      title: '表单设计',
+                      menu: false,
+                      breadcrumb: false,
+                      isFull: true,
+                      activeMenu: '/form_design_demo',
+                    },
+                  },
+                ],
+              },
+              {
+                path: '/flow_design_demo',
+                redirect: '/flow_design_demo/index',
+                name: 'FlowDesignDemo',
+                meta: {
+                  title: '流程设计',
+                  icon: 'ri:organization-chart',
+                },
+                children: [
+                  {
+                    path: 'index',
+                    name: 'FlowDesignDemoIndex',
+                    component: 'flow_design_demo/index.vue',
+                    meta: {
+                      title: '流程设计',
+                      menu: false,
+                      breadcrumb: false,
+                      isFull: true,
+                      activeMenu: '/flow_design_demo',
+                    },
+                  },
+                ],
+              },
+
               {
                 path: '/mock_demo',
                 component: 'Layout',

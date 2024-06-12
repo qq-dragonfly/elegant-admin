@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { ArrowDown, ArrowUp, Delete, Search } from '@element-plus/icons-vue'
+import { ArrowDown, ArrowUp, Refresh, Search } from '@element-plus/icons-vue'
 import SearchFormItem from './components/SearchFormItem.vue'
 import type { ColumnProps } from '@/components/ProTable/interface'
 import type { BreakPoint } from '@/components/Grid/interface'
@@ -91,7 +91,7 @@ const showCollapse = computed(() => {
             <el-button type="primary" :icon="Search" @click="search">
               搜索
             </el-button>
-            <el-button :icon="Delete" @click="reset">
+            <el-button :icon="Refresh" @click="reset">
               重置
             </el-button>
             <el-button v-if="showCollapse && columns.length >= showCollapseNum" type="primary" link class="search-isOpen" @click="collapsed = !collapsed">

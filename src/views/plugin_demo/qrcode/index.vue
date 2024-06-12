@@ -1,3 +1,10 @@
+<!--
+ * @Description:
+ * @Author: zhangyao
+ * @Date: 2024-05-23 15:30:15
+ * @LastEditTime: 2024-06-09 23:25:50
+ * @LastEditors: zhangyao
+-->
 <script setup lang="ts">
 import QRCode from 'qrcode'
 import Alert from '../modules/alert.vue'
@@ -63,28 +70,30 @@ function open(url: string) {
         访问 node-qrcode
       </ElButton>
     </PageHeader>
-    <ElRow :gutter="20" style="margin: 0 10px;">
-      <ElCol :sm="6">
-        <PageMain title="渲染成 img 标签" style="margin: 0;">
-          <img :src="url1">
-        </PageMain>
-      </ElCol>
-      <ElCol :sm="6">
-        <PageMain title="渲染成 canvas 标签" style="margin: 0;">
-          <canvas ref="canvasRef" />
-        </PageMain>
-      </ElCol>
-      <ElCol :sm="6">
-        <PageMain title="自定义颜色" style="margin: 0;">
-          <img :src="url2">
-        </PageMain>
-      </ElCol>
-      <ElCol :sm="6">
-        <PageMain title="指定宽度" style="margin: 0;">
-          <img :src="url3">
-        </PageMain>
-      </ElCol>
-    </ElRow>
+    <div class="mx-8px">
+      <Grid :collapsed="false" :gap="[10, 10]" :cols="{ xs: 1, sm: 1, md: 4, lg: 4, xl: 4 }">
+        <GridItem :span="1">
+          <PageMain title="渲染成 img 标签" style="margin: 0;">
+            <img :src="url1">
+          </PageMain>
+        </GridItem>
+        <GridItem :span="1">
+          <PageMain title="渲染成 canvas 标签" style="margin: 0;">
+            <canvas ref="canvasRef" />
+          </PageMain>
+        </GridItem>
+        <GridItem :span="1">
+          <PageMain title="自定义颜色" style="margin: 0;">
+            <img :src="url2">
+          </PageMain>
+        </GridItem>
+        <GridItem :span="1">
+          <PageMain title="指定宽度" style="margin: 0;" class="h-full">
+            <img :src="url3">
+          </PageMain>
+        </GridItem>
+      </Grid>
+    </div>
   </div>
 </template>
 

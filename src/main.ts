@@ -1,4 +1,11 @@
 /*
+ * @Description:
+ * @Author: zhangyao
+ * @Date: 2024-03-01 09:03:25
+ * @LastEditTime: 2024-06-03 22:51:34
+ * @LastEditors: zhangyao
+ */
+/*
  *                        _oo0oo_
  *                       o8888888o
  *                       88" . "88
@@ -75,7 +82,9 @@ import I18n from '@/locales/index'
 
 async function setupApp() {
   setupLoading()
+
   const app = createApp(App)
+  // 注册Element UI
   app.config.errorHandler = errorHandler
 
   app.use(FloatingVue, {
@@ -92,6 +101,7 @@ async function setupApp() {
       downloadAndInstall(info)
     }
   }
+
   app.mount('#app')
 }
 setupApp()

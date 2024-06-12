@@ -1,3 +1,10 @@
+/*
+ * @Description:
+ * @Author: zhangyao
+ * @Date: 2024-03-01 09:03:25
+ * @LastEditTime: 2024-06-04 15:42:44
+ * @LastEditors: zhangyao
+ */
 import { defineFakeRoute } from 'vite-plugin-fake-server/client'
 import Mock from 'mockjs'
 
@@ -25,7 +32,7 @@ export default defineFakeRoute([
         data: Mock.mock({
           account: body.account || 'admin',
           token: `${body.account}_@string`,
-          avatar: 'https://isdm-public.oss-cn-hangzhou.aliyuncs.com/image/avatar.gif',
+          avatar: 'https://isdm-public.oss-cn-hangzhou.aliyuncs.com/doctor/ele-avatar.png',
         }),
       }
     },
