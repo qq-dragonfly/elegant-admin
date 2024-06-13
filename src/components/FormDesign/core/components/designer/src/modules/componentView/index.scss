@@ -5,7 +5,7 @@
     cursor: pointer;
     padding: 8px 8px;
     border-radius: 4px;
-    background-color: var(--g-ui-primary-light-9);
+    background-color: var(--elegant-primary-hover-color);
     .iconfont {
       color: var(--elegant-primary-color);
       margin-right: 5px;
@@ -13,7 +13,7 @@
 
     &:hover {
       color: var(--elegant-primary-color);
-      background-color: var(--g-ui-primary-light-8);
+      background-color: var(--elegant-primary-hover-color);
     }
   }
 

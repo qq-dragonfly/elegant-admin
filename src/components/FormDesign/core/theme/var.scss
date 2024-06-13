@@ -1,8 +1,5 @@
 :root {
   // Light theme
-  --g-ui-primary: var(--g-ui-primary);
-
-
   --g-ui-primary: var(--el-color-primary);
   --g-ui-primary-light-1: var(--el-color-primary-light-1);
   --g-ui-primary-light-2: var(--el-color-primary-light-2);
@@ -36,7 +33,7 @@
   --ui-text-lg: 16px;
 
   // Dark theme
-  --ui-dark-primary-color: #3e8bf2;
+  --ui-dark-primary-color: var(--g-ui-primary);
   --ui-dark-designer-color: #18181c;
   --ui-dark-designer-dot-color: #86909c;
   --ui-dark-edit-range-color: #232324;
@@ -57,8 +54,7 @@
   // 主色
   --elegant-primary-color: var(--g-ui-primary);
   // hover颜色
-  --elegant-primary-hover-color: mix(var(--g-ui-primary),var(--g-ui-primary),8%);
-  ;
+  --elegant-primary-hover-color: var(--g-ui-primary-light-9);
 
   // 设计器背景色
   --elegant-designer-color: var(--ui-designer-color);
@@ -126,7 +122,7 @@
   // 主色
   --elegant-primary-color: var(--ui-dark-primary-color);
 
-  --elegant-primary-hover-color: rgba(var(--ui-dark-primary-color), 8%);
+  --elegant-primary-hover-color: var(--ui-shadow-color);
 
   // 设计器背景色
   --elegant-designer-color: var(--ui-dark-designer-color);

@@ -144,7 +144,7 @@ async function setDisableHover(disableHover = false) {
 
 /**
  * 接受一个PageSchema对象作为参数。根据传入的schemas和script属性，更新页面对应的数据
- * @param pageSchema
+ * @param schema
  */
 function setData(schema: PageSchema) {
   // 调用 deepCompareAndModify 函数比较 pageSchema 和传入的 schema，进行修改
