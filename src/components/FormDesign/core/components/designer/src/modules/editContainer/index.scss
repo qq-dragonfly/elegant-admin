@@ -1,0 +1,130 @@
+// 编辑画布
+.elegant-edit-canvas {
+  flex: 1;
+  background-image: linear-gradient(var(--elegant-designer-color) 14px, transparent 0),
+    linear-gradient(90deg, transparent 14px, var(--elegant-designer-dot-color) 0);
+  background-size: 15px 15px;
+  overflow: hidden;
+
+  .elegant-edit-range {
+    overflow-y: auto;
+    box-shadow:
+      rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+      rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+    cursor: pointer;
+    background-color: var(--elegant-edit-range-color);
+
+    .elegant-draggable-range {
+      min-height: 60px;
+      height: 100%;
+      border: 1px var(--elegant-border-color) dashed;
+      width: 100%;
+    }
+
+    > div > .elegant-draggable-range {
+      border: transparent;
+
+      // 屏蔽antd element-plus label点击事件
+      .ant-form-item-label > label,
+      .el-form-item > .el-form-item__label {
+        pointer-events: none;
+      }
+    }
+
+    .root-node > .form-main > form > .elegant-draggable-range {
+      border: transparent;
+    }
+  }
+
+  .elegant-hover-widget {
+    border: 1px var(--elegant-primary-color) dashed;
+    box-sizing: border-box;
+  }
+
+  .elegant-checked-widget {
+    border: 1px var(--elegant-primary-color) dashed;
+    background: var(--elegant-widget-shade-color);
+
+    &::before {
+      content: "";
+      height: 5px;
+      background: var(--elegant-primary-color);
+      position: absolute;
+      left: 0;
+      width: 100%;
+    }
+
+    &.top,
+    &.center {
+      &::before {
+        top: -5px;
+      }
+    }
+
+    &.bottom {
+      &::before {
+        bottom: -5px;
+      }
+    }
+
+    .elegant-widget-action-box {
+      position: absolute;
+      z-index: 999;
+      height: 30px;
+      background: var(--elegant-primary-color);
+      border-radius: 4px 4px 0px 0px;
+      display: flex;
+      padding: 0 4px;
+
+      .elegant-widget-action-item {
+        height: 30px;
+        line-height: 25px;
+        padding: 0 4px;
+        cursor: pointer;
+        color: white;
+      }
+    }
+
+    .form-main {
+      padding: 6px;
+      border: 1px solid #f0f0f0;
+    }
+  }
+
+  // 隐藏设计区域滚动条
+  .elegant-edit-screen-container {
+    &::-webkit-scrollbar {
+      // display: none;
+      width: 6px;
+      height: 6px;
+    }
+  }
+
+  .elegant-edit-toolbar {
+    height: 40px;
+    background: var(--elegant-view-color);
+    box-sizing: border-box;
+    border-bottom: 1px solid var(--elegant-border-color);
+    .elegant-action-item, 
+    .elegant-device-item  {
+      border-radius: 4px;
+    }
+    .elegant-action-item.disabled {
+      color: var(--elegant-text-disabled);
+      cursor: no-drop;
+    }
+
+    .elegant-device-item.checked {
+      color: var(--elegant-primary-color);
+    }
+
+    .elegant-device-item:hover,
+    .elegant-action-item:hover {
+      background: var(--g-ui-primary-light-9);
+    }
+  }
+
+  .widget-box {
+    cursor: move;
+  }
+}

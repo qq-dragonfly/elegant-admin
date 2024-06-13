@@ -1,0 +1,79 @@
+// 活动视图切换器
+.elegant-action-bar {
+  width: 56px;
+  background-color: var(--elegant-action-bar-color);
+  border-right: 1px solid var(--elegant-border-color);
+  border-left: 1px solid var(--elegant-border-color);
+
+  .elegant-action-item {
+    text-align: center;
+    height: 72px;
+    position: relative;
+    cursor: pointer;
+    color: var(--elegant-text-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: all .3s;
+
+    > span {
+      font-size: 20px;
+    }
+
+    &:hover {
+      color: var(--elegant-primary-color);
+    }
+
+    &::before {
+      content: "";
+      height: 80%;
+      width: 80%;
+      border-radius: 6px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: var(--elegant-primary-hover-color);
+      opacity: 0;
+      transition: all .3s;
+    }
+
+    &.checked {
+      color: var(--elegant-primary-color);
+      // &::after {
+      //   content: "";
+      //   height: 100%;
+      //   width: 2px;
+      //   background-color: var(--elegant-primary-color);
+      //   position: absolute;
+      //   top: 0;
+      //   left: 0;
+      // }
+
+      &::before {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+// 左侧栏
+.elegant-left-sidebar {
+  width: 320px;
+  background-color: var(--elegant-view-color);
+  overflow-x: hidden;
+  overflow-y: auto;
+  transition: width 0.3s;
+  border-right: 1px solid var(--elegant-border-color);
+
+  .elegant-sidebar-container {
+    min-width: 280px;
+    height: 100%;
+  }
+
+  &.hide {
+    width: 0;
+    border: 0;
+  }
+}

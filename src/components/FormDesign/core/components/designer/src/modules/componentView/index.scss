@@ -1,0 +1,43 @@
+// 组件选择面板
+.elegant-component-view {
+  height: 100%;
+  .elegant-componet-item {
+    cursor: pointer;
+    padding: 8px 8px;
+    border-radius: 4px;
+    background-color: var(--g-ui-primary-light-9);
+    .iconfont {
+      color: var(--elegant-primary-color);
+      margin-right: 5px;
+    }
+
+    &:hover {
+      color: var(--elegant-primary-color);
+      background-color: var(--g-ui-primary-light-8);
+    }
+  }
+
+  .elegant-tabs-box {
+    width: 62px;
+    height: 100%;
+    background: var(--elegant-compoent-tabs-color);
+    padding: 12px 6px;
+    box-sizing: border-box;
+    .elegant-tab {
+      height: 28px;
+      line-height: 28px;
+      border-radius: 6px;
+      font-size: var(--elegant-text-sm);
+      font-weight: 500;
+      letter-spacing: 0em;
+      color: var(--elegant-text-main);
+      margin-bottom: 10px;
+      text-align: center;
+
+      &.checked {
+        color: var(--elegant-primary-color);
+        background-color: var(--elegant-primary-hover-color);
+      }
+    }
+  }
+}

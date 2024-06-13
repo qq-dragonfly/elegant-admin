@@ -1,0 +1,79 @@
+.elegant-designer-main {
+  .el-input {
+    width: 100% !important;
+  }
+
+  // 表单样式
+  .el-form--inline {
+    [name="elegant-draggable-range"] {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .el-form-item__content {
+      width: 175px;
+    }
+  }
+
+  // 折叠面板
+  .el-collapse {
+    border: 1px solid var(--elegant-border-color);
+    border-top: 0;
+
+    .el-collapse-item__header {
+      width: 100%;
+      height: 42px;
+      background: var(--elegant-compoent-tabs-color);
+      padding-left: 12px;
+      border: 1px solid var(--elegant-border-color);
+      border-left: 0;
+      border-right: 0;
+      border-bottom: 1px solid transparent;
+      &.is-active {
+        border-bottom: 1px solid var(--elegant-border-color);
+      }
+    }
+    .el-collapse-item:last-child .el-collapse-item__header {
+      border-bottom: 1px solid var(--elegant-border-color);
+    }
+    .el-collapse-item__content {
+      padding: 8px;
+    }
+  }
+}
+
+// 适配k-input-size样式
+.elegant-input-size {
+  > .el-input__wrapper {
+    padding-right: 1px;
+  }
+  .el-input__suffix {
+    div {
+      border-radius: 0;
+      border: 0;
+      border-left: 1;
+      position: relative;
+      line-height: auto;
+    }
+
+    .el-input__wrapper {
+      border: 0;
+    }
+
+    .el-select__wrapper {
+      height: 32px;
+      line-height: 30px;
+    }
+  }
+}
+
+.elegant-modal-el {
+  margin: 20px auto 0 !important;
+  height: calc(100vh - 50px);
+  // element plus弹出框样式适配
+  .el-dialog__body {
+    padding: 0;
+    height: calc(100% - 76px) !important;
+    overflow: auto;
+  }
+}
