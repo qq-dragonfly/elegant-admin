@@ -254,10 +254,7 @@ const pageSchema = {
     },
   ],
   script: '',
-  canvas: {
-    width: '420px',
-    mode: 'mobile',
-  },
+  canvas: { },
 }
 
 onMounted(() => {
