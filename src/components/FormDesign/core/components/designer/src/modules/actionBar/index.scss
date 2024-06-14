@@ -37,6 +37,7 @@
       background-color: var(--elegant-primary-hover-color);
       opacity: 0;
       transition: all .3s;
+      z-index: 0;
     }
 
     &.checked {
@@ -52,7 +53,7 @@
       // }
 
       &::before {
-        opacity: 1;
+        opacity: 0;
       }
     }
   }

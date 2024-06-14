@@ -259,13 +259,59 @@ async function initComponent() {
  * @param v value值
  */
 function handleUpdate(v: any) {
+  handleVisibleChange(v)
   emit('update:modelValue', v)
-  emit('change', v)
+  emit('change', v, innerSchema)
   if (innerSchema.field) {
     formData[innerSchema.field!] = v
   }
 }
+/**
+ * 通过选项值控制组件显示
+ * @param v value值
+ */
+const links = ref<any>([])
+const optionsVal = ref<any>('')
+function handleVisibleChange(v: any) {
+  console.log('innerSchema.field', innerSchema)
 
+  if (['select', 'checkbox', 'radio', 'cascader'].includes(innerSchema.type)) {
+    if (optionsVal.value !== v) {
+      if (links.value && links.value.length) {
+        links.value.forEach((item: any) => {
+          hideComponentById(item)
+        })
+      }
+    }
+
+    let componentPropsOptions = innerSchema.componentProps?.options?.find((item: any) => item.value === v)
+    if (componentPropsOptions?.links && componentPropsOptions?.links?.length) {
+      optionsVal.value = v
+      links.value = componentPropsOptions.links || []
+      componentPropsOptions.links.forEach((item: any) => {
+        showComponentById(item)
+      })
+    }
+  }
+}
+function showComponentById(componentId: string) {
+  const componentInstance: any = pageManager.getComponentInstance(componentId)
+  if (componentInstance) {
+    componentInstance.setAttr('hidden', false)
+  }
+  else {
+    console.warn(`Component with ID ${componentId} not found.`)
+  }
+}
+function hideComponentById(componentId: string) {
+  const componentInstance: any = pageManager.getComponentInstance(componentId)
+  if (componentInstance) {
+    componentInstance.setAttr('hidden', true)
+  }
+  else {
+    console.warn(`Component with ID ${componentId} not found.`)
+  }
+}
 let oldData: string | null = null
 // 需要监听值变化，重新渲染组件
 watch(() => innerSchema, (newVal) => {

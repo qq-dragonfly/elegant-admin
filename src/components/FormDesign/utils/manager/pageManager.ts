@@ -44,7 +44,6 @@ export function usePageManager(): PageManager {
    * 添加组件实例
    * @param id
    * @param instance
-   * @returns
    */
   function addComponentInstance(id: string, instance: ComponentPublicInstance) {
     componentInstances.value[id] = instance
@@ -52,7 +51,6 @@ export function usePageManager(): PageManager {
   /**
    * 移除组件实例
    * @param id
-   * @returns
    */
   function removeComponentInstance(id: string): void {
     delete componentInstances.value[id]

@@ -1,4 +1,5 @@
 import type { ComponentConfigModel } from '../../../utils'
+import { getUUID } from '../../../utils'
 
 export default {
   component: () => import('./radio'),
@@ -13,11 +14,7 @@ export default {
       options: [
         {
           label: '选项1',
-          value: '选项1',
-        },
-        {
-          label: '选项2',
-          value: '选项2',
+          value: `option_${getUUID(8)}`,
         },
       ],
       size: 'default',
@@ -103,6 +100,11 @@ export default {
         type: 'EOptionsEditor',
         layout: 'vertical',
         field: 'componentProps.options',
+      },
+      {
+        label: '逻辑设置',
+        type: 'EOptionCorrelation',
+        field: 'componentProps.links',
       },
       {
         label: '表单校验',

@@ -2,13 +2,13 @@
  * @Description:
  * @Author: zhangyao
  * @Date: 2024-06-11 16:37:22
- * @LastEditTime: 2024-06-13 08:46:09
+ * @LastEditTime: 2024-06-13 19:56:51
  * @LastEditors: zhangyao
 -->
 <script lang="ts" setup>
 import { provide, reactive } from 'vue'
 import { useVModel } from '@vueuse/core'
-import { pluginManager } from '../../../utils'
+import { getUUID, pluginManager } from '../../../utils'
 import EOptionItem from './components/EOptionItem.vue'
 
 const props = defineProps<{
@@ -22,6 +22,7 @@ const innerValue = useVModel(props, 'modelValue', emit)
 interface Option {
   label: string
   value: string
+  links: string[]
   children?: Option[]
 }
 
@@ -33,7 +34,8 @@ provide('tree', props.tree)
 function handleAdd() {
   const option: Option = reactive({
     label: '',
-    value: '',
+    value: `option_${getUUID(8)}`,
+    links: [],
   })
   innerValue.value = [...innerValue.value, option]
 }

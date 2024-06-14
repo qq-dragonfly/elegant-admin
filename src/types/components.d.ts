@@ -28,6 +28,7 @@ declare module 'vue' {
     EditScreenContainer: typeof import('./../components/FormDesign/core/components/designer/src/modules/editContainer/editScreenContainer.vue')['default']
     EInputSize: typeof import('./../components/FormDesign/core/extensions/EInputSize/index.vue')['default']
     EOptionCorrelation: typeof import('./../components/FormDesign/core/extensions/EOptionCorrelation/index.vue')['default']
+    EOptionCorrelationModal: typeof import('./../components/FormDesign/core/extensions/EOptionCorrelation/src/EOptionCorrelationModal.vue')['default']
     EOptionItem: typeof import('./../components/FormDesign/core/extensions/EOptionsEditor/components/EOptionItem.vue')['default']
     EOptionsEditor: typeof import('./../components/FormDesign/core/extensions/EOptionsEditor/index.vue')['default']
     ERuleEditor: typeof import('./../components/FormDesign/core/extensions/ERuleEditor/index.vue')['default']

@@ -101,7 +101,6 @@ export function useElementZoom(draggableElRef: Ref<HTMLDivElement | null>) {
   /**
    * 缩放操作
    * @param e
-   * @returns
    */
   function handleZoom(event: WheelEvent) {
     if (!pressCtrl.value || disabledZoom.value) {

@@ -22,16 +22,7 @@ const props = withDefaults(defineProps<DesignerProps>(), {
         },
       },
     }],
-    script: `const { defineExpose, find } = elegant;
-
-function test (){
-    console.log('test')
-}
-
-// 通过defineExpose暴露的函数或者属性
-defineExpose({
- test
-})`,
+    script: '',
   }),
 })
 const emits = defineEmits(['ready', 'save', 'reset', 'toggleDeviceMode'])

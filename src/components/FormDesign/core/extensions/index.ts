@@ -2,7 +2,7 @@
  * @Description:
  * @Author: zhangyao
  * @Date: 2024-06-11 16:37:22
- * @LastEditTime: 2024-06-13 08:48:24
+ * @LastEditTime: 2024-06-14 17:44:51
  * @LastEditors: zhangyao
  */
 import type { PluginManager } from '../../utils'
@@ -64,14 +64,14 @@ export function setupComponent(pluginManager: PluginManager): void {
         '../components/designer/src/modules/attributeView/styleView.vue'
       ),
   })
-  pluginManager.registerRightSidebar({
-    id: 'event_view',
-    title: '事件',
-    component: async () =>
-      await import(
-        '../components/designer/src/modules/attributeView/eventView.vue'
-      ),
-  })
+  // pluginManager.registerRightSidebar({
+  //   id: 'event_view',
+  //   title: '事件',
+  //   component: async () =>
+  //     await import(
+  //       '../components/designer/src/modules/attributeView/eventView.vue'
+  //     ),
+  // })
 
   const componentArray = [MonacoEditor, Page]
 

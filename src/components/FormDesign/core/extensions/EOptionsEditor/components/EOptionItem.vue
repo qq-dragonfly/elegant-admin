@@ -2,19 +2,20 @@
  * @Description:
  * @Author: zhangyao
  * @Date: 2024-06-11 16:37:22
- * @LastEditTime: 2024-06-13 08:55:29
+ * @LastEditTime: 2024-06-13 19:56:40
  * @LastEditors: zhangyao
 -->
 <script lang="ts" setup>
 import draggable from 'vuedraggable'
 import { inject } from 'vue'
 import { useVModel } from '@vueuse/core'
-import { pluginManager } from '../../../../utils'
+import { getUUID, pluginManager } from '../../../../utils'
 import EIcon from '../../../components/icon'
 
 interface Option {
   label: string
   value: string
+  links: string[]
   children?: Option[]
 }
 
@@ -36,7 +37,8 @@ const innerValue = useVModel(props, 'modelValue', emit)
 function handleAddChildren(option: Option) {
   const childrenOption: Option = {
     label: '',
-    value: '',
+    value: `option_${getUUID(8)}`,
+    links: [],
   }
 
   if (option.children) {
@@ -70,7 +72,7 @@ function handleRemove(index: number) {
         >
           <EIcon class="handle mr-2 cursor-move text-lg" name="icon-tuozhuai" />
           <Input v-model="option.label" v-model:value="option.label" placeholder="label" />
-          <Input v-model="option.value" v-model:value="option.value" placeholder="value" />
+          <!-- <Input v-model="option.value" v-model:value="option.value" placeholder="value" /> -->
           <EIcon v-if="tree" class="text-lg" name="icon-tianjia1" @click="handleAddChildren(option)" />
           <EIcon class="cursor-pointer text-lg hover:text-red" name="icon-shanchu1" @click="handleRemove(index)" />
         </div>

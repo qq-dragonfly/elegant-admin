@@ -2,7 +2,7 @@
  * @Description:
  * @Author: zhangyao
  * @Date: 2024-06-11 16:37:22
- * @LastEditTime: 2024-06-12 13:34:13
+ * @LastEditTime: 2024-06-14 17:00:44
  * @LastEditors: zhangyao
 -->
 <script lang="ts" setup>
@@ -95,7 +95,7 @@ defineExpose({
 </script>
 
 <template>
-  <div v-if="visible" class="form-main" style="height: 100%;">
+  <div v-if="visible" class="form-main wh-full! box-border h-full" style="height: 100%;">
     <ElForm ref="form" :model="formData" v-bind="componentProps" style="height: 100%;">
       <slot name="edit-node">
         <slot v-for="item in children" name="node" :component-schema="item" />

@@ -1,4 +1,5 @@
 import type { ComponentConfigModel } from '../../../utils'
+import { getUUID } from '../../../utils'
 
 export default {
   component: async () => (await import('element-plus')).ElCascader,
@@ -13,11 +14,7 @@ export default {
       options: [
         {
           label: '选项1',
-          value: '选项1',
-        },
-        {
-          label: '选项2',
-          value: '选项2',
+          value: `option_${getUUID(8)}`,
         },
       ],
       placeholder: '请选择',
@@ -155,6 +152,11 @@ export default {
           tree: true,
         },
         describe: '配置选项',
+      },
+      {
+        label: '逻辑设置',
+        type: 'EOptionCorrelation',
+        field: 'componentProps.links',
       },
       {
         label: '表单校验',

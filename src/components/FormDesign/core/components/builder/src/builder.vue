@@ -190,7 +190,6 @@ function handleReady() {
     proxy && pageManager.addComponentInstance('builder', proxy)
   })
 }
-
 defineExpose({
   ready,
   getData,

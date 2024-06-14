@@ -591,6 +591,7 @@ export function recursionConvertedNode(
     // 输入组件
     const inputTypes = [
       'input',
+      'text',
       'textarea',
       'number',
       'password',
@@ -632,4 +633,27 @@ export function recursionConvertedNode(
 
     return newItem
   })
+}
+/**
+ * @description 将树形结构转为平级
+ * @return any
+ * @param tree
+ * @param childName
+ */
+export function convertTreeToArr(tree: any, childName = 'children') {
+  // 设置临时数组，用来存放队列
+  let queen: any = []
+  // 设置输出数组，用来存放要输出的一维数组
+  const result: any = []
+  queen = queen.concat(tree)
+  // 对树对象进行广度优先的遍历
+  while (queen.length) {
+    const first: any = queen.shift()
+    if (first[childName]) {
+      queen = queen.concat(first[childName])
+      delete first[childName]
+    }
+    result.push(first)
+  }
+  return result
 }
