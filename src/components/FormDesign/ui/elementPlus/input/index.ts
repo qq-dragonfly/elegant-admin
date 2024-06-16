@@ -19,45 +19,33 @@ export default {
         label: '字段名',
         type: 'input',
         field: 'field',
+        componentProps: {
+          clearable: true,
+        },
       },
       {
         label: '标题',
         type: 'input',
         field: 'label',
+        componentProps: {
+          clearable: true,
+        },
       },
       {
         label: '默认值',
         type: 'input',
         field: 'componentProps.defaultValue',
+        componentProps: {
+          clearable: true,
+        },
       },
       {
         label: '占位内容',
         type: 'input',
         field: 'componentProps.placeholder',
-      },
-      {
-        label: '尺寸',
-        type: 'select',
-        defaultValue: 'default',
         componentProps: {
-          placeholder: '请选择',
           clearable: true,
-          options: [
-            {
-              label: 'large',
-              value: 'large',
-            },
-            {
-              label: 'default',
-              value: 'default',
-            },
-            {
-              label: 'small',
-              value: 'small',
-            },
-          ],
         },
-        field: 'componentProps.size',
       },
       {
         label: '最大输入长度',
@@ -65,6 +53,7 @@ export default {
         field: 'componentProps.maxlength',
         componentProps: {
           placeholder: '请输入',
+          controlsPosition: 'right',
           min: 0,
         },
       },

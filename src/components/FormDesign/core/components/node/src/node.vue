@@ -139,8 +139,7 @@ const getComponentProps = computed(() => {
   innerSchema.on && Object.keys(innerSchema.on).forEach((item) => {
     onEvent[`on${capitalizeFirstLetter(item)}`] = (...args: any) => pageManager.doActions(innerSchema.on[item], ...args)
   })
-
-  return {
+  const componentPropsObj = {
     ...props,
     ...innerSchema.componentProps,
     disabled: disabled?.value || innerSchema.componentProps?.disabled,
@@ -148,6 +147,7 @@ const getComponentProps = computed(() => {
     [`onUpdate:${bindModel}`]: handleUpdate,
     ...onEvent,
   }
+  return componentPropsObj
 })
 
 // 计算绑定值
@@ -334,7 +334,7 @@ onUnmounted(handleVnodeUnmounted)
 <template>
   <FormItem
     v-if="innerSchema.noFormItem !== true && getComponentConfing?.defaultSchema.input && component && show"
-    ref="formItemRef" v-bind="getFormItemProps"
+    ref="formItemRef" v-bind=" { ...getFormItemProps }"
   >
     <component
       :is="component" ref="componentInstance" v-bind="{ ...getComponentProps, ...dataSource, [getComponentProps.bindModel]: getBindValue() }"

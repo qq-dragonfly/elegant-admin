@@ -2,7 +2,7 @@
  * @Description:
  * @Author: zhangyao
  * @Date: 2024-06-11 16:37:22
- * @LastEditTime: 2024-06-11 17:14:48
+ * @LastEditTime: 2024-06-16 18:09:02
  * @LastEditors: zhangyao
 -->
 <script lang="ts" setup>
@@ -44,7 +44,7 @@ function handleSelect(index: number) {
 
 function isDraggable(schema: ComponentSchema) {
   // 判断当前节点类型是否允许拖拽
-  if (schema.type === 'page' || pluginManager.getComponentConfingByType(schema.type).editConstraints?.immovable) {
+  if (schema.type === 'form' || pluginManager.getComponentConfingByType(schema.type).editConstraints?.immovable) {
     // 禁止拖拽
     return 'unmover-item'
   }
@@ -63,7 +63,7 @@ function isDraggable(schema: ComponentSchema) {
       group: 'tree-draggable',
       ghostClass: 'moveing',
       draggable: '.draggable-item',
-      disabled: !treeProps.draggable || modelSchemas[0]?.type === 'page',
+      disabled: !treeProps.draggable || modelSchemas[0]?.type === 'form',
 
     }" @start="handleSelect($event.oldIndex)"
   >

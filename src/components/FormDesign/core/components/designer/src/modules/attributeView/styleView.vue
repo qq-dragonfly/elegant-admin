@@ -24,9 +24,50 @@ const componentStyles: ComponentSchema[] = [
     field: 'componentProps.style.padding',
   },
   {
+    label: '上内边距',
+    type: 'EInputSize',
+    field: 'componentProps.style.paddingTop',
+  },
+  {
+    label: '下内边距',
+    type: 'EInputSize',
+    field: 'componentProps.style.paddingBottom',
+  },
+  {
+    label: '左内边距',
+    type: 'EInputSize',
+    field: 'componentProps.style.paddingLeft',
+  },
+  {
+    label: '右内边距',
+    type: 'EInputSize',
+    field: 'componentProps.style.paddingRight',
+  },
+
+  {
     label: '外边距',
     type: 'EInputSize',
     field: 'componentProps.style.margin',
+  },
+  {
+    label: '上外边距',
+    type: 'EInputSize',
+    field: 'componentProps.style.marginTop',
+  },
+  {
+    label: '下外边距',
+    type: 'EInputSize',
+    field: 'componentProps.style.marginBottom',
+  },
+  {
+    label: '左外边距',
+    type: 'EInputSize',
+    field: 'componentProps.style.marginLeft',
+  },
+  {
+    label: '右外边距',
+    type: 'EInputSize',
+    field: 'componentProps.style.marginRight',
   },
   {
     label: '背景色',

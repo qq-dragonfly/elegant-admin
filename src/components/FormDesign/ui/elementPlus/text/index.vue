@@ -2,12 +2,11 @@
  * @Description:
  * @Author: zhangyao
  * @Date: 2024-06-11 09:14:39
- * @LastEditTime: 2024-06-11 11:42:11
+ * @LastEditTime: 2024-06-16 18:47:06
  * @LastEditors: zhangyao
 -->
 <script setup lang="ts">
 import { ref, useAttrs } from 'vue'
-import { ElFormItem } from 'element-plus'
 
 const attrs = useAttrs() as any
 </script>

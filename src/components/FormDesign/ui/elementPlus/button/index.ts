@@ -2,7 +2,7 @@ import type { ComponentConfigModel } from '../../../utils'
 
 export default {
   component: () => import('./button'),
-  groupName: '表单',
+  groupName: '',
   icon: 'elegant-icon-button-remove',
   defaultSchema: {
     label: '按钮',

@@ -58,7 +58,7 @@ function setCheckedNode(event: Event) {
 }
 
 function setHoverNode(event: Event) {
-  if (props.schema.type === 'page') {
+  if (props.schema.type === 'form') {
     return
   }
   event.stopPropagation()

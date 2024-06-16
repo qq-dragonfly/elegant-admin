@@ -8,253 +8,244 @@ const designerRef = ref<InstanceType<typeof EDesigner>>()
 const pageSchema = {
   schemas: [
     {
-      type: 'page',
+      type: 'form',
       id: 'root',
-      label: '页面',
+      label: '页面容器',
+      componentProps: {
+        'name': '页面容器',
+        'label-position': 'top',
+      },
       children: [
         {
-          label: '表单',
-          type: 'form',
+          label: '1、您的身份是',
+          type: 'radio',
+          field: 'radio_xpls3ww4',
+          input: true,
           componentProps: {
-            'name': 'default',
-            'labelWidth': 100,
-            'label-position': 'top',
+            options: [
+              {
+                label: '家长',
+                value: 'option_22i498sd',
+              },
+              {
+                label: '学生',
+                value: 'option_b94fenks',
+                links: [],
+              },
+            ],
+            size: 'default',
           },
-          children: [
-            {
-              label: '您的身份是',
-              type: 'radio',
-              field: 'radio_xpls3ww4',
-              input: true,
-              componentProps: {
-                options: [
-                  {
-                    label: '家长',
-                    value: 'option_22i498sd',
-                  },
-                  {
-                    label: '学生',
-                    value: 'option_b94fenks',
-                    links: [],
-                  },
+          id: 'radio_xpls3ww4',
+        },
+        {
+          label: '2、您（或您的孩子）所选择课程是',
+          type: 'radio',
+          field: 'radio_uonztj0i',
+          input: true,
+          componentProps: {
+            options: [
+              {
+                label: '语文',
+                value: 'option_22i498sd',
+              },
+              {
+                label: '数学',
+                value: 'option_uc1rdff4',
+                links: [],
+              },
+              {
+                label: '英语',
+                value: 'option_n96uigyg',
+                links: [],
+              },
+            ],
+            size: 'default',
+          },
+          id: 'radio_uonztj0i',
+        },
+        {
+          label: '3、授课老师为',
+          type: 'select',
+          field: 'select_jvojdh2k',
+          input: true,
+          componentProps: {
+            options: [
+              {
+                label: '托尼老师',
+                value: 'option_694vkr5f',
+                links: [],
+              },
+              {
+                label: '张三丰老师',
+                value: 'option_1huuovdc',
+                links: [],
+              },
+              {
+                label: '张雪峰老师',
+                value: 'option_n9il8y2c',
+                links: [],
+              },
+            ],
+            placeholder: '请选择',
+            size: 'default',
+            effect: 'light',
+            placement: 'bottom-start',
+          },
+          id: 'select_jvojdh2k',
+        },
+        {
+          label: '4、您有极大可能把我们推荐给身边的朋友',
+          type: 'radio',
+          field: 'radio_jm1kxy75',
+          input: true,
+          componentProps: {
+            options: [
+              {
+                label: '不可能',
+                value: 'option_22i498sd',
+                links: [
+                  'slider_es0mehas',
                 ],
-                size: 'default',
               },
-              id: 'radio_xpls3ww4',
-            },
-            {
-              label: '您（或您的孩子）所选择课程是',
-              type: 'radio',
-              field: 'radio_uonztj0i',
-              input: true,
-              componentProps: {
-                options: [
-                  {
-                    label: '语文',
-                    value: 'option_22i498sd',
-                  },
-                  {
-                    label: '数学',
-                    value: 'option_uc1rdff4',
-                    links: [],
-                  },
-                  {
-                    label: '英语',
-                    value: 'option_n96uigyg',
-                    links: [],
-                  },
+              {
+                label: '极有可能',
+                value: 'option_awrynffg',
+                links: [
+                  'slider_es0mehas',
                 ],
-                size: 'default',
               },
-              id: 'radio_uonztj0i',
+            ],
+            size: 'default',
+          },
+          id: 'radio_jm1kxy75',
+        },
+        {
+          label: '请从0到10进行打分',
+          type: 'slider',
+          field: 'slider_es0mehas',
+          input: true,
+          componentProps: {
+            placement: 'top-start',
+            showTooltip: true,
+            hidden: true,
+            style: {
+              backgroundColor: null,
             },
-            {
-              label: '授课老师为',
-              type: 'select',
-              field: 'select_jvojdh2k',
-              input: true,
-              componentProps: {
-                options: [
-                  {
-                    label: '托尼老师',
-                    value: 'option_694vkr5f',
-                    links: [],
-                  },
-                  {
-                    label: '张三丰老师',
-                    value: 'option_1huuovdc',
-                    links: [],
-                  },
-                  {
-                    label: '张雪峰老师',
-                    value: 'option_n9il8y2c',
-                    links: [],
-                  },
+          },
+          id: 'slider_es0mehas',
+        },
+        {
+          label: '5、您对课程的满意程度为？',
+          type: 'radio',
+          field: 'radio_cdlaku47',
+          input: true,
+          componentProps: {
+            options: [
+              {
+                label: '很不满意',
+                value: 'option_22i498sd',
+                links: [
+                  'slider_ggjxvqg7',
                 ],
-                placeholder: '请选择',
-                size: 'default',
-                effect: 'light',
-                placement: 'bottom-start',
               },
-              id: 'select_jvojdh2k',
-            },
-            {
-              label: '您有极大可能把我们推荐给身边的朋友',
-              type: 'radio',
-              field: 'radio_jm1kxy75',
-              input: true,
-              componentProps: {
-                options: [
-                  {
-                    label: '不可能',
-                    value: 'option_22i498sd',
-                    links: [
-                      'slider_es0mehas',
-                    ],
-                  },
-                  {
-                    label: '极有可能',
-                    value: 'option_awrynffg',
-                    links: [
-                      'slider_es0mehas',
-                    ],
-                  },
+              {
+                label: '非常满意',
+                value: 'option_vzx5c2l3',
+                links: [
+                  'slider_ggjxvqg7',
                 ],
-                size: 'default',
               },
-              id: 'radio_jm1kxy75',
-            },
-            {
-              label: '请从0到10进行打分',
-              type: 'slider',
-              field: 'slider_es0mehas',
-              input: true,
-              componentProps: {
-                placement: 'top-start',
-                showTooltip: true,
-                hidden: true,
+            ],
+            size: 'default',
+          },
+          id: 'radio_cdlaku47',
+        },
+        {
+          label: '请从0到10进行打分',
+          type: 'slider',
+          field: 'slider_ggjxvqg7',
+          input: true,
+          componentProps: {
+            placement: 'top-start',
+            showTooltip: true,
+            hidden: true,
+            style: {},
+          },
+          id: 'slider_ggjxvqg7',
+        },
+        {
+          label: '6、上课后，学生成绩是否有所提高？',
+          type: 'radio',
+          field: 'radio_f8ntslo0',
+          input: true,
+          componentProps: {
+            options: [
+              {
+                label: '明显提高',
+                value: 'option_22i498sd',
               },
-              id: 'slider_es0mehas',
-            },
-            {
-              label: '您对课程的满意程度为？',
-              type: 'radio',
-              field: 'radio_cdlaku47',
-              input: true,
-              componentProps: {
-                options: [
-                  {
-                    label: '很不满意',
-                    value: 'option_22i498sd',
-                    links: [
-                      'slider_ggjxvqg7',
-                    ],
-                  },
-                  {
-                    label: '非常满意',
-                    value: 'option_vzx5c2l3',
-                    links: [
-                      'slider_ggjxvqg7',
-                    ],
-                  },
-                ],
-                size: 'default',
+              {
+                label: '有所提高',
+                value: 'option_umfx0rva',
+                links: [],
               },
-              id: 'radio_cdlaku47',
-            },
-            {
-              label: '请从0到10进行打分',
-              type: 'slider',
-              field: 'slider_ggjxvqg7',
-              input: true,
-              componentProps: {
-                placement: 'top-start',
-                showTooltip: true,
-                hidden: true,
+              {
+                label: '没有明显效果',
+                value: 'option_1prpfoag',
+                links: [],
               },
-              id: 'slider_ggjxvqg7',
-            },
-            {
-              label: '上课后，学生成绩是否有所提高？',
-              type: 'radio',
-              field: 'radio_f8ntslo0',
-              input: true,
-              componentProps: {
-                options: [
-                  {
-                    label: '明显提高',
-                    value: 'option_22i498sd',
-                  },
-                  {
-                    label: '有所提高',
-                    value: 'option_umfx0rva',
-                    links: [],
-                  },
-                  {
-                    label: '没有明显效果',
-                    value: 'option_1prpfoag',
-                    links: [],
-                  },
-                ],
-                size: 'default',
+            ],
+            size: 'default',
+          },
+          id: 'radio_f8ntslo0',
+        },
+        {
+          label: '7、您是否愿意继续参加我们的其他课程？',
+          type: 'radio',
+          field: 'radio_at4xbyag',
+          input: true,
+          componentProps: {
+            options: [
+              {
+                label: '愿意继续参加',
+                value: 'option_22i498sd',
               },
-              id: 'radio_f8ntslo0',
-            },
-            {
-              label: '您是否愿意继续参加我们的其他课程？',
-              type: 'radio',
-              field: 'radio_at4xbyag',
-              input: true,
-              componentProps: {
-                options: [
-                  {
-                    label: '愿意继续参加',
-                    value: 'option_22i498sd',
-                  },
-                  {
-                    label: '需要考虑',
-                    value: 'option_s48xc4ws',
-                    links: [],
-                  },
-                  {
-                    label: '不再参加',
-                    value: 'option_018npznl',
-                    links: [],
-                  },
-                ],
-                size: 'default',
+              {
+                label: '需要考虑',
+                value: 'option_s48xc4ws',
+                links: [],
               },
-              id: 'radio_at4xbyag',
-            },
-            {
-              label: '您的意见和建议',
-              type: 'textarea',
-              field: 'textarea_5im11oab',
-              input: true,
-              componentProps: {
-                placeholder: '请输入',
-                type: 'textarea',
-                autosize: {
-                  maxRows: 5,
-                  minRows: 5,
-                },
-                maxlength: 500,
+              {
+                label: '不再参加',
+                value: 'option_018npznl',
+                links: [],
               },
-              id: 'textarea_5im11oab',
+            ],
+            size: 'default',
+          },
+          id: 'radio_at4xbyag',
+        },
+        {
+          label: '8、您的意见和建议',
+          type: 'textarea',
+          field: 'textarea_5im11oab',
+          input: true,
+          componentProps: {
+            placeholder: '请输入',
+            type: 'textarea',
+            autosize: {
+              maxRows: 5,
+              minRows: 5,
             },
-          ],
-          id: 'form_ay0pvtu0',
+            maxlength: 500,
+          },
+          id: 'textarea_5im11oab',
         },
       ],
-      componentProps: {
-        style: {
-          padding: '16px',
-        },
-      },
     },
   ],
   script: '',
-  canvas: { },
+  canvas: {},
 }
 
 onMounted(() => {

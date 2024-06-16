@@ -9,17 +9,16 @@ const props = withDefaults(defineProps<DesignerProps>(), {
   disabledZoom: false,
   hiddenHeader: false,
   lockDefaultSchemaEdit: false,
-  title: 'EpicDesigner默认项目',
+  title: 'ElegantDesigner默认项目',
   defaultSchema: () => ({
     schemas: [{
-      type: 'page',
+      type: 'form',
       id: 'root',
-      label: '页面',
+      label: '页面容器',
       children: [],
       componentProps: {
-        style: {
-          padding: '16px',
-        },
+        'name': '页面容器',
+        'label-position': 'top',
       },
     }],
     script: '',

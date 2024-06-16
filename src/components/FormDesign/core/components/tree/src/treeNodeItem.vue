@@ -2,7 +2,7 @@
  * @Description:
  * @Author: zhangyao
  * @Date: 2024-06-11 16:37:22
- * @LastEditTime: 2024-06-11 19:23:58
+ * @LastEditTime: 2024-06-16 18:09:04
  * @LastEditors: zhangyao
 -->
 <script lang="ts" setup>
@@ -92,11 +92,11 @@ init()
 <template>
   <li
     class="elegant-tree-node"
-    :class="{ 'expanded': props.schema.children?.length, 'level-1': props.schema.type === 'page' }"
+    :class="{ 'expanded': props.schema.children?.length, 'level-1': props.schema.type === 'form' }"
   >
     <a>
       <span
-        v-if="props.schema.children?.length && props.schema.type !== 'page'" class="icon-expanded"
+        v-if="props.schema.children?.length && props.schema.type !== 'form'" class="icon-expanded"
         :class="{ expanded }" @click="handleExpanded"
       >
         <EIcon name="icon-youjiantou" />

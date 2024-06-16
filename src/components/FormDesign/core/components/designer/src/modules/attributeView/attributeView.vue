@@ -46,7 +46,7 @@ watch(() => designer.state.checkedNode?.type, () => {
     ...attribute,
   ]
 
-  if (type === 'page') {
+  if (type === 'form') {
     componentAttributes.value.push(...[
       {
         label: '画布宽度',

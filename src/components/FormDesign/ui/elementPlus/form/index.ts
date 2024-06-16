@@ -2,7 +2,7 @@ import type { ComponentConfigModel } from '../../../utils'
 
 export default {
   component: () => import('./form.vue'),
-  groupName: '表单',
+  groupName: '',
   icon: 'elegant-icon-daibanshixiang',
   defaultSchema: {
     label: '表单',
@@ -56,29 +56,7 @@ export default {
           ],
         },
       },
-      {
-        label: '表单尺寸',
-        type: 'select',
-        field: 'componentProps.size',
-        componentProps: {
-          placeholder: '请选择',
-          clearable: true,
-          options: [
-            {
-              label: 'large',
-              value: 'large',
-            },
-            {
-              label: 'default',
-              value: 'default',
-            },
-            {
-              label: 'small',
-              value: 'small',
-            },
-          ],
-        },
-      },
+
       {
         label: '星号位置',
         type: 'select',
@@ -122,11 +100,6 @@ export default {
         label: '禁用',
         type: 'switch',
         field: 'componentProps.disabled',
-      },
-      {
-        label: '隐藏',
-        type: 'switch',
-        field: 'componentProps.hidden',
       },
     ],
     action: [

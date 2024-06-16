@@ -1,6 +1,13 @@
 <!--
  * @Description:
  * @Author: zhangyao
+ * @Date: 2024-06-13 09:15:41
+ * @LastEditTime: 2024-06-16 18:34:47
+ * @LastEditors: zhangyao
+-->
+<!--
+ * @Description:
+ * @Author: zhangyao
  * @Date: 2024-06-11 16:37:22
  * @LastEditTime: 2024-06-11 16:47:05
  * @LastEditors: zhangyao
@@ -51,7 +58,7 @@ function handleAdd() {
 
 function isDraggable(schemas: ComponentSchema) {
   // 判断当前节点类型是否允许拖拽
-  if (schemas.type === 'page' || pluginManager.getComponentConfingByType(schemas.type).editConstraints?.immovable) {
+  if (schemas.type === 'form' || pluginManager.getComponentConfingByType(schemas.type).editConstraints?.immovable) {
     // 禁止拖拽
     return 'unmover-item'
   }
@@ -64,7 +71,7 @@ function isDraggable(schemas: ComponentSchema) {
   <draggable
     v-model="modelSchemas" item-key="id" :component-data="{
       type: 'transition-group',
-    }" class="elegant-draggable-range" v-bind="{
+    }" class="elegant-draggable-range p-16px" v-bind="{
       animation: 200,
       group: 'edit-draggable',
       handle: '.draggable-item',
