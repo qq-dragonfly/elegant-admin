@@ -17,8 +17,9 @@
     .elegant-draggable-range {
       min-height: 60px;
       height: 100%;
-      border: 1px var(--elegant-border-color) dashed;
       width: 100%;
+      padding: 16px;
+      overflow-y: auto;
     }
 
     > div > .elegant-draggable-range {

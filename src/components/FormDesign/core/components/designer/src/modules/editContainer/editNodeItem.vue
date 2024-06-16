@@ -2,7 +2,7 @@
  * @Description:
  * @Author: zhangyao
  * @Date: 2024-06-13 09:15:41
- * @LastEditTime: 2024-06-16 18:34:47
+ * @LastEditTime: 2024-06-16 21:34:17
  * @LastEditors: zhangyao
 -->
 <!--
@@ -71,7 +71,7 @@ function isDraggable(schemas: ComponentSchema) {
   <draggable
     v-model="modelSchemas" item-key="id" :component-data="{
       type: 'transition-group',
-    }" class="elegant-draggable-range p-16px" v-bind="{
+    }" class="elegant-draggable-range" v-bind="{
       animation: 200,
       group: 'edit-draggable',
       handle: '.draggable-item',
