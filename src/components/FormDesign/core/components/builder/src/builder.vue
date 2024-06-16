@@ -205,7 +205,7 @@ defineExpose({
   </div>
   <Suspense v-else @resolve="handleReady">
     <template #default>
-      <div class="elegant-builder-main">
+      <div class="elegant-builder-main p-16px">
         <ENode v-for="item, index in pageSchemaReactive.schemas" :key="index" :component-schema="item" />
       </div>
     </template>
