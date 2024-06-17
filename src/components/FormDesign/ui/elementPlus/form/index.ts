@@ -19,6 +19,10 @@ export default {
         label: 'name',
         type: 'input',
         field: 'componentProps.name',
+        componentProps: {
+          name: 'default',
+          disabled: true,
+        },
       },
       {
         label: '标签宽度',
@@ -42,15 +46,11 @@ export default {
           clearable: true,
           options: [
             {
-              label: 'left',
+              label: '左边',
               value: 'left',
             },
             {
-              label: 'right',
-              value: 'right',
-            },
-            {
-              label: 'top',
+              label: '上边',
               value: 'top',
             },
           ],
@@ -66,11 +66,11 @@ export default {
           clearable: true,
           options: [
             {
-              label: 'left',
+              label: '左边',
               value: 'left',
             },
             {
-              label: 'right',
+              label: '右边',
               value: 'right',
             },
           ],
@@ -90,6 +90,9 @@ export default {
         label: '滚动校验错误处',
         type: 'switch',
         field: 'componentProps.scroll-to-error',
+        componentProps: {
+          'scroll-to-error': true,
+        },
       },
       {
         label: '行内模式',

@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<DesignerProps>(), {
       label: '页面容器',
       children: [],
       componentProps: {
-        'name': '页面容器',
+        'name': 'default',
         'label-position': 'top',
       },
     }],

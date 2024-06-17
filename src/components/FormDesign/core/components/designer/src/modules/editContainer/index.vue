@@ -2,7 +2,7 @@
  * @Description:
  * @Author: zhangyao
  * @Date: 2024-06-13 09:15:41
- * @LastEditTime: 2024-06-14 16:14:09
+ * @LastEditTime: 2024-06-17 17:42:36
  * @LastEditors: zhangyao
 -->
 <script lang="ts" setup>
@@ -36,7 +36,7 @@ onMounted(() => {
   <section class="elegant-edit-canvas">
     <KEditScreenContainer>
       <div
-        ref="elegantEditRangeRef" class="elegant-edit-range relative overflow-auto rounded-md"
+        ref="elegantEditRangeRef" class="elegant-edit-range relative rounded-md"
         :style="getEditRangestyle"
       >
         <ENodeItem :schema="rootSchema" />

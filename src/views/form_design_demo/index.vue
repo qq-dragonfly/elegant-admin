@@ -12,8 +12,9 @@ const pageSchema = {
       id: 'root',
       label: '页面容器',
       componentProps: {
-        'name': '页面容器',
+        'name': 'default',
         'label-position': 'top',
+        'scroll-to-error': true,
       },
       children: [
         {

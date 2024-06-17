@@ -1,3 +1,10 @@
+<!--
+ * @Description:
+ * @Author: zhangyao
+ * @Date: 2024-06-13 09:05:48
+ * @LastEditTime: 2024-06-17 16:15:57
+ * @LastEditors: zhangyao
+-->
 <script setup lang="ts">
 import CardData from './modules/card_data.vue'
 import HeaderBanner from './modules/header_banner.vue'
@@ -8,12 +15,12 @@ import TableStatistics from './modules/table_statistics.vue'
 </script>
 
 <template>
-  <div>
-    <PageHeader>
+  <div class="pt-16px">
+    <!-- <PageHeader>
       <template #title>
         <HeaderBanner />
       </template>
-    </PageHeader>
+    </PageHeader> -->
     <div class="mx-8px mb-8px">
       <CardData />
     </div>
