@@ -2,7 +2,7 @@
  * @Description:
  * @Author: zhangyao
  * @Date: 2024-06-11 16:37:22
- * @LastEditTime: 2024-06-11 17:28:29
+ * @LastEditTime: 2024-06-17 19:28:55
  * @LastEditors: zhangyao
  */
 export const typeOptions = [
@@ -24,8 +24,8 @@ export const typeOptions = [
 ]
 
 export const triggerOptions = [
-  { label: 'change', value: 'change' },
-  { label: 'blur', value: 'blur' },
+  { label: '改变', value: 'change' },
+  { label: '失去焦点', value: 'blur' },
 ]
 
 export const lenTypeOptions = ['string', 'number', 'url', 'array', 'email']

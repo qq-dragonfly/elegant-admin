@@ -43,15 +43,15 @@ export default {
           clearable: true,
           options: [
             {
-              label: 'large',
+              label: '较大',
               value: 'large',
             },
             {
-              label: 'default',
+              label: '默认',
               value: 'default',
             },
             {
-              label: 'small',
+              label: '较小',
               value: 'small',
             },
           ],

@@ -132,7 +132,7 @@ function handleDelete(index: number) {
 <template>
   <div>
     <div
-      class="rule-item-main relative m-t-2 border rounded border-solid p-2 transition-all"
+      class="rule-item-main relative m-t-2 border rounded border-dashed p-2 transition-all"
     >
       <template v-for="(componentSchema, index) in requiredRuleSchemas" :key="index">
         <div v-if="componentSchema.show ? componentSchema.show() : true" class="m-t-2 flex first:m-0">
