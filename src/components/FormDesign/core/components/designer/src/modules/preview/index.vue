@@ -1,3 +1,10 @@
+<!--
+ * @Description:
+ * @Author: zhangyao
+ * @Date: 2024-06-13 09:15:41
+ * @LastEditTime: 2024-06-18 18:44:38
+ * @LastEditors: zhangyao
+-->
 <script lang="ts" setup>
 import { inject, nextTick, ref } from 'vue'
 import { getUUID, pluginManager } from '../../../../../../utils'
@@ -56,7 +63,7 @@ defineExpose({
 
 <template>
   <Modal v-model="visible" title="预览" class="w-900px" width="900px" ok-text="输出结果" @close="handleClose" @ok="handleOk">
-    <div class="min-w-750px rounded">
+    <div class="min-w-750px rounded px-16px">
       <EBuilder :key="EBuilderKey" ref="kb" :page-schema="pageSchema" />
 
       <!-- 输出结果 start -->

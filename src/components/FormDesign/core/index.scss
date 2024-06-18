@@ -1,11 +1,11 @@
 @import "./static/icons/iconfont.css";
 @import "./theme/var.scss";
+@import "./components/asyncLoader/index.scss";
 @import "./components/tree/src/index.scss";
 @import "./components/designer/src/index.scss";
 @import "./extensions/EActionEditor/index.scss";
 @import "./extensions/ERuleEditor/index.scss";
 @import "./extensions/EColEditor/index.scss";
-@import "./components/asyncLoader/index.scss";
 
 // 基础组件适配样式
 @import "../ui/elementPlus/index.scss";
