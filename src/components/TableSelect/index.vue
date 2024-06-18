@@ -199,7 +199,6 @@ function handleAllChange(selecteds: any) {
               :init-param="initTableParam"
               :tool-button="false"
               :data-callback="dataCallback"
-              :show-pagination="true"
               highlight-current-row
               page-layout="total, prev, pager, next"
               :request-api="requestApi"

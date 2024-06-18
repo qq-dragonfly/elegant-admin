@@ -152,7 +152,7 @@ const columns = reactive<ColumnProps[]>(
           ref="proTableRef"
           :tool-button="false"
           :is-show-search="false" :border="false" title="资源管理" :request-api="getTableList" :columns="columns"
-          :data-callback="dataCallback" :init-param="initTableParam" :show-pagination="true"
+          :data-callback="dataCallback" :init-param="initTableParam"
           highlight-current-row
         />
       </div>

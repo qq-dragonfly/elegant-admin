@@ -218,4 +218,7 @@ textarea {
     border-bottom: 2px solid var(--g-ui-primary)!important;
     color: var(--g-ui-primary)!important;
   }
+  .tox-textarea-wrap,.tox-textarea {
+    height: 100%!important;
+  }
   /* 覆盖tinymce样式  end*/

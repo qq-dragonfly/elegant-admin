@@ -23,7 +23,6 @@ const useTabbarStore = defineStore(
 
     // 添加标签s页
     async function add(route: RouteLocationNormalized) {
-      console.log('route', route)
       if (route.meta.isFull) {
         return
       }

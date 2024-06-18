@@ -20,7 +20,7 @@ defineOptions({
 const props = withDefaults(defineProps<ProTableProps>(), {
   columns: () => [],
   requestAuto: true,
-  pagination: true,
+  isShowPageable: true,
   isShowSearch: true,
   initParam: {},
   border: true,
@@ -46,7 +46,7 @@ export interface ProTableProps {
   requestError?: (params: any) => void // 表格 api 请求错误监听 ==> 非必传
   dataCallback?: (data: any) => any // 返回数据的回调函数，可以对数据进行处理 ==> 非必传
   title?: string // 表格标题 ==> 非必传
-  pagination?: boolean // 是否需要分页组件 ==> 非必传（默认为true）
+  isShowPageable?: boolean // 是否需要分页组件 ==> 非必传（默认为true）
   isShowSearch?: boolean // 是否查询组件 ==> 非必传（默认为true）
   pageLayout?: string // 分页组件参数 ==> 非必传（默认为'total, sizes, prev, pager, next, jumper'）
   initParam?: any // 初始化请求参数 ==> 非必传（默认为{}）
@@ -78,7 +78,7 @@ const { selectionChange, selectedList, selectedListIds, isSelected } = useSelect
 
 // 表格操作 Hooks
 const { tableData, pageable, searchParam, searchInitParam, getTableList, search, reset, handleSizeChange, handleCurrentChange }
-  = useTable(props.requestApi, props.initParam, props.pagination, props.dataCallback, props.requestError)
+  = useTable(props.requestApi, props.initParam, props.isShowPageable, props.dataCallback, props.requestError)
 
 // 清空选中数据列表
 const clearSelection = () => tableRef.value!.clearSelection()
@@ -111,7 +111,7 @@ const processTableData = computed(() => {
   if (!props.data) {
     return tableData.value
   }
-  if (!props.pagination) {
+  if (!props.isShowPageable) {
     return props.data
   }
   return props.data.slice(
@@ -363,7 +363,7 @@ defineExpose({
     <!-- 分页组件 -->
     <slot name="pagination">
       <Pagination
-        v-if="pagination"
+        v-if="isShowPageable"
         :pageable="pageable"
         :page-layout="pageLayout"
         :handle-size-change="handleSizeChange"

@@ -9,9 +9,8 @@ defineOptions({
   name: 'UserDrawer',
 })
 const formRules = reactive({
-  roleName: [{ required: true, message: '请输入角色名称!' }],
-  alias: [{ required: true, message: '请输入角色别名!' }],
-  sort: [{ required: true, message: '请输入序号值!' }],
+  phone: [{ required: true, message: '请输入用户名称!' }],
+  name: [{ required: true, message: '请输入用户姓名!' }],
 })
 
 interface DrawerProps {
@@ -63,7 +62,7 @@ defineExpose({
 </script>
 
 <template>
-  <el-drawer v-model="drawerVisible" :destroy-on-close="true" size="600px" :title="`${drawerProps.title}角色`">
+  <el-drawer v-model="drawerVisible" :destroy-on-close="true" size="600px" :title="`${drawerProps.title}账号`">
     <el-form
       ref="ruleFormRef"
       label-width="120px"

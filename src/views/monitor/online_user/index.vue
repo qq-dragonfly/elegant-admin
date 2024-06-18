@@ -79,7 +79,6 @@ async function handleForceOut(row: any) {
         :columns="columns"
         :data-callback="dataCallback"
         :init-param="initTableParam"
-        :show-pagination="true"
         highlight-current-row
       >
         <!-- 表格操作 -->

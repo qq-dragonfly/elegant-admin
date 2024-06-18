@@ -5,25 +5,7 @@ defineOptions({
   name: 'ProjectNews',
 })
 const { lastBuildTime } = __SYSTEM_INFO__
-interface NewsItem {
-  id: number
-  content: string
-  time: string
-}
 
-const newses = computed<NewsItem[]>(() => [
-  { id: 1, content: 'zhangyao1990 在2022年10月31日创建了开源项目 elegant-admin!', time: '2021-05-28 22:22:22' },
-  { id: 2, content: 'zhangyao1990 在2022年10月31日创建了开源项目 elegant-admin!', time: '2021-10-27 10:24:54' },
-  { id: 3, content: 'zhangyao1990 在2022年10月31日创建了开源项目 elegant-admin!', time: '2021-10-31 22:43:12' },
-  { id: 4, content: 'zhangyao1990 在2022年10月31日创建了开源项目 elegant-admin!', time: '2021-11-03 20:33:31' },
-  { id: 5, content: 'zhangyao1990 在2022年10月31日创建了开源项目 elegant-admin!', time: '2021-11-07 22:45:32' },
-  { id: 6, content: 'zhangyao1990 在2022年10月31日创建了开源项目 elegant-admin!', time: '2021-11-07 22:45:32' },
-  { id: 7, content: 'zhangyao1990 在2022年10月31日创建了开源项目 elegant-admin!', time: '2021-11-07 22:45:32' },
-  { id: 8, content: 'zhangyao1990 在2022年10月31日创建了开源项目 elegant-admin!', time: '2021-11-07 22:45:32' },
-  { id: 8, content: 'zhangyao1990 在2022年10月31日创建了开源项目 elegant-admin!', time: '2021-11-07 22:45:32' },
-  { id: 8, content: 'zhangyao1990 在2022年10月31日创建了开源项目 elegant-admin!', time: '2021-11-07 22:45:32' },
-  { id: 8, content: 'zhangyao1990 在2022年10月31日创建了开源项目 elegant-admin!', time: '2021-11-07 22:45:32' },
-])
 const activities = [
   {
     id: 1,

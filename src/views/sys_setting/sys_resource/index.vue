@@ -85,7 +85,7 @@ async function handleDel(row: any) {
     <div class="table-box">
       <ProTable
         ref="proTableRef" :border="false" title="资源管理" :request-api="getTableList" :columns="columns"
-        :data-callback="dataCallback" :init-param="initTableParam" :show-pagination="true" highlight-current-row
+        :data-callback="dataCallback" :init-param="initTableParam" highlight-current-row
       >
         <!-- 表格 header 按钮 -->
         <template #tableHeader>

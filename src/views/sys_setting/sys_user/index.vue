@@ -106,7 +106,6 @@ async function handleDelUser(row: any) {
         :columns="columns"
         :data-callback="dataCallback"
         :init-param="initTableParam"
-        :show-pagination="true"
       >
         <!-- 表格 header 按钮 -->
         <template #tableHeader>

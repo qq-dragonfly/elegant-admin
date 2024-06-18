@@ -100,7 +100,6 @@ const columns = reactive<ColumnProps[]>(
         :columns="columns"
         :data-callback="dataCallback"
         :init-param="initTableParam"
-        :show-pagination="true"
         highlight-current-row
       />
     </div>

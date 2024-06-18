@@ -93,7 +93,6 @@ async function handleDel(row: any) {
         :columns="columns"
         :data-callback="dataCallback"
         :init-param="initTableParam"
-        :show-pagination="true"
         highlight-current-row
       >
         <!-- 表格 header 按钮 -->
