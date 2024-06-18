@@ -190,6 +190,12 @@ function handleReady() {
     proxy && pageManager.addComponentInstance('builder', proxy)
   })
 }
+// 在 nextTick 后检查 pluginManager 初始化状态
+nextTick(() => {
+  if (pluginManager.initialized.value) {
+    handleReady()
+  }
+})
 defineExpose({
   ready,
   getData,
@@ -201,18 +207,11 @@ defineExpose({
 
 <template>
   <div v-if="!pluginManager.initialized.value" class="elegant-loading-box">
-    <!-- <EAsyncLoader /> -->
+    <EAsyncLoader />
   </div>
-  <Suspense v-else @resolve="handleReady">
-    <template #default>
-      <div class="elegant-builder-main p-16px">
-        <ENode v-for="item, index in pageSchemaReactive.schemas" :key="index" :component-schema="item" />
-      </div>
-    </template>
-    <template #fallback>
-      <div class="elegant-loading-box">
-        <EAsyncLoader />
-      </div>
-    </template>
-  </Suspense>
+  <div v-else>
+    <div class="elegant-builder-main">
+      <ENode v-for="(item, index) in pageSchemaReactive.schemas" :key="index" :component-schema="item" />
+    </div>
+  </div>
 </template>

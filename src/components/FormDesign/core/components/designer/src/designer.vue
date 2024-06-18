@@ -123,7 +123,12 @@ function handleReady() {
     emits('ready', { pageManager })
   })
 }
-
+// 在 nextTick 后检查 pluginManager 初始化状态
+nextTick(() => {
+  if (pluginManager.initialized.value) {
+    handleReady()
+  }
+})
 /**
  * 设置hover状态
  * @param disableHover
@@ -199,48 +204,41 @@ defineExpose({
 
 <template>
   <div v-if="!pluginManager.initialized.value" class="elegant-loading-box">
-    <!-- <EAsyncLoader /> -->
+    <EAsyncLoader />
   </div>
-  <Suspense v-else @resolve="handleReady">
-    <template #default>
-      <div class="elegant-designer-main">
-        <div class="elegant-header-container">
-          <slot name="header">
-            <EHeader v-if="!props.hiddenHeader" @preview="handlePreview" @save="handleSave">
-              <template #header>
-                <slot name="header-prefix" />
-              </template>
+  <div v-else>
+    <div class="elegant-designer-main">
+      <div class="elegant-header-container">
+        <slot name="header">
+          <EHeader v-if="!props.hiddenHeader" @preview="handlePreview" @save="handleSave">
+            <template #header>
+              <slot name="header-prefix" />
+            </template>
 
-              <template #prefix>
-                <slot name="header-prefix" />
-              </template>
-              <template #title>
-                <slot name="header-title" />
-              </template>
-              <template #right-prefix>
-                <slot name="header-right-prefix" />
-              </template>
-              <template #right-action>
-                <slot name="header-right-action" />
-              </template>
-              <template #right-suffix>
-                <slot name="header-right-suffix" />
-              </template>
-            </EHeader>
-          </slot>
-        </div>
-        <div class="elegant-split-view-container" :class="{ 'hidden-header': hiddenHeader }">
-          <EActionBar />
-          <EEditContainer />
-          <ERightSidebar />
-        </div>
-        <EPreview ref="previewRef" />
+            <template #prefix>
+              <slot name="header-prefix" />
+            </template>
+            <template #title>
+              <slot name="header-title" />
+            </template>
+            <template #right-prefix>
+              <slot name="header-right-prefix" />
+            </template>
+            <template #right-action>
+              <slot name="header-right-action" />
+            </template>
+            <template #right-suffix>
+              <slot name="header-right-suffix" />
+            </template>
+          </EHeader>
+        </slot>
       </div>
-    </template>
-    <template #fallback>
-      <div class="elegant-loading-box">
-        <EAsyncLoader />
+      <div class="elegant-split-view-container" :class="{ 'hidden-header': hiddenHeader }">
+        <EActionBar />
+        <EEditContainer />
+        <ERightSidebar />
       </div>
-    </template>
-  </Suspense>
+      <EPreview ref="previewRef" />
+    </div>
+  </div>
 </template>
